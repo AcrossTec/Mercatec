@@ -3,6 +3,10 @@
 
 #pragma once
 #include <unknwn.h>
+
+#pragma push_macro("GetCurrentTime")
+#undef GetCurrentTime
+
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
 #include <winrt/Microsoft.UI.Composition.h>
@@ -14,3 +18,5 @@
 #include <winrt/Microsoft.UI.Xaml.Navigation.h>
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <wil/cppwinrt_helpers.h>
+
+#pragma pop_macro("GetCurrentTime")
