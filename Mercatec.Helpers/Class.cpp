@@ -10,7 +10,7 @@
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace winrt::Mercatec_Helpers::implementation
+namespace winrt::Mercatec::Helpers::implementation
 {
     int32_t Class::MyProperty()
     {

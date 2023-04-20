@@ -9,7 +9,7 @@
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{ba6f8055-8f7a-4820-8d87-8979ef0ca7d7}</ProjectGuid>
     <ProjectName>Mercatec.Helpers</ProjectName>
-    <RootNamespace>Mercatec_Helpers</RootNamespace>
+    <RootNamespace>Mercatec.Helpers</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
     <AppContainerApplication>false</AppContainerApplication>
@@ -110,7 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>Mercatec_Helpers.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>Mercatec.Helpers.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
@@ -147,8 +147,9 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Mercatec_Helpers.def" />
+    <None Include="Mercatec.Helpers.def" />
     <None Include="packages.config" />
+    <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">

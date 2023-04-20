@@ -9,7 +9,7 @@
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{32838a0e-2990-4302-8000-ba502c332f34}</ProjectGuid>
     <ProjectName>Mercatec.BusinessLogic</ProjectName>
-    <RootNamespace>Mercatec_BusinessLogic</RootNamespace>
+    <RootNamespace>Mercatec.BusinessLogic</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
     <AppContainerApplication>false</AppContainerApplication>
@@ -110,7 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>Mercatec_BusinessLogic.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>Mercatec.BusinessLogic.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
@@ -147,8 +147,9 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Mercatec_BusinessLogic.def" />
+    <None Include="Mercatec.BusinessLogic.def" />
     <None Include="packages.config" />
+    <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">

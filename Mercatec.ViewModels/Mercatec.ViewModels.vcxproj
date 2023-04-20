@@ -9,7 +9,7 @@
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{42beae35-b354-414b-903d-bd82cbeb7f78}</ProjectGuid>
     <ProjectName>Mercatec.ViewModels</ProjectName>
-    <RootNamespace>Mercatec_ViewModels</RootNamespace>
+    <RootNamespace>Mercatec.ViewModels</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
     <AppContainerApplication>false</AppContainerApplication>
@@ -19,6 +19,10 @@
     <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
     <DesktopCompatible>true</DesktopCompatible>
     <UseWinUI>true</UseWinUI>
+    <CppWinRTVerbosity>high</CppWinRTVerbosity>
+    <CppWinRTProjectLanguage>C++/WinRT</CppWinRTProjectLanguage>
+    <CppWinRTModernIDL>true</CppWinRTModernIDL>
+    <CppWinRTEnableLegacyCoroutines>false</CppWinRTEnableLegacyCoroutines>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <ItemGroup Label="ProjectConfigurations">
@@ -110,17 +114,25 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>Mercatec_ViewModels.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>Mercatec.ViewModels.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpplatest</LanguageStandard>
+      <LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdc17</LanguageStandard_C>
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ConformanceMode>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EnableModules>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdcpplatest</LanguageStandard>
+      <LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdc17</LanguageStandard_C>
+      <ConformanceMode Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ConformanceMode>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</EnableModules>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -128,27 +140,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Class.h">
-      <DependentUpon>Class.cpp</DependentUpon>
+    <ClInclude Include="Mercatec.ViewModels.User.h">
+      <DependentUpon>Mercatec.ViewModels.User.cpp</DependentUpon>
+      <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.ViewModels.User.cpp">
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Class.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Class.idl">
-      <SubType>Code</SubType>
-      <DependentUpon>Class.cpp</DependentUpon>
-    </Midl>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Mercatec_ViewModels.def" />
+    <None Include="Mercatec.ViewModels.def" />
     <None Include="packages.config" />
+    <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">
@@ -171,6 +181,12 @@
     <ProjectReference Include="..\Mercatec.Repositories\Mercatec.Repositories.vcxproj">
       <Project>{8337b328-bf33-401f-b1cb-cd54ccd4be5b}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Mercatec.ViewModels.User.idl">
+      <DependentUpon>Mercatec.ViewModels.User.cpp</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

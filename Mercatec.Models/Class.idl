@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-namespace Mercatec_Models
+namespace Mercatec.Models
 {
     [default_interface]
     runtimeclass Class

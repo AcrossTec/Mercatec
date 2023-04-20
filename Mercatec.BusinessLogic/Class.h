@@ -5,7 +5,7 @@
 
 #include "Class.g.h"
 
-namespace winrt::Mercatec_BusinessLogic::implementation
+namespace winrt::Mercatec::BusinessLogic::implementation
 {
     struct Class : ClassT<Class>
     {
@@ -16,7 +16,7 @@ namespace winrt::Mercatec_BusinessLogic::implementation
     };
 }
 
-namespace winrt::Mercatec_BusinessLogic::factory_implementation
+namespace winrt::Mercatec::BusinessLogic::factory_implementation
 {
     struct Class : ClassT<Class, implementation::Class>
     {

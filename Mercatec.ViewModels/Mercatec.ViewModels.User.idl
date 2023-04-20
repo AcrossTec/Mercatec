@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-namespace Mercatec_ViewModels
+namespace Mercatec.ViewModels
 {
+    [bindable]
     [default_interface]
-    runtimeclass Class
+    runtimeclass User
     {
-        Class();
+        User();
         Int32 MyProperty;
     }
 }

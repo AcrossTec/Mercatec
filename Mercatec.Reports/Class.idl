@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-namespace Mercatec_Reports
+namespace Mercatec.Reports
 {
     [default_interface]
     runtimeclass Class

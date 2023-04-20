@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-namespace Mercatec_Helpers
+namespace Mercatec.Helpers
 {
     [default_interface]
     runtimeclass Class

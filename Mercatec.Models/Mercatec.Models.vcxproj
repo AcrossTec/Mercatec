@@ -9,7 +9,7 @@
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{4e3c076e-8fde-4089-a08d-c151c3f5f88f}</ProjectGuid>
     <ProjectName>Mercatec.Models</ProjectName>
-    <RootNamespace>Mercatec_Models</RootNamespace>
+    <RootNamespace>Mercatec.Models</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
     <AppContainerApplication>false</AppContainerApplication>
@@ -110,7 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>Mercatec_Models.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>Mercatec.Models.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
@@ -147,8 +147,9 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Mercatec_Models.def" />
+    <None Include="Mercatec.Models.def" />
     <None Include="packages.config" />
+    <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">
