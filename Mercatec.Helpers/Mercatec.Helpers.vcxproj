@@ -128,22 +128,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Helpers.Strings.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Types.hpp" />
+    <ClInclude Include="Mercatec.Helpers.ViewModels.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Widespread.hpp" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Class.h">
-      <DependentUpon>Class.cpp</DependentUpon>
+    <ClInclude Include="Mercatec.Helpers.Class.h">
+      <DependentUpon>Mercatec.Helpers.Class.cpp</DependentUpon>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Class.cpp" />
+    <ClCompile Include="Mercatec.Helpers.Class.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Class.idl">
+    <Midl Include="Mercatec.Helpers.Class.idl">
       <SubType>Code</SubType>
-      <DependentUpon>Class.cpp</DependentUpon>
+      <DependentUpon>Mercatec.Helpers.Class.cpp</DependentUpon>
     </Midl>
   </ItemGroup>
   <ItemGroup>

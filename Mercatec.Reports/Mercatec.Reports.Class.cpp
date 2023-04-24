@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 
 #include "pch.h"
-#include "Class.h"
+#include "Mercatec.Reports.Class.h"
 #if __has_include("Class.g.cpp")
-#include "Class.g.cpp"
+# include "Class.g.cpp"
 #endif
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace winrt::Mercatec::Helpers::implementation
+namespace winrt::Mercatec::Reports::implementation
 {
     int32_t Class::MyProperty()
     {
@@ -21,4 +21,4 @@ namespace winrt::Mercatec::Helpers::implementation
     {
         throw hresult_not_implemented();
     }
-}
+} // namespace winrt::Mercatec::Reports::implementation

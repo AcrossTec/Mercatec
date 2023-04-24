@@ -9,11 +9,11 @@ namespace winrt::Mercatec::Application::implementation
 {
     struct App : AppT<App>
     {
+    public:
         App();
-
-        void OnLaunched( Microsoft::UI::Xaml::LaunchActivatedEventArgs const& );
+        void OnLaunched(const Microsoft::UI::Xaml::LaunchActivatedEventArgs&);
 
     private:
         winrt::Microsoft::UI::Xaml::Window m_Window{ nullptr };
     };
-}
+} // namespace winrt::Mercatec::Application::implementation

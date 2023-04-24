@@ -1,0 +1,7 @@
+namespace Mercatec.ViewModels
+{
+    interface IModel
+    {
+        UInt64 Model { get; };
+    }
+}

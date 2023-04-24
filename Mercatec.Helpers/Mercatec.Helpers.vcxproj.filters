@@ -11,11 +11,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Class.cpp" />
+    <ClCompile Include="Mercatec.Helpers.Class.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Mercatec.Helpers.Types.hpp" />
+    <ClInclude Include="Mercatec.Helpers.ViewModels.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Strings.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Widespread.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="Class.idl" />

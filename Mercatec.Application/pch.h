@@ -9,7 +9,10 @@
 
 // Undefine GetCurrentTime macro to prevent
 // conflict with Storyboard::GetCurrentTime
-#pragma push_macro("GetCurrentTime")
+#ifdef PUSH_MACRO_GetCurrentTime
+# pragma push_macro("GetCurrentTime")
+#endif
+
 #undef GetCurrentTime
 
 #include <winrt/Windows.Foundation.h>
@@ -28,4 +31,6 @@
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <wil/cppwinrt_helpers.h>
 
-#pragma pop_macro("GetCurrentTime")
+#ifdef PUSH_MACRO_GetCurrentTime
+# pragma pop_macro("GetCurrentTime")
+#endif

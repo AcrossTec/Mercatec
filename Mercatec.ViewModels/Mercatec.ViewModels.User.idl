@@ -1,13 +1,18 @@
-// Copyright (c) Microsoft Corporation and Contributors.
-// Licensed under the MIT License.
+import "Mercatec.ViewModels.idl";
+
 
 namespace Mercatec.ViewModels
 {
     [bindable]
     [default_interface]
-    runtimeclass User
+    runtimeclass User : IModel, Microsoft.UI.Xaml.Data.INotifyPropertyChanged
     {
         User();
-        Int32 MyProperty;
+        UInt64 UserId;
+        String UserName;
+        String Email;
+        String Phone;
+        String Address;
+        String Password;
     }
 }

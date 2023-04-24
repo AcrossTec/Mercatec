@@ -8,19 +8,47 @@
 #include "winrt/Microsoft.UI.Xaml.Controls.Primitives.h"
 #include "User.g.h"
 
+#include "Mercatec.Models.User.hpp"
+
 namespace winrt::Mercatec::ViewModels::implementation
 {
     struct User : UserT<User>
     {
-        User();
-        int32_t MyProperty();
-        void MyProperty( int32_t value );
+    public:
+        User() = default;
+
+        uint64_t UserId() const noexcept;
+        void     UserId(const uint64_t user_id) noexcept;
+
+        hstring UserName() const noexcept;
+        void    UserName(const hstring& user_name) noexcept;
+
+        hstring Email() const noexcept;
+        void    Email(const hstring& email) noexcept;
+
+        hstring Phone() const noexcept;
+        void    Phone(const hstring& phone) noexcept;
+
+        hstring Address() const noexcept;
+        void    Address(const hstring& address) noexcept;
+
+        hstring Password() const noexcept;
+        void    Password(const hstring& password) noexcept;
+
+        uint64_t Model() const noexcept;
+
+        event_token PropertyChanged(const Microsoft::UI::Xaml::Data::PropertyChangedEventHandler& handler);
+        void        PropertyChanged(const event_token& token);
+
+    private:
+        ::Mercatec::Models::User                                      m_User;
+        event<Microsoft::UI::Xaml::Data::PropertyChangedEventHandler> m_PropertyChanged;
     };
-}
+} // namespace winrt::Mercatec::ViewModels::implementation
 
 namespace winrt::Mercatec::ViewModels::factory_implementation
 {
     struct User : UserT<User, implementation::User>
     {
     };
-}
+} // namespace winrt::Mercatec::ViewModels::factory_implementation

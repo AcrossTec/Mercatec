@@ -28,4 +28,7 @@
   <ItemGroup>
     <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
   </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Mercatec.ViewModels.idl" />
+  </ItemGroup>
 </Project>

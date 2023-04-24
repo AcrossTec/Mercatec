@@ -7,6 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mercatec.Application", "Mer
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution Folder", "{2123EF84-C96B-4F68-A061-08A49C51B38F}"
 	ProjectSection(SolutionItems) = preProject
+		.clang-format = .clang-format
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
 		Solution.props = Solution.props
 	EndProjectSection
 EndProject
@@ -21,6 +26,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mercatec.Reports", "Mercatec.Reports\Mercatec.Reports.vcxproj", "{4DACD89E-FE39-4C69-A0F9-52453802D73E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mercatec.Repositories", "Mercatec.Repositories\Mercatec.Repositories.vcxproj", "{8337B328-BF33-401F-B1CB-CD54CCD4BE5B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Tests", "Solution Tests", "{4981BBD2-3BA5-4E74-99CD-88A6FD7D6731}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
