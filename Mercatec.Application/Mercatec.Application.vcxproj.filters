@@ -5,6 +5,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xaml" />
+    <Page Include="Resources\GlobalResources.xaml">
+      <Filter>Resources</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl" />
@@ -43,6 +46,18 @@
   <ItemGroup>
     <Filter Include="Assets">
       <UniqueIdentifier>{88faec33-09c0-47bc-9fab-306bcee6c8c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images">
+      <UniqueIdentifier>{20875726-59df-4722-aa2b-97629e1a4376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{c1bf9e42-e987-4dfa-873a-c104f93f5601}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Styles">
+      <UniqueIdentifier>{f35102ab-92ff-4e0c-996f-114d627acb0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Themes">
+      <UniqueIdentifier>{15a8488c-5ae2-44c7-9480-c05baeb51458}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

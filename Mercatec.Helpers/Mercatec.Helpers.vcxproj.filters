@@ -22,9 +22,6 @@
     <ClInclude Include="Mercatec.Helpers.Widespread.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Class.idl" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
     <None Include="Mercatec.Helpers.def" />
     <None Include="PropertySheet.props" />

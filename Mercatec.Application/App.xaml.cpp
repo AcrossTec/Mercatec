@@ -40,11 +40,47 @@ App::App()
 }
 
 /// <summary>
-/// Invoked when the application is launched.
+///     Invoked when the application is launched.
 /// </summary>
-/// <param name="e">Details about the launch request and process.</param>
+/// <param name="e">
+///     Details about the launch request and process.
+/// </param>
 void App::OnLaunched(const LaunchActivatedEventArgs&)
 {
+    //! https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd
+    //! https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/windowing/windowing-overview
+    //! https://stackoverflow.com/questions/71546846/open-app-always-in-the-center-of-the-display-windows-11-winui-3
+
     m_Window = make<MainWindow>();
+
+    // Get access to IWindowNative
+    auto window_native{ m_Window.try_as<IWindowNative>() };
+    winrt::check_bool(window_native);
+
+    // Get the HWND for the XAML Window
+    HWND hwnd{ nullptr };
+    window_native->get_WindowHandle(&hwnd);
+
+    // Get the WindowId for our window
+    winrt::WindowId window_id = winrt::GetWindowIdFromWindow(hwnd);
+
+    // Get the AppWindow for the WindowId
+    auto app_window = AppWindow::GetFromWindowId(window_id);
+
+    if ( app_window )
+    {
+        auto display_area = DisplayArea::GetFromWindowId(window_id, DisplayAreaFallback::Nearest);
+
+        if ( display_area )
+        {
+            PointInt32 centered_position{ // clang-format off
+                .X = (display_area.WorkArea().Width - app_window.Size().Width) / 2,
+                .Y = (display_area.WorkArea().Height - app_window.Size().Height) / 2
+            }; // clang-format on
+
+            app_window.Move(centered_position);
+        }
+    }
+
     m_Window.Activate();
 }
