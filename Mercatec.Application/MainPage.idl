@@ -4,8 +4,8 @@
 namespace Mercatec.Application
 {
     [default_interface]
-    runtimeclass MainWindow : Microsoft.UI.Xaml.Window
+    runtimeclass MainPage : Microsoft.UI.Xaml.Controls.Page
     {
-        MainWindow();
+        MainPage();
     }
 }

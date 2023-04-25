@@ -3,19 +3,19 @@
 
 #pragma once
 
-#include "MainWindow.g.h"
+#include "WelcomePage.g.h"
 
 namespace winrt::Mercatec::Application::implementation
 {
-    struct MainWindow : MainWindowT<MainWindow>
+    struct WelcomePage : WelcomePageT<WelcomePage>
     {
-        MainWindow();
+        WelcomePage();
     };
 }
 
 namespace winrt::Mercatec::Application::factory_implementation
 {
-    struct MainWindow : MainWindowT<MainWindow, implementation::MainWindow>
+    struct WelcomePage : WelcomePageT<WelcomePage, implementation::WelcomePage>
     {
     };
 }

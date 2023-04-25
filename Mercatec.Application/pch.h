@@ -20,6 +20,8 @@
 #include <winrt/Windows.ApplicationModel.Core.h>
 #include <winrt/Windows.ApplicationModel.DataTransfer.h>
 #include <winrt/Windows.ApplicationModel.Activation.h>
+#include <winrt/Windows.Security.Credentials.h>
+#include <winrt/Windows.Storage.h>
 
 #include <winrt/Windows.UI.Core.h>
 #include <winrt/Windows.UI.Core.Preview.h>
@@ -58,9 +60,13 @@ namespace winrt
     using namespace Windows::Foundation::Collections;
 } // namespace winrt
 
-namespace MUW  = winrt::Microsoft::UI::Windowing;
+namespace MU   = winrt::Microsoft::UI;
+namespace MUX  = winrt::Microsoft::UI::Xaml;
 namespace MUXC = winrt::Microsoft::UI::Xaml::Controls;
 namespace MUXN = winrt::Microsoft::UI::Xaml::Navigation;
+namespace MUXI = winrt::Microsoft::UI::Xaml::Input;
+namespace MUXM = winrt::Microsoft::UI::Xaml::Media;
+namespace MUW  = winrt::Microsoft::UI::Windowing;
 
 #ifdef PUSH_MACRO_GetCurrentTime
 # pragma pop_macro("GetCurrentTime")

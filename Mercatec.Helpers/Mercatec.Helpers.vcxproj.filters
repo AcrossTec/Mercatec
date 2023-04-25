@@ -13,6 +13,7 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Mercatec.Helpers.Class.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="Mercatec.Helpers.MicrosoftPassportHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -20,6 +21,8 @@
     <ClInclude Include="Mercatec.Helpers.ViewModels.hpp" />
     <ClInclude Include="Mercatec.Helpers.Strings.hpp" />
     <ClInclude Include="Mercatec.Helpers.Widespread.hpp" />
+    <ClInclude Include="Mercatec.Helpers.MicrosoftPassportHelper.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Debug.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
-namespace Mercatec.Models
+namespace Mercatec.Application
 {
     [default_interface]
-    runtimeclass Class
+    runtimeclass LoginPage : Microsoft.UI.Xaml.Controls.Page
     {
-        Class();
-        Int32 MyProperty;
+        LoginPage();
     }
 }

@@ -19,4 +19,6 @@
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <wil/cppwinrt_helpers.h>
 
+namespace WFC = winrt::Windows::Foundation::Collections;
+
 #pragma pop_macro("GetCurrentTime")

@@ -19,6 +19,7 @@ namespace Mercatec::Helpers
     using Single = float_t;
     using Double = double_t;
 
+    using Char   = wchar_t;
     using String = winrt::hstring;
 
     using DateTime = winrt::Windows::Foundation::DateTime;

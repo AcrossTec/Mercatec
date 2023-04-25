@@ -8,6 +8,9 @@
     <Page Include="Resources\GlobalResources.xaml">
       <Filter>Resources</Filter>
     </Page>
+    <Page Include="LoginPage.xaml" />
+    <Page Include="MainPage.xaml" />
+    <Page Include="WelcomePage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl" />
