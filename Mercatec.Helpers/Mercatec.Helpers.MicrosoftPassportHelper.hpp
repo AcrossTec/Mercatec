@@ -1,11 +1,11 @@
 #pragma once
 
 #include <winrt/Windows.Foundation.h>
-#include <string_view>
+#include "Mercatec.Helpers.Exports.Api.hpp"
 
 namespace Mercatec::Helpers
 {
-    struct MicrosoftPassportHelper
+    struct MERCATEC_HELPERS_API MicrosoftPassportHelper sealed abstract
     {
         /// <summary>
         /// Checks to see if Passport is ready to be used.

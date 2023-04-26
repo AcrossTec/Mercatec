@@ -16,9 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Midl Include="Class.idl" />
+    <ClInclude Include="Mercatec.BusinessLogic.Exports.Api.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

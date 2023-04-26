@@ -1,0 +1,11 @@
+// Copyright (c) Microsoft Corporation and Contributors.
+// Licensed under the MIT License.
+
+namespace Mercatec.Models
+{
+    [default_interface]
+    runtimeclass Class
+    {
+        Class();
+    }
+}

@@ -115,12 +115,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MERCATEC_HELPERS_API_EXPORTS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MERCATEC_HELPERS_API_EXPORTS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -128,7 +128,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Helpers.Coroutines.Future.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Coroutines.Task.hpp" />
     <ClInclude Include="Mercatec.Helpers.Debug.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Exports.Api.hpp" />
     <ClInclude Include="Mercatec.Helpers.MicrosoftPassportHelper.hpp" />
     <ClInclude Include="Mercatec.Helpers.Strings.hpp" />
     <ClInclude Include="Mercatec.Helpers.Types.hpp" />

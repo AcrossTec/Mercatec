@@ -56,9 +56,9 @@ namespace winrt::Mercatec::Application::implementation
 
     IAsyncAction LoginPage::SignInPassport()
     {
-        apartment_context ui_thread; // Capture calling context.
+        // apartment_context ui_thread; // Capture calling context.
 
-        co_await winrt::resume_background();
+        // co_await winrt::resume_background();
         // Do compute-bound work here.
 
         if ( Helpers::AccountHelper::ValidateAccountCredentials(UserNameTextBox().Text()) )
@@ -74,7 +74,7 @@ namespace winrt::Mercatec::Application::implementation
         }
         else
         {
-            co_await ui_thread; // Switch back to calling context.
+            // co_await ui_thread; // Switch back to calling context.
             ErrorMessage().Text(L"Invalid Credentials");
         }
     }

@@ -13,11 +13,13 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="Mercatec.Models.AccountHelper.cpp" />
+    <ClCompile Include="Mercatec.Models.Class.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Mercatec.Models.User.hpp" />
     <ClInclude Include="Mercatec.Models.AccountHelper.hpp" />
+    <ClInclude Include="Mercatec.Models.Exports.Api.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

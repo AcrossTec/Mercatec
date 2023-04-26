@@ -1,16 +1,21 @@
 #pragma once
 
-#include <winrt/Windows.Foundation.h>
-#include <winrt/Windows.Foundation.Collections.h>
-
+#include "Mercatec.Helpers.Coroutines.Future.hpp"
+#include "Mercatec.Models.Exports.Api.hpp"
 #include "Mercatec.Models.User.hpp"
-
 #include <string_view>
 #include <filesystem>
+#include <vector>
+
+#pragma warning(push)
+
+// https://learn.microsoft.com/en-us/cpp/error-messages/compiler-warnings/compiler-warning-level-1-c4251?view=msvc-170
+// Description: 'type' : class 'type1' needs to have dll-interface to be used by clients of class 'type2'
+#pragma warning(disable : 4251)
 
 namespace Mercatec::Helpers
 {
-    class AccountHelper sealed abstract
+    class MERCATEC_MODELS_API AccountHelper sealed abstract
     {
     private:
         using Account = Models::User;
@@ -24,15 +29,14 @@ namespace Mercatec::Helpers
         /// <summary>
         ///     Create and save a useraccount list file. (Updating the old one)
         /// </summary>
-
-        static winrt::Windows::Foundation::IAsyncAction SaveAccountListAsync();
+        static std::future<void> SaveAccountListAsync();
 
     public:
         /// <summary>
         ///     Gets the useraccount list file and deserializes it from XML to a list of useraccount objects.
         /// </summary>
         /// <returns>List of useraccount objects</returns>
-        static winrt::Windows::Foundation::IAsyncOperation<winrt::Windows::Foundation::Collections::IVector<typename Account>> LoadAccountListAsync();
+        static std::future<std::vector<Account>> LoadAccountListAsync();
 
         /// <summary>
         /// Uses the local list of accounts and returns an XML formatted string representing the list
@@ -45,7 +49,7 @@ namespace Mercatec::Helpers
         /// </summary>
         /// <param name="listAsXml">XML formatted list of accounts</param>
         /// <returns>List object of accounts</returns>
-        static winrt::Windows::Foundation::Collections::IVector<Account>& DeserializeXmlToAccountList(const std::wstring_view list_as_xml);
+        static std::vector<Account>& DeserializeXmlToAccountList(const std::wstring_view list_as_xml);
 
         static Account AddAccount(const std::wstring_view user_name);
 
@@ -54,6 +58,8 @@ namespace Mercatec::Helpers
         static bool ValidateAccountCredentials(const std::wstring_view user_name);
 
     public:
-        static winrt::Windows::Foundation::Collections::IVector<Account> AccountList;
+        static std::vector<Account> AccountList;
     };
 } // namespace Mercatec::Helpers
+
+#pragma warning(pop)

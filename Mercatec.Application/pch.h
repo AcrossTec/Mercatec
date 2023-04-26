@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 #pragma once
-#include <windows.h>
-#include <unknwn.h>
-#include <restrictederrorinfo.h>
+#include <Windows.h>
+#include <Unknwn.h>
+#include <RestrictedErrorInfo.h>
 #include <hstring.h>
 
 // Undefine GetCurrentTime macro to prevent
