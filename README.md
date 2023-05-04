@@ -36,6 +36,8 @@
 
 * [Bonus operations for C++/WinRT iterators: The IIterable&lt;T&gt;, and C++/WinRT collections](https://devblogs.microsoft.com/oldnewthing/20201001-00/?p=104325)
 
+* [C++ coroutines: The lifetime of objects involved in the coroutine function](https://devblogs.microsoft.com/oldnewthing/20210412-00/?p=105078)
+
 * WinRT Namespace
   * [winrt::static_lifetime marker struct (C++/WinRT)](https://learn.microsoft.com/en-us/uwp/cpp-ref-for-winrt/static-lifetime)
 
@@ -48,3 +50,9 @@
   * [winrt::single_threaded_observable_vector function template (C++/WinRT)](https://learn.microsoft.com/en-us/uwp/cpp-ref-for-winrt/single-threaded-observable-vector)
 
 	* [Collections with C++/WinRT](https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/collections)
+
+## C/C++ projects and build systems in Visual Studio
+
+* [Walkthrough: Create and use your own Dynamic Link Library (C++)](https://learn.microsoft.com/en-us/cpp/build/walkthrough-creating-and-using-a-dynamic-link-library-cpp?view=msvc-170)
+
+* [Walkthrough: Create and use a static library (C++)](https://learn.microsoft.com/en-us/cpp/build/walkthrough-creating-and-using-a-static-library-cpp?view=msvc-170)

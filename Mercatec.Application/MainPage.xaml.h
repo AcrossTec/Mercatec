@@ -10,7 +10,7 @@ namespace winrt::Mercatec::Application::implementation
     struct MainPage : MainPageT<MainPage>
     {
         MainPage();
-        void MainPage_Loaded(const IInspectable& sender, const MUX::RoutedEventArgs& args);
+        fire_and_forget MainPage_Loaded(const IInspectable& sender, const MUX::RoutedEventArgs& args);
     };
 } // namespace winrt::Mercatec::Application::implementation
 

@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "Mercatec.Services.Auths.AccountHelper.hpp"
-#include "Mercatec.Helpers.Widespread.hpp"
 #include "Mercatec.Helpers.Debug.hpp"
+#include "Mercatec.Helpers.Strings.hpp"
+#include "Mercatec.Helpers.Widespread.hpp"
 #include <winrt/Windows.Storage.h>
 #include <tinyxml2.h>
 #include <algorithm>
@@ -10,7 +11,7 @@
 
 namespace Mercatec::Services::Auths
 {
-    std::vector<AccountHelper::Account> AccountHelper::AccountList;
+    winrt::IObservableVector<AccountHelper::Account> AccountHelper::AccountList{ winrt::single_threaded_observable_vector<AccountHelper::Account>() };
 
     /// <summary>
     ///     Create and save a useraccount list file. (Updating the old one)
@@ -21,7 +22,7 @@ namespace Mercatec::Services::Auths
     ///     https://learn.microsoft.com/en-us/windows/uwp/files/best-practices-for-writing-to-files
     ///     https://en.cppreference.com/w/cpp/io/basic_filebuf/open
     /// </remarks>
-    std::future<void> AccountHelper::SaveAccountListAsync()
+    winrt::fire_and_forget AccountHelper::SaveAccountListAsync()
     {
         using namespace winrt::Windows::Storage;
 
@@ -48,7 +49,7 @@ namespace Mercatec::Services::Auths
     ///     Gets the useraccount list file and deserializes it from XML to a list of useraccount objects.
     /// </summary>
     /// <returns>List of useraccount objects</returns>
-    std::future<std::vector<AccountHelper::Account>> AccountHelper::LoadAccountListAsync()
+    winrt::IAsyncOperation<winrt::IObservableVector<AccountHelper::Account>> AccountHelper::LoadAccountListAsync()
     {
         using namespace winrt::Windows::Storage;
 
@@ -110,11 +111,11 @@ namespace Mercatec::Services::Auths
     }
 
     /// <summary>
-    /// Takes an XML formatted string representing a list of accounts and returns a list object of accounts
+    ///     Takes an XML formatted string representing a list of accounts and returns a list object of accounts
     /// </summary>
     /// <param name="listAsXml">XML formatted list of accounts</param>
     /// <returns>List object of accounts</returns>
-    std::vector<AccountHelper::Account>& AccountHelper::DeserializeXmlToAccountList(const std::wstring_view list_as_xml)
+    winrt::IObservableVector<AccountHelper::Account> AccountHelper::DeserializeXmlToAccountList(const std::wstring_view list_as_xml)
     {
         using namespace tinyxml2;
 
@@ -122,11 +123,11 @@ namespace Mercatec::Services::Auths
 
         if ( document.Parse(winrt::to_string(list_as_xml).c_str()) == XML_SUCCESS )
         {
-            AccountList.clear();
+            AccountList.Clear();
 
             auto root = document.FirstChildElement("Accounts");
 
-            XMLElement* account_element = root->FirstChildElement("Account");
+            XMLNode* account_element = root->FirstChildElement("Account");
 
             while ( account_element != nullptr )
             {
@@ -135,12 +136,22 @@ namespace Mercatec::Services::Auths
                 XMLElement* user_password_element = account_element->FirstChildElement("Password");
 
                 Account account;
-                account.UserId(winrt::guid{ user_id_element->GetText() });
-                account.UserName(winrt::to_hstring(user_name_element->GetText()));
-                account.Password(winrt::to_hstring(user_password_element->GetText()));
 
-                AccountList.emplace_back(std::move(account));
-                account_element = account_element->NextSibling()->ToElement();
+                try
+                {
+
+                    account.UserId(winrt::guid{ Helpers::StringViewOrDefault(user_id_element->GetText()) });
+                }
+                catch ( const std::invalid_argument& )
+                {
+                    account.UserId(winrt::Windows::Foundation::GuidHelper::Empty());
+                }
+
+                account.UserName(winrt::to_hstring(Helpers::StringViewOrDefault(user_name_element->GetText())));
+                account.Password(winrt::to_hstring(Helpers::StringViewOrDefault(user_password_element->GetText())));
+
+                AccountList.Append(account);
+                account_element = account_element->NextSibling();
             }
         }
 
@@ -155,7 +166,7 @@ namespace Mercatec::Services::Auths
         account.UserName(user_name);
 
         // Add it to the local list of accounts
-        AccountList.emplace_back(account);
+        AccountList.Append(account);
 
         // SaveAccountList and return the account
         SaveAccountListAsync();
@@ -173,7 +184,8 @@ namespace Mercatec::Services::Auths
              );
              found != AccountList.end() )
         {
-            AccountList.erase(found);
+            const ptrdiff_t account_index = std::distance(AccountList.begin(), found);
+            AccountList.RemoveAt(static_cast<uint32_t>(account_index));
         }
 
         // Re save the updated list
@@ -183,8 +195,8 @@ namespace Mercatec::Services::Auths
     bool AccountHelper::ValidateAccountCredentials(const std::wstring_view user_name)
     {
         // In the real world, this method would call the server to authenticate that the account exists and is valid.
-        // For this tutorial however we will just have a existing sample user that is just "SampleUsername"
-        // If the username is null or does not match "SampleUsername" it will fail validation.
+        // For this tutorial however we will just have a existing sample user that is just "SampleUserName"
+        // If the username is null or does not match "SampleUserName" it will fail validation.
         // In which case the user should register a new passport user
 
         if ( user_name.empty() )
@@ -192,7 +204,7 @@ namespace Mercatec::Services::Auths
             return false;
         }
 
-        if ( user_name != L"SampleUsername" )
+        if ( user_name != L"SampleUserName" )
         {
             return false;
         }

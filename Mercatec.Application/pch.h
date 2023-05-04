@@ -47,7 +47,11 @@
 #include <Microsoft.UI.Xaml.Window.h>
 
 #include <wil/cppwinrt_helpers.h>
+
 #include <tinyxml2.h>
+
+#include <algorithm>
+#include <functional>
 
 namespace winrt
 {

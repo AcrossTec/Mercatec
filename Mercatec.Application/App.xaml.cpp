@@ -6,6 +6,8 @@
 #include "App.xaml.h"
 #include "MainWindow.xaml.h"
 
+#include <microsoft.ui.xaml.window.h>
+
 using namespace winrt;
 using namespace Windows::Foundation;
 using namespace Microsoft::UI::Xaml;

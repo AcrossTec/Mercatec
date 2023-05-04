@@ -5,6 +5,7 @@ import "Mercatec.Services.Auths.Models.PassportDevice.idl";
 
 namespace Mercatec.Services.Auths.Models
 {
+    [bindable]
     [default_interface]
     runtimeclass UserAccount
     {

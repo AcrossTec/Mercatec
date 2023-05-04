@@ -22,6 +22,7 @@
     <ClInclude Include="Mercatec.Services.Auths.AccountHelper.hpp" />
     <ClInclude Include="Mercatec.Services.Exports.Api.hpp" />
     <ClInclude Include="Mercatec.Services.Auths.MicrosoftPassportHelper.hpp" />
+    <ClInclude Include="Mercatec.Services.Auths.Models.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

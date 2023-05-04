@@ -5,8 +5,7 @@
 
 #include "WelcomePage.g.h"
 
-#include <winrt/Mercatec.Services.Auths.Models.h>
-#include <Mercatec.Helpers.Types.hpp>
+#include <Mercatec.Services.Auths.Models.hpp>
 
 namespace winrt::Mercatec::Application::implementation
 {
@@ -16,7 +15,7 @@ namespace winrt::Mercatec::Application::implementation
         using Account = ::winrt::Mercatec::Services::Auths::Models::UserAccount;
 
         WelcomePage();
-        void OnNavigatedTo(const MUXN::NavigationEventArgs& args);
+        void OnNavigatedTo(const Microsoft::UI::Xaml::Navigation::NavigationEventArgs& args);
         void ButtonRestart_Click(const IInspectable& sender, const Microsoft::UI::Xaml::RoutedEventArgs& args);
         void ButtonForgetUser_Click(const IInspectable& sender, const Microsoft::UI::Xaml::RoutedEventArgs& args);
 

@@ -150,6 +150,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
   <ItemGroup>
     <ClInclude Include="Mercatec.Services.Auths.MicrosoftPassportHelper.hpp" />
     <ClInclude Include="Mercatec.Services.Auths.AccountHelper.hpp" />
+    <ClInclude Include="Mercatec.Services.Auths.Models.hpp" />
     <ClInclude Include="Mercatec.Services.Auths.Models.PassportDevice.h">
       <DependentUpon>Mercatec.Services.Auths.Models.PassportDevice.cpp</DependentUpon>
       <SubType>Code</SubType>

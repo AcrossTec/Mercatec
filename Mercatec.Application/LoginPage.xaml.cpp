@@ -13,6 +13,13 @@
 #include <Mercatec.Services.Auths.AccountHelper.hpp>
 #include <Mercatec.Services.Auths.MicrosoftPassportHelper.hpp>
 
+#pragma warning(push)
+
+//! https://learn.microsoft.com/en-us/cpp/code-quality/c26811?view=msvc-170
+//! https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/concurrency#parameter-passing
+//! Warning C26811 Lifetime of the memory referenced by parameter ''args'' might end by the time the coroutine is resumed(lifetime .1)
+#pragma warning(disable : 26811)
+
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
@@ -25,15 +32,39 @@ namespace Auths   = ::Mercatec::Services::Auths;
 namespace winrt::Mercatec::Application::implementation
 {
     LoginPage::LoginPage()
+      : m_IsExistingAccount{ false }
+      , m_Account{ nullptr }
     {
         InitializeComponent();
     }
 
-    fire_and_forget LoginPage::OnNavigatedTo(const MUXN::NavigationEventArgs& args)
+    /// <summary>
+    ///     Function called when this frame is navigated to.
+    ///     Checks to see if Microsoft Passport is available and if an account was passed in.
+    ///     If an account was passed in set the "m_IsExistingAccount" flag to true and set the _account
+    /// </summary>
+    /// <remarks>
+    ///     https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/weak-references
+    ///     https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/concurrency#parameter-passing
+    /// </remarks>
+    fire_and_forget LoginPage::OnNavigatedTo(const MUXN::NavigationEventArgs& insecure_args)
     {
+        const MUXN::NavigationEventArgs args = insecure_args;
+
         // Check Microsoft Passport is setup and available on this machine
         if ( co_await Auths::MicrosoftPassportHelper::MicrosoftPassportAvailableCheckAsync() )
         {
+            if ( args.Parameter() )
+            {
+                m_IsExistingAccount = true;
+
+                // Set the account to the existing account being passed in
+                auto account = args.Parameter().as<Account>();
+
+                m_Account = account;
+                UserNameTextBox().Text(account.UserName());
+                SignInPassport();
+            }
         }
         else
         {
@@ -55,14 +86,16 @@ namespace winrt::Mercatec::Application::implementation
         ErrorMessage().Text(Helpers::Empty<Helpers::Char>);
     }
 
-    IAsyncAction LoginPage::SignInPassport()
+    fire_and_forget LoginPage::SignInPassport()
     {
-        // apartment_context ui_thread; // Capture calling context.
-
-        // co_await winrt::resume_background();
-        // Do compute-bound work here.
-
-        if ( Auths::AccountHelper::ValidateAccountCredentials(UserNameTextBox().Text()) )
+        if ( m_IsExistingAccount )
+        {
+            if ( co_await Auths::MicrosoftPassportHelper::GetPassportAuthenticationMessageAsync(m_Account.Value()) )
+            {
+                Frame().Navigate(xaml_typename<Mercatec::Application::WelcomePage>(), m_Account);
+            }
+        }
+        else if ( Auths::AccountHelper::ValidateAccountCredentials(UserNameTextBox().Text()) )
         {
             // Create and add a new local account
             m_Account = Auths::AccountHelper::AddAccount(UserNameTextBox().Text());
@@ -71,6 +104,7 @@ namespace winrt::Mercatec::Application::implementation
             if ( co_await Auths::MicrosoftPassportHelper::CreatePassportKeyAsync(UserNameTextBox().Text()) )
             {
                 Helpers::OutputDebug(L"Successfully signed in with Microsoft Passport!");
+                Frame().Navigate(xaml_typename<Mercatec::Application::WelcomePage>(), m_Account);
             }
         }
         else
@@ -81,3 +115,5 @@ namespace winrt::Mercatec::Application::implementation
     }
 
 } // namespace winrt::Mercatec::Application::implementation
+
+#pragma warning(pop)

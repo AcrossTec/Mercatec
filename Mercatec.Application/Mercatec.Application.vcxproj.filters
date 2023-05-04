@@ -11,6 +11,7 @@
     <Page Include="LoginPage.xaml" />
     <Page Include="MainPage.xaml" />
     <Page Include="WelcomePage.xaml" />
+    <Page Include="UserSelectionPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl" />

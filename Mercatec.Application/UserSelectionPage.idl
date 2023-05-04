@@ -1,0 +1,11 @@
+// Copyright (c) Microsoft Corporation and Contributors.
+// Licensed under the MIT License.
+
+namespace Mercatec.Application
+{
+    [default_interface]
+    runtimeclass UserSelectionPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        UserSelectionPage();
+    }
+}

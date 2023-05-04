@@ -181,6 +181,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClInclude Include="MainWindow.xaml.h">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="UserSelectionPage.xaml.h">
+      <DependentUpon>UserSelectionPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="WelcomePage.xaml.h">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -196,6 +200,9 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </Page>
     <Page Include="Resources\GlobalResources.xaml" />
     <Page Include="MainWindow.xaml" />
+    <Page Include="UserSelectionPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="WelcomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -219,6 +226,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="UserSelectionPage.xaml.cpp">
+      <DependentUpon>UserSelectionPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="WelcomePage.xaml.cpp">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -240,6 +251,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Midl Include="MainWindow.idl">
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Midl>
+    <Midl Include="UserSelectionPage.idl">
+      <DependentUpon>UserSelectionPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Midl>
     <Midl Include="WelcomePage.idl">
       <DependentUpon>WelcomePage.xaml</DependentUpon>

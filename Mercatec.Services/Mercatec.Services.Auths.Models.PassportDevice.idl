@@ -3,6 +3,7 @@
 
 namespace Mercatec.Services.Auths.Models
 {
+    [bindable]
     [default_interface]
     runtimeclass PassportDevice
     {

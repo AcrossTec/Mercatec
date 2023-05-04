@@ -5,7 +5,7 @@
 
 #include "LoginPage.g.h"
 
-#include <winrt/Mercatec.Services.Auths.Models.h>
+#include <Mercatec.Services.Auths.Models.hpp>
 
 namespace winrt::Mercatec::Application::implementation
 {
@@ -21,8 +21,10 @@ namespace winrt::Mercatec::Application::implementation
         void RegisterButtonTextBlock_OnPointerPressed(const IInspectable& sender, const MUXI::PointerRoutedEventArgs& args);
 
     private:
-        IAsyncAction        SignInPassport();
+        fire_and_forget SignInPassport();
+
         IReference<Account> m_Account;
+        bool                m_IsExistingAccount;
     };
 } // namespace winrt::Mercatec::Application::implementation
 

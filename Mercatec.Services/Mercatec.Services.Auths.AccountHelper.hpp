@@ -1,7 +1,8 @@
 #pragma once
 
-#include "winrt/Mercatec.Services.Auths.Models.h"
-#include "Mercatec.Helpers.Coroutines.Future.hpp"
+#include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.Foundation.Collections.h>
+#include "Mercatec.Services.Auths.Models.hpp"
 #include "Mercatec.Services.Exports.Api.hpp"
 #include <filesystem>
 
@@ -27,14 +28,14 @@ namespace Mercatec::Services::Auths
         /// <summary>
         ///     Create and save a useraccount list file. (Updating the old one)
         /// </summary>
-        static std::future<void> SaveAccountListAsync();
+        static winrt::fire_and_forget SaveAccountListAsync();
 
     public:
         /// <summary>
         ///     Gets the useraccount list file and deserializes it from XML to a list of useraccount objects.
         /// </summary>
         /// <returns>List of useraccount objects</returns>
-        static std::future<std::vector<Account>> LoadAccountListAsync();
+        static winrt::IAsyncOperation<winrt::IObservableVector<Account>> LoadAccountListAsync();
 
         /// <summary>
         /// Uses the local list of accounts and returns an XML formatted string representing the list
@@ -47,7 +48,7 @@ namespace Mercatec::Services::Auths
         /// </summary>
         /// <param name="listAsXml">XML formatted list of accounts</param>
         /// <returns>List object of accounts</returns>
-        static std::vector<Account>& DeserializeXmlToAccountList(const std::wstring_view list_as_xml);
+        static winrt::IObservableVector<Account> DeserializeXmlToAccountList(const std::wstring_view list_as_xml);
 
         static Account AddAccount(const std::wstring_view user_name);
 
@@ -56,7 +57,7 @@ namespace Mercatec::Services::Auths
         static bool ValidateAccountCredentials(const std::wstring_view user_name);
 
     public:
-        static std::vector<Account> AccountList;
+        static winrt::IObservableVector<Account> AccountList;
     };
 } // namespace Mercatec::Services::Auths
 

@@ -9,8 +9,12 @@
 
 #include "LoginPage.xaml.h"
 
+#include <Mercatec.Services.Auths.AccountHelper.hpp>
+
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
+
+using AccountHelper = ::Mercatec::Services::Auths::AccountHelper;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -22,8 +26,11 @@ namespace winrt::Mercatec::Application::implementation
         InitializeComponent();
     }
 
-    void MainPage::MainPage_Loaded([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
+    fire_and_forget MainPage::MainPage_Loaded([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
     {
-        Frame().Navigate(xaml_typename<Mercatec::Application::LoginPage>());
+        // Load the local Accounts List before navigating to the UserSelection page
+        co_await AccountHelper::LoadAccountListAsync();
+
+        Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
     }
 } // namespace winrt::Mercatec::Application::implementation

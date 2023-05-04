@@ -9,6 +9,7 @@
 
 #include <Mercatec.Helpers.Debug.hpp>
 #include <Mercatec.Services.Auths.AccountHelper.hpp>
+#include <Mercatec.Services.Auths.MicrosoftPassportHelper.hpp>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -38,16 +39,20 @@ namespace winrt::Mercatec::Application::implementation
 
     void WelcomePage::ButtonRestart_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
     {
+        Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
     }
 
     void WelcomePage::ButtonForgetUser_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
     {
         // Remove it from Microsoft Passport
-        // MicrosoftPassportHelper.RemovePassportAccountAsync(_activeAccount);
+        ::Auths::MicrosoftPassportHelper::RemovePassportAccountAsync(*m_ActiveAccount);
 
         // Remove it from the local accounts list and resave the updated list
         ::Auths::AccountHelper::RemoveAccount(*m_ActiveAccount);
 
         ::Helpers::OutputDebug(L"User {} deleted.", m_ActiveAccount->UserName());
+
+        // Navigate back to UserSelection page.
+        Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
     }
 } // namespace winrt::Mercatec::Application::implementation

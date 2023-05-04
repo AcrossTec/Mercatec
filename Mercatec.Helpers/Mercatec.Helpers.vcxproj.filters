@@ -13,6 +13,8 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Mercatec.Helpers.Class.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="Mercatec.Helpers.Strings.cpp" />
+    <ClCompile Include="Mercatec.Helpers.Widespread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
