@@ -17,8 +17,8 @@
             <ListView x:Name="UserListView" Margin="4" MaxHeight="200" MinWidth="250" Width="250" HorizontalAlignment="Center">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="ServiceModel:UserAccount">
-                        <Grid Background="DodgerBlue" Height="50" Width="250" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <TextBlock Text="{Binding UserName}" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+                        <Grid Background="DodgerBlue" Height="50" Width="250" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind UserName}" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Foreground="White" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

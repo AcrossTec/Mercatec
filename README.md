@@ -56,3 +56,15 @@
 * [Walkthrough: Create and use your own Dynamic Link Library (C++)](https://learn.microsoft.com/en-us/cpp/build/walkthrough-creating-and-using-a-dynamic-link-library-cpp?view=msvc-170)
 
 * [Walkthrough: Create and use a static library (C++)](https://learn.microsoft.com/en-us/cpp/build/walkthrough-creating-and-using-a-static-library-cpp?view=msvc-170)
+
+## [Authentication And User Identity](https://learn.microsoft.com/en-us/windows/uwp/security/authentication-and-user-identity)
+
+* [Credential Locker](https://learn.microsoft.com/en-us/windows/uwp/security/credential-locker)
+
+* [Windows Hello](https://learn.microsoft.com/en-us/windows/uwp/security/microsoft-passport)
+  * [Create a Windows Hello login app](https://learn.microsoft.com/en-us/windows/uwp/security/microsoft-passport-login)
+  * [Create a Windows Hello login service](https://learn.microsoft.com/en-us/windows/uwp/security/microsoft-passport-login-auth-service)
+
+* [Cryptography](https://learn.microsoft.com/en-us/windows/uwp/security/cryptography)
+  * [MACs, hashes, and signatures](https://learn.microsoft.com/en-us/windows/uwp/security/macs-hashes-and-signatures)
+

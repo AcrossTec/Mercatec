@@ -174,6 +174,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="Mercatec.Application.Exports.Api.hpp" />
+    <ClInclude Include="PassportRegisterPage.xaml.h">
+      <DependentUpon>PassportRegisterPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h">
       <DependentUpon>App.xaml</DependentUpon>
@@ -198,6 +202,9 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="PassportRegisterPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\GlobalResources.xaml" />
     <Page Include="MainWindow.xaml" />
     <Page Include="UserSelectionPage.xaml">
@@ -214,6 +221,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </ClCompile>
     <ClCompile Include="MainPage.xaml.cpp">
       <DependentUpon>MainPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="PassportRegisterPage.xaml.cpp">
+      <DependentUpon>PassportRegisterPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -251,6 +262,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Midl Include="MainWindow.idl">
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Midl>
+    <Midl Include="PassportRegisterPage.idl">
+      <DependentUpon>PassportRegisterPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Midl>
     <Midl Include="UserSelectionPage.idl">
       <DependentUpon>UserSelectionPage.xaml</DependentUpon>

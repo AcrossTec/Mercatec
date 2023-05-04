@@ -1,29 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="MainWindow.xaml" />
     <Page Include="Resources\GlobalResources.xaml">
       <Filter>Resources</Filter>
     </Page>
-    <Page Include="LoginPage.xaml" />
-    <Page Include="MainPage.xaml" />
-    <Page Include="WelcomePage.xaml" />
-    <Page Include="UserSelectionPage.xaml" />
+    <Page Include="UserSelectionPage.xaml">
+      <Filter>Pages</Filter>
+    </Page>
+    <Page Include="LoginPage.xaml">
+      <Filter>Pages</Filter>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Filter>Pages</Filter>
+    </Page>
+    <Page Include="PassportRegisterPage.xaml">
+      <Filter>Pages</Filter>
+    </Page>
+    <Page Include="WelcomePage.xaml">
+      <Filter>Pages</Filter>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Filter>Windows</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl" />
     <Midl Include="MainWindow.idl" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="pch.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Mercatec.Application.Exports.Api.hpp" />
+    <ClInclude Include="Mercatec.Application.Exports.Api.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -64,18 +82,48 @@
     <Filter Include="Themes">
       <UniqueIdentifier>{15a8488c-5ae2-44c7-9480-c05baeb51458}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Pages">
+      <UniqueIdentifier>{b849ad9e-cb80-48e8-b564-0515d8492f90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{dc0aeba6-636b-47cc-a7b1-1ce4a5f11f5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{ee3a3737-be42-4d41-b709-fca5d4498caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{4dbc4444-493c-48fd-b78e-65d27de13925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Others">
+      <UniqueIdentifier>{b28e261e-34f5-494a-b8eb-5103b9cf42ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="README.txt" />
+    <None Include="packages.config">
+      <Filter>Others</Filter>
+    </None>
+    <None Include="PropertySheet.props">
+      <Filter>Others</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="app.manifest" />
+    <ApplicationDefinition Include="App.xaml">
+      <Filter>Windows</Filter>
+    </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="PropertySheet.props" />
+    <Manifest Include="app.manifest">
+      <Filter>Others</Filter>
+    </Manifest>
   </ItemGroup>
   <ItemGroup>
-    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
+    <Text Include="README.txt">
+      <Filter>Others</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis">
+      <Filter>Others</Filter>
+    </Natvis>
   </ItemGroup>
 </Project>

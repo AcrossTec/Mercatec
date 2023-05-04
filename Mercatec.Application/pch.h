@@ -50,6 +50,7 @@
 
 #include <tinyxml2.h>
 
+#include <chrono>
 #include <algorithm>
 #include <functional>
 

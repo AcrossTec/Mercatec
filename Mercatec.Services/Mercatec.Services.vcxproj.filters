@@ -8,31 +8,75 @@
     <Filter Include="Generated Files">
       <UniqueIdentifier>{926ab91d-31b4-48c3-b9a4-e681349f27f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Others">
+      <UniqueIdentifier>{b85a6630-dd5c-4dc6-ac2d-1ba1b5ef373c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{4f239a5a-bec3-43fc-81b0-26883c5249d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{429d88cf-1fb4-4ca8-ade3-9b02d9e2960f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinRT">
+      <UniqueIdentifier>{d03aa25d-1c00-4989-be8d-4ed16d6d35a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="Mercatec.Services.Auths.AccountHelper.cpp" />
-    <ClCompile Include="Mercatec.Services.Auths.MicrosoftPassportHelper.cpp" />
-    <ClCompile Include="Mercatec.Services.Auths.Models.PassportDevice.cpp" />
-    <ClCompile Include="Mercatec.Services.Auths.Models.UserAccount.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Services.Auths.AccountHelper.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Services.Auths.MicrosoftPassportHelper.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Services.Auths.Models.PassportDevice.cpp">
+      <Filter>WinRT</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Services.Auths.Models.UserAccount.cpp">
+      <Filter>WinRT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Mercatec.Services.Auths.AccountHelper.hpp" />
-    <ClInclude Include="Mercatec.Services.Exports.Api.hpp" />
-    <ClInclude Include="Mercatec.Services.Auths.MicrosoftPassportHelper.hpp" />
-    <ClInclude Include="Mercatec.Services.Auths.Models.hpp" />
+    <ClInclude Include="Mercatec.Services.Exports.Api.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Services.Auths.AccountHelper.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Services.Auths.MicrosoftPassportHelper.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Services.Auths.Models.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Mercatec.Services.def" />
-    <None Include="PropertySheet.props" />
+    <None Include="PropertySheet.props">
+      <Filter>Others</Filter>
+    </None>
+    <None Include="packages.config">
+      <Filter>Others</Filter>
+    </None>
+    <None Include="Mercatec.Services.def">
+      <Filter>Others</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis">
+      <Filter>Others</Filter>
+    </Natvis>
   </ItemGroup>
   <ItemGroup>
-    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
+    <Text Include="readme.txt">
+      <Filter>Others</Filter>
+    </Text>
   </ItemGroup>
 </Project>

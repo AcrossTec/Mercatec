@@ -84,6 +84,7 @@ namespace winrt::Mercatec::Application::implementation
     void LoginPage::RegisterButtonTextBlock_OnPointerPressed([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUXI::PointerRoutedEventArgs& args)
     {
         ErrorMessage().Text(Helpers::Empty<Helpers::Char>);
+        Frame().Navigate(xaml_typename<PassportRegisterPage>());
     }
 
     fire_and_forget LoginPage::SignInPassport()
