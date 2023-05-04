@@ -146,7 +146,6 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Mercatec.Models.AccountHelper.hpp" />
     <ClInclude Include="Mercatec.Models.Class.h">
       <DependentUpon>Mercatec.Models.Class.cpp</DependentUpon>
       <SubType>Code</SubType>
@@ -156,7 +155,6 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Mercatec.Models.AccountHelper.cpp" />
     <ClCompile Include="Mercatec.Models.Class.cpp">
       <SubType>Code</SubType>
     </ClCompile>

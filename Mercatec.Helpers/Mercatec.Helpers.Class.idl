@@ -7,6 +7,5 @@ namespace Mercatec.Helpers
     runtimeclass Class
     {
         Class();
-        Int32 MyProperty;
     }
 }

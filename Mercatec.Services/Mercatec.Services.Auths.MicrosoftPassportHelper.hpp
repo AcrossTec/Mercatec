@@ -1,11 +1,11 @@
 #pragma once
 
 #include <winrt/Windows.Foundation.h>
-#include "Mercatec.Helpers.Exports.Api.hpp"
+#include "Mercatec.Services.Exports.Api.hpp"
 
-namespace Mercatec::Helpers
+namespace Mercatec::Services::Auths
 {
-    struct MERCATEC_HELPERS_API MicrosoftPassportHelper sealed abstract
+    struct MERCATEC_SERVICES_API MicrosoftPassportHelper sealed abstract
     {
         /// <summary>
         /// Checks to see if Passport is ready to be used.
@@ -23,4 +23,4 @@ namespace Mercatec::Helpers
         /// <returns>Boolean representing if creating the Passport key succeeded</returns>
         static winrt::Windows::Foundation::IAsyncOperation<bool> CreatePassportKeyAsync(const std::wstring_view account_id);
     };
-} // namespace Mercatec::Helpers
+} // namespace Mercatec::Services::Auths

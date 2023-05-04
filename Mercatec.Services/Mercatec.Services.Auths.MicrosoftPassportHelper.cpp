@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "Mercatec.Helpers.MicrosoftPassportHelper.hpp"
+#include "Mercatec.Services.Auths.MicrosoftPassportHelper.hpp"
 #include "Mercatec.Helpers.Debug.hpp"
 
-namespace Mercatec::Helpers
+namespace Mercatec::Services::Auths
 {
     /// <summary>
     /// Checks to see if Passport is ready to be used.
@@ -20,7 +20,7 @@ namespace Mercatec::Helpers
             // Key credential is not enabled yet as user
             // needs to connect to a Microsoft Account and select a PIN in the connecting flow.
 
-            OutputDebug(L"Microsoft Passport is not setup!\nPlease go to Windows Settings and set up a PIN to use it.");
+            Helpers::OutputDebug(L"Microsoft Passport is not setup!\nPlease go to Windows Settings and set up a PIN to use it.");
             co_return false;
         }
 
@@ -44,7 +44,7 @@ namespace Mercatec::Helpers
         {
             case winrt::Windows::Security::Credentials::KeyCredentialStatus::Success:
             {
-                OutputDebug(L"Successfully made key");
+                Helpers::OutputDebug(L"Successfully made key");
 
                 // In the real world authentication would take place on a server.
                 // So every time a user migrates or creates a new Microsoft Passport account Passport details should be pushed to the server.
@@ -61,13 +61,13 @@ namespace Mercatec::Helpers
             }
             case winrt::Windows::Security::Credentials::KeyCredentialStatus::UserCanceled:
             {
-                OutputDebug(L"User cancelled sign-in process.");
+                Helpers::OutputDebug(L"User cancelled sign-in process.");
                 break;
             }
             case winrt::Windows::Security::Credentials::KeyCredentialStatus::NotFound:
             {
                 // User needs to setup Microsoft Passport
-                OutputDebug(L"Microsoft Passport is not setup!\nPlease go to Windows Settings and set up a PIN to use it.");
+                Helpers::OutputDebug(L"Microsoft Passport is not setup!\nPlease go to Windows Settings and set up a PIN to use it.");
                 break;
             }
             default:
@@ -78,4 +78,4 @@ namespace Mercatec::Helpers
 
         co_return false;
     }
-} // namespace Mercatec::Helpers
+} // namespace Mercatec::Services::Auths

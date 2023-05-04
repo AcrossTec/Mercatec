@@ -1,5 +1,6 @@
 #include "pch.h"
-#include "Mercatec.Models.AccountHelper.hpp"
+#include "Mercatec.Services.Auths.AccountHelper.hpp"
+#include "Mercatec.Helpers.Widespread.hpp"
 #include "Mercatec.Helpers.Debug.hpp"
 #include <winrt/Windows.Storage.h>
 #include <tinyxml2.h>
@@ -7,7 +8,7 @@
 #include <fstream>
 #include <ios>
 
-namespace Mercatec::Helpers
+namespace Mercatec::Services::Auths
 {
     std::vector<AccountHelper::Account> AccountHelper::AccountList;
 
@@ -81,23 +82,23 @@ namespace Mercatec::Helpers
 
             XMLElement* user_id       = document.NewElement("UserId");
             XMLElement* user_name     = document.NewElement("UserName");
-            XMLElement* user_email    = document.NewElement("Email");
-            XMLElement* user_phone    = document.NewElement("Phone");
-            XMLElement* user_address  = document.NewElement("Address");
+            // XMLElement* user_email    = document.NewElement("Email");
+            // XMLElement* user_phone    = document.NewElement("Phone");
+            // XMLElement* user_address  = document.NewElement("Address");
             XMLElement* user_password = document.NewElement("Password");
 
-            user_id->SetText(0);
-            user_name->SetText(winrt::to_string(user.UserName).c_str());
-            user_email->SetText("");
-            user_phone->SetText("");
-            user_address->SetText("");
-            user_password->SetText("");
+            user_id->SetText(Helpers::GuidToString(user.UserId()).c_str());
+            user_name->SetText(winrt::to_string(user.UserName()).c_str());
+            // user_email->SetText("");
+            // user_phone->SetText("");
+            // user_address->SetText("");
+            user_password->SetText(winrt::to_string(user.Password()).c_str());
 
             account->InsertEndChild(user_id);
             account->InsertEndChild(user_name);
-            account->InsertEndChild(user_email);
-            account->InsertEndChild(user_phone);
-            account->InsertEndChild(user_address);
+            // account->InsertEndChild(user_email);
+            // account->InsertEndChild(user_phone);
+            // account->InsertEndChild(user_address);
             account->InsertEndChild(user_password);
 
             root->InsertEndChild(account);
@@ -125,16 +126,21 @@ namespace Mercatec::Helpers
 
             auto root = document.FirstChildElement("Accounts");
 
-            XMLElement* child = root->FirstChildElement("Account");
+            XMLElement* account_element = root->FirstChildElement("Account");
 
-            while ( child != nullptr )
+            while ( account_element != nullptr )
             {
+                XMLElement* user_id_element       = account_element->FirstChildElement("UserId");
+                XMLElement* user_name_element     = account_element->FirstChildElement("UserName");
+                XMLElement* user_password_element = account_element->FirstChildElement("Password");
+
                 Account account;
-                account.UserId   = child->Int64Text();
-                account.UserName = winrt::to_hstring(child->Value());
+                account.UserId(winrt::guid{ user_id_element->GetText() });
+                account.UserName(winrt::to_hstring(user_name_element->GetText()));
+                account.Password(winrt::to_hstring(user_password_element->GetText()));
 
                 AccountList.emplace_back(std::move(account));
-                child = child->NextSibling()->ToElement();
+                account_element = account_element->NextSibling()->ToElement();
             }
         }
 
@@ -145,7 +151,8 @@ namespace Mercatec::Helpers
     {
         // Create a new account with the username
         Account account;
-        account.UserName = user_name;
+        account.UserId(winrt::GuidHelper::CreateNewGuid());
+        account.UserName(user_name);
 
         // Add it to the local list of accounts
         AccountList.emplace_back(account);
@@ -162,7 +169,7 @@ namespace Mercatec::Helpers
              std::find_if(
                AccountList.begin(),
                AccountList.end(), //
-               [&](const Account& value) { return account.UserName == value.UserName; }
+               [&](const Account& value) { return account.UserName() == value.UserName(); }
              );
              found != AccountList.end() )
         {
@@ -192,4 +199,4 @@ namespace Mercatec::Helpers
 
         return true;
     }
-} // namespace Mercatec::Helpers
+} // namespace Mercatec::Services::Auths

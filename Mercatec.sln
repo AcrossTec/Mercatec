@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mercatec.Application", "Mercatec.Application\Mercatec.Application.vcxproj", "{88FAEC33-09C0-47BC-9FAB-306BCEE6C8C7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75} = {5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution Folder", "{2123EF84-C96B-4F68-A061-08A49C51B38F}"
 	ProjectSection(SolutionItems) = preProject
@@ -28,6 +31,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mercatec.Repositories", "Mercatec.Repositories\Mercatec.Repositories.vcxproj", "{8337B328-BF33-401F-B1CB-CD54CCD4BE5B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Tests", "Solution Tests", "{4981BBD2-3BA5-4E74-99CD-88A6FD7D6731}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mercatec.Services", "Mercatec.Services\Mercatec.Services.vcxproj", "{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +134,18 @@ Global
 		{8337B328-BF33-401F-B1CB-CD54CCD4BE5B}.Release|x64.Build.0 = Release|x64
 		{8337B328-BF33-401F-B1CB-CD54CCD4BE5B}.Release|x86.ActiveCfg = Release|Win32
 		{8337B328-BF33-401F-B1CB-CD54CCD4BE5B}.Release|x86.Build.0 = Release|Win32
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Debug|ARM64.Build.0 = Debug|ARM64
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Debug|x64.ActiveCfg = Debug|x64
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Debug|x64.Build.0 = Debug|x64
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Debug|x86.ActiveCfg = Debug|Win32
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Debug|x86.Build.0 = Debug|Win32
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Release|ARM64.ActiveCfg = Release|ARM64
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Release|ARM64.Build.0 = Release|ARM64
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Release|x64.ActiveCfg = Release|x64
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Release|x64.Build.0 = Release|x64
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Release|x86.ActiveCfg = Release|Win32
+		{5EFAF453-AD08-4D9A-8B5C-EE4041A7DD75}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,14 +5,14 @@
 
 #include "LoginPage.g.h"
 
-#include <Mercatec.Models.User.hpp>
+#include <winrt/Mercatec.Services.Auths.Models.h>
 
 namespace winrt::Mercatec::Application::implementation
 {
     struct LoginPage : LoginPageT<LoginPage>
     {
     public:
-        using Account = ::Mercatec::Models::User;
+        using Account = winrt::Mercatec::Services::Auths::Models::UserAccount;
 
         LoginPage();
         fire_and_forget OnNavigatedTo(const MUXN::NavigationEventArgs& args);
@@ -21,8 +21,8 @@ namespace winrt::Mercatec::Application::implementation
         void RegisterButtonTextBlock_OnPointerPressed(const IInspectable& sender, const MUXI::PointerRoutedEventArgs& args);
 
     private:
-        IAsyncAction SignInPassport();
-        Account      m_Account;
+        IAsyncAction        SignInPassport();
+        IReference<Account> m_Account;
     };
 } // namespace winrt::Mercatec::Application::implementation
 

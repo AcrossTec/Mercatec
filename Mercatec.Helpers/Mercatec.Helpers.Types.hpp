@@ -5,7 +5,12 @@
 
 namespace Mercatec::Helpers
 {
+    using Guid = winrt::guid;
+
     using Boolean = bool;
+
+    using Int8  = int_fast8_t;
+    using UInt8 = uint_fast8_t;
 
     using Int16  = int_fast16_t;
     using UInt16 = uint_fast16_t;

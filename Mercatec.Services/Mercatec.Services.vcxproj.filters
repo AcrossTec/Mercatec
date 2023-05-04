@@ -12,16 +12,20 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="Mercatec.Models.Class.cpp" />
+    <ClCompile Include="Mercatec.Services.Auths.AccountHelper.cpp" />
+    <ClCompile Include="Mercatec.Services.Auths.MicrosoftPassportHelper.cpp" />
+    <ClCompile Include="Mercatec.Services.Auths.Models.PassportDevice.cpp" />
+    <ClCompile Include="Mercatec.Services.Auths.Models.UserAccount.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Mercatec.Models.User.hpp" />
-    <ClInclude Include="Mercatec.Models.Exports.Api.hpp" />
+    <ClInclude Include="Mercatec.Services.Auths.AccountHelper.hpp" />
+    <ClInclude Include="Mercatec.Services.Exports.Api.hpp" />
+    <ClInclude Include="Mercatec.Services.Auths.MicrosoftPassportHelper.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Mercatec.Models.def" />
+    <None Include="Mercatec.Services.def" />
     <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>

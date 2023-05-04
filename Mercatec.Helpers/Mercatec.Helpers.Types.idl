@@ -1,0 +1,5 @@
+namespace Mercatec
+{
+    typedef Windows.Foundation.DateTime DateTime;
+    typedef Windows.Foundation.TimeSpan TimeSpan;
+}

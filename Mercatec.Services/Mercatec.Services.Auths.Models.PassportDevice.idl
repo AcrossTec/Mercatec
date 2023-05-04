@@ -1,0 +1,22 @@
+// Copyright (c) Microsoft Corporation and Contributors.
+// Licensed under the MIT License.
+
+namespace Mercatec.Services.Auths.Models
+{
+    [default_interface]
+    runtimeclass PassportDevice
+    {
+        PassportDevice();
+
+        // These are the new variables that will need to be added to the existing UserAccount in the Database
+        // The DeviceName is used to support multiple devices for the one user.
+        // This way the correct public key is easier to find as a new public key is made for each device.
+        // The KeyAttestationResult is only used if the User device has a TPM (Trusted Platform Module) chip, 
+        // in most cases it will not. So will be left out for this hands on lab.
+        Guid DeviceId { get; set; };
+
+        UInt8[] PublicKey { get; set; };
+
+        Windows.Security.Credentials.KeyCredentialAttestationResult KeyAttestationResult { get; set; };
+    }
+}

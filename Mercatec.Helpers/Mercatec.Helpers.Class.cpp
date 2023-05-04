@@ -12,13 +12,7 @@
 
 namespace winrt::Mercatec::Helpers::implementation
 {
-    int32_t Class::MyProperty()
+    Class::Class()
     {
-        throw hresult_not_implemented();
-    }
-
-    void Class::MyProperty(int32_t /* value */)
-    {
-        throw hresult_not_implemented();
     }
 } // namespace winrt::Mercatec::Helpers::implementation

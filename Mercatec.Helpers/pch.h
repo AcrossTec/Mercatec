@@ -38,5 +38,6 @@ namespace MUX  = winrt::Microsoft::UI::Xaml;
 namespace MUXC = winrt::Microsoft::UI::Xaml::Controls;
 namespace MUXN = winrt::Microsoft::UI::Xaml::Navigation;
 namespace MUXI = winrt::Microsoft::UI::Xaml::Input;
+namespace WSC  = winrt::Windows::Security::Credentials;
 
 #pragma pop_macro("GetCurrentTime")

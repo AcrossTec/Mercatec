@@ -10,13 +10,14 @@
 #include <Mercatec.Helpers.Debug.hpp>
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Strings.hpp>
-#include <Mercatec.Helpers.MicrosoftPassportHelper.hpp>
-#include <Mercatec.Models.AccountHelper.hpp>
+#include <Mercatec.Services.Auths.AccountHelper.hpp>
+#include <Mercatec.Services.Auths.MicrosoftPassportHelper.hpp>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
 namespace Helpers = ::Mercatec::Helpers;
+namespace Auths   = ::Mercatec::Services::Auths;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,7 +32,7 @@ namespace winrt::Mercatec::Application::implementation
     fire_and_forget LoginPage::OnNavigatedTo(const MUXN::NavigationEventArgs& args)
     {
         // Check Microsoft Passport is setup and available on this machine
-        if ( co_await Helpers::MicrosoftPassportHelper::MicrosoftPassportAvailableCheckAsync() )
+        if ( co_await Auths::MicrosoftPassportHelper::MicrosoftPassportAvailableCheckAsync() )
         {
         }
         else
@@ -61,13 +62,13 @@ namespace winrt::Mercatec::Application::implementation
         // co_await winrt::resume_background();
         // Do compute-bound work here.
 
-        if ( Helpers::AccountHelper::ValidateAccountCredentials(UserNameTextBox().Text()) )
+        if ( Auths::AccountHelper::ValidateAccountCredentials(UserNameTextBox().Text()) )
         {
             // Create and add a new local account
-            m_Account = Helpers::AccountHelper::AddAccount(UserNameTextBox().Text());
+            m_Account = Auths::AccountHelper::AddAccount(UserNameTextBox().Text());
             Helpers::OutputDebug(L"Successfully signed in with traditional credentials and created local account instance!");
 
-            if ( co_await Helpers::MicrosoftPassportHelper::CreatePassportKeyAsync(UserNameTextBox().Text()) )
+            if ( co_await Auths::MicrosoftPassportHelper::CreatePassportKeyAsync(UserNameTextBox().Text()) )
             {
                 Helpers::OutputDebug(L"Successfully signed in with Microsoft Passport!");
             }

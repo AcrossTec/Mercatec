@@ -13,7 +13,6 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Mercatec.Helpers.Class.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="Mercatec.Helpers.MicrosoftPassportHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -21,7 +20,6 @@
     <ClInclude Include="Mercatec.Helpers.ViewModels.hpp" />
     <ClInclude Include="Mercatec.Helpers.Strings.hpp" />
     <ClInclude Include="Mercatec.Helpers.Widespread.hpp" />
-    <ClInclude Include="Mercatec.Helpers.MicrosoftPassportHelper.hpp" />
     <ClInclude Include="Mercatec.Helpers.Debug.hpp" />
     <ClInclude Include="Mercatec.Helpers.Coroutines.Future.hpp" />
     <ClInclude Include="Mercatec.Helpers.Coroutines.Task.hpp" />
@@ -37,5 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Mercatec.Helpers.Types.idl" />
   </ItemGroup>
 </Project>

@@ -1,11 +1,9 @@
 #pragma once
 
+#include "winrt/Mercatec.Services.Auths.Models.h"
 #include "Mercatec.Helpers.Coroutines.Future.hpp"
-#include "Mercatec.Models.Exports.Api.hpp"
-#include "Mercatec.Models.User.hpp"
-#include <string_view>
+#include "Mercatec.Services.Exports.Api.hpp"
 #include <filesystem>
-#include <vector>
 
 #pragma warning(push)
 
@@ -13,12 +11,12 @@
 // Description: 'type' : class 'type1' needs to have dll-interface to be used by clients of class 'type2'
 #pragma warning(disable : 4251)
 
-namespace Mercatec::Helpers
+namespace Mercatec::Services::Auths
 {
-    class MERCATEC_MODELS_API AccountHelper sealed abstract
+    class MERCATEC_SERVICES_API AccountHelper sealed abstract
     {
     private:
-        using Account = Models::User;
+        using Account = winrt::Mercatec::Services::Auths::Models::UserAccount;
 
         // In the real world this would not be needed as there would be a server implemented that would host a user account database.
         // For this tutorial we will just be storing accounts locally.
@@ -60,6 +58,6 @@ namespace Mercatec::Helpers
     public:
         static std::vector<Account> AccountList;
     };
-} // namespace Mercatec::Helpers
+} // namespace Mercatec::Services::Auths
 
 #pragma warning(pop)

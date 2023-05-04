@@ -9,16 +9,13 @@ namespace winrt::Mercatec::Helpers::implementation
 {
     struct Class : ClassT<Class>
     {
-        Class() = default;
-
-        int32_t MyProperty();
-        void MyProperty(int32_t value);
+        Class();
     };
-}
+} // namespace winrt::Mercatec::Helpers::implementation
 
 namespace winrt::Mercatec::Helpers::factory_implementation
 {
     struct Class : ClassT<Class, implementation::Class>
     {
     };
-}
+} // namespace winrt::Mercatec::Helpers::factory_implementation
