@@ -29,11 +29,11 @@ namespace winrt::Mercatec::Application::implementation
 
     void WelcomePage::OnNavigatedTo(const MUXN::NavigationEventArgs& args)
     {
-        m_ActiveAccount = unbox_value<Windows::Foundation::IReference<Account>>(args.Parameter());
+        m_ActiveAccount = args.Parameter().try_as<Account>();
 
-        if ( m_ActiveAccount.has_value() )
+        if ( m_ActiveAccount )
         {
-            UserNameText().Text(m_ActiveAccount->UserName());
+            UserNameText().Text(m_ActiveAccount.UserName());
         }
     }
 
@@ -45,12 +45,12 @@ namespace winrt::Mercatec::Application::implementation
     void WelcomePage::ButtonForgetUser_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
     {
         // Remove it from Microsoft Passport
-        ::Auths::MicrosoftPassportHelper::RemovePassportAccountAsync(*m_ActiveAccount);
+        ::Auths::MicrosoftPassportHelper::RemovePassportAccountAsync(m_ActiveAccount);
 
         // Remove it from the local accounts list and resave the updated list
-        ::Auths::AccountHelper::RemoveAccount(*m_ActiveAccount);
+        ::Auths::AccountHelper::RemoveAccount(m_ActiveAccount);
 
-        ::Helpers::OutputDebug(L"User {} deleted.", m_ActiveAccount->UserName());
+        ::Helpers::OutputDebug(L"User {} deleted.", m_ActiveAccount.UserName());
 
         // Navigate back to UserSelection page.
         Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());

@@ -8,6 +8,8 @@ namespace Mercatec::Services::Auths
 {
     struct MERCATEC_SERVICES_API MicrosoftPassportHelper sealed abstract
     {
+        using Account = winrt::Mercatec::Services::Auths::Models::UserAccount;
+
         /// <summary>
         /// Checks to see if Passport is ready to be used.
         ///
@@ -20,21 +22,21 @@ namespace Mercatec::Services::Auths
         /// <summary>
         ///     Creates a Passport key on the machine using the "LoginPage.m_Account" id passed.
         /// </summary>
-        /// <param name="accountId">The "LoginPage.m_Account" id associated with the "LoginPage.m_Account" that we are enrolling into Passport</param>
+        /// <param name="user_name">The "LoginPage.m_Account" id associated with the "LoginPage.m_Account" that we are enrolling into Passport</param>
         /// <returns>Boolean representing if creating the Passport key succeeded</returns>
-        static winrt::Windows::Foundation::IAsyncOperation<bool> CreatePassportKeyAsync(const std::wstring_view account_id);
+        static winrt::Windows::Foundation::IAsyncOperation<bool> CreatePassportKeyAsync(const std::wstring_view user_name);
 
         /// <summary>
         ///     Function to be called when user requests deleting their account.
         ///     Checks the KeyCredentialManager to see if there is a Passport for the current user
         ///     Then deletes the local key associated with the Passport.
         /// </summary>
-        static winrt::fire_and_forget RemovePassportAccountAsync(const winrt::Mercatec::Services::Auths::Models::UserAccount& account);
+        static winrt::fire_and_forget RemovePassportAccountAsync(const Account& account);
 
         /// <summary>
         ///     Attempts to sign a message using the Passport key on the system for the accountId passed.
         /// </summary>
         /// <returns>Boolean representing if creating the Passport authentication message succeeded</returns>
-        static winrt::Windows::Foundation::IAsyncOperation<bool> GetPassportAuthenticationMessageAsync(const winrt::Mercatec::Services::Auths::Models::UserAccount& account);
+        static winrt::Windows::Foundation::IAsyncOperation<bool> GetPassportAuthenticationMessageAsync(const Account& account);
     };
 } // namespace Mercatec::Services::Auths

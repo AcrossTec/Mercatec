@@ -20,7 +20,7 @@ namespace winrt::Mercatec::Application::implementation
         void ButtonForgetUser_Click(const IInspectable& sender, const Microsoft::UI::Xaml::RoutedEventArgs& args);
 
     private:
-        std::optional<Account> m_ActiveAccount;
+        Account m_ActiveAccount;
     };
 } // namespace winrt::Mercatec::Application::implementation
 

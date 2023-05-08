@@ -59,10 +59,9 @@ namespace winrt::Mercatec::Application::implementation
                 m_IsExistingAccount = true;
 
                 // Set the account to the existing account being passed in
-                auto account = args.Parameter().as<Account>();
+                m_Account = args.Parameter().as<Account>();
 
-                m_Account = account;
-                UserNameTextBox().Text(account.UserName());
+                UserNameTextBox().Text(m_Account.UserName());
                 SignInPassport();
             }
         }
@@ -91,7 +90,7 @@ namespace winrt::Mercatec::Application::implementation
     {
         if ( m_IsExistingAccount )
         {
-            if ( co_await Auths::MicrosoftPassportHelper::GetPassportAuthenticationMessageAsync(m_Account.Value()) )
+            if ( co_await Auths::MicrosoftPassportHelper::GetPassportAuthenticationMessageAsync(m_Account) )
             {
                 Frame().Navigate(xaml_typename<Mercatec::Application::WelcomePage>(), m_Account);
             }

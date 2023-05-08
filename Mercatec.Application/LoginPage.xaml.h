@@ -23,8 +23,8 @@ namespace winrt::Mercatec::Application::implementation
     private:
         fire_and_forget SignInPassport();
 
-        IReference<Account> m_Account;
-        bool                m_IsExistingAccount;
+        Account m_Account;
+        bool    m_IsExistingAccount;
     };
 } // namespace winrt::Mercatec::Application::implementation
 

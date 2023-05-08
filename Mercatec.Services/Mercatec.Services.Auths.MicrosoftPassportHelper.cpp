@@ -32,13 +32,9 @@ namespace Mercatec::Services::Auths
     /// </summary>
     /// <param name="accountId">The _account id associated with the _account that we are enrolling into Passport</param>
     /// <returns>Boolean representing if creating the Passport key succeeded</returns>
-    winrt::IAsyncOperation<bool> MicrosoftPassportHelper::CreatePassportKeyAsync(const std::wstring_view account_id)
+    winrt::IAsyncOperation<bool> MicrosoftPassportHelper::CreatePassportKeyAsync(const std::wstring_view user_name)
     {
-        winrt::Windows::Security::Credentials::KeyCredentialRetrievalResult key_creation_result =   //
-          co_await winrt::Windows::Security::Credentials::KeyCredentialManager::RequestCreateAsync( //
-            account_id,
-            winrt::Windows::Security::Credentials::KeyCredentialCreationOption::ReplaceExisting
-          );
+        WSC::KeyCredentialRetrievalResult key_creation_result = co_await WSC::KeyCredentialManager::RequestCreateAsync(user_name, WSC::KeyCredentialCreationOption::ReplaceExisting);
 
         switch ( key_creation_result.Status() )
         {
@@ -84,7 +80,7 @@ namespace Mercatec::Services::Auths
     ///     Checks the KeyCredentialManager to see if there is a Passport for the current user
     ///     Then deletes the local key associated with the Passport.
     /// </summary>
-    winrt::fire_and_forget MicrosoftPassportHelper::RemovePassportAccountAsync(const winrt::Mercatec::Services::Auths::Models::UserAccount& account)
+    winrt::fire_and_forget MicrosoftPassportHelper::RemovePassportAccountAsync(const Account& account)
     {
         // Open the account with Passport
         WSC::KeyCredentialRetrievalResult key_open_result = co_await WSC::KeyCredentialManager::OpenAsync(account.UserName());
@@ -103,8 +99,14 @@ namespace Mercatec::Services::Auths
     ///     Attempts to sign a message using the Passport key on the system for the accountId passed.
     /// </summary>
     /// <returns>Boolean representing if creating the Passport authentication message succeeded</returns>
-    winrt::Windows::Foundation::IAsyncOperation<bool> MicrosoftPassportHelper::GetPassportAuthenticationMessageAsync(const winrt::Mercatec::Services::Auths::Models::UserAccount& account)
+    winrt::Windows::Foundation::IAsyncOperation<bool> MicrosoftPassportHelper::GetPassportAuthenticationMessageAsync(const Account& insecure_account)
     {
+        //! https://learn.microsoft.com/en-us/cpp/code-quality/c26811?view=msvc-170
+        //! https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/concurrency#parameter-passing
+        //! Warning C26811 Lifetime of the memory referenced by parameter ''args'' might end by the time the coroutine is resumed(lifetime .1)
+
+        const Account account = insecure_account;
+
         WSC::KeyCredentialRetrievalResult open_key_result = co_await WSC::KeyCredentialManager::OpenAsync(account.UserName());
 
         // Calling OpenAsync will allow the user access to what is available in the app and will not require user credentials again.
@@ -132,12 +134,16 @@ namespace Mercatec::Services::Auths
             // Calling CreatePassportKey and passing through the account will attempt to replace the existing Microsoft Passport Key for that account.
             // If the error really is that Microsoft Passport is disabled then the CreatePassportKey method will output that error.
 
+            __pragma(warning(push));
+            __pragma(warning(disable : 26811));
             if ( co_await CreatePassportKeyAsync(account.UserName()) )
             {
+
                 // If the Passport Key was again successfully created, Microsoft Passport has just been reset.
                 // Now that the Passport Key has been reset for the _account retry sign in.
                 co_return co_await GetPassportAuthenticationMessageAsync(account);
             }
+            __pragma(warning(pop));
         }
 
         // Can't use Passport right now, try again later
