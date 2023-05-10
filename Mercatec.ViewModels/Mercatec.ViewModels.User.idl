@@ -1,14 +1,11 @@
-import "Mercatec.ViewModels.idl";
-
-
 namespace Mercatec.ViewModels
 {
     [bindable]
     [default_interface]
-    runtimeclass User : IModel, Microsoft.UI.Xaml.Data.INotifyPropertyChanged
+    runtimeclass User : Mercatec.Helpers.ViewModels.IModel, Microsoft.UI.Xaml.Data.INotifyPropertyChanged
     {
         User();
-        UInt64 UserId;
+        Guid   UserId;
         String UserName;
         String Email;
         String Phone;

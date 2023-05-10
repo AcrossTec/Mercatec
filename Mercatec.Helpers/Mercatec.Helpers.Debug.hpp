@@ -11,7 +11,6 @@
 
 namespace Mercatec::Helpers
 {
-
     template <typename... Types>
     void OutputDebug(const std::wstring_view format, Types&&... arguments)
     {

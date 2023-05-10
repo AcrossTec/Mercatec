@@ -1,0 +1,22 @@
+namespace Mercatec.Helpers
+{
+    delegate void Action0();
+    delegate void Action1(Object);
+    delegate void Action2(Object, Object);
+    delegate void Action3(Object, Object, Object);
+    delegate void Action4(Object, Object, Object, Object);
+    delegate void Action5(Object, Object, Object, Object, Object);
+    delegate void Action6(Object, Object, Object, Object, Object, Object);
+    delegate void Action7(Object, Object, Object, Object, Object, Object, Object);
+    delegate void Action8(Object, Object, Object, Object, Object, Object, Object, Object);
+
+    delegate Object Func0();
+    delegate Object Func1(Object);
+    delegate Object Func2(Object, Object);
+    delegate Object Func3(Object, Object, Object);
+    delegate Object Func4(Object, Object, Object, Object);
+    delegate Object Func5(Object, Object, Object, Object, Object);
+    delegate Object Func6(Object, Object, Object, Object, Object, Object);
+    delegate Object Func7(Object, Object, Object, Object, Object, Object, Object);
+    delegate Object Func8(Object, Object, Object, Object, Object, Object, Object, Object);
+}

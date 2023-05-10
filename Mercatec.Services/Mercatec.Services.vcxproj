@@ -130,6 +130,9 @@
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <Midl>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
@@ -146,8 +149,15 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
+    <Midl>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DialogService.h">
+      <DependentUpon>DialogService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.Services.Auths.MicrosoftPassportHelper.hpp" />
     <ClInclude Include="Mercatec.Services.Auths.AccountHelper.hpp" />
     <ClInclude Include="Mercatec.Services.Auths.Models.hpp" />
@@ -163,6 +173,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DialogService.cpp">
+      <DependentUpon>DialogService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Services.Auths.MicrosoftPassportHelper.cpp" />
     <ClCompile Include="Mercatec.Services.Auths.AccountHelper.cpp" />
     <ClCompile Include="Mercatec.Services.Auths.Models.PassportDevice.cpp">
@@ -177,6 +191,9 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="DialogService.idl">
+      <SubType>Designer</SubType>
+    </Midl>
     <Midl Include="Mercatec.Services.Auths.Models.PassportDevice.idl">
       <DependentUpon>Mercatec.Services.Auths.Models.PassportDevice.cpp</DependentUpon>
       <SubType>Code</SubType>

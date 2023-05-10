@@ -48,8 +48,6 @@
 
 #include <wil/cppwinrt_helpers.h>
 
-#include <tinyxml2.h>
-
 #include <chrono>
 #include <algorithm>
 #include <functional>

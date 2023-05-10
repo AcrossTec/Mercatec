@@ -16,7 +16,8 @@
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
-using ::Mercatec::Helpers::Char;
+using ::Mercatec::Char;
+
 using ::Mercatec::Helpers::Empty;
 using ::Mercatec::Services::Auths::AccountHelper;
 using ::Mercatec::Services::Auths::MicrosoftPassportHelper;

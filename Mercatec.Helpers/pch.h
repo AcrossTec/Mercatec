@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 #pragma once
-#include <unknwn.h>
+#include <Unknwn.h>
 
 #pragma push_macro("GetCurrentTime")
 #undef GetCurrentTime

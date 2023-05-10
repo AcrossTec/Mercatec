@@ -20,8 +20,9 @@
 //! Warning C26811 Lifetime of the memory referenced by parameter ''args'' might end by the time the coroutine is resumed(lifetime .1)
 #pragma warning(disable : 26811)
 
-using namespace winrt;
-using namespace Microsoft::UI::Xaml;
+using namespace ::winrt;
+using namespace ::Microsoft::UI::Xaml;
+using namespace ::Mercatec::Types;
 
 namespace Helpers = ::Mercatec::Helpers;
 namespace Auths   = ::Mercatec::Services::Auths;
@@ -76,13 +77,14 @@ namespace winrt::Mercatec::Application::implementation
 
     void LoginPage::PassportSignInButton_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
     {
-        ErrorMessage().Text(Helpers::Empty<Helpers::Char>);
+        ErrorMessage().Text(Helpers::Empty<Char>);
         SignInPassport();
     }
 
-    void LoginPage::RegisterButtonTextBlock_OnPointerPressed([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUXI::PointerRoutedEventArgs& args)
+    fire_and_forget LoginPage::RegisterButtonTextBlock_OnPointerPressed([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUXI::PointerRoutedEventArgs& args)
     {
-        ErrorMessage().Text(Helpers::Empty<Helpers::Char>);
+        ErrorMessage().Text(Helpers::Empty<Char>);
+        co_await m_DialogService.ShowAsync(XamlRoot(), L"PassportRegisterPage", L"Registrar nuevo usuario");
         Frame().Navigate(xaml_typename<PassportRegisterPage>());
     }
 

@@ -1,0 +1,11 @@
+namespace Mercatec.Services
+{
+    [default_interface]
+    runtimeclass DialogService
+    {
+        DialogService();
+        Windows.Foundation.IAsyncOperation<Boolean> ShowAsync(Microsoft.UI.Xaml.XamlRoot XamlRoot, String Title, String Content);
+        Windows.Foundation.IAsyncOperation<Boolean> ShowAsync(Microsoft.UI.Xaml.XamlRoot XamlRoot, String Title, String Content, String Ok);
+        Windows.Foundation.IAsyncOperation<Boolean> ShowAsync(Microsoft.UI.Xaml.XamlRoot XamlRoot, String Title, String Content, String Ok, String Cancel);
+    }
+}

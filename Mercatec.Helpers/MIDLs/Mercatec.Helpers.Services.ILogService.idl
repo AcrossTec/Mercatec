@@ -1,0 +1,12 @@
+import "Mercatec.Helpers.LogType.idl";
+
+namespace Mercatec.Helpers.Services
+{
+    interface ILogService
+    {
+        [default_overload]
+        Windows.Foundation.IAsyncAction WriteAsync(Mercatec.Helpers.LogType Type, String Source, String Action, String Message, String Description);
+
+        Windows.Foundation.IAsyncAction WriteAsync(Mercatec.Helpers.LogType Type, String Source, String Action, UInt64 Code, String Message);
+    }
+}

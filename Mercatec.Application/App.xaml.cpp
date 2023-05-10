@@ -8,6 +8,10 @@
 
 #include <microsoft.ui.xaml.window.h>
 
+#include <winrt/Windows.ApplicationModel.h>
+#include <winrt/Windows.ApplicationModel.Activation.h>
+#include <winrt/Windows.UI.ViewManagement.h>
+
 using namespace winrt;
 using namespace Windows::Foundation;
 using namespace Microsoft::UI::Xaml;
@@ -49,6 +53,8 @@ App::App()
 /// </param>
 void App::OnLaunched(const LaunchActivatedEventArgs&)
 {
+    winrt::Windows::UI::ViewManagement::ApplicationView::PreferredLaunchViewSize({ 1'000, 500 });
+
     //! https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd
     //! https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/windowing/windowing-overview
     //! https://stackoverflow.com/questions/71546846/open-app-always-in-the-center-of-the-display-windows-11-winui-3

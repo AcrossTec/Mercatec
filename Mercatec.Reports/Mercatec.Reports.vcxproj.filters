@@ -8,25 +8,57 @@
     <Filter Include="Generated Files">
       <UniqueIdentifier>{926ab91d-31b4-48c3-b9a4-e681349f27f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Others">
+      <UniqueIdentifier>{3cf16773-3a5f-4dae-8d65-d5252eb4fb2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{5e4eec8b-9b1a-4844-a0a7-08ea52d22a92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{84b7f857-3193-4d3f-b01c-f9dad45a5af0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinRT">
+      <UniqueIdentifier>{b4a5aef5-6e66-4c31-b273-8aae127a5416}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Mercatec.Reports.Class.cpp" />
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="Mercatec.Reports.Class.cpp">
+      <Filter>WinRT</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Mercatec.Reports.Exports.Api.hpp" />
+    <ClInclude Include="Mercatec.Reports.Exports.Api.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Mercatec.Reports.def" />
-    <None Include="PropertySheet.props" />
+    <None Include="PropertySheet.props">
+      <Filter>Others</Filter>
+    </None>
+    <None Include="packages.config">
+      <Filter>Others</Filter>
+    </None>
+    <None Include="Mercatec.Reports.def">
+      <Filter>Others</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis">
+      <Filter>Others</Filter>
+    </Natvis>
   </ItemGroup>
   <ItemGroup>
-    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
+    <Text Include="readme.txt">
+      <Filter>Others</Filter>
+    </Text>
   </ItemGroup>
 </Project>

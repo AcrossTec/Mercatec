@@ -11,24 +11,73 @@
     <Filter Include="Others">
       <UniqueIdentifier>{34d932f7-6079-4fa0-9663-6556e9aab55e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{2754eae6-0268-4fae-b3a5-e63642be79eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{cb1cce06-3a2a-4d9a-9e4e-9f66d7e78705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MIDLs">
+      <UniqueIdentifier>{9b5656e0-23b0-4e48-9897-44a1ff9efcce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Infrastructure">
+      <UniqueIdentifier>{2156c09c-5f33-49f4-b7da-0bbfea067eb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Infrastructure\ViewModels">
+      <UniqueIdentifier>{521ccbcb-092f-4a58-9774-1a5d32caf528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Infrastructure\Common">
+      <UniqueIdentifier>{215bde10-60d0-4f96-8b64-9bfdfd2b3d45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Infrastructure\Services">
+      <UniqueIdentifier>{987f2003-b8f1-4273-912b-2c226b0d9d25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Mercatec.Helpers.Class.cpp" />
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="Mercatec.Helpers.Strings.cpp" />
-    <ClCompile Include="Mercatec.Helpers.Widespread.cpp" />
+    <ClCompile Include="Mercatec.Helpers.Widespread.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.Strings.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Mercatec.Helpers.Types.hpp" />
-    <ClInclude Include="Mercatec.Helpers.ViewModels.hpp" />
-    <ClInclude Include="Mercatec.Helpers.Strings.hpp" />
-    <ClInclude Include="Mercatec.Helpers.Widespread.hpp" />
-    <ClInclude Include="Mercatec.Helpers.Debug.hpp" />
-    <ClInclude Include="Mercatec.Helpers.Coroutines.Future.hpp" />
-    <ClInclude Include="Mercatec.Helpers.Coroutines.Task.hpp" />
-    <ClInclude Include="Mercatec.Helpers.Exports.Api.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Coroutines.Task.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Coroutines.Future.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Debug.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Exports.Api.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.ViewModels.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Widespread.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Types.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Strings.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Crtp.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -42,9 +91,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Mercatec.Helpers.Types.idl" />
-  </ItemGroup>
-  <ItemGroup>
     <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis">
       <Filter>Others</Filter>
     </Natvis>
@@ -53,5 +99,43 @@
     <Text Include="readme.txt">
       <Filter>Others</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Mercatec.Helpers.ViewModels.ObservableObject.idl">
+      <Filter>Infrastructure\ViewModels</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.ViewModels.ViewModelBase.idl">
+      <Filter>Infrastructure\ViewModels</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Types.idl">
+      <Filter>MIDLs</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.LogType.idl">
+      <Filter>MIDLs</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IModel.idl">
+      <Filter>Infrastructure\ViewModels</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.INavigationService.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.IMessageService.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.ILogService.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.IDialogService.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.IContextService.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.ICommonServices.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.idl">
+      <Filter>MIDLs</Filter>
+    </Midl>
   </ItemGroup>
 </Project>

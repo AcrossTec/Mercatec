@@ -20,6 +20,9 @@
     <Filter Include="Sources">
       <UniqueIdentifier>{07b89d68-d34b-40e9-8265-596a3ae4a8ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{572fb810-3b86-41b4-8b8d-e9d7b7568a06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.ViewModels.User.cpp">
@@ -60,10 +63,5 @@
     <Text Include="readme.txt">
       <Filter>Others</Filter>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <Midl Include="Mercatec.ViewModels.idl">
-      <Filter>WinRT</Filter>
-    </Midl>
   </ItemGroup>
 </Project>

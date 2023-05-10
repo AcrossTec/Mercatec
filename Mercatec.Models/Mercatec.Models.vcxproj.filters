@@ -8,26 +8,86 @@
     <Filter Include="Generated Files">
       <UniqueIdentifier>{926ab91d-31b4-48c3-b9a4-e681349f27f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Others">
+      <UniqueIdentifier>{57c2e3cc-9d3e-45ee-89db-6824efc6b4cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{7a7f0cca-3ce0-43f5-84d3-becaf6b303fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models\Sources">
+      <UniqueIdentifier>{fe620b0f-1c61-4b1b-9626-4b43ab1d4e3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Models\Headers">
+      <UniqueIdentifier>{28d1dda8-bf58-438d-a1da-1ccc87a031dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{8e23f3f1-01b2-4588-977d-f902f5096cca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources">
+      <UniqueIdentifier>{429ebacc-95b8-4a16-9d40-9dd6620ce080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinRT">
+      <UniqueIdentifier>{9310a3b7-1af2-473b-b571-81a710ea8a00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="Mercatec.Models.Class.cpp" />
+    <ClCompile Include="Mercatec.Models.Entity.cpp">
+      <Filter>Models\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Models.UserAccount.cpp">
+      <Filter>Models\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Models.PassportDevice.cpp">
+      <Filter>Models\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Mercatec.Models.User.hpp" />
-    <ClInclude Include="Mercatec.Models.Exports.Api.hpp" />
+    <ClInclude Include="Mercatec.Models.UserAccount.hpp">
+      <Filter>Models\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Models.Entity.hpp">
+      <Filter>Models\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Models.PassportDevice.hpp">
+      <Filter>Models\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Models.Exports.Api.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="Mercatec.Models.def" />
-    <None Include="PropertySheet.props" />
+    <None Include="Mercatec.Models.def">
+      <Filter>Others</Filter>
+    </None>
+    <None Include="packages.config">
+      <Filter>Others</Filter>
+    </None>
+    <None Include="PropertySheet.props">
+      <Filter>Others</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
+    <Text Include="readme.txt">
+      <Filter>Others</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
-    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis">
+      <Filter>Others</Filter>
+    </Natvis>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Mercatec.Models.Class.idl">
+      <Filter>WinRT</Filter>
+    </Midl>
   </ItemGroup>
 </Project>

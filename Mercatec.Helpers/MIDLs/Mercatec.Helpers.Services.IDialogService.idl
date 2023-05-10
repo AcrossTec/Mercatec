@@ -1,0 +1,11 @@
+namespace Mercatec.Helpers.Services
+{
+    interface IDialogService
+    {
+        Windows.Foundation.IAsyncOperation<Boolean> ShowAsync(Microsoft.UI.Xaml.XamlRoot XamlRoot, String Title, String Content);
+
+        Windows.Foundation.IAsyncOperation<Boolean> ShowAsync(Microsoft.UI.Xaml.XamlRoot XamlRoot, String Title, String Content, String Ok);
+
+        Windows.Foundation.IAsyncOperation<Boolean> ShowAsync(Microsoft.UI.Xaml.XamlRoot XamlRoot, String Title, String Content, String Ok, String Cancel);
+    }
+}

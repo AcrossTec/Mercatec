@@ -1,0 +1,7 @@
+namespace Mercatec.Helpers.Services
+{
+    interface IMessageService
+    {
+        void Unsubscribe(Object Target);
+    }
+}

@@ -18,12 +18,12 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::Mercatec::ViewModels::implementation
 {
-    uint64_t User::UserId() const noexcept
+    guid User::UserId() const noexcept
     {
         return m_User.UserId;
     }
 
-    void User::UserId(const uint64_t user_id) noexcept
+    void User::UserId(const guid user_id) noexcept
     {
         VIEWMODEL_DEFAULT_SET_PROPERTY(User, UserId, user_id);
     }

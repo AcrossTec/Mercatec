@@ -1,0 +1,25 @@
+import "Mercatec.Helpers.Services.idl";
+import "Mercatec.Helpers.ViewModels.ObservableObject.idl";
+
+namespace Mercatec.Helpers.ViewModels
+{
+    [default_interface]
+    unsealed runtimeclass ViewModelBase : ObservableObject
+    {
+        ViewModelBase(Mercatec.Services.ICommonServices CommonServices);
+
+        Boolean IsMainView { get; };
+        String Title { get; };
+
+        Mercatec.Services.IContextService ContextService { get; };
+        Mercatec.Services.INavigationService NavigationService { get; };
+        Mercatec.Services.IMessageService MessageService { get; };
+        Mercatec.Services.IDialogService DialogService { get; };
+        Mercatec.Services.ILogService LogService { get; };
+
+        void LogInformation(String Source, String Action, String Message, String Description);
+        void LogWarning(String Source, String Action, String Message, String Description);
+        void LogException(String Source, String Action, UInt64 Code, String Message);
+        void LogError(String Source, String Action, String Message, String Description);
+    }
+}

@@ -8,7 +8,7 @@
 #include "winrt/Microsoft.UI.Xaml.Controls.Primitives.h"
 #include "User.g.h"
 
-#include "Mercatec.Models.User.hpp"
+#include "Mercatec.Models.UserAccount.hpp"
 
 namespace winrt::Mercatec::ViewModels::implementation
 {
@@ -17,8 +17,8 @@ namespace winrt::Mercatec::ViewModels::implementation
     public:
         User() = default;
 
-        uint64_t UserId() const noexcept;
-        void     UserId(const uint64_t user_id) noexcept;
+        guid UserId() const noexcept;
+        void UserId(const guid user_id) noexcept;
 
         hstring UserName() const noexcept;
         void    UserName(const hstring& user_name) noexcept;
@@ -41,7 +41,7 @@ namespace winrt::Mercatec::ViewModels::implementation
         void        PropertyChanged(const event_token& token);
 
     private:
-        ::Mercatec::Models::User                                      m_User;
+        ::Mercatec::Models::UserAccount                               m_User;
         event<Microsoft::UI::Xaml::Data::PropertyChangedEventHandler> m_PropertyChanged;
     };
 } // namespace winrt::Mercatec::ViewModels::implementation

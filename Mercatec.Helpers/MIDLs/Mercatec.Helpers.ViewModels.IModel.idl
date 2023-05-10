@@ -1,4 +1,4 @@
-namespace Mercatec.ViewModels
+namespace Mercatec.Helpers.ViewModels
 {
     interface IModel
     {

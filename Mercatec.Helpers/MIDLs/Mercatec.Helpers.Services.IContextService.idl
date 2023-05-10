@@ -1,0 +1,17 @@
+//import "Mercatec.Helpers.Delegates.idl";
+
+namespace Mercatec.Helpers.Services
+{
+    interface IContextService
+    {
+        Int32 MainViewId { get; };
+
+        Int32 ContextId { get; };
+
+        Boolean IsMainView { get; };
+
+        void Initialize(Object Dispatcher, Int32 ContextId, Boolean IsMainView);
+
+        //IAsyncAction RunAsync(Action0 Action);
+    }
+}

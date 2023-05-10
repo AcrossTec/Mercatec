@@ -1,0 +1,19 @@
+//import "Mercatec.Helpers.ViewModels.IModel.idl";
+
+//import "Mercatec.Helpers.LogType.idl";
+// import "Mercatec.Helpers.Delegates.idl";
+
+namespace Mercatec
+{
+    typedef Windows.Foundation.DateTime DateTime;
+    typedef Windows.Foundation.TimeSpan TimeSpan;
+    //typedef Mercatec.Helpers.LogType    LogType;
+}
+
+//namespace Mercatec.ViewModels
+//{
+    //typedef Mercatec.Helpers.ViewModels.IModel           IModel;
+    //typedef Mercatec.Helpers.ViewModels.ObservableObject ObservableObject;
+    //typedef Mercatec.Helpers.ViewModels.ViewModelBase    ViewModelBase;
+//}
+

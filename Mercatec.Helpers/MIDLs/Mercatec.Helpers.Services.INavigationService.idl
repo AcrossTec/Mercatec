@@ -1,0 +1,21 @@
+namespace Mercatec.Helpers.Services
+{
+    interface INavigationService
+    {
+        Boolean IsMainView { get; };
+
+        Boolean CanGoBack  { get; };
+
+        void Initialize(Object Frame);
+
+        Boolean Navigate(Windows.UI.Xaml.Interop.TypeName ViewModelType);
+        Boolean Navigate(Windows.UI.Xaml.Interop.TypeName ViewModelType, Object Parameter);
+
+        Windows.Foundation.IAsyncOperation<Int32> CreateNewViewAsync(Windows.UI.Xaml.Interop.TypeName ViewModelType);
+        Windows.Foundation.IAsyncOperation<Int32> CreateNewViewAsync(Windows.UI.Xaml.Interop.TypeName ViewModelType, Object Parameter);
+
+        void GoBack();
+
+        Windows.Foundation.IAsyncAction CloseViewAsync();
+    }
+}
