@@ -1,4 +1,4 @@
-//import "Mercatec.Helpers.Delegates.idl";
+import "Mercatec.Helpers.Delegates.idl";
 
 namespace Mercatec.Helpers.Services
 {
@@ -12,6 +12,6 @@ namespace Mercatec.Helpers.Services
 
         void Initialize(Object Dispatcher, Int32 ContextId, Boolean IsMainView);
 
-        //IAsyncAction RunAsync(Action0 Action);
+        Windows.Foundation.IAsyncAction RunAsync(Mercatec.Helpers.Action0 Action);
     }
 }

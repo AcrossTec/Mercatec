@@ -170,6 +170,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="MIDLs\Mercatec.Helpers.Delegates.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.Services.idl" />
     <Midl Include="Mercatec.Helpers.ViewModels.ObservableObject.idl">
       <SubType>Designer</SubType>

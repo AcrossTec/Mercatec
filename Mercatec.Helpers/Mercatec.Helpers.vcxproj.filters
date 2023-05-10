@@ -137,5 +137,8 @@
     <Midl Include="MIDLs\Mercatec.Helpers.Services.idl">
       <Filter>MIDLs</Filter>
     </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Delegates.idl">
+      <Filter>MIDLs</Filter>
+    </Midl>
   </ItemGroup>
 </Project>

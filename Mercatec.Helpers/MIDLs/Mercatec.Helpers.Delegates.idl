@@ -1,22 +1,22 @@
 namespace Mercatec.Helpers
 {
     delegate void Action0();
-    delegate void Action1(Object);
-    delegate void Action2(Object, Object);
-    delegate void Action3(Object, Object, Object);
-    delegate void Action4(Object, Object, Object, Object);
-    delegate void Action5(Object, Object, Object, Object, Object);
-    delegate void Action6(Object, Object, Object, Object, Object, Object);
-    delegate void Action7(Object, Object, Object, Object, Object, Object, Object);
-    delegate void Action8(Object, Object, Object, Object, Object, Object, Object, Object);
+    delegate void Action1(Object Arg1);
+    delegate void Action2(Object Arg1, Object Arg2);
+    delegate void Action3(Object Arg1, Object Arg2, Object Arg3);
+    delegate void Action4(Object Arg1, Object Arg2, Object Arg3, Object Arg4);
+    delegate void Action5(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5);
+    delegate void Action6(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5, Object Arg6);
+    delegate void Action7(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5, Object Arg6, Object Arg7);
+    delegate void Action8(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5, Object Arg6, Object Arg7, Object Arg8);
 
     delegate Object Func0();
-    delegate Object Func1(Object);
-    delegate Object Func2(Object, Object);
-    delegate Object Func3(Object, Object, Object);
-    delegate Object Func4(Object, Object, Object, Object);
-    delegate Object Func5(Object, Object, Object, Object, Object);
-    delegate Object Func6(Object, Object, Object, Object, Object, Object);
-    delegate Object Func7(Object, Object, Object, Object, Object, Object, Object);
-    delegate Object Func8(Object, Object, Object, Object, Object, Object, Object, Object);
+    delegate Object Func1(Object Arg1);
+    delegate Object Func2(Object Arg1, Object Arg2);
+    delegate Object Func3(Object Arg1, Object Arg2, Object Arg3);
+    delegate Object Func4(Object Arg1, Object Arg2, Object Arg3, Object Arg4);
+    delegate Object Func5(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5);
+    delegate Object Func6(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5, Object Arg6);
+    delegate Object Func7(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5, Object Arg6, Object Arg7);
+    delegate Object Func8(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5, Object Arg6, Object Arg7, Object Arg8);
 }
