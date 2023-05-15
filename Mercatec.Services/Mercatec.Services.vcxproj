@@ -126,9 +126,11 @@
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
+      </Command>
     </PostBuildEvent>
     <Midl>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -145,44 +147,38 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
+      </Command>
     </PostBuildEvent>
     <Midl>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DialogService.h">
-      <DependentUpon>DialogService.idl</DependentUpon>
+    <ClInclude Include="Mercatec.Services.DialogService.h">
+      <DependentUpon>Mercatec.Services.DialogService.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="Mercatec.Services.Auths.MicrosoftPassportHelper.hpp" />
-    <ClInclude Include="Mercatec.Services.Auths.AccountHelper.hpp" />
-    <ClInclude Include="Mercatec.Services.Auths.Models.hpp" />
-    <ClInclude Include="Mercatec.Services.Auths.Models.PassportDevice.h">
-      <DependentUpon>Mercatec.Services.Auths.Models.PassportDevice.cpp</DependentUpon>
-      <SubType>Code</SubType>
-    </ClInclude>
-    <ClInclude Include="Mercatec.Services.Auths.Models.UserAccount.h">
-      <DependentUpon>Mercatec.Services.Auths.Models.UserAccount.cpp</DependentUpon>
-      <SubType>Code</SubType>
-    </ClInclude>
+    <ClInclude Include="Mercatec.Services.MicrosoftPassportService.hpp" />
+    <ClInclude Include="Mercatec.Services.AccountService.hpp" />
+    <ClInclude Include="Mercatec.Services.Models.hpp" />
     <ClInclude Include="Mercatec.Services.Exports.Api.hpp" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DialogService.cpp">
-      <DependentUpon>DialogService.idl</DependentUpon>
+    <ClCompile Include="Mercatec.Services.DialogService.cpp">
+      <DependentUpon>Mercatec.Services.DialogService.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="Mercatec.Services.Auths.MicrosoftPassportHelper.cpp" />
-    <ClCompile Include="Mercatec.Services.Auths.AccountHelper.cpp" />
-    <ClCompile Include="Mercatec.Services.Auths.Models.PassportDevice.cpp">
+    <ClCompile Include="Mercatec.Services.MicrosoftPassportService.cpp">
+      <DependentUpon>Mercatec.Services.MicrosoftPassportService.hpp</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="Mercatec.Services.Auths.Models.UserAccount.cpp">
+    <ClCompile Include="Mercatec.Services.AccountService.cpp">
+      <DependentUpon>Mercatec.Services.AccountService.hpp</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -191,16 +187,8 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="DialogService.idl">
+    <Midl Include="Mercatec.Services.DialogService.idl">
       <SubType>Designer</SubType>
-    </Midl>
-    <Midl Include="Mercatec.Services.Auths.Models.PassportDevice.idl">
-      <DependentUpon>Mercatec.Services.Auths.Models.PassportDevice.cpp</DependentUpon>
-      <SubType>Code</SubType>
-    </Midl>
-    <Midl Include="Mercatec.Services.Auths.Models.UserAccount.idl">
-      <DependentUpon>Mercatec.Services.Auths.Models.UserAccount.cpp</DependentUpon>
-      <SubType>Code</SubType>
     </Midl>
   </ItemGroup>
   <ItemGroup>

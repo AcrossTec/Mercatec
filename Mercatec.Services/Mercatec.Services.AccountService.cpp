@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Mercatec.Services.Auths.AccountHelper.hpp"
+#include "Mercatec.Services.AccountService.hpp"
 #include "Mercatec.Helpers.Debug.hpp"
 #include "Mercatec.Helpers.Strings.hpp"
 #include "Mercatec.Helpers.Widespread.hpp"
@@ -9,7 +9,7 @@
 #include <fstream>
 #include <ios>
 
-namespace Mercatec::Services::Auths
+namespace Mercatec::Services
 {
     winrt::IObservableVector<AccountHelper::Account> AccountHelper::AccountList{ winrt::single_threaded_observable_vector<AccountHelper::Account>() };
 
@@ -211,4 +211,4 @@ namespace Mercatec::Services::Auths
 
         return true;
     }
-} // namespace Mercatec::Services::Auths
+} // namespace Mercatec::Services

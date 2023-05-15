@@ -53,11 +53,10 @@ App::App()
 /// </param>
 void App::OnLaunched(const LaunchActivatedEventArgs&)
 {
-    winrt::Windows::UI::ViewManagement::ApplicationView::PreferredLaunchViewSize({ 1'000, 500 });
-
     //! https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd
     //! https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/windowing/windowing-overview
     //! https://stackoverflow.com/questions/71546846/open-app-always-in-the-center-of-the-display-windows-11-winui-3
+    //! https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/win32/microsoft.ui.xaml.window/nf-microsoft-ui-xaml-window-iwindownative-get_windowhandle
 
     m_Window = make<MainWindow>();
 

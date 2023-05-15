@@ -17,9 +17,6 @@
     <Filter Include="Sources">
       <UniqueIdentifier>{429d88cf-1fb4-4ca8-ade3-9b02d9e2960f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="WinRT">
-      <UniqueIdentifier>{d03aa25d-1c00-4989-be8d-4ed16d6d35a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Services">
       <UniqueIdentifier>{eb302716-a081-490a-97a3-82f47da3b5c4}</UniqueIdentifier>
     </Filter>
@@ -34,17 +31,11 @@
     <ClCompile Include="pch.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Mercatec.Services.Auths.AccountHelper.cpp">
-      <Filter>Sources</Filter>
+    <ClCompile Include="Mercatec.Services.MicrosoftPassportHelper.cpp">
+      <Filter>Services</Filter>
     </ClCompile>
-    <ClCompile Include="Mercatec.Services.Auths.MicrosoftPassportHelper.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Mercatec.Services.Auths.Models.PassportDevice.cpp">
-      <Filter>WinRT</Filter>
-    </ClCompile>
-    <ClCompile Include="Mercatec.Services.Auths.Models.UserAccount.cpp">
-      <Filter>WinRT</Filter>
+    <ClCompile Include="Mercatec.Services.AccountHelper.cpp">
+      <Filter>Services</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,14 +45,14 @@
     <ClInclude Include="pch.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Mercatec.Services.Auths.AccountHelper.hpp">
+    <ClInclude Include="Mercatec.Services.Models.hpp">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Mercatec.Services.Auths.MicrosoftPassportHelper.hpp">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Mercatec.Services.MicrosoftPassportService.hpp">
+      <Filter>Services</Filter>
     </ClInclude>
-    <ClInclude Include="Mercatec.Services.Auths.Models.hpp">
-      <Filter>Headers</Filter>
+    <ClInclude Include="Mercatec.Services.AccountService.hpp">
+      <Filter>Services</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,8 +77,14 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="DialogService.idl">
+    <Midl Include="Mercatec.Services.DialogService.idl">
       <Filter>Services</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Services.Models.UserAccount.idl">
+      <Filter>Models</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Services.Models.PassportDevice.idl">
+      <Filter>Models</Filter>
     </Midl>
   </ItemGroup>
 </Project>

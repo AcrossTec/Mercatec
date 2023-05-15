@@ -1,0 +1,16 @@
+namespace Mercatec.Helpers
+{
+    [bindable]
+    [default_interface]
+    runtimeclass UserInfo : Windows.Foundation.IStringable
+    {
+        UserInfo();
+        String  AccountName   { get; set; };
+        String  FirstName     { get; set; };
+        String  LastName      { get; set; };
+        Object  PictureSource { get; set; };
+        String  DisplayName   { get; };
+        Boolean IsEmpty       { get; };
+    }
+}
+

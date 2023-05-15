@@ -1,9 +1,0 @@
-namespace Mercatec.Models
-{
-    [bindable]
-    [default_interface]
-    runtimeclass Class 
-    {
-        Class();
-    }
-}

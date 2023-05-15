@@ -1,0 +1,9 @@
+namespace Mercatec.ViewModels
+{
+    [bindable]
+    [default_interface]
+    runtimeclass Customer : Mercatec.Helpers.ViewModels.ObservableObject
+    {
+        Customer();
+    }
+}

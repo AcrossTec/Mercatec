@@ -134,6 +134,14 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Helpers.ViewModels.Entity.hpp">
+      <DependentUpon>MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.IndexRange.h">
+      <DependentUpon>Mercatec.Helpers.IndexRange.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.Helpers.Coroutines.Future.hpp" />
     <ClInclude Include="Mercatec.Helpers.Coroutines.Task.hpp" />
     <ClInclude Include="Mercatec.Helpers.Debug.hpp" />
@@ -152,10 +160,29 @@
       <DependentUpon>Mercatec.Helpers.ViewModels.ViewModelBase.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.RelayCommand.hpp" />
+    <ClInclude Include="Mercatec.Helpers.UserInfo.h">
+      <DependentUpon>Mercatec.Helpers.UserInfo.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Mercatec.Helpers.Strings.cpp" />
-    <ClCompile Include="Mercatec.Helpers.Widespread.cpp" />
+    <ClCompile Include="Mercatec.Helpers.IndexRange.cpp">
+      <DependentUpon>Mercatec.Helpers.IndexRange.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.RelayCommand.cpp">
+      <DependentUpon>Mercatec.Helpers.RelayCommand.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.Strings.cpp">
+      <DependentUpon>Mercatec.Helpers.Strings.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.Widespread.cpp">
+      <DependentUpon>Mercatec.Helpers.Widespread.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Helpers.ViewModels.ObservableObject.cpp">
       <DependentUpon>Mercatec.Helpers.ViewModels.ObservableObject.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -168,8 +195,17 @@
       <DependentUpon>Mercatec.Helpers.ViewModels.ViewModelBase.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.UserInfo.cpp">
+      <DependentUpon>Mercatec.Helpers.UserInfo.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl" />
+    <Midl Include="Mercatec.Helpers.IndexRange.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.ToolbarModes.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.Delegates.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.Services.idl" />
     <Midl Include="Mercatec.Helpers.ViewModels.ObservableObject.idl">
@@ -185,8 +221,10 @@
     <Midl Include="MIDLs\Mercatec.Helpers.Services.ILogService.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.Services.IMessageService.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.Services.INavigationService.idl" />
-    <Midl Include="MIDLs\Mercatec.Helpers.Types.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IModel.idl" />
+    <Midl Include="Mercatec.Helpers.UserInfo.idl">
+      <SubType>Designer</SubType>
+    </Midl>
   </ItemGroup>
   <ItemGroup>
     <None Include="Mercatec.Helpers.def" />

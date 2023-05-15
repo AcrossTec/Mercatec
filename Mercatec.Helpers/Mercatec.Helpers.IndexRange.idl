@@ -1,0 +1,11 @@
+namespace Mercatec.Helpers
+{
+    [bindable]
+    [default_interface]
+    runtimeclass IndexRange 
+    {
+        IndexRange();
+        Int32 Index { get; set; };
+        Int32 Length { get; set; };
+    }
+}

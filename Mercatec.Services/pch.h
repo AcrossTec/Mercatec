@@ -48,6 +48,11 @@
 
 #include <wil/cppwinrt_helpers.h>
 
+#include <algorithm>
+#include <chrono>
+#include <functional>
+#include <string_view>
+
 namespace winrt
 {
     using namespace Microsoft::UI;

@@ -1,0 +1,23 @@
+import "Mercatec.Models.WinRT.PassportDevice.idl";
+
+namespace Mercatec.Models
+{
+    [bindable]
+    [default_interface]
+    runtimeclass UserAccount
+        : Mercatec.Helpers.ViewModels.ObservableObject
+        , Mercatec.Helpers.ViewModels.IEntity
+        , Mercatec.Helpers.ViewModels.IModel
+    {
+        UserAccount();
+
+        Guid   UserId   { get; set; };
+        String UserName { get; set; };
+        String Email    { get; set; };
+        String Phone    { get; set; };
+        String Address  { get; set; };
+        String Password { get; set; };
+
+        IVector<PassportDevice> PassportDevices { get; set; };
+    }
+}

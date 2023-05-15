@@ -2,8 +2,10 @@
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
-#include "Mercatec.Services.Auths.Models.hpp"
+#include <winrt/Mercatec.Models.h>
+
 #include "Mercatec.Services.Exports.Api.hpp"
+
 #include <filesystem>
 
 #pragma warning(push)
@@ -12,12 +14,12 @@
 // Description: 'type' : class 'type1' needs to have dll-interface to be used by clients of class 'type2'
 #pragma warning(disable : 4251)
 
-namespace Mercatec::Services::Auths
+namespace Mercatec::Services
 {
     class MERCATEC_SERVICES_API AccountHelper sealed abstract
     {
     private:
-        using Account = winrt::Mercatec::Services::Auths::Models::UserAccount;
+        using Account = winrt::Mercatec::Models::UserAccount;
 
         // In the real world this would not be needed as there would be a server implemented that would host a user account database.
         // For this tutorial we will just be storing accounts locally.
@@ -59,6 +61,6 @@ namespace Mercatec::Services::Auths
     public:
         static winrt::IObservableVector<Account> AccountList;
     };
-} // namespace Mercatec::Services::Auths
+} // namespace Mercatec::Services
 
 #pragma warning(pop)

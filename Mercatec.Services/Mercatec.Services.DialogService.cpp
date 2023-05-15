@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "DialogService.h"
+#include "Mercatec.Services.DialogService.h"
 #if __has_include("DialogService.g.cpp")
 # include "DialogService.g.cpp"
 #endif

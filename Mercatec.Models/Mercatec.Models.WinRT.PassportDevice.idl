@@ -1,11 +1,11 @@
-// Copyright (c) Microsoft Corporation and Contributors.
-// Licensed under the MIT License.
-
-namespace Mercatec.Services.Auths.Models
+namespace Mercatec.Models
 {
     [bindable]
     [default_interface]
     runtimeclass PassportDevice
+        : Mercatec.Helpers.ViewModels.ObservableObject
+        , Mercatec.Helpers.ViewModels.IEntity
+        , Mercatec.Helpers.ViewModels.IModel
     {
         PassportDevice();
 

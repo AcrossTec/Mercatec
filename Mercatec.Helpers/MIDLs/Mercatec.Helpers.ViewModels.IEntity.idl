@@ -1,0 +1,13 @@
+import "Mercatec.Helpers.ViewModels.IModel.idl";
+
+namespace Mercatec.Helpers.ViewModels
+{
+    interface IEntity requires Mercatec.Helpers.ViewModels.IModel, Microsoft.UI.Xaml.Data.INotifyPropertyChanged
+    {
+        Windows.Foundation.DateTime                                CreatedDate;
+        Windows.Foundation.IReference<Windows.Foundation.DateTime> ModifiedDate;
+        Windows.Foundation.IReference<Windows.Foundation.DateTime> DeletedDate;
+        Boolean                                                    IsEdit;
+        Boolean                                                    IsDelete;
+    };
+}

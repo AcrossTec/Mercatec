@@ -154,28 +154,36 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Mercatec.Models.Class.h">
-      <DependentUpon>Mercatec.Models.Class.idl</DependentUpon>
-      <SubType>Code</SubType>
-    </ClInclude>
     <ClInclude Include="Mercatec.Models.Entity.hpp" />
     <ClInclude Include="Mercatec.Models.Exports.Api.hpp" />
     <ClInclude Include="Mercatec.Models.PassportDevice.hpp" />
     <ClInclude Include="Mercatec.Models.UserAccount.hpp" />
+    <ClInclude Include="Mercatec.Models.WinRT.PassportDevice.h">
+      <DependentUpon>Mercatec.Models.WinRT.PassportDevice.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Mercatec.Models.WinRT.UserAccount.h">
+      <DependentUpon>Mercatec.Models.WinRT.UserAccount.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Mercatec.Models.Class.cpp">
-      <DependentUpon>Mercatec.Models.Class.idl</DependentUpon>
-      <SubType>Code</SubType>
-    </ClCompile>
     <ClCompile Include="Mercatec.Models.Entity.cpp" />
     <ClCompile Include="Mercatec.Models.PassportDevice.cpp" />
     <ClCompile Include="Mercatec.Models.UserAccount.cpp" />
+    <ClCompile Include="Mercatec.Models.WinRT.PassportDevice.cpp">
+      <DependentUpon>Mercatec.Models.WinRT.PassportDevice.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="Mercatec.Models.WinRT.UserAccount.cpp">
+      <DependentUpon>Mercatec.Models.WinRT.UserAccount.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Mercatec.Models.def" />
@@ -193,7 +201,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Mercatec.Models.Class.idl">
+    <Midl Include="Mercatec.Models.WinRT.PassportDevice.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.Models.WinRT.UserAccount.idl">
       <SubType>Designer</SubType>
     </Midl>
   </ItemGroup>

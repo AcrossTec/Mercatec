@@ -21,6 +21,11 @@
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <wil/cppwinrt_helpers.h>
 
+#include <vector>
+#include <string_view>
+#include <chrono>
+#include <format>
+
 namespace winrt
 {
     using namespace Microsoft::UI;

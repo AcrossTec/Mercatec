@@ -1,0 +1,16 @@
+namespace Mercatec.Helpers
+{
+    enum ListToolbarMode
+    {
+        Default,
+        Cancel,
+        CancelDelete
+    };
+
+    enum DetailToolbarMode
+    {
+        Default,
+        BackEditdDelete,
+        CancelSave
+    };
+}

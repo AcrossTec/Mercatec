@@ -164,15 +164,16 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Mercatec.ViewModels.Exports.Api.hpp" />
-    <ClInclude Include="Mercatec.ViewModels.User.h">
-      <DependentUpon>Mercatec.ViewModels.User.cpp</DependentUpon>
+    <ClInclude Include="Mercatec.ViewModels.Customer.h">
+      <DependentUpon>Mercatec.ViewModels.Customer.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.ViewModels.Exports.Api.hpp" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Mercatec.ViewModels.User.cpp">
+    <ClCompile Include="Mercatec.ViewModels.Customer.cpp">
+      <DependentUpon>Mercatec.ViewModels.Customer.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -208,9 +209,8 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Mercatec.ViewModels.User.idl">
-      <DependentUpon>Mercatec.ViewModels.User.cpp</DependentUpon>
-      <SubType>Code</SubType>
+    <Midl Include="Mercatec.ViewModels.Customer.idl">
+      <SubType>Designer</SubType>
     </Midl>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

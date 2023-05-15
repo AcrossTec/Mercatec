@@ -1,14 +1,15 @@
 #pragma once
 
 #include <winrt/Windows.Foundation.h>
-#include "Mercatec.Services.Exports.Api.hpp"
-#include "winrt/Mercatec.Services.Auths.Models.h"
+#include <winrt/Mercatec.Models.h>
 
-namespace Mercatec::Services::Auths
+#include "Mercatec.Services.Exports.Api.hpp"
+
+namespace Mercatec::Services
 {
     struct MERCATEC_SERVICES_API MicrosoftPassportHelper sealed abstract
     {
-        using Account = winrt::Mercatec::Services::Auths::Models::UserAccount;
+        using Account = winrt::Mercatec::Models::UserAccount;
 
         /// <summary>
         /// Checks to see if Passport is ready to be used.
@@ -39,4 +40,4 @@ namespace Mercatec::Services::Auths
         /// <returns>Boolean representing if creating the Passport authentication message succeeded</returns>
         static winrt::Windows::Foundation::IAsyncOperation<bool> GetPassportAuthenticationMessageAsync(const Account& account);
     };
-} // namespace Mercatec::Services::Auths
+} // namespace Mercatec::Services

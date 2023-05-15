@@ -78,6 +78,12 @@
     <ClInclude Include="Mercatec.Helpers.Crtp.hpp">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.RelayCommand.hpp">
+      <Filter>Infrastructure\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.ViewModels.Entity.hpp">
+      <Filter>Infrastructure\ViewModels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -106,9 +112,6 @@
     </Midl>
     <Midl Include="Mercatec.Helpers.ViewModels.ViewModelBase.idl">
       <Filter>Infrastructure\ViewModels</Filter>
-    </Midl>
-    <Midl Include="MIDLs\Mercatec.Helpers.Types.idl">
-      <Filter>MIDLs</Filter>
     </Midl>
     <Midl Include="MIDLs\Mercatec.Helpers.LogType.idl">
       <Filter>MIDLs</Filter>
@@ -139,6 +142,18 @@
     </Midl>
     <Midl Include="MIDLs\Mercatec.Helpers.Delegates.idl">
       <Filter>MIDLs</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.ToolbarModes.idl">
+      <Filter>Infrastructure\Common</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.IndexRange.idl">
+      <Filter>Infrastructure\Common</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.UserInfo.idl">
+      <Filter>Infrastructure\Common</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl">
+      <Filter>Infrastructure\ViewModels</Filter>
     </Midl>
   </ItemGroup>
 </Project>

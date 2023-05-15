@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "Mercatec.Services.Auths.MicrosoftPassportHelper.hpp"
+#include "Mercatec.Services.MicrosoftPassportService.hpp"
 #include "Mercatec.Helpers.Debug.hpp"
 
-namespace Mercatec::Services::Auths
+namespace Mercatec::Services
 {
     /// <summary>
     /// Checks to see if Passport is ready to be used.
@@ -149,4 +149,4 @@ namespace Mercatec::Services::Auths
         // Can't use Passport right now, try again later
         co_return false;
     }
-} // namespace Mercatec::Services::Auths
+} // namespace Mercatec::Services
