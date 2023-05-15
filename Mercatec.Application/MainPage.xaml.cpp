@@ -9,12 +9,12 @@
 
 #include "LoginPage.xaml.h"
 
-#include <Mercatec.Services.Auths.AccountHelper.hpp>
+#include <Mercatec.Services.AccountService.hpp>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
-using AccountHelper = ::Mercatec::Services::Auths::AccountHelper;
+using AccountHelper = ::Mercatec::Services::AccountHelper;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

@@ -6,14 +6,14 @@
 #include "LoginPage.g.h"
 
 #include <winrt/Mercatec.Services.h>
-#include <Mercatec.Services.Auths.Models.hpp>
+#include <Mercatec.Models.WinRT.hpp>
 
 namespace winrt::Mercatec::Application::implementation
 {
     struct LoginPage : LoginPageT<LoginPage>
     {
     public:
-        using Account = winrt::Mercatec::Services::Auths::Models::UserAccount;
+        using Account = winrt::Mercatec::Models::UserAccount;
 
         LoginPage();
         void PassportSignInButton_Click(const IInspectable& sender, const MUX::RoutedEventArgs& args);

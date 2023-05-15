@@ -60,6 +60,9 @@
     <ClInclude Include="Mercatec.Models.Entity.hpp">
       <Filter>Models\Data</Filter>
     </ClInclude>
+    <ClInclude Include="Mercatec.Models.WinRT.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Mercatec.Models.def">

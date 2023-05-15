@@ -11,7 +11,7 @@
 #include <cuchar>
 #include <cwchar>
 
-namespace Mercatec::Helpers
+namespace Mercatec::Helpers::inline Strings
 {
     template <typename ValueType>
     inline constexpr const ValueType Empty = std::declval<ValueType>();
@@ -65,4 +65,4 @@ namespace Mercatec::Helpers
         return text;
     }
 
-} // namespace Mercatec::Helpers
+} // namespace Mercatec::Helpers::inline Strings

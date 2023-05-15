@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Mercatec.Helpers.Widespread.hpp>
-#include <winrt/Mercatec.Services.Models.h>
+#include <winrt/Mercatec.Models.h>
 
 //! References:
 //!     https://fmt.dev/latest/api.html
@@ -15,7 +15,7 @@
 //!     https://quuxplusone.github.io/blog/2023/04/23/format-part-3/
 
 template <>
-struct std::formatter<winrt::Mercatec::Services::Models::UserAccount, wchar_t>
+struct std::formatter<winrt::Mercatec::Models::UserAccount, wchar_t>
 {
     constexpr auto parse(std::wformat_parse_context& context)
     {
@@ -23,7 +23,7 @@ struct std::formatter<winrt::Mercatec::Services::Models::UserAccount, wchar_t>
     }
 
     template <typename FormatContext>
-    auto format(const winrt::Mercatec::Services::Models::UserAccount& user_account, FormatContext& format_context)
+    auto format(const winrt::Mercatec::Models::UserAccount& user_account, FormatContext& format_context)
     {
         return std::format_to( //
           format_context.out(),
@@ -37,14 +37,14 @@ struct std::formatter<winrt::Mercatec::Services::Models::UserAccount, wchar_t>
 
 namespace winrt
 {
-    inline hstring to_hstring(const winrt::Mercatec::Services::Models::UserAccount& user_account)
+    inline hstring to_hstring(const winrt::Mercatec::Models::UserAccount& user_account)
     {
         return hstring{ std::format(L"{}", user_account) };
     }
 } // namespace winrt
 
 #ifndef WINRT_LEAN_AND_MEAN
-inline std::wostream& operator<<(std::wostream& stream, const winrt::Mercatec::Services::Models::UserAccount& user_account)
+inline std::wostream& operator<<(std::wostream& stream, const winrt::Mercatec::Models::UserAccount& user_account)
 {
     return stream << std::format(L"{}", user_account);
 }

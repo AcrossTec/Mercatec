@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Mercatec.Helpers.Widespread.hpp"
 
-namespace Mercatec::Helpers
+namespace Mercatec::Helpers::Widespread
 {
     winrt::hstring GuidToHString(const winrt::guid& guid) noexcept
     {
@@ -33,4 +33,4 @@ namespace Mercatec::Helpers
     {
         return winrt::to_string(GuidToHString(guid));
     }
-} // namespace Mercatec::Helpers
+} // namespace Mercatec::Helpers::Widespread

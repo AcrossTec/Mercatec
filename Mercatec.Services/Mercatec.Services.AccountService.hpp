@@ -2,7 +2,7 @@
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
-#include <winrt/Mercatec.Models.h>
+#include <Mercatec.Models.WinRT.hpp>
 
 #include "Mercatec.Services.Exports.Api.hpp"
 

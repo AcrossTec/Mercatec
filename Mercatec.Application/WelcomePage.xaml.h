@@ -5,14 +5,14 @@
 
 #include "WelcomePage.g.h"
 
-#include <Mercatec.Services.Auths.Models.hpp>
+#include <Mercatec.Models.WinRT.hpp>
 
 namespace winrt::Mercatec::Application::implementation
 {
     struct WelcomePage : WelcomePageT<WelcomePage>
     {
     public:
-        using Account = ::winrt::Mercatec::Services::Auths::Models::UserAccount;
+        using Account = ::winrt::Mercatec::Models::UserAccount;
 
         WelcomePage();
         void OnNavigatedTo(const Microsoft::UI::Xaml::Navigation::NavigationEventArgs& args);

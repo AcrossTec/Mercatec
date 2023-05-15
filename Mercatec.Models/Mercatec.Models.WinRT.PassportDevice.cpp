@@ -4,7 +4,7 @@
 # include "PassportDevice.g.cpp"
 #endif
 
-#include <Mercatec.Helpers.ViewModels.hpp>
+#include <Mercatec.Helpers.Models.hpp>
 
 namespace winrt::Mercatec::Models::implementation
 {

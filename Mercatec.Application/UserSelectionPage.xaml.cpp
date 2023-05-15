@@ -8,11 +8,11 @@
 #endif
 
 #include <Mercatec.Helpers.Debug.hpp>
-#include <Mercatec.Services.Auths.AccountHelper.hpp>
+#include <Mercatec.Services.AccountService.hpp>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
-using namespace ::Mercatec::Services::Auths;
+using namespace ::Mercatec::Services;
 
 using ::Mercatec::Helpers::OutputDebug;
 
@@ -51,7 +51,7 @@ namespace winrt::Mercatec::Application::implementation
     {
         if ( sender.as<ListView>().SelectedValue() )
         {
-            auto account = sender.as<ListView>().SelectedValue().as<winrt::Mercatec::Services::Auths::Models::UserAccount>();
+            auto account = sender.as<ListView>().SelectedValue().as<winrt::Mercatec::Models::UserAccount>();
 
             if ( account )
             {

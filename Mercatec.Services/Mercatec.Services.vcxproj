@@ -164,7 +164,6 @@
     </ClInclude>
     <ClInclude Include="Mercatec.Services.MicrosoftPassportService.hpp" />
     <ClInclude Include="Mercatec.Services.AccountService.hpp" />
-    <ClInclude Include="Mercatec.Services.Models.hpp" />
     <ClInclude Include="Mercatec.Services.Exports.Api.hpp" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

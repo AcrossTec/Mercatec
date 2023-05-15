@@ -9,7 +9,7 @@
 # include <iterator>
 # include <string_view>
 
-namespace Mercatec::Helpers
+namespace Mercatec::Helpers::inline Debug
 {
     template <typename... Types>
     void OutputDebug(const std::wstring_view format, Types&&... arguments)
@@ -37,7 +37,7 @@ namespace Mercatec::Helpers
         OutputDebug(L"{}\n", std::wstring(15, L'-'));
     }
 
-} // namespace Mercatec::Helpers
+} // namespace Mercatec::Helpers::inline Debug
 #else
 # define OutputDebug(...)
 #endif

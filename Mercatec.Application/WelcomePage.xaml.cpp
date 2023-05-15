@@ -8,14 +8,15 @@
 #endif
 
 #include <Mercatec.Helpers.Debug.hpp>
-#include <Mercatec.Services.Auths.AccountHelper.hpp>
-#include <Mercatec.Services.Auths.MicrosoftPassportHelper.hpp>
+#include <Mercatec.Services.AccountService.hpp>
+#include <Mercatec.Services.MicrosoftPassportService.hpp>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
-namespace Helpers = ::Mercatec::Helpers;
-namespace Auths   = ::Mercatec::Services::Auths;
+using ::Mercatec::Helpers::OutputDebug;
+using ::Mercatec::Services::AccountHelper;
+using ::Mercatec::Services::MicrosoftPassportHelper;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -45,12 +46,12 @@ namespace winrt::Mercatec::Application::implementation
     void WelcomePage::ButtonForgetUser_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
     {
         // Remove it from Microsoft Passport
-        ::Auths::MicrosoftPassportHelper::RemovePassportAccountAsync(m_ActiveAccount);
+        MicrosoftPassportHelper::RemovePassportAccountAsync(m_ActiveAccount);
 
         // Remove it from the local accounts list and resave the updated list
-        ::Auths::AccountHelper::RemoveAccount(m_ActiveAccount);
+        AccountHelper::RemoveAccount(m_ActiveAccount);
 
-        ::Helpers::OutputDebug(L"User {} deleted.", m_ActiveAccount.UserName());
+        OutputDebug(L"User {} deleted.", m_ActiveAccount.UserName());
 
         // Navigate back to UserSelection page.
         Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());

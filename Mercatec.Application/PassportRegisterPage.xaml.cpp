@@ -10,8 +10,8 @@
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Strings.hpp>
 
-#include <Mercatec.Services.Auths.AccountHelper.hpp>
-#include <Mercatec.Services.Auths.MicrosoftPassportHelper.hpp>
+#include <Mercatec.Services.AccountService.hpp>
+#include <Mercatec.Services.MicrosoftPassportService.hpp>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -19,8 +19,8 @@ using namespace Microsoft::UI::Xaml;
 using ::Mercatec::Char;
 
 using ::Mercatec::Helpers::Empty;
-using ::Mercatec::Services::Auths::AccountHelper;
-using ::Mercatec::Services::Auths::MicrosoftPassportHelper;
+using ::Mercatec::Services::AccountHelper;
+using ::Mercatec::Services::MicrosoftPassportHelper;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

@@ -6,7 +6,7 @@
 
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Strings.hpp>
-#include <Mercatec.Helpers.ViewModels.hpp>
+#include <Mercatec.Helpers.Models.hpp>
 
 using namespace ::Mercatec::Types;
 

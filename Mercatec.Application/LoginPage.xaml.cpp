@@ -10,8 +10,8 @@
 #include <Mercatec.Helpers.Debug.hpp>
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Strings.hpp>
-#include <Mercatec.Services.Auths.AccountHelper.hpp>
-#include <Mercatec.Services.Auths.MicrosoftPassportHelper.hpp>
+#include <Mercatec.Services.AccountService.hpp>
+#include <Mercatec.Services.MicrosoftPassportService.hpp>
 
 #pragma warning(push)
 
@@ -24,8 +24,10 @@ using namespace ::winrt;
 using namespace ::Microsoft::UI::Xaml;
 using namespace ::Mercatec::Types;
 
-namespace Helpers = ::Mercatec::Helpers;
-namespace Auths   = ::Mercatec::Services::Auths;
+using ::Mercatec::Helpers::Empty;
+using ::Mercatec::Helpers::OutputDebug;
+using ::Mercatec::Services::AccountHelper;
+using ::Mercatec::Services::MicrosoftPassportHelper;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -53,7 +55,7 @@ namespace winrt::Mercatec::Application::implementation
         const MUXN::NavigationEventArgs args = insecure_args;
 
         // Check Microsoft Passport is setup and available on this machine
-        if ( co_await Auths::MicrosoftPassportHelper::MicrosoftPassportAvailableCheckAsync() )
+        if ( co_await MicrosoftPassportHelper::MicrosoftPassportAvailableCheckAsync() )
         {
             if ( args.Parameter() )
             {
@@ -77,13 +79,13 @@ namespace winrt::Mercatec::Application::implementation
 
     void LoginPage::PassportSignInButton_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
     {
-        ErrorMessage().Text(Helpers::Empty<Char>);
+        ErrorMessage().Text(Empty<Char>);
         SignInPassport();
     }
 
     fire_and_forget LoginPage::RegisterButtonTextBlock_OnPointerPressed([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUXI::PointerRoutedEventArgs& args)
     {
-        ErrorMessage().Text(Helpers::Empty<Char>);
+        ErrorMessage().Text(Empty<Char>);
         co_await m_DialogService.ShowAsync(XamlRoot(), L"PassportRegisterPage", L"Registrar nuevo usuario");
         Frame().Navigate(xaml_typename<PassportRegisterPage>());
     }
@@ -92,20 +94,20 @@ namespace winrt::Mercatec::Application::implementation
     {
         if ( m_IsExistingAccount )
         {
-            if ( co_await Auths::MicrosoftPassportHelper::GetPassportAuthenticationMessageAsync(m_Account) )
+            if ( co_await MicrosoftPassportHelper::GetPassportAuthenticationMessageAsync(m_Account) )
             {
                 Frame().Navigate(xaml_typename<Mercatec::Application::WelcomePage>(), m_Account);
             }
         }
-        else if ( Auths::AccountHelper::ValidateAccountCredentials(UserNameTextBox().Text()) )
+        else if ( AccountHelper::ValidateAccountCredentials(UserNameTextBox().Text()) )
         {
             // Create and add a new local account
-            m_Account = Auths::AccountHelper::AddAccount(UserNameTextBox().Text());
-            Helpers::OutputDebug(L"Successfully signed in with traditional credentials and created local account instance!");
+            m_Account = AccountHelper::AddAccount(UserNameTextBox().Text());
+            OutputDebug(L"Successfully signed in with traditional credentials and created local account instance!");
 
-            if ( co_await Auths::MicrosoftPassportHelper::CreatePassportKeyAsync(UserNameTextBox().Text()) )
+            if ( co_await MicrosoftPassportHelper::CreatePassportKeyAsync(UserNameTextBox().Text()) )
             {
-                Helpers::OutputDebug(L"Successfully signed in with Microsoft Passport!");
+                OutputDebug(L"Successfully signed in with Microsoft Passport!");
                 Frame().Navigate(xaml_typename<Mercatec::Application::WelcomePage>(), m_Account);
             }
         }

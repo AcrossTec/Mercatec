@@ -13,7 +13,7 @@
 //  IReference<T>: https://devblogs.microsoft.com/oldnewthing/20221214-00/?p=107589
 //  Guid: https://stackoverflow.com/questions/1327157/whats-the-c-version-of-guid-newguid
 
-namespace Mercatec::Helpers
+namespace Mercatec::Helpers::inline Widespread
 {
     /// <summary>
     ///     https://devblogs.microsoft.com/oldnewthing/20220504-00/?p=106569
@@ -33,4 +33,4 @@ namespace Mercatec::Helpers
 
     MERCATEC_HELPERS_API winrt::hstring GuidToHString(const winrt::guid& guid) noexcept;
     MERCATEC_HELPERS_API std::string GuidToString(const winrt::guid& guid) noexcept;
-} // namespace Mercatec::Helpers
+} // namespace Mercatec::Helpers::inline Widespread

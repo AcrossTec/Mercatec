@@ -3,7 +3,7 @@
 #include <winrt/Mercatec.Helpers.ViewModels.h>
 
 #include <Mercatec.Helpers.Exports.Api.hpp>
-#include <Mercatec.Helpers.ViewModels.hpp>
+#include <Mercatec.Helpers.Models.hpp>
 
 namespace Mercatec::Helpers::ViewModels
 {

@@ -127,8 +127,10 @@
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
+      </Command>
     </PostBuildEvent>
     <Midl>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -146,8 +148,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
+      </Command>
     </PostBuildEvent>
     <Midl>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -162,6 +166,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>Mercatec.Models.WinRT.PassportDevice.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.Models.WinRT.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Mercatec.Models.WinRT.UserAccount.h">
       <DependentUpon>Mercatec.Models.WinRT.UserAccount.idl</DependentUpon>
@@ -169,9 +174,18 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Mercatec.Models.Entity.cpp" />
-    <ClCompile Include="Mercatec.Models.PassportDevice.cpp" />
-    <ClCompile Include="Mercatec.Models.UserAccount.cpp" />
+    <ClCompile Include="Mercatec.Models.Entity.cpp">
+      <DependentUpon>Mercatec.Models.Entity.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Models.PassportDevice.cpp">
+      <DependentUpon>Mercatec.Models.PassportDevice.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Models.UserAccount.cpp">
+      <DependentUpon>Mercatec.Models.UserAccount.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Models.WinRT.PassportDevice.cpp">
       <DependentUpon>Mercatec.Models.WinRT.PassportDevice.idl</DependentUpon>
       <SubType>Code</SubType>

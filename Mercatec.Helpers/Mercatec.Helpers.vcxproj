@@ -149,7 +149,7 @@
     <ClInclude Include="Mercatec.Helpers.Crtp.hpp" />
     <ClInclude Include="Mercatec.Helpers.Strings.hpp" />
     <ClInclude Include="Mercatec.Helpers.Types.hpp" />
-    <ClInclude Include="Mercatec.Helpers.ViewModels.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Models.hpp" />
     <ClInclude Include="Mercatec.Helpers.Widespread.hpp" />
     <ClInclude Include="Mercatec.Helpers.ViewModels.ObservableObject.h">
       <DependentUpon>Mercatec.Helpers.ViewModels.ObservableObject.idl</DependentUpon>
