@@ -31,10 +31,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Mercatec.Services.MicrosoftPassportHelper.cpp">
-      <Filter>Services</Filter>
-    </ClCompile>
-    <ClCompile Include="Mercatec.Services.AccountHelper.cpp">
+    <ClCompile Include="Mercatec.Services.AuthService.cpp">
       <Filter>Services</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,13 +42,13 @@
     <ClInclude Include="pch.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Mercatec.Services.Models.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="Mercatec.Services.MicrosoftPassportService.hpp">
       <Filter>Services</Filter>
     </ClInclude>
     <ClInclude Include="Mercatec.Services.AccountService.hpp">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Services.AuthService.hpp">
       <Filter>Services</Filter>
     </ClInclude>
   </ItemGroup>
@@ -79,12 +76,6 @@
   <ItemGroup>
     <Midl Include="Mercatec.Services.DialogService.idl">
       <Filter>Services</Filter>
-    </Midl>
-    <Midl Include="Mercatec.Services.Models.UserAccount.idl">
-      <Filter>Models</Filter>
-    </Midl>
-    <Midl Include="Mercatec.Services.Models.PassportDevice.idl">
-      <Filter>Models</Filter>
     </Midl>
   </ItemGroup>
 </Project>

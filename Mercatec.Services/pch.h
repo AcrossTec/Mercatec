@@ -21,7 +21,9 @@
 #include <winrt/Windows.ApplicationModel.DataTransfer.h>
 #include <winrt/Windows.ApplicationModel.Activation.h>
 #include <winrt/Windows.Security.Credentials.h>
+#include <winrt/Windows.Security.Cryptography.h>
 #include <winrt/Windows.Storage.h>
+#include <winrt/Windows.Storage.Streams.h>
 
 #include <winrt/Windows.UI.Core.h>
 #include <winrt/Windows.UI.Core.Preview.h>

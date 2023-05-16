@@ -125,9 +125,11 @@
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
+      </Command>
     </PostBuildEvent>
     <Midl>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -144,9 +146,11 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
+      </Command>
     </PostBuildEvent>
     <Midl>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -158,8 +162,13 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClInclude Include="Mercatec.Repositories.Class.h">
       <DependentUpon>Mercatec.Repositories.Class.cpp</DependentUpon>
     </ClInclude>
+    <ClInclude Include="Mercatec.Stores.UserAccountStore.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.Stores.UserAccountStore.cpp">
+      <DependentUpon>Mercatec.Stores.UserAccountStore.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -168,8 +177,8 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
   </ItemGroup>
   <ItemGroup>
     <Midl Include="Mercatec.Repositories.Class.idl">
-      <SubType>Code</SubType>
       <DependentUpon>Mercatec.Repositories.Class.cpp</DependentUpon>
+      <SubType>Code</SubType>
     </Midl>
   </ItemGroup>
   <ItemGroup>

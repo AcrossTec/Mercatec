@@ -20,6 +20,9 @@
     <Filter Include="WinRT">
       <UniqueIdentifier>{d243b892-61e5-4374-bf1e-fcc353b6428d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stores">
+      <UniqueIdentifier>{650e58e1-ca5b-4526-a0a9-8b969ab06146}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.Repositories.Class.cpp">
@@ -31,6 +34,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Mercatec.Stores.UserAccountStore.cpp">
+      <Filter>Stores</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mercatec.Repositories.Exports.Api.hpp">
@@ -38,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Stores.UserAccountStore.hpp">
+      <Filter>Stores</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

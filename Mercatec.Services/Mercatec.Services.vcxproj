@@ -120,16 +120,17 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <PreprocessorDefinitions>MERCATEC_SERVICES_API_EXPORTS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Repositories\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
         xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
         xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
         xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"
       </Command>
     </PostBuildEvent>
     <Midl>
@@ -139,18 +140,19 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
       <PreprocessorDefinitions>MERCATEC_SERVICES_API_EXPORTS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Repositories\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
         xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
         xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
         xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
+        xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"
       </Command>
     </PostBuildEvent>
     <Midl>
@@ -158,6 +160,7 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Services.AuthService.hpp" />
     <ClInclude Include="Mercatec.Services.DialogService.h">
       <DependentUpon>Mercatec.Services.DialogService.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -168,6 +171,10 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.Services.AuthService.cpp">
+      <DependentUpon>Mercatec.Services.AuthService.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Services.DialogService.cpp">
       <DependentUpon>Mercatec.Services.DialogService.idl</DependentUpon>
       <SubType>Code</SubType>

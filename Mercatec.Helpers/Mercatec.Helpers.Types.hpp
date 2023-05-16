@@ -49,16 +49,22 @@ namespace Mercatec::inline Types
     using IReference = winrt::Windows::Foundation::IReference<T>;
 
     template <typename T>
-    using Vector = winrt::Windows::Foundation::Collections::IVector<T>;
+    using IVector = winrt::Windows::Foundation::Collections::IVector<T>;
 
     template <typename T>
-    using ObservableVector = winrt::Windows::Foundation::Collections::IObservableVector<T>;
+    using IObservableVector = winrt::Windows::Foundation::Collections::IObservableVector<T>;
 
     template <typename Key, typename Value>
-    using Map = winrt::Windows::Foundation::Collections::IMap<Key, Value>;
+    using IMap = winrt::Windows::Foundation::Collections::IMap<Key, Value>;
 
     template <typename Key, typename Value>
-    using ObservableMap = winrt::Windows::Foundation::Collections::IObservableMap<Key, Value>;
+    using IObservableMap = winrt::Windows::Foundation::Collections::IObservableMap<Key, Value>;
+
+    template <typename T>
+    using array_view = winrt::array_view<T>;
+
+    template <typename T>
+    using com_array = winrt::com_array<T>;
 
     using winrt::Windows::Foundation::GuidHelper;
 
