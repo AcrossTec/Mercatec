@@ -134,6 +134,7 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Helpers.Auth.hpp" />
     <ClInclude Include="Mercatec.Helpers.ViewModels.Entity.hpp">
       <DependentUpon>MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -167,6 +168,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.Helpers.Auth.cpp">
+      <DependentUpon>Mercatec.Helpers.Auth.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Helpers.IndexRange.cpp">
       <DependentUpon>Mercatec.Helpers.IndexRange.idl</DependentUpon>
       <SubType>Code</SubType>

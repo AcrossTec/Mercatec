@@ -14,7 +14,7 @@ namespace Mercatec.Models
         // This way the correct public key is easier to find as a new public key is made for each device.
         // The KeyAttestationResult is only used if the User device has a TPM (Trusted Platform Module) chip, 
         // in most cases it will not. So will be left out for this hands on lab.
-        Guid DeviceId { get; set; };
+        String DeviceId { get; set; }; // Note: Only UWP Package: Guid DeviceId { get; set; };
 
         UInt8[] PublicKey { get; set; };
 

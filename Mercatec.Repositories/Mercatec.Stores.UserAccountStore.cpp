@@ -27,13 +27,12 @@ namespace Mercatec::Repositories
     {
         if ( m_UserAccountsList.Size() != 0 )
         {
-            auto iter_result = std::find_if( //
-              m_UserAccountsList.begin(),
-              m_UserAccountsList.end(),
+            auto iter_result = std::ranges::find_if( //
+              m_UserAccountsList,
               [&](const Account& user) { return user.UserName() == user_name; }
             );
 
-            if ( iter_result != m_UserAccountsList.end() )
+            if ( iter_result != std::end(m_UserAccountsList) )
             {
                 return (*iter_result).UserId();
             }
@@ -44,13 +43,12 @@ namespace Mercatec::Repositories
 
     UserAccountStore::Account UserAccountStore::GetUserAccount(const Guid& user_id) const noexcept
     {
-        auto iter_result = std::find_if( //
-          m_UserAccountsList.begin(),
-          m_UserAccountsList.end(),
+        auto iter_result = std::ranges::find_if( //
+          m_UserAccountsList,
           [&](const Account& user) { return user.UserId() == user_id; }
         );
 
-        if ( iter_result != m_UserAccountsList.end() )
+        if ( iter_result != std::end(m_UserAccountsList) )
         {
             return *iter_result;
         }
@@ -58,15 +56,14 @@ namespace Mercatec::Repositories
         return nullptr;
     }
 
-    IObservableVector<UserAccountStore::Account> UserAccountStore::GetUserAccountsForDevice(const Guid& device_id) const noexcept
+    IObservableVector<UserAccountStore::Account> UserAccountStore::GetUserAccountsForDevice(const std::wstring_view device_id) const noexcept
     {
         std::vector<Account> users_for_device;
 
         for ( const Account& account : m_UserAccountsList )
         {
-            if ( std::any_of( //
-                   account.PassportDevices().begin(),
-                   account.PassportDevices().end(),
+            if ( std::ranges::any_of( //
+                   account.PassportDevices(),
                    [&](const PassportDevice& device) { return device.DeviceId() == device_id; }
                  ) )
             {
@@ -77,58 +74,65 @@ namespace Mercatec::Repositories
         return single_threaded_observable_vector(std::move(users_for_device));
     }
 
-    winrt::com_array<Byte> UserAccountStore::GetPublicKey(const Guid& user_id, const Guid& device_id) const noexcept
+    winrt::com_array<Byte> UserAccountStore::GetPublicKey(const Guid& user_id, const std::wstring_view device_id) const noexcept
     {
-        auto iter_result = std::find_if( //
-          m_UserAccountsList.begin(),
-          m_UserAccountsList.end(),
+        auto iter_result = std::ranges::find_if( //
+          m_UserAccountsList,
           [&](const Account& user) { return user.UserId() == user_id; }
         );
 
-        if ( iter_result != m_UserAccountsList.end() )
+        if ( iter_result != std::end(m_UserAccountsList) )
         {
-            const Account account = *iter_result;
+            const IVector<PassportDevice> passport_device = (*iter_result).PassportDevices();
 
-            if ( account.PassportDevices().Size() != 0 )
+            if ( passport_device.Size() != 0 )
             {
-                auto iter_result = std::find_if( //
-                  account.PassportDevices().begin(),
-                  account.PassportDevices().end(),
+                // Compiler Warning (level 4) C4456
+                // declaration of 'identifier' hides previous local declaration
+                __pragma(warning(push));
+                __pragma(warning(disable : 4456));
+
+                auto iter_result = std::ranges::find_if( //
+                  passport_device,
                   [&](const PassportDevice& device) { return device.DeviceId() == device_id; }
                 );
 
-                if ( iter_result != account.PassportDevices().end() )
+                if ( iter_result != std::end(passport_device) )
                 {
                     return (*iter_result).PublicKey();
                 }
+
+                __pragma(warning(pop));
             }
         }
 
         return winrt::com_array<Byte>();
     }
 
-    UserAccountStore::Account UserAccountStore::AddAccount(const std::wstring_view user_name) noexcept
+    UserAccountStore::Account UserAccountStore::AddAccount(const std::wstring_view user_name, const std::wstring_view password) noexcept
     {
         try
         {
             UserAccount new_account;
             new_account.UserId(GuidHelper::CreateNewGuid());
             new_account.UserName(user_name);
+            new_account.Password(password);
 
             m_UserAccountsList.Append(new_account);
             SaveAccountListAsync();
+
+            return new_account;
         }
         catch ( [[maybe_unused]] const std::exception& ex )
         {
-            throw;
+            OutputDebug(L"Exception: {}", winrt::to_hstring(ex.what()));
+            return nullptr;
         }
-
-        return nullptr;
     }
 
     Boolean UserAccountStore::RemoveAccount(const Guid& user_id) noexcept
     {
-        UserAccount user_account = GetUserAccount(user_id);
+        const UserAccount user_account = GetUserAccount(user_id);
 
         if ( user_account != nullptr )
         {
@@ -144,7 +148,7 @@ namespace Mercatec::Repositories
         return false;
     }
 
-    Boolean UserAccountStore::RemoveDevice(const Guid& user_id, const Guid& device_id) noexcept
+    Boolean UserAccountStore::RemoveDevice(const Guid& user_id, const std::wstring_view device_id) noexcept
     {
         UserAccount    user_account     = GetUserAccount(user_id);
         PassportDevice device_to_remove = nullptr;
@@ -177,7 +181,7 @@ namespace Mercatec::Repositories
 
     void UserAccountStore::PassportUpdateDetails( //
       const Guid&                           user_id,
-      const Guid&                           device_id,
+      const std::wstring_view               device_id,
       const array_view<Byte>                public_key,
       const KeyCredentialAttestationResult& key_attestation_result
     )
@@ -186,10 +190,8 @@ namespace Mercatec::Repositories
 
         if ( existing_user_account != nullptr )
         {
-
-            if ( not std::any_of( //
-                   existing_user_account.PassportDevices().begin(),
-                   existing_user_account.PassportDevices().end(),
+            if ( not std::ranges::any_of( //
+                   existing_user_account.PassportDevices(),
                    [&](const PassportDevice& device) { return device.DeviceId() == device_id; }
                  ) )
             {
@@ -201,6 +203,7 @@ namespace Mercatec::Repositories
                 existing_user_account.PassportDevices().Append(passport_device);
             }
         }
+
         SaveAccountListAsync();
     }
 
@@ -261,9 +264,8 @@ namespace Mercatec::Repositories
         // If the UserAccountList does not contain the sampleUser Initialize the sample users
         // This is only needed as it in a Hand on Lab to demonstrate a user migrating
         // In the real world user accounts would just be in a database
-        if ( not std::any_of( //
-               m_UserAccountsList.begin(),
-               m_UserAccountsList.end(),
+        if ( not std::ranges::any_of( //
+               m_UserAccountsList,
                [](const Account& user) { return user.UserName() == L"SampleUserName"; }
              ) )
         {
@@ -282,18 +284,23 @@ namespace Mercatec::Repositories
 
         tinyxml2::XMLDocument document;
 
-        auto root = document.NewElement("Accounts");
+        auto root        = document.NewElement("Accounts");
+        auto declaration = document.NewDeclaration();
+
+        document.InsertFirstChild(declaration);
+        document.InsertEndChild(root);
 
         for ( const auto& user : m_UserAccountsList )
         {
             XMLElement* account = document.NewElement("Account");
 
-            XMLElement* user_id       = document.NewElement("UserId");
-            XMLElement* user_name     = document.NewElement("UserName");
-            XMLElement* user_email    = document.NewElement("Email");
-            XMLElement* user_phone    = document.NewElement("Phone");
-            XMLElement* user_address  = document.NewElement("Address");
-            XMLElement* user_password = document.NewElement("Password");
+            XMLElement* user_id          = document.NewElement("UserId");
+            XMLElement* user_name        = document.NewElement("UserName");
+            XMLElement* user_email       = document.NewElement("Email");
+            XMLElement* user_phone       = document.NewElement("Phone");
+            XMLElement* user_address     = document.NewElement("Address");
+            XMLElement* user_password    = document.NewElement("Password");
+            XMLElement* passport_devices = document.NewElement("PassportDevices");
 
             user_id->SetText(GuidToString(user.UserId()).c_str());
             user_name->SetText(winrt::to_string(user.UserName()).c_str());
@@ -302,12 +309,32 @@ namespace Mercatec::Repositories
             user_address->SetText(winrt::to_string(user.Address()).c_str());
             user_password->SetText(winrt::to_string(user.Password()).c_str());
 
+            for ( const auto& passport_device : user.PassportDevices() )
+            {
+                XMLElement* device     = document.NewElement("PassportDevice");
+                XMLElement* device_id  = document.NewElement("DeviceId");
+                XMLElement* device_key = document.NewElement("PublicKey");
+
+                device_id->SetText(winrt::to_string(passport_device.DeviceId()).c_str());
+
+                winrt::array_view<uint8_t> public_key = passport_device.PublicKey();
+                std::vector<uint8_t>       public_key_data{ public_key.cbegin(), public_key.cend() };
+
+                public_key_data.emplace_back(0);
+                device_key->InsertNewText((const char*)public_key_data.data())->SetCData(true);
+
+                device->InsertEndChild(device_id);
+                device->InsertEndChild(device_key);
+                passport_devices->InsertEndChild(device);
+            }
+
             account->InsertEndChild(user_id);
             account->InsertEndChild(user_name);
             account->InsertEndChild(user_email);
             account->InsertEndChild(user_phone);
             account->InsertEndChild(user_address);
             account->InsertEndChild(user_password);
+            account->InsertEndChild(passport_devices);
 
             root->InsertEndChild(account);
         }
@@ -344,8 +371,10 @@ namespace Mercatec::Repositories
                 XMLElement* user_phone            = account_element->FirstChildElement("Phone");
                 XMLElement* user_address          = account_element->FirstChildElement("Address");
                 XMLElement* user_password_element = account_element->FirstChildElement("Password");
+                XMLElement* user_passport_devices = account_element->FirstChildElement("PassportDevices");
 
-                Account account;
+                Account                     account;
+                std::vector<PassportDevice> devices;
 
                 try
                 {
@@ -362,6 +391,25 @@ namespace Mercatec::Repositories
                 account.Phone(winrt::to_hstring(Helpers::StringViewOrDefault(user_phone->GetText())));
                 account.Address(winrt::to_hstring(Helpers::StringViewOrDefault(user_address->GetText())));
                 account.Password(winrt::to_hstring(Helpers::StringViewOrDefault(user_password_element->GetText())));
+
+                {
+                    XMLNode* device_element = user_passport_devices->FirstChildElement("PassportDevice");
+
+                    while ( device_element != nullptr )
+                    {
+                        PassportDevice passport_device;
+
+                        XMLElement* device_id  = device_element->FirstChildElement("DeviceId");
+                        XMLElement* device_key = device_element->FirstChildElement("PublicKey");
+
+                        passport_device.DeviceId(winrt::to_hstring(Helpers::StringViewOrDefault(device_id->GetText())));
+                        passport_device.PublicKey(array_view((const uint8_t*)device_key->GetText(), lstrlenA(device_key->GetText())));
+
+                        devices.emplace_back(passport_device);
+                        device_element = device_element->NextSibling();
+                    }
+                }
+                account.PassportDevices(winrt::single_threaded_observable_vector(std::move(devices)));
 
                 m_UserAccountsList.Append(account);
                 account_element = account_element->NextSibling();

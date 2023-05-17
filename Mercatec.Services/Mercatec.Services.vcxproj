@@ -166,7 +166,6 @@
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="Mercatec.Services.MicrosoftPassportService.hpp" />
-    <ClInclude Include="Mercatec.Services.AccountService.hpp" />
     <ClInclude Include="Mercatec.Services.Exports.Api.hpp" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
@@ -181,10 +180,6 @@
     </ClCompile>
     <ClCompile Include="Mercatec.Services.MicrosoftPassportService.cpp">
       <DependentUpon>Mercatec.Services.MicrosoftPassportService.hpp</DependentUpon>
-      <SubType>Code</SubType>
-    </ClCompile>
-    <ClCompile Include="Mercatec.Services.AccountService.cpp">
-      <DependentUpon>Mercatec.Services.AccountService.hpp</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="pch.cpp">

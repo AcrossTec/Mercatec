@@ -22,6 +22,12 @@
 
             <TextBox x:Name="UserNameTextBox" Margin="4" Width="250" />
 
+            <TextBlock Text="Enter your new password below" Margin="0,0,0,20"
+                       TextWrapping="Wrap" Width="300"
+                       TextAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+
+            <PasswordBox x:Name="PasswordTextBox" Margin="4" Width="250" />
+
             <Button x:Name="PassportRegisterButton" Content="Register" Background="DodgerBlue" Foreground="White"
                     Click="RegisterButtonClickAsync" Width="80" HorizontalAlignment="Center" Margin="0,20" />
 

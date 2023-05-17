@@ -16,14 +16,12 @@ namespace winrt::Mercatec::Application::implementation
         using Account = winrt::Mercatec::Models::UserAccount;
 
         LoginPage();
-        void PassportSignInButton_Click(const IInspectable& sender, const MUX::RoutedEventArgs& args);
-
         fire_and_forget OnNavigatedTo(const MUXN::NavigationEventArgs& args);
+        fire_and_forget PassportSignInButton_Click(const IInspectable& sender, const MUX::RoutedEventArgs& args);
         fire_and_forget RegisterButtonTextBlock_OnPointerPressed(const IInspectable& sender, const MUXI::PointerRoutedEventArgs& args);
+        IAsyncAction    SignInPassportAsync();
 
     private:
-        fire_and_forget SignInPassport();
-
         Account                 m_Account;
         bool                    m_IsExistingAccount;
         Services::DialogService m_DialogService;

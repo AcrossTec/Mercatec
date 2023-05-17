@@ -46,6 +46,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.Auth.cpp">
+      <Filter>Headers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mercatec.Helpers.Coroutines.Task.hpp">
@@ -58,9 +61,6 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Mercatec.Helpers.Exports.Api.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Mercatec.Helpers.ViewModels.hpp">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Mercatec.Helpers.Widespread.hpp">
@@ -83,6 +83,10 @@
     </ClInclude>
     <ClInclude Include="Mercatec.Helpers.ViewModels.Entity.hpp">
       <Filter>Infrastructure\ViewModels</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Models.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Auth.hpp">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

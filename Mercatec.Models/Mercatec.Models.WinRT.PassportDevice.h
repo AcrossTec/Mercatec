@@ -14,9 +14,9 @@ namespace winrt::Mercatec::Models::implementation
 
         PassportDevice() = default;
 
-        void DeviceId(const winrt::guid& device_id) noexcept;
+        void DeviceId(const std::wstring_view device_id) noexcept;
 
-        winrt::guid DeviceId() const noexcept;
+        hstring DeviceId() const noexcept;
 
         void PublicKey(const array_view<const uint8_t> public_key);
 

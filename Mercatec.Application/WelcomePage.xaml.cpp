@@ -8,14 +8,14 @@
 #endif
 
 #include <Mercatec.Helpers.Debug.hpp>
-#include <Mercatec.Services.AccountService.hpp>
+#include <Mercatec.Services.AuthService.hpp>
 #include <Mercatec.Services.MicrosoftPassportService.hpp>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
 using ::Mercatec::Helpers::OutputDebug;
-using ::Mercatec::Services::AccountHelper;
+using ::Mercatec::Services::AuthService;
 using ::Mercatec::Services::MicrosoftPassportHelper;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -32,9 +32,15 @@ namespace winrt::Mercatec::Application::implementation
     {
         m_ActiveAccount = args.Parameter().try_as<Account>();
 
-        if ( m_ActiveAccount )
+        if ( m_ActiveAccount != nullptr )
         {
-            UserNameText().Text(m_ActiveAccount.UserName());
+            const Account account = AuthService::Instance().GetUserAccount(m_ActiveAccount.UserId());
+
+            if ( account != nullptr )
+            {
+                UserListView().ItemsSource(account.PassportDevices());
+                UserNameText().Text(account.UserName());
+            }
         }
     }
 
@@ -48,12 +54,32 @@ namespace winrt::Mercatec::Application::implementation
         // Remove it from Microsoft Passport
         MicrosoftPassportHelper::RemovePassportAccountAsync(m_ActiveAccount);
 
-        // Remove it from the local accounts list and resave the updated list
-        AccountHelper::RemoveAccount(m_ActiveAccount);
-
         OutputDebug(L"User {} deleted.", m_ActiveAccount.UserName());
 
         // Navigate back to UserSelection page.
         Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
+    }
+
+    void WelcomePage::ButtonForgetDevice_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
+    {
+        PassportDevice selected_device = UserListView().SelectedItem().try_as<PassportDevice>();
+
+        if ( selected_device != nullptr )
+        {
+            // Remove it from Windows Hello
+            MicrosoftPassportHelper::RemovePassportDevice(m_ActiveAccount, selected_device.DeviceId());
+
+            OutputDebug(L"User {} deleted.", m_ActiveAccount.UserName());
+
+            if ( UserListView().Items().Size() == 0 )
+            {
+                // Navigate back to UserSelection page.
+                Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
+            }
+        }
+        else
+        {
+            ForgetDeviceErrorTextBlock().Visibility(MUX::Visibility::Visible);
+        }
     }
 } // namespace winrt::Mercatec::Application::implementation

@@ -7,19 +7,17 @@
 # include "PassportRegisterPage.g.cpp"
 #endif
 
-#include <Mercatec.Helpers.Types.hpp>
-#include <Mercatec.Helpers.Strings.hpp>
-
-#include <Mercatec.Services.AccountService.hpp>
+#include <Mercatec.Services.AuthService.hpp>
 #include <Mercatec.Services.MicrosoftPassportService.hpp>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
+using ::Mercatec::Guid;
 using ::Mercatec::Char;
 
 using ::Mercatec::Helpers::Empty;
-using ::Mercatec::Services::AccountHelper;
+using ::Mercatec::Services::AuthService;
 using ::Mercatec::Services::MicrosoftPassportHelper;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -36,20 +34,32 @@ namespace winrt::Mercatec::Application::implementation
     {
         ErrorMessage().Text(Empty<Char>);
 
-        // In the real world you would normally validate the entered credentials and information before
-        // allowing a user to register a new account.
-        // For this sample though we will skip that step and just register an account if username is not null.
-
+        // Validate entered credentials are acceptable
         if ( not UserNameTextBox().Text().empty() )
         {
-            // Register a new account
-            m_Account = AccountHelper::AddAccount(UserNameTextBox().Text());
+            // Register an Account on the AuthService so that we can get back a userId
+            AuthService::Instance().Register(UserNameTextBox().Text(), PasswordTextBox().Password());
+            const Guid user_id = AuthService::Instance().GetUserId(UserNameTextBox().Text());
 
-            // Register new account with Microsoft Passport
-            co_await MicrosoftPassportHelper::CreatePassportKeyAsync(m_Account.UserName());
+            if ( user_id != GuidHelper::Empty() )
+            {
+                // Now that the account exists on server try and create the necessary passport details and add them to the account
+                bool is_successful = co_await MicrosoftPassportHelper::CreatePassportKeyAsync(user_id, UserNameTextBox().Text());
 
-            // Navigate to the Welcome Screen.
-            Frame().Navigate(xaml_typename<Mercatec::Application::WelcomePage>(), m_Account);
+                if ( is_successful )
+                {
+                    // Navigate to the Welcome Screen.
+                    Frame().Navigate(xaml_typename<Application::WelcomePage>(), AuthService::Instance().GetUserAccount(user_id));
+                }
+                else
+                {
+                    // The passport account creation failed.
+                    // Remove the account from the server as passport details were not configured
+                    AuthService::Instance().PassportRemoveUser(user_id);
+
+                    ErrorMessage().Text(L"Account Creation Failed");
+                }
+            }
         }
         else
         {

@@ -13,12 +13,13 @@
 #include <winrt/Windows.UI.ViewManagement.h>
 
 using namespace winrt;
+using namespace winrt::Mercatec::Application;
+using namespace winrt::Mercatec::Application::implementation;
+
 using namespace Windows::Foundation;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::UI::Xaml::Controls;
 using namespace Microsoft::UI::Xaml::Navigation;
-using namespace Mercatec::Application;
-using namespace Mercatec::Application::implementation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 #pragma once
+#include <Windows.h>
 #include <Unknwn.h>
 
 #pragma push_macro("GetCurrentTime")
@@ -21,10 +22,16 @@
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <wil/cppwinrt_helpers.h>
 
+#include <array>
+#include <iostream>
+#include <iomanip>
 #include <vector>
 #include <string_view>
 #include <chrono>
 #include <format>
+#include <filesystem>
+#include <sstream>
+#include <fstream>
 
 namespace winrt
 {

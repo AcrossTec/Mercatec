@@ -18,6 +18,6 @@ namespace Mercatec.Models
         String Address  { get; set; };
         String Password { get; set; };
 
-        IVector<PassportDevice> PassportDevices { get; set; };
+        IObservableVector<PassportDevice> PassportDevices { get; set; };
     }
 }

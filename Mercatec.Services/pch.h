@@ -50,6 +50,9 @@
 
 #include <wil/cppwinrt_helpers.h>
 
+#include <Mercatec.Helpers.Types.hpp>
+#include <Mercatec.Helpers.Debug.hpp>
+
 #include <algorithm>
 #include <chrono>
 #include <functional>
@@ -75,6 +78,7 @@ namespace MUXI = winrt::Microsoft::UI::Xaml::Input;
 namespace MUXM = winrt::Microsoft::UI::Xaml::Media;
 namespace MUW  = winrt::Microsoft::UI::Windowing;
 namespace WSC  = winrt::Windows::Security::Credentials;
+namespace WSS  = winrt::Windows::Storage::Streams;
 
 #ifdef PUSH_MACRO_GetCurrentTime
 # pragma pop_macro("GetCurrentTime")

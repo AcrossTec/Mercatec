@@ -10,35 +10,46 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="2*" />
-        </Grid.ColumnDefinitions>
-
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0">
+        <StackPanel Orientation="Vertical">
             <TextBlock Text="Login" FontSize="36" Margin="4" TextAlignment="Center" />
+
             <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center" />
-            <TextBlock Text="Enter your username below" Width="300" Margin="0,0,0,20"
-                       TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-            <TextBox x:Name="UserNameTextBox" Margin="4" Width="250" />
-            <Button x:Name="PassportSignInButton" Content="Login" Width="80" Margin="0,20" 
-                    Background="DodgerBlue" Foreground="White" HorizontalAlignment="Center" 
-                    Click="PassportSignInButton_Click"  />
-            <TextBlock Text="Don't have an account?" TextAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-            <TextBlock x:Name="RegisterButtonTextBlock" Text="Register now" Foreground="DodgerBlue"
-                       TextAlignment="Center" VerticalAlignment="Center" FontSize="16"
-                       PointerPressed="RegisterButtonTextBlock_OnPointerPressed" />
+
+            <TextBlock Text="Enter your credentials below" Margin="0,0,0,20"
+                       TextWrapping="Wrap" Width="300"
+                       TextAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <!-- UserName Input -->
+                <TextBlock x:Name="UserNameTextBlock" Text="UserName: "
+                           FontSize="20" Margin="4" Width="100" />
+                <TextBox x:Name="UserNameTextBox" PlaceholderText="SampleUserName" Width="200" Margin="4" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <!-- Password Input -->
+                <TextBlock x:Name="PasswordTextBlock" Text="Password: "
+                           FontSize="20" Margin="4" Width="100" />
+                <PasswordBox x:Name="PasswordBox" PlaceholderText="SamplePassword" Width="200" Margin="4" />
+            </StackPanel>
+
+            <Button x:Name="PassportSignInButton" Content="Login" Background="DodgerBlue" Foreground="White"
+                    Click="PassportSignInButton_Click" Width="80" HorizontalAlignment="Center" Margin="0,20"/>
+
+            <TextBlock Text="Don't have an account?"
+                       TextAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+            <TextBlock x:Name="RegisterButtonTextBlock" Text="Register Now"
+                       PointerPressed="RegisterButtonTextBlock_OnPointerPressed"
+                       Foreground="DodgerBlue"
+                       TextAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+
             <Border x:Name="PassportStatus" Background="#22B14C" Margin="0,20" Height="100">
-                <TextBlock x:Name="PassportStatusText" Text="Microsoft Passport is ready to use!"
-                           Margin="4" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"
-                           TextWrapping="Wrap" />
+                <TextBlock x:Name="PassportStatusText" Text="Windows Hello is ready to use!"
+                           Margin="4" TextAlignment="Center" VerticalAlignment="Center" FontSize="20" />
             </Border>
-            <TextBlock x:Name="LoginExplaination" FontSize="24" TextAlignment="Center" TextWrapping="Wrap" 
-                       Text="Please Note: To demonstrate a login, validation will only occur using the default username 'SampleUserName'" />
+
+            <TextBlock x:Name="LoginExplaination" FontSize="24" TextAlignment="Center" TextWrapping="Wrap"
+                       Text="Please Note: To demonstrate a login, validation will only occur using the default username 'SampleUserName' and default password 'SamplePassword'" />
         </StackPanel>
     </Grid>
 </Page>

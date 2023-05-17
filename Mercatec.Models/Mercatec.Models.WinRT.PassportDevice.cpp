@@ -8,12 +8,12 @@
 
 namespace winrt::Mercatec::Models::implementation
 {
-    void PassportDevice::DeviceId(const winrt::guid& device_id) noexcept
+    void PassportDevice::DeviceId(const std::wstring_view device_id) noexcept
     {
         SET_PROPERTY(m_Model.DeviceId, device_id);
     }
 
-    winrt::guid PassportDevice::DeviceId() const noexcept
+    hstring PassportDevice::DeviceId() const noexcept
     {
         return m_Model.DeviceId;
     }

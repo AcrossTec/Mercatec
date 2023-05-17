@@ -7,13 +7,15 @@
 # include "UserSelectionPage.g.cpp"
 #endif
 
+#include <Mercatec.Helpers.Auth.hpp>
 #include <Mercatec.Helpers.Debug.hpp>
-#include <Mercatec.Services.AccountService.hpp>
+#include <Mercatec.Services.AuthService.hpp>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace ::Mercatec::Services;
 
+using ::Mercatec::Helpers::GetDeviceId;
 using ::Mercatec::Helpers::OutputDebug;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -24,23 +26,23 @@ namespace winrt::Mercatec::Application::implementation
     UserSelectionPage::UserSelectionPage()
     {
         InitializeComponent();
-        // Loaded(std::bind_front(&UserSelectionPage::UserSelectionLoaded, this));
         Loaded({ this, &UserSelectionPage::UserSelectionLoaded });
     }
 
     void UserSelectionPage::UserSelectionLoaded([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const RoutedEventArgs& args)
     {
-        if ( AccountHelper::AccountList.Size() == 0 )
+        auto accounts = AuthService::Instance().GetUserAccountsForDevice(GetDeviceId());
+
+        if ( accounts.Size() != 0 )
+        {
+            UserListView().ItemsSource(accounts);
+            UserListView().SelectionChanged({ this, &UserSelectionPage::UserSelectionChanged });
+        }
+        else
         {
             // If there are no accounts navigate to the LoginPage
             Frame().Navigate(xaml_typename<Mercatec::Application::LoginPage>());
         }
-
-        OutputDebug(AccountHelper::AccountList, L"AccountHelper::AccountList");
-        UserListView().ItemsSource(AccountHelper::AccountList);
-
-        // UserListView().SelectionChanged(std::bind_front(&UserSelectionPage::UserSelectionChanged, this));
-        UserListView().SelectionChanged({ this, &UserSelectionPage::UserSelectionChanged });
     }
 
     /// <summary>
@@ -51,9 +53,9 @@ namespace winrt::Mercatec::Application::implementation
     {
         if ( sender.as<ListView>().SelectedValue() )
         {
-            auto account = sender.as<ListView>().SelectedValue().as<winrt::Mercatec::Models::UserAccount>();
+            auto account = sender.as<ListView>().SelectedValue().try_as<Mercatec::Models::UserAccount>();
 
-            if ( account )
+            if ( account != nullptr )
             {
                 OutputDebug(L"Account {} Selected!", account.UserName());
             }

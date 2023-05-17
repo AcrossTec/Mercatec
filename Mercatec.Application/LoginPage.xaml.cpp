@@ -10,7 +10,7 @@
 #include <Mercatec.Helpers.Debug.hpp>
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Strings.hpp>
-#include <Mercatec.Services.AccountService.hpp>
+#include <Mercatec.Services.AuthService.hpp>
 #include <Mercatec.Services.MicrosoftPassportService.hpp>
 
 #pragma warning(push)
@@ -26,7 +26,7 @@ using namespace ::Mercatec::Types;
 
 using ::Mercatec::Helpers::Empty;
 using ::Mercatec::Helpers::OutputDebug;
-using ::Mercatec::Services::AccountHelper;
+using ::Mercatec::Services::AuthService;
 using ::Mercatec::Services::MicrosoftPassportHelper;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -65,7 +65,7 @@ namespace winrt::Mercatec::Application::implementation
                 m_Account = args.Parameter().as<Account>();
 
                 UserNameTextBox().Text(m_Account.UserName());
-                SignInPassport();
+                co_await SignInPassportAsync();
             }
         }
         else
@@ -77,10 +77,10 @@ namespace winrt::Mercatec::Application::implementation
         }
     }
 
-    void LoginPage::PassportSignInButton_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
+    fire_and_forget LoginPage::PassportSignInButton_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
     {
         ErrorMessage().Text(Empty<Char>);
-        SignInPassport();
+        co_await SignInPassportAsync();
     }
 
     fire_and_forget LoginPage::RegisterButtonTextBlock_OnPointerPressed([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUXI::PointerRoutedEventArgs& args)
@@ -90,7 +90,7 @@ namespace winrt::Mercatec::Application::implementation
         Frame().Navigate(xaml_typename<PassportRegisterPage>());
     }
 
-    fire_and_forget LoginPage::SignInPassport()
+    IAsyncAction LoginPage::SignInPassportAsync()
     {
         if ( m_IsExistingAccount )
         {
@@ -99,21 +99,36 @@ namespace winrt::Mercatec::Application::implementation
                 Frame().Navigate(xaml_typename<Mercatec::Application::WelcomePage>(), m_Account);
             }
         }
-        else if ( AccountHelper::ValidateAccountCredentials(UserNameTextBox().Text()) )
+        else if ( AuthService::Instance().ValidateCredentials(UserNameTextBox().Text(), PasswordBox().Password()) )
         {
-            // Create and add a new local account
-            m_Account = AccountHelper::AddAccount(UserNameTextBox().Text());
-            OutputDebug(L"Successfully signed in with traditional credentials and created local account instance!");
 
-            if ( co_await MicrosoftPassportHelper::CreatePassportKeyAsync(UserNameTextBox().Text()) )
+            Guid user_id = AuthService::Instance().GetUserId(UserNameTextBox().Text());
+
+            if ( user_id != GuidHelper::Empty() )
             {
-                OutputDebug(L"Successfully signed in with Microsoft Passport!");
-                Frame().Navigate(xaml_typename<Mercatec::Application::WelcomePage>(), m_Account);
+                // Now that the account exists on server try and create the necessary passport details and add them to the account
+                bool is_successful = co_await MicrosoftPassportHelper::CreatePassportKeyAsync(user_id, UserNameTextBox().Text());
+
+                if ( is_successful )
+                {
+                    OutputDebug(L"Successfully signed in with Windows Hello!");
+
+                    // Navigate to the Welcome Screen.
+                    m_Account = AuthService::Instance().GetUserAccount(user_id);
+                    Frame().Navigate(xaml_typename<Mercatec::Application::WelcomePage>(), m_Account);
+                }
+                else
+                {
+                    // The passport account creation failed.
+                    // Remove the account from the server as passport details were not configured
+                    AuthService::Instance().PassportRemoveUser(user_id);
+
+                    ErrorMessage().Text(L"Account Creation Failed");
+                }
             }
         }
         else
         {
-            // co_await ui_thread; // Switch back to calling context.
             ErrorMessage().Text(L"Invalid Credentials");
         }
     }

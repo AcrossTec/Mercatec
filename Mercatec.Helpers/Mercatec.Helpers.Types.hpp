@@ -3,12 +3,16 @@
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
 
-#include <set>
-#include <map>
+#include <concepts>
+
+#include <array>
 #include <vector>
 #include <deque>
 #include <list>
-#include <array>
+
+#include <map>
+#include <set>
+
 #include <unordered_map>
 #include <unordered_set>
 
@@ -77,3 +81,9 @@ namespace Mercatec::inline Types
     using winrt::single_threaded_observable_vector;
     using winrt::single_threaded_vector;
 } // namespace Mercatec::inline Types
+
+template <typename T>
+inline constexpr bool std::ranges::enable_borrowed_range<Mercatec::IVector<T>> = true;
+
+template <typename T>
+inline constexpr bool std::ranges::enable_borrowed_range<Mercatec::IObservableVector<T>> = true;

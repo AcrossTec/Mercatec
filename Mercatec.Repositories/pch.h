@@ -48,11 +48,15 @@
 
 #include <wil/cppwinrt_helpers.h>
 
+#include <Mercatec.Helpers.Types.hpp>
+
 #include <algorithm>
 #include <chrono>
 #include <functional>
 #include <fstream>
 #include <string_view>
+#include <ranges>
+#include <concepts>
 
 namespace winrt
 {

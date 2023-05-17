@@ -15,7 +15,9 @@ namespace Mercatec::Models
         PassportDevice() noexcept;
         virtual ~PassportDevice() noexcept;
 
-        Guid              DeviceId;
+        // Note: Only UWP Package: Guid DeviceId;
+
+        String            DeviceId;
         std::vector<Byte> PublicKey;
     };
 } // namespace Mercatec::Models

@@ -31,16 +31,16 @@ namespace Mercatec::Repositories
 
         Guid                       GetUserId(const std::wstring_view user_name) const noexcept;
         UserAccount                GetUserAccount(const Guid& user_id) const noexcept;
-        IObservableVector<Account> GetUserAccountsForDevice(const Guid& device_id) const noexcept;
-        winrt::com_array<Byte>     GetPublicKey(const Guid& user_id, const Guid& device_id) const noexcept;
+        IObservableVector<Account> GetUserAccountsForDevice(const std::wstring_view device_id) const noexcept;
+        winrt::com_array<Byte>     GetPublicKey(const Guid& user_id, const std::wstring_view device_id) const noexcept;
 
-        Account AddAccount(const std::wstring_view user_name) noexcept;
+        Account AddAccount(const std::wstring_view user_name, const std::wstring_view password) noexcept;
         Boolean RemoveAccount(const Guid& user_id) noexcept;
-        Boolean RemoveDevice(const Guid& user_id, const Guid& device_id) noexcept;
+        Boolean RemoveDevice(const Guid& user_id, const std::wstring_view device_id) noexcept;
 
         void PassportUpdateDetails( //
           const Guid&                                                                  user_id,
-          const Guid&                                                                  device_id,
+          const std::wstring_view                                                      device_id,
           const array_view<Byte>                                                       public_key,
           const winrt::Windows::Security::Credentials::KeyCredentialAttestationResult& key_attestation_result
         );
@@ -92,4 +92,3 @@ namespace Mercatec::Repositories
 } // namespace Mercatec::Repositories
 
 #pragma warning(pop)
-

@@ -7,7 +7,7 @@
 namespace winrt::Mercatec::Models::implementation
 {
     UserAccount::UserAccount() noexcept
-      : m_PassportDevices{ single_threaded_vector<Models::PassportDevice>() }
+      : m_PassportDevices{ single_threaded_observable_vector<Models::PassportDevice>() }
     {
     }
 
@@ -71,17 +71,17 @@ namespace winrt::Mercatec::Models::implementation
         return m_Model.Password;
     }
 
-    void UserAccount::PassportDevices(const IVector<Models::PassportDevice>& passport_devices) noexcept
+    void UserAccount::PassportDevices(const IObservableVector<Models::PassportDevice>& passport_devices) noexcept
     {
         // Remark: Crea una copia del argumento.
         // TODO: Crear prueba unitaria para IVector<>.
 
         std::vector<Models::PassportDevice> temporal{ passport_devices.Size() };
         passport_devices.GetMany(0, temporal);
-        m_PassportDevices = single_threaded_vector(std::move(temporal));
+        m_PassportDevices = single_threaded_observable_vector(std::move(temporal));
     }
 
-    IVector<Models::PassportDevice> UserAccount::PassportDevices() const noexcept
+    IObservableVector<Models::PassportDevice> UserAccount::PassportDevices() const noexcept
     {
         return m_PassportDevices;
     }
