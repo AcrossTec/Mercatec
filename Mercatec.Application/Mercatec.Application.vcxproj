@@ -129,11 +129,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Reports\$(SolutionName).Reports.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Services\$(SolutionName).Services.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Services\tinyxml2.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).ViewModels\$(SolutionName).ViewModels.dll" "$(OutDir)"
-
-
-
 </Command>
     </PostBuildEvent>
     <Midl>
@@ -158,11 +154,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Reports\$(SolutionName).Reports.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Services\$(SolutionName).Services.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Services\tinyxml2.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).ViewModels\$(SolutionName).ViewModels.dll" "$(OutDir)"
-
-
-
 </Command>
     </PostBuildEvent>
     <Midl>
@@ -182,6 +174,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="Mercatec.Application.Exports.Api.hpp" />
+    <ClInclude Include="Mercatec.Application.NavigationService.hpp" />
     <ClInclude Include="PassportRegisterPage.xaml.h">
       <DependentUpon>PassportRegisterPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -231,6 +224,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.Application.NavigationService.cpp" />
     <ClCompile Include="PassportRegisterPage.xaml.cpp">
       <DependentUpon>PassportRegisterPage.xaml</DependentUpon>
       <SubType>Code</SubType>

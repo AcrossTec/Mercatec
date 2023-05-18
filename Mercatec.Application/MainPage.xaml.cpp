@@ -7,8 +7,6 @@
 # include "MainPage.g.cpp"
 #endif
 
-#include "LoginPage.xaml.h"
-
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
@@ -22,7 +20,7 @@ namespace winrt::Mercatec::Application::implementation
         InitializeComponent();
     }
 
-    void MainPage::MainPage_Loaded([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
+    void MainPage::MainPage_Loaded(const IInspectable&, const MUX::RoutedEventArgs&)
     {
         Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
     }

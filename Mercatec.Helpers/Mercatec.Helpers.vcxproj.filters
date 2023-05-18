@@ -32,6 +32,9 @@
     <Filter Include="Infrastructure\Services">
       <UniqueIdentifier>{987f2003-b8f1-4273-912b-2c226b0d9d25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Infrastructure\Views">
+      <UniqueIdentifier>{a480eba2-defe-47b9-986e-822e826d97fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.Helpers.Widespread.cpp">
@@ -47,6 +50,12 @@
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="Mercatec.Helpers.Auth.cpp">
+      <Filter>Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.Application.cpp">
+      <Filter>Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.Types.cpp">
       <Filter>Headers</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,8 +93,13 @@
     <ClInclude Include="Mercatec.Helpers.ViewModels.Entity.hpp">
       <Filter>Infrastructure\ViewModels</Filter>
     </ClInclude>
-    <ClInclude Include="Mercatec.Helpers.Models.hpp" />
     <ClInclude Include="Mercatec.Helpers.Auth.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Models.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Application.hpp">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -158,6 +172,9 @@
     </Midl>
     <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl">
       <Filter>Infrastructure\ViewModels</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Views.IWindow.idl">
+      <Filter>Infrastructure\Views</Filter>
     </Midl>
   </ItemGroup>
 </Project>

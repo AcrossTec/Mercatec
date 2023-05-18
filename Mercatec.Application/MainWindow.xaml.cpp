@@ -13,6 +13,10 @@ using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace Windows::Foundation;
 
+#include <Mercatec.Helpers.Application.hpp>
+
+using namespace ::Mercatec::Helpers::Applications;
+
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -21,10 +25,23 @@ namespace winrt::Mercatec::Application::implementation
     MainWindow::MainWindow()
     {
         InitializeComponent();
+        SetUpComponent();
+    }
 
-        const auto app_name = MUX::Application::Current().Resources().Lookup(box_value(L"AppName"));
-        this->Title(unbox_value<hstring>(app_name));
+    void MainWindow::SetUpComponent() noexcept
+    {
+        Title(ApplicationName());
+        FrameContent().Navigate(xaml_typename<Mercatec::Application::MainPage>());
+    }
 
-        this->ContentFrame().Navigate(xaml_typename<Mercatec::Application::MainPage>(), *this);
+    Microsoft::UI::WindowId MainWindow::WindowId() const noexcept
+    {
+        auto window_native{ try_as<IWindowNative>() };
+        winrt::check_bool(window_native);
+
+        HWND hwnd{ nullptr };
+        window_native->get_WindowHandle(&hwnd);
+
+        return GetWindowIdFromWindow(hwnd);
     }
 } // namespace winrt::Mercatec::Application::implementation

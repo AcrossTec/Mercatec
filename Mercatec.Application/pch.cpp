@@ -2,3 +2,4 @@
 // Licensed under the MIT License.
 
 #include "pch.h"
+#include <tinyxml2.h>

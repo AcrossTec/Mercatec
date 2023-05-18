@@ -34,6 +34,9 @@
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Mercatec.Application.NavigationService.cpp">
+      <Filter>Services\Infrastructure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mercatec.Application.Exports.Api.hpp">
@@ -41,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Application.NavigationService.hpp">
+      <Filter>Services\Infrastructure</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +102,12 @@
     </Filter>
     <Filter Include="Others">
       <UniqueIdentifier>{b28e261e-34f5-494a-b8eb-5103b9cf42ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Services">
+      <UniqueIdentifier>{aa751feb-18dd-4923-9218-b1bfb4d2e7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Services\Infrastructure">
+      <UniqueIdentifier>{cab07e8b-b41c-4a73-bb58-b1e7005dfb52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

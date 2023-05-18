@@ -17,18 +17,23 @@
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
+
 #include <winrt/Windows.ApplicationModel.Core.h>
 #include <winrt/Windows.ApplicationModel.DataTransfer.h>
 #include <winrt/Windows.ApplicationModel.Activation.h>
+
 #include <winrt/Windows.Security.Credentials.h>
 #include <winrt/Windows.Security.Cryptography.h>
+
 #include <winrt/Windows.Storage.h>
 #include <winrt/Windows.Storage.Streams.h>
 
 #include <winrt/Windows.UI.Core.h>
 #include <winrt/Windows.UI.Core.Preview.h>
-#include <winrt/Windows.UI.Xaml.Interop.h>
 #include <winrt/Windows.UI.Popups.h>
+#include <winrt/Windows.UI.ViewManagement.h>
+#include <winrt/Windows.UI.ViewManagement.Core.h>
+#include <winrt/Windows.UI.Xaml.Interop.h>
 
 #include <winrt/Microsoft.UI.h>
 #include <winrt/Microsoft.UI.Composition.h>
@@ -53,10 +58,11 @@
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Debug.hpp>
 
-#include <algorithm>
 #include <chrono>
+#include <algorithm>
 #include <functional>
 #include <string_view>
+#include <ranges>
 
 namespace winrt
 {

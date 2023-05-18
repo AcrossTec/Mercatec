@@ -134,6 +134,7 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Helpers.Application.hpp" />
     <ClInclude Include="Mercatec.Helpers.Auth.hpp" />
     <ClInclude Include="Mercatec.Helpers.ViewModels.Entity.hpp">
       <DependentUpon>MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl</DependentUpon>
@@ -166,8 +167,16 @@
       <DependentUpon>Mercatec.Helpers.UserInfo.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.ViewModels.ShellArgs.h">
+      <DependentUpon>Mercatec.Helpers.ViewModels.ShellArgs.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.Helpers.Application.cpp">
+      <DependentUpon>Mercatec.Helpers.Application.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Helpers.Auth.cpp">
       <DependentUpon>Mercatec.Helpers.Auth.hpp</DependentUpon>
       <SubType>Code</SubType>
@@ -182,6 +191,10 @@
     </ClCompile>
     <ClCompile Include="Mercatec.Helpers.Strings.cpp">
       <DependentUpon>Mercatec.Helpers.Strings.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.Types.cpp">
+      <DependentUpon>Mercatec.Helpers.Types.hpp</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="Mercatec.Helpers.Widespread.cpp">
@@ -204,8 +217,13 @@
       <DependentUpon>Mercatec.Helpers.UserInfo.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.ViewModels.ShellArgs.cpp">
+      <DependentUpon>Mercatec.Helpers.ViewModels.ShellArgs.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="MIDLs\Mercatec.Helpers.Views.IWindow.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl" />
     <Midl Include="Mercatec.Helpers.IndexRange.idl">
       <SubType>Designer</SubType>
@@ -228,6 +246,9 @@
     <Midl Include="MIDLs\Mercatec.Helpers.Services.INavigationService.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IModel.idl" />
     <Midl Include="Mercatec.Helpers.UserInfo.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.ViewModels.ShellArgs.idl">
       <SubType>Designer</SubType>
     </Midl>
   </ItemGroup>

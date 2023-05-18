@@ -1,0 +1,15 @@
+import "Mercatec.Helpers.UserInfo.idl";
+
+namespace Mercatec.Helpers.ViewModels
+{
+    [bindable]
+    [default_interface]
+    runtimeclass ShellArgs 
+    {
+        ShellArgs();
+        Windows.UI.Xaml.Interop.TypeName ViewModel { get; set; };
+        Mercatec.Helpers.UserInfo        UserInfo  { get; set; };
+        Object                           Parameter { get; set; };
+
+    }
+}

@@ -5,7 +5,10 @@
 #include <Windows.h>
 #include <Unknwn.h>
 
-#pragma push_macro("GetCurrentTime")
+#ifdef PUSH_MACRO_GetCurrentTime
+# pragma push_macro("GetCurrentTime")
+#endif
+
 #undef GetCurrentTime
 
 #include <winrt/Windows.Security.Credentials.h>
@@ -52,4 +55,6 @@ namespace MUXN = winrt::Microsoft::UI::Xaml::Navigation;
 namespace MUXI = winrt::Microsoft::UI::Xaml::Input;
 namespace WSC  = winrt::Windows::Security::Credentials;
 
-#pragma pop_macro("GetCurrentTime")
+#ifdef PUSH_MACRO_GetCurrentTime
+# pragma pop_macro("GetCurrentTime")
+#endif

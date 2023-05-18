@@ -8,10 +8,6 @@
 
 #include <microsoft.ui.xaml.window.h>
 
-#include <winrt/Windows.ApplicationModel.h>
-#include <winrt/Windows.ApplicationModel.Activation.h>
-#include <winrt/Windows.UI.ViewManagement.h>
-
 using namespace winrt;
 using namespace winrt::Mercatec::Application;
 using namespace winrt::Mercatec::Application::implementation;
@@ -59,21 +55,9 @@ void App::OnLaunched(const LaunchActivatedEventArgs&)
     //! https://stackoverflow.com/questions/71546846/open-app-always-in-the-center-of-the-display-windows-11-winui-3
     //! https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/win32/microsoft.ui.xaml.window/nf-microsoft-ui-xaml-window-iwindownative-get_windowhandle
 
-    m_Window = make<MainWindow>();
-
-    // Get access to IWindowNative
-    auto window_native{ m_Window.try_as<IWindowNative>() };
-    winrt::check_bool(window_native);
-
-    // Get the HWND for the XAML Window
-    HWND hwnd{ nullptr };
-    window_native->get_WindowHandle(&hwnd);
-
-    // Get the WindowId for our window
-    winrt::WindowId window_id = winrt::GetWindowIdFromWindow(hwnd);
-
-    // Get the AppWindow for the WindowId
-    auto app_window = AppWindow::GetFromWindowId(window_id);
+    m_Window             = make<MainWindow>();
+    WindowId  window_id  = m_Window.as<Helpers::Views::IWindowId>().WindowId();
+    AppWindow app_window = AppWindow::GetFromWindowId(window_id);
 
     if ( app_window )
     {
