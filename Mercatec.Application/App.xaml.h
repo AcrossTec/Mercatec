@@ -11,7 +11,7 @@ namespace winrt::Mercatec::Application::implementation
     {
     public:
         App();
-        void OnLaunched(const Microsoft::UI::Xaml::LaunchActivatedEventArgs&);
+        winrt::fire_and_forget OnLaunched(const Microsoft::UI::Xaml::LaunchActivatedEventArgs&);
 
     private:
         winrt::Microsoft::UI::Xaml::Window m_Window{ nullptr };

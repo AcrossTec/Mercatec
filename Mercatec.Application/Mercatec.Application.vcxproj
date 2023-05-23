@@ -190,6 +190,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>ShellPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.Application.Startup.hpp" />
     <ClInclude Include="UserSelectionPage.xaml.h">
       <DependentUpon>UserSelectionPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -232,6 +233,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="Mercatec.Application.NavigationService.cpp" />
+    <ClCompile Include="Mercatec.Application.Startup.cpp" />
     <ClCompile Include="PassportRegisterPage.xaml.cpp">
       <DependentUpon>PassportRegisterPage.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -8,6 +8,8 @@
 
 #include <microsoft.ui.xaml.window.h>
 
+#include "Mercatec.Application.Startup.hpp"
+
 using namespace winrt;
 using namespace winrt::Mercatec::Application;
 using namespace winrt::Mercatec::Application::implementation;
@@ -48,7 +50,7 @@ App::App()
 /// <param name="e">
 ///     Details about the launch request and process.
 /// </param>
-void App::OnLaunched(const LaunchActivatedEventArgs&)
+fire_and_forget App::OnLaunched(const LaunchActivatedEventArgs&)
 {
     //! https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd
     //! https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/windowing/windowing-overview
@@ -73,6 +75,8 @@ void App::OnLaunched(const LaunchActivatedEventArgs&)
             app_window.Move(centered_position);
         }
     }
+
+    co_await ::Mercatec::Application::Configurations::Startup::ConfigureAsync();
 
     m_Window.Activate();
 }

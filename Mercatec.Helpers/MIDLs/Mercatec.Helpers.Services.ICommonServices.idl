@@ -14,5 +14,7 @@ namespace Mercatec.Helpers.Services
         IDialogService DialogService { get; };
 
         ILogService LogService { get; };
+
+        Object MessageService { get; };
     }
 }

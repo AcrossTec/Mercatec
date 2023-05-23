@@ -40,6 +40,9 @@
     <ClCompile Include="Mercatec.Application.NavigationService.cpp">
       <Filter>Services\Infrastructure</Filter>
     </ClCompile>
+    <ClCompile Include="Mercatec.Application.Startup.cpp">
+      <Filter>Configurations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mercatec.Application.Exports.Api.hpp">
@@ -50,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="Mercatec.Application.NavigationService.hpp">
       <Filter>Services\Infrastructure</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Application.Startup.hpp">
+      <Filter>Configurations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +117,9 @@
     </Filter>
     <Filter Include="Services\Infrastructure">
       <UniqueIdentifier>{cab07e8b-b41c-4a73-bb58-b1e7005dfb52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Configurations">
+      <UniqueIdentifier>{af9772ba-bc80-447b-bac8-08303239cf84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

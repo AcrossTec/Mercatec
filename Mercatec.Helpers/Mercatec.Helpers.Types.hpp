@@ -58,7 +58,10 @@ namespace Mercatec::inline Types
 
     using winrt::array_view;
     using winrt::com_array;
+    using winrt::com_ptr;
     using winrt::fire_and_forget;
+    using winrt::weak_ref;
+
     using winrt::multi_threaded_map;
     using winrt::multi_threaded_observable_map;
     using winrt::multi_threaded_observable_vector;
@@ -67,6 +70,10 @@ namespace Mercatec::inline Types
     using winrt::single_threaded_observable_map;
     using winrt::single_threaded_observable_vector;
     using winrt::single_threaded_vector;
+
+    using winrt::make;
+    using winrt::make_agile;
+    using winrt::make_self;
     using winrt::xaml_typename;
 
     using winrt::Windows::UI::Xaml::Interop::TypeName;
