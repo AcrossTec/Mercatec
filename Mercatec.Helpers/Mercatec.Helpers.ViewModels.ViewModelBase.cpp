@@ -15,7 +15,6 @@ namespace winrt::Mercatec::Helpers::ViewModels::implementation
     ViewModelBase::ViewModelBase(const Services::ICommonServices& common_services) noexcept
       : m_ContextService{ common_services.ContextService() }
       , m_NavigationService{ common_services.NavigationService() }
-      , m_MessageService{ common_services.MessageService() }
       , m_DialogService{ common_services.DialogService() }
       , m_LogService{ common_services.LogService() }
     {
@@ -39,11 +38,6 @@ namespace winrt::Mercatec::Helpers::ViewModels::implementation
     Services::INavigationService ViewModelBase::NavigationService() const noexcept
     {
         return m_NavigationService;
-    }
-
-    Services::IMessageService ViewModelBase::MessageService() const noexcept
-    {
-        return m_MessageService;
     }
 
     Services::IDialogService ViewModelBase::DialogService() const noexcept

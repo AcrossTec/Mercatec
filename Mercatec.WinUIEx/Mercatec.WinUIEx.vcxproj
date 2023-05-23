@@ -7,22 +7,18 @@
     <CppWinRTOptimized>true</CppWinRTOptimized>
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <MinimalCoreWin>true</MinimalCoreWin>
-    <ProjectGuid>{4dacd89e-fe39-4c69-a0f9-52453802d73e}</ProjectGuid>
-    <ProjectName>Mercatec.Reports</ProjectName>
-    <RootNamespace>Mercatec.Reports</RootNamespace>
+    <ProjectGuid>{c24b8d3b-7e50-4bf7-9c17-29e13bb2e9c6}</ProjectGuid>
+    <ProjectName>Mercatec.WinUIEx</ProjectName>
+    <RootNamespace>Mercatec_WinUIEx</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
-    <AppContainerApplication>false</AppContainerApplication>
+    <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.22621.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
     <DesktopCompatible>true</DesktopCompatible>
     <UseWinUI>true</UseWinUI>
-    <CppWinRTVerbosity>high</CppWinRTVerbosity>
-    <CppWinRTProjectLanguage>C++/WinRT</CppWinRTProjectLanguage>
-    <CppWinRTModernIDL>true</CppWinRTModernIDL>
-    <CppWinRTEnableLegacyCoroutines>false</CppWinRTEnableLegacyCoroutines>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <ItemGroup Label="ProjectConfigurations">
@@ -75,30 +71,6 @@
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="PropertySheet.props" />
-    <Import Project="..\Solution.props" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <Import Project="PropertySheet.props" />
-    <Import Project="..\Solution.props" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="PropertySheet.props" />
-    <Import Project="..\Solution.props" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="PropertySheet.props" />
-    <Import Project="..\Solution.props" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <Import Project="PropertySheet.props" />
-    <Import Project="..\Solution.props" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="PropertySheet.props" />
-    <Import Project="..\Solution.props" />
-  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
   <ItemDefinitionGroup>
@@ -107,94 +79,57 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <WarningLevel>Level4</WarningLevel>
-      <AdditionalOptions>%(AdditionalOptions) /bigobj /Zc:__cplusplus</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
       <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>Mercatec.Reports.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>Mercatec_WinUIEx.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
-      <PreprocessorDefinitions>MERCATEC_REPORTS_API_EXPORTS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Repositories\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-    <PostBuildEvent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
-    <Midl>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
-      <PreprocessorDefinitions>MERCATEC_REPORTS_API_EXPORTS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Repositories\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PostBuildEvent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
-    <Midl>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Mercatec.Reports.Exports.Api.hpp" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Mercatec.Reports.Class.h">
-      <DependentUpon>Mercatec.Reports.Class.cpp</DependentUpon>
+    <ClInclude Include="Class.h">
+      <DependentUpon>Class.cpp</DependentUpon>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Mercatec.Reports.Class.cpp" />
+    <ClCompile Include="Class.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Mercatec.Reports.Class.idl">
+    <Midl Include="Class.idl">
       <SubType>Code</SubType>
-      <DependentUpon>Mercatec.Reports.Class.cpp</DependentUpon>
+      <DependentUpon>Class.cpp</DependentUpon>
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Mercatec.Reports.def" />
+    <None Include="Mercatec_WinUIEx.def" />
     <None Include="packages.config" />
-    <None Include="PropertySheet.props" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">
       <DeploymentContent>false</DeploymentContent>
     </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Mercatec.Helpers\Mercatec.Helpers.vcxproj">
-      <Project>{ba6f8055-8f7a-4820-8d87-8979ef0ca7d7}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Mercatec.Models\Mercatec.Models.vcxproj">
-      <Project>{4e3c076e-8fde-4089-a08d-c151c3f5f88f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\Mercatec.Repositories\Mercatec.Repositories.vcxproj">
-      <Project>{8337b328-bf33-401f-b1cb-cd54ccd4be5b}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

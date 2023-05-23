@@ -1,7 +1,6 @@
 import "Mercatec.Helpers.Services.IContextService.idl";
 import "Mercatec.Helpers.Services.IDialogService.idl";
 import "Mercatec.Helpers.Services.ILogService.idl";
-import "Mercatec.Helpers.Services.IMessageService.idl";
 import "Mercatec.Helpers.Services.INavigationService.idl";
 
 namespace Mercatec.Helpers.Services
@@ -11,8 +10,6 @@ namespace Mercatec.Helpers.Services
         IContextService ContextService { get; };
 
         INavigationService NavigationService { get; };
-
-        IMessageService MessageService { get; };
 
         IDialogService DialogService { get; };
 

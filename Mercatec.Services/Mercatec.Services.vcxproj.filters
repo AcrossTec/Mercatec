@@ -37,7 +37,13 @@
     <ClCompile Include="Mercatec.Services.AuthService.cpp">
       <Filter>Services</Filter>
     </ClCompile>
-    <ClCompile Include="Mercatec.Services.NavigationService.cpp">
+    <ClCompile Include="Mercatec.Services.MessageService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Services.MessageService.Subscriber.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Services.MessageService.Subscriptions.cpp">
       <Filter>Services</Filter>
     </ClCompile>
   </ItemGroup>
@@ -52,6 +58,9 @@
       <Filter>Services</Filter>
     </ClInclude>
     <ClInclude Include="Mercatec.Services.AuthService.hpp">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Services.MessageService.hpp">
       <Filter>Services</Filter>
     </ClInclude>
   </ItemGroup>

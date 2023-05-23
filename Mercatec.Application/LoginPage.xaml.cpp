@@ -101,7 +101,6 @@ namespace winrt::Mercatec::Application::implementation
         }
         else if ( AuthService::Instance().ValidateCredentials(UserNameTextBox().Text(), PasswordBox().Password()) )
         {
-
             Guid user_id = AuthService::Instance().GetUserId(UserNameTextBox().Text());
 
             if ( user_id != GuidHelper::Empty() )

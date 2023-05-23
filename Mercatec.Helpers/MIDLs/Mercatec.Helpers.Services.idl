@@ -2,7 +2,6 @@ import "Mercatec.Helpers.Services.ICommonServices.idl";
 import "Mercatec.Helpers.Services.IContextService.idl";
 import "Mercatec.Helpers.Services.IDialogService.idl";
 import "Mercatec.Helpers.Services.ILogService.idl";
-import "Mercatec.Helpers.Services.IMessageService.idl";
 import "Mercatec.Helpers.Services.INavigationService.idl";
 
 namespace Mercatec.Services
@@ -11,6 +10,5 @@ namespace Mercatec.Services
     typedef Mercatec.Helpers.Services.IContextService    IContextService;
     typedef Mercatec.Helpers.Services.IDialogService     IDialogService;
     typedef Mercatec.Helpers.Services.ILogService        ILogService;
-    typedef Mercatec.Helpers.Services.IMessageService    IMessageService;
     typedef Mercatec.Helpers.Services.INavigationService INavigationService;
 }

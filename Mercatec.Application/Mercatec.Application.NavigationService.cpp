@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Mercatec.Application.NavigationService.hpp"
 
+#include <winrt/Mercatec.Application.h>
+
 #include <winrt/Mercatec.Helpers.h>
 #include <winrt/Mercatec.Helpers.ViewModels.h>
 
@@ -20,12 +22,6 @@ namespace Mercatec::Application
     NavigationService::NavigationService()
       : m_Frame{ nullptr }
     {
-    }
-
-    UInt64 NavigationService::MainViewId() noexcept
-    {
-        static const UInt64 ViewId = ApplicationView::GetForCurrentView().Id();
-        return ViewId;
     }
 
     void NavigationService::Register(TypeName ViewModelType, TypeName ViewType)
@@ -69,11 +65,6 @@ namespace Mercatec::Application
         return m_Frame;
     }
 
-    bool NavigationService::IsMainView() const noexcept
-    {
-        return winrt::Windows::ApplicationModel::Core::CoreApplication::GetCurrentView().IsMain();
-    }
-
     bool NavigationService::CanGoBack() const noexcept
     {
         return m_Frame.CanGoBack();
@@ -104,47 +95,22 @@ namespace Mercatec::Application
         return m_Frame.Navigate(GetView(ViewModelType), Parameter);
     }
 
-    IAsyncOperation<Int32> NavigationService::CreateNewViewAsync(TypeName ViewModelType)
+    void NavigationService::CreateNewView(TypeName ViewModelType)
     {
-        return CreateNewViewAsync(ViewModelType, nullptr);
+        return CreateNewView(ViewModelType, nullptr);
     }
 
-    IAsyncOperation<Int32> NavigationService::CreateNewViewAsync(TypeName ViewModelType, IInspectable Parameter)
+    void NavigationService::CreateNewView(TypeName ViewModelType, IInspectable Parameter)
     {
-        Int32 ViewId = 0;
+        winrt::Mercatec::Helpers::ViewModels::ShellArgs Args;
+        Args.ViewModel(ViewModelType);
+        Args.Parameter(Parameter);
 
-        auto NewView = CoreApplication::CreateNewView();
+        winrt::Microsoft::UI::Xaml::Controls::Frame Frame;
+        Frame.Navigate(xaml_typename<winrt::Mercatec::Application::ShellPage>(), Args);
 
-        co_await NewView.Dispatcher().RunAsync(
-          CoreDispatcherPriority::Normal,
-          [&]
-          {
-              ViewId = ApplicationView::GetForCurrentView().Id();
-
-              winrt::Microsoft::UI::Xaml::Controls::Frame Frame;
-              ShellArgs                                   Args;
-
-              Args.ViewModel(ViewModelType);
-              Args.Parameter(Parameter);
-
-              // Frame.Navigate(xaml_typename<ShellView>, Args);
-
-              Window::Current().Content(Frame);
-              Window::Current().Activate();
-          }
-        );
-
-        if ( co_await ApplicationViewSwitcher::TryShowAsStandaloneAsync(ViewId) )
-        {
-            co_return ViewId;
-        }
-
-        co_return 0;
-    }
-
-    IAsyncAction NavigationService::CloseViewAsync()
-    {
-        Int32 CurrentId = ApplicationView::GetForCurrentView().Id();
-        co_await ApplicationViewSwitcher::SwitchAsync((Int32)MainViewId(), CurrentId, ApplicationViewSwitchingOptions::ConsolidateViews);
+        winrt::Microsoft::UI::Xaml::Window Window;
+        Window.Content(Frame);
+        Window.Activate();
     }
 } // namespace Mercatec::Application

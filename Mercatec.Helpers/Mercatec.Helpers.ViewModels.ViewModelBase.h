@@ -20,8 +20,6 @@ namespace winrt::Mercatec::Helpers::ViewModels::implementation
 
         Services::INavigationService NavigationService() const noexcept;
 
-        Services::IMessageService MessageService() const noexcept;
-
         Services::IDialogService DialogService() const noexcept;
 
         Services::ILogService LogService() const noexcept;
@@ -34,7 +32,6 @@ namespace winrt::Mercatec::Helpers::ViewModels::implementation
     private:
         Services::IContextService    m_ContextService;
         Services::INavigationService m_NavigationService;
-        Services::IMessageService    m_MessageService;
         Services::IDialogService     m_DialogService;
         Services::ILogService        m_LogService;
     };

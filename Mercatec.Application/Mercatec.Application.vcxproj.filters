@@ -22,6 +22,9 @@
     <Page Include="MainWindow.xaml">
       <Filter>Windows</Filter>
     </Page>
+    <Page Include="ShellPage.xaml">
+      <Filter>Pages</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl" />

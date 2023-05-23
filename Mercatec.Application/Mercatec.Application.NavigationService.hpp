@@ -13,8 +13,7 @@ namespace Mercatec::Application
     public:
         NavigationService();
 
-        static UInt64 MainViewId() noexcept;
-        static void   Register(TypeName ViewModelType, TypeName ViewType);
+        static void Register(TypeName ViewModelType, TypeName ViewType);
 
         template <typename TViewModel, typename TView>
         inline static void Register()
@@ -32,9 +31,7 @@ namespace Mercatec::Application
         static TypeName GetViewModel(TypeName View);
 
         winrt::Microsoft::UI::Xaml::Controls::Frame Frame() const noexcept;
-
-        bool IsMainView() const noexcept;
-        bool CanGoBack() const noexcept;
+        bool                                        CanGoBack() const noexcept;
 
         void GoBack();
         void Initialize(winrt::Microsoft::UI::Xaml::Controls::Frame Frame);
@@ -49,14 +46,13 @@ namespace Mercatec::Application
         bool Navigate(TypeName ViewModelType, IInspectable Parameter);
 
         template <typename TViewModel>
-        IAsyncOperation<Int32> CreateNewViewAsync(IInspectable Parameter = nullptr)
+        void CreateNewView(IInspectable Parameter = nullptr)
         {
-            return CreateNewViewAsync(xaml_typename<TViewModel>(), Parameter);
+            return CreateNewView(xaml_typename<TViewModel>(), Parameter);
         }
 
-        IAsyncOperation<Int32> CreateNewViewAsync(TypeName ViewModelType);
-        IAsyncOperation<Int32> CreateNewViewAsync(TypeName ViewModelType, IInspectable Parameter);
-        IAsyncAction           CloseViewAsync();
+        void CreateNewView(TypeName ViewModelType);
+        void CreateNewView(TypeName ViewModelType, IInspectable Parameter);
 
     private:
         winrt::Microsoft::UI::Xaml::Controls::Frame m_Frame;

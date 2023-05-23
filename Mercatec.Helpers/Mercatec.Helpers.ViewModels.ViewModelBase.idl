@@ -13,7 +13,6 @@ namespace Mercatec.Helpers.ViewModels
 
         Mercatec.Services.IContextService ContextService { get; };
         Mercatec.Services.INavigationService NavigationService { get; };
-        Mercatec.Services.IMessageService MessageService { get; };
         Mercatec.Services.IDialogService DialogService { get; };
         Mercatec.Services.ILogService LogService { get; };
 

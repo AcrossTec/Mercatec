@@ -2,7 +2,6 @@ namespace Mercatec.Helpers.Services
 {
     interface INavigationService
     {
-        Boolean IsMainView { get; };
         Boolean CanGoBack  { get; };
 
         void GoBack();
@@ -11,8 +10,7 @@ namespace Mercatec.Helpers.Services
         Boolean Navigate(Windows.UI.Xaml.Interop.TypeName ViewModelType);
         Boolean Navigate(Windows.UI.Xaml.Interop.TypeName ViewModelType, Object Parameter);
 
-        Windows.Foundation.IAsyncOperation<Int32> CreateNewViewAsync(Windows.UI.Xaml.Interop.TypeName ViewModelType);
-        Windows.Foundation.IAsyncOperation<Int32> CreateNewViewAsync(Windows.UI.Xaml.Interop.TypeName ViewModelType, Object Parameter);
-        Windows.Foundation.IAsyncAction CloseViewAsync();
+        void CreateNewView(Windows.UI.Xaml.Interop.TypeName ViewModelType);
+        void CreateNewView(Windows.UI.Xaml.Interop.TypeName ViewModelType, Object Parameter);
     }
 }
