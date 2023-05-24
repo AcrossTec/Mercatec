@@ -1,0 +1,12 @@
+namespace Mercatec.WinUIEx
+{
+    [default_interface]
+    [contentproperty("WindowContent")]
+    unsealed runtimeclass WindowEx : Microsoft.UI.Xaml.Window
+    {
+        WindowEx();
+        Object WindowContent { get; set; };
+
+        Boolean BringToFront();
+    }
+}
