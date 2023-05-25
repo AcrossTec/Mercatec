@@ -20,13 +20,43 @@
     <Filter Include="Controls">
       <UniqueIdentifier>{7b5412ec-7f36-4d86-890d-39226abf4773}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\Messaging">
+      <UniqueIdentifier>{febf98f2-cbf2-464e-be59-267fbebec4a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Messaging">
+      <UniqueIdentifier>{98609e26-d416-4c4c-94b3-eb0c5b3149f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Helpers">
+      <UniqueIdentifier>{5d57eeb4-38c3-4def-994e-ee6eb14a933b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Others">
+      <UniqueIdentifier>{66105e03-42f2-4814-b3ea-d536779eddfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\Others">
+      <UniqueIdentifier>{f0d7c29e-b752-4d19-ad30-ba6dfb3e6ac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Windows">
+      <UniqueIdentifier>{6511c48e-6d40-4746-ad80-b9a0ed30fd15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
-      <Filter>Sources</Filter>
+    <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp">
+      <Filter>Sources\Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.cpp">
+      <Filter>Sources\Messaging</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.Messaging.Message.cpp">
+      <Filter>Sources\Messaging</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>Sources</Filter>
+      <Filter>Sources\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
+      <Filter>Sources\Others</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.HwndExtensions.cpp">
+      <Filter>Sources\Others</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -56,8 +86,38 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.WinUIEx.Messaging.Message.hpp">
+      <Filter>Headers\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.hpp">
+      <Filter>Headers\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.hpp">
+      <Filter>Headers\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowsMessages.hpp">
+      <Filter>Headers\Messaging</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.ForeachMacro.hpp">
+      <Filter>Headers\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Exports.Api.hpp">
+      <Filter>Headers\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Enum.hpp">
+      <Filter>Headers\Helpers</Filter>
+    </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>Headers</Filter>
+      <Filter>Headers\Others</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Windows.Win32.hpp">
+      <Filter>Headers\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.HwndExtensions.hpp">
+      <Filter>Headers\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Icon.hpp">
+      <Filter>Headers\Windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

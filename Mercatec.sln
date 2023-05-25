@@ -41,6 +41,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mercatec.WinUIEx", "Mercate
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mercatec.Services.Tests", "Mercatec.Services.Tests\Mercatec.Services.Tests.vcxproj", "{EBA9A17A-EDFA-4F45-9F70-66AE0103AF10}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mercatec.WinUIEx.Tests", "Mercatec.WinUIEx.Tests\Mercatec.WinUIEx.Tests.vcxproj", "{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -177,12 +179,25 @@ Global
 		{EBA9A17A-EDFA-4F45-9F70-66AE0103AF10}.Release|x64.Build.0 = Release|x64
 		{EBA9A17A-EDFA-4F45-9F70-66AE0103AF10}.Release|x86.ActiveCfg = Release|Win32
 		{EBA9A17A-EDFA-4F45-9F70-66AE0103AF10}.Release|x86.Build.0 = Release|Win32
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Debug|ARM64.ActiveCfg = Debug|x64
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Debug|ARM64.Build.0 = Debug|x64
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Debug|x64.ActiveCfg = Debug|x64
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Debug|x64.Build.0 = Debug|x64
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Debug|x86.ActiveCfg = Debug|Win32
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Debug|x86.Build.0 = Debug|Win32
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Release|ARM64.ActiveCfg = Release|x64
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Release|ARM64.Build.0 = Release|x64
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Release|x64.ActiveCfg = Release|x64
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Release|x64.Build.0 = Release|x64
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Release|x86.ActiveCfg = Release|Win32
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EBA9A17A-EDFA-4F45-9F70-66AE0103AF10} = {4981BBD2-3BA5-4E74-99CD-88A6FD7D6731}
+		{0D0F9AA5-B6FD-4CAE-98BE-C50E7A27F2C5} = {4981BBD2-3BA5-4E74-99CD-88A6FD7D6731}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25FBB6B7-8988-4AAD-8C9B-16FFD744A8F1}
