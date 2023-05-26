@@ -170,7 +170,7 @@ namespace Mercatec::WinUIEx
         /// </summary>
         /// <param name="window">The window to return the handle for</param>
         /// <returns>HWND handle</returns>
-        static HWND GetWindowHandle(const winrt::Microsoft::UI::Xaml::Window& Window) noexcept;
+        static HWND GetWindowHandle(const winrt::Microsoft::UI::Xaml::Window& Window);
 
         static HRESULT GetWindowHandleFromWindowId(const winrt::Microsoft::UI::WindowId& WindowId, HWND* Result) noexcept;
 
@@ -186,7 +186,7 @@ namespace Mercatec::WinUIEx
         /// </summary>
         /// <param name="hwnd"></param>
         /// <returns>AppWindow</returns>
-        static winrt::Microsoft::UI::Windowing::AppWindow GetAppWindowFromWindowHandle(HWND Hwnd) noexcept;
+        static winrt::Microsoft::UI::Windowing::AppWindow GetAppWindowFromWindowHandle(HWND Hwnd);
 
         /// <summary>
         /// Activates the window and displays it in its current size and position.

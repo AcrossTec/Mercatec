@@ -20,6 +20,7 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <ConformanceMode>true</ConformanceMode>
+      <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
     </ClCompile>
   </ItemDefinitionGroup>

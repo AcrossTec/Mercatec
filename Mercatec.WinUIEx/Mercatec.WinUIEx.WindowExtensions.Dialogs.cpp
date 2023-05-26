@@ -7,9 +7,10 @@
 //! https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/display-ui-objects#winui-3-with-c
 //!
 
-using namespace winrt;
-using namespace Microsoft::UI::Xaml;
-using namespace Windows::Storage::Pickers;
+using winrt::Microsoft::UI::Xaml::Window;
+using winrt::Windows::Storage::Pickers::FileOpenPicker;
+using winrt::Windows::Storage::Pickers::FileSavePicker;
+using winrt::Windows::UI::Popups::MessageDialog;
 
 namespace Mercatec::WinUIEx
 {
@@ -21,9 +22,9 @@ namespace Mercatec::WinUIEx
     /// <param name="content">The message displayed to the user.</param>
     /// <param name="title">The title you want displayed on the dialog.</param>
     /// <returns>Message dialog</returns>
-    Windows::UI::Popups::MessageDialog WindowExtensions::CreateMessageDialog(const Window& Window, const std::wstring_view Content, const std::wstring_view Title) noexcept
+    MessageDialog WindowExtensions::CreateMessageDialog(const Window& Window, const std::wstring_view Content, const std::wstring_view Title) noexcept
     {
-        Windows::UI::Popups::MessageDialog Dialog(Content, Title);
+        MessageDialog Dialog(Content, Title);
 
         // Initialize the message dialog with the window handle (HWND).
         auto InitializeWithWindow{ Dialog.as<::IInitializeWithWindow>() };

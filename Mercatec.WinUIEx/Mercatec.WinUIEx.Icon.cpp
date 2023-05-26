@@ -4,6 +4,12 @@
 
 #include <memory>
 
+#pragma warning(push)
+//! Compiler Warning (level 4) C4458
+//! declaration of 'identifier' hides class member
+//! https://learn.microsoft.com/en-us/cpp/error-messages/compiler-warnings/compiler-warning-level-4-c4458?view=msvc-170
+#pragma warning(disable : 4458)
+
 namespace Mercatec::WinUIEx
 {
     Icon::Icon(HICON Icon) noexcept
@@ -30,7 +36,7 @@ namespace Mercatec::WinUIEx
         using EnumFlags = Enum<Windows::Win32::UI::Controls::ImageFlags>;
 
         HANDLE Handle = ::LoadImageW(nullptr, FileName.data(), EnumType::GetValue(ImageIcon), 16, 16, EnumFlags::GetValue(LrLoadFromFile));
-        return Icon(Handle);
+        return Icon(HICON(Handle));
     }
 
     Icon Icon::FromByteArray(const winrt::array_view<std::byte> Rgba, const size_t Size)
@@ -43,11 +49,11 @@ namespace Mercatec::WinUIEx
             AndMaskIcon[Index * 3]     = Rgba[Index * 4 + 3];
             AndMaskIcon[Index * 3 + 1] = Rgba[Index * 4 + 2];
             AndMaskIcon[Index * 3 + 2] = Rgba[Index * 4 + 1];
-            XOrMaskIcon[Index]         = 0xAA; // Rgba[Index * 4 + 3];
+            XOrMaskIcon[Index]         = std::byte{ 0xAA }; // Rgba[Index * 4 + 3];
         }
 
         HMODULE HInstance = ::GetModuleHandleW(nullptr);
-        HICON   Handle    = ::CreateIcon(HInstance, 32, 32, 24, 1, XOrMaskIcon.get(), AndMaskIcon.get());
+        HICON   Handle    = ::CreateIcon(HInstance, 32, 32, 24, 1, PBYTE(XOrMaskIcon.get()), PBYTE(AndMaskIcon.get()));
 
         ThrowIfInvalid(Handle);
         return Icon(Handle);
@@ -69,7 +75,7 @@ namespace Mercatec::WinUIEx
     /// </returns>
     Icon Icon::Yang()
     {
-        std::byte AndMaskIcon[] =   //
+        BYTE AndMaskIcon[] =        //
           { 0xFF, 0xFF, 0xFF, 0xFF, // line 1
             0xFF, 0xFF, 0xC3, 0xFF, // line 2
             0xFF, 0xFF, 0x00, 0xFF, // line 3
@@ -110,7 +116,7 @@ namespace Mercatec::WinUIEx
             0xFF, 0xF8, 0x03, 0xFF,   // line 31
             0xFF, 0xFC, 0x3F, 0xFF }; // line 32
 
-        std::byte XOrMaskIcon[] =   //
+        BYTE XOrMaskIcon[] =        //
           { 0x00, 0x00, 0x00, 0x00, // line 1
             0x00, 0x00, 0x00, 0x00, // line 2
             0x00, 0x00, 0x00, 0x00, // line 3
@@ -157,3 +163,5 @@ namespace Mercatec::WinUIEx
         return Icon(Handle);
     }
 } // namespace Mercatec::WinUIEx
+
+#pragma warning(pop)

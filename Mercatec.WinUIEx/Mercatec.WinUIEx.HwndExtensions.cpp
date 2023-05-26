@@ -57,7 +57,7 @@ namespace Mercatec::WinUIEx
         SetWindowPosOrThrow(Hwnd, (Enable ? HWND_TOPMOST : HWND_NOTOPMOST), 0, 0, 0, 0, SwpNoSize | SwpNoMove);
     }
 
-    HWND HwndExtensions::UpdateLayeredWindow(HWND Hwnd)
+    HWND HwndExtensions::UpdateLayeredWindow([[maybe_unused]] HWND Hwnd)
     {
         throw winrt::hresult_not_implemented();
         // return ::UpdateLayeredWindow(Hwnd, );

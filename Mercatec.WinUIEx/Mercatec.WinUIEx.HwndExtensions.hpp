@@ -2,7 +2,7 @@
 
 #include "Mercatec.WinUIEx.Exports.Api.hpp"
 #include "Mercatec.WinUIEx.Windows.Win32.hpp"
-#include "Mercatec.WinUIEx.WindowStyle.h"
+#include "Mercatec.WinUIEx.WindowStyle.hpp"
 #include "Mercatec.WinUIEx.Icon.hpp"
 
 #include <winrt/Microsoft.UI.h>

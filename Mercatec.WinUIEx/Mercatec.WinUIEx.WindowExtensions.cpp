@@ -3,15 +3,16 @@
 #include "Mercatec.WinUIEx.HwndExtensions.hpp"
 #include "Mercatec.Microsoft.UI.Windowing.hpp"
 
-using namespace winrt;
-using namespace winrt::Microsoft::UI;
-using namespace winrt::Microsoft::UI::Xaml;
-using namespace winrt::Microsoft::UI::Windowing;
-using namespace winrt::Windows::Storage::Pickers;
+using winrt::hresult_invalid_argument;
+using winrt::Microsoft::UI::IconId;
+using winrt::Microsoft::UI::WindowId;
+using winrt::Microsoft::UI::Windowing::AppWindow;
+using winrt::Microsoft::UI::Windowing::AppWindowPresenterKind;
+using winrt::Microsoft::UI::Windowing::AppWindowTitleBar;
+using winrt::Microsoft::UI::Windowing::OverlappedPresenter;
+using winrt::Microsoft::UI::Xaml::Window;
 
-using std::format;
 using std::function;
-using std::optional;
 using std::wstring_view;
 
 namespace Mercatec::WinUIEx
@@ -156,7 +157,7 @@ namespace Mercatec::WinUIEx
     /// </summary>
     /// <param name="window">window</param>
     /// <returns><c>True</c> if the overlapped presenter is on maximizable, otherwise <c>false</c>.</returns>
-    bool WindowExtensions::GetIsMaximizable(const winrt::Microsoft::UI::Xaml::Window& Window) noexcept
+    bool WindowExtensions::GetIsMaximizable(const Window& Window) noexcept
     {
         return GetOverlappedPresenterValue<bool>(
           Window,                                  //
@@ -278,7 +279,7 @@ namespace Mercatec::WinUIEx
     /// </summary>
     /// <param name="window">The window to return the handle for</param>
     /// <returns>HWND handle</returns>
-    HWND WindowExtensions::GetWindowHandle(const Window& Window) noexcept
+    HWND WindowExtensions::GetWindowHandle(const Window& Window)
     {
         if ( Window == nullptr )
         {
@@ -297,8 +298,8 @@ namespace Mercatec::WinUIEx
 
     HRESULT WindowExtensions::GetWindowHandleFromWindowId(const WindowId& WindowId, HWND* Result) noexcept
     {
-        Microsoft::UI::EnsureInteropImplLoaded();
-        return Microsoft::UI::s_impl.pfnGetWindowFromWindowId(WindowId, Result);
+        winrt::Microsoft::UI::EnsureInteropImplLoaded();
+        return winrt::Microsoft::UI::s_impl.pfnGetWindowFromWindowId(WindowId, Result);
     }
 
     /// <summary>
@@ -308,7 +309,7 @@ namespace Mercatec::WinUIEx
     /// <returns>Window HWND handle</returns>
     HWND WindowExtensions::GetWindowHandle(const WindowId& WindowId) noexcept
     {
-        return Microsoft::UI::GetWindowFromWindowId(WindowId);
+        return winrt::Microsoft::UI::GetWindowFromWindowId(WindowId);
     }
 
     /// <summary>
@@ -316,14 +317,14 @@ namespace Mercatec::WinUIEx
     /// </summary>
     /// <param name="hwnd"></param>
     /// <returns>AppWindow</returns>
-    AppWindow WindowExtensions::GetAppWindowFromWindowHandle(HWND Hwnd) noexcept
+    AppWindow WindowExtensions::GetAppWindowFromWindowHandle(HWND Hwnd)
     {
         if ( Hwnd == nullptr )
         {
             throw hresult_invalid_argument(L"Argument Null Exception: Hwnd");
         }
 
-        WindowId WindowId = Microsoft::UI::GetWindowIdFromWindow(Hwnd);
+        WindowId WindowId = winrt::Microsoft::UI::GetWindowIdFromWindow(Hwnd);
         return AppWindow::GetFromWindowId(WindowId);
     }
 

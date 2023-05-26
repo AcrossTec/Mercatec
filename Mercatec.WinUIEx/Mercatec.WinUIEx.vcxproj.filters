@@ -134,7 +134,7 @@
     <ClInclude Include="Mercatec.WinUIEx.Icon.hpp">
       <Filter>Headers\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Mercatec.WinUIEx.WindowStyle.h">
+    <ClInclude Include="Mercatec.WinUIEx.WindowStyle.hpp">
       <Filter>Headers\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.WindowExtensions.hpp">

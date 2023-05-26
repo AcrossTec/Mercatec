@@ -88,7 +88,7 @@ namespace Mercatec::WinUIEx
 #define ENUM_VALUES(EnumNamespace, EnumType, ...)                 \
     __VA_OPT__(MERCATEC_EXPAND(ENUM_VALUES_HELPER(EnumNamespace, EnumType, __VA_ARGS__)))
 #define ENUM_VALUES_HELPER(EnumNamespace, EnumType, Value, ...)   \
-    EnumNamespace##::EnumType##::Value                            \
+    EnumNamespace::EnumType::Value                                \
     __VA_OPT__(,) __VA_OPT__(ENUM_VALUES_AGAIN MERCATEC_PARENS (EnumNamespace, EnumType, __VA_ARGS__))
 #define ENUM_VALUES_AGAIN() ENUM_VALUES_HELPER
 
@@ -102,7 +102,7 @@ namespace Mercatec::WinUIEx
 #define ENUM_VALUES_UNDERLYING(EnumNamespace, EnumType, ...)                                             \
     __VA_OPT__(MERCATEC_EXPAND(ENUM_VALUES_UNDERLYING_HELPER(EnumNamespace, EnumType, __VA_ARGS__)))
 #define ENUM_VALUES_UNDERLYING_HELPER(EnumNamespace, EnumType, Value, ...)                               \
-    static_cast<std::underlying_type_t<EnumNamespace##::EnumType>>(EnumNamespace##::EnumType##::Value)   \
+    static_cast<std::underlying_type_t<EnumNamespace::EnumType>>(EnumNamespace::EnumType::Value)         \
     __VA_OPT__(,) __VA_OPT__(ENUM_VALUES_UNDERLYING_AGAIN MERCATEC_PARENS (EnumNamespace, EnumType, __VA_ARGS__))
 #define ENUM_VALUES_UNDERLYING_AGAIN() ENUM_VALUES_UNDERLYING_HELPER
 // clang-format on
@@ -152,7 +152,7 @@ namespace Mercatec::WinUIEx
 
 #define MAKE_ENUM_TRAITS(EnumNamespace, EnumType)                                              \
  template <>                                                                                   \
- struct Mercatec::WinUIEx::EnumTraits<EnumNamespace## ::EnumType>                              \
+ struct Mercatec::WinUIEx::EnumTraits<EnumNamespace::EnumType>                                 \
  {                                                                                             \
   private:                                                                                     \
   template <auto... Values>                                                                    \
@@ -162,7 +162,7 @@ namespace Mercatec::WinUIEx
   }                                                                                            \
                                                                                                \
   public:                                                                                      \
-  using enum_t = EnumNamespace## ::EnumType;                                                   \
+  using enum_t = EnumNamespace::EnumType;                                                      \
                                                                                                \
   using underlying_type_t = std::underlying_type_t<enum_t>;                                    \
                                                                                                \

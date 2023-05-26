@@ -121,12 +121,14 @@
     <ClCompile>
       <PreprocessorDefinitions>MERCATEC_WINUIEX_API_EXPORTS;NOMINMAX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseStandardPreprocessor Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</UseStandardPreprocessor>
+      <BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</BuildStlModules>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
       <PreprocessorDefinitions>MERCATEC_WINUIEX_API_EXPORTS;NOMINMAX;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseStandardPreprocessor Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</UseStandardPreprocessor>
+      <BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</BuildStlModules>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -150,7 +152,7 @@
     <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowsMessages.hpp" />
-    <ClInclude Include="Mercatec.WinUIEx.WindowStyle.h" />
+    <ClInclude Include="Mercatec.WinUIEx.WindowStyle.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.WindowExtensions.hpp" />
   </ItemGroup>
   <ItemGroup>
