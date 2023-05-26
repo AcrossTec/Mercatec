@@ -143,6 +143,7 @@
     <ClInclude Include="Mercatec.WinUIEx.HwndExtensions.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Messaging.Message.hpp" />
     <ClInclude Include="Mercatec.Microsoft.UI.Windowing.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.MonitorInfo.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Mercatec.WinUIEx.WindowEx.h">
       <DependentUpon>Mercatec.WinUIEx.WindowEx.idl</DependentUpon>
@@ -154,6 +155,11 @@
     <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowsMessages.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.WindowStyle.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.WindowExtensions.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.ZOrderInfo.h">
+      <DependentUpon>Mercatec.WinUIEx.ZOrderInfo.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.SystemBackdrop.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.WinUIEx.HwndExtensions.cpp" />
@@ -171,6 +177,10 @@
       <DependentUpon>Mercatec.WinUIEx.WindowEx.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.ZOrderInfo.cpp">
+      <DependentUpon>Mercatec.WinUIEx.ZOrderInfo.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Mercatec.WinUIEx.def" />
@@ -184,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <Midl Include="Mercatec.WinUIEx.WindowEx.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.ZOrderInfo.idl">
       <SubType>Designer</SubType>
     </Midl>
   </ItemGroup>

@@ -78,6 +78,9 @@
     <Midl Include="Mercatec.WinUIEx.WindowEx.idl">
       <Filter>Controls</Filter>
     </Midl>
+    <Midl Include="Mercatec.WinUIEx.ZOrderInfo.idl">
+      <Filter>Controls</Filter>
+    </Midl>
   </ItemGroup>
   <ItemGroup>
     <None Include="Mercatec.WinUIEx.def">
@@ -142,6 +145,12 @@
     </ClInclude>
     <ClInclude Include="Mercatec.Microsoft.UI.Windowing.hpp">
       <Filter>Headers\WinRT</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.SystemBackdrop.hpp">
+      <Filter>Headers\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.MonitorInfo.hpp">
+      <Filter>Headers\Windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
