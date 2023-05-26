@@ -147,7 +147,6 @@ namespace Mercatec::WinUIEx
         /// <param name="window">Window</param>
         /// <param name="x">Left side of the window</param>
         /// <param name="y">Top side of the window</param>
-
         static void Move(const winrt::Microsoft::UI::Xaml::Window& Window, const int32_t X, const int32_t Y) noexcept;
 
         /// <summary>

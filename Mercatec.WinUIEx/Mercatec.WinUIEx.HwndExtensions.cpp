@@ -63,7 +63,7 @@ namespace Mercatec::WinUIEx
         // return ::UpdateLayeredWindow(Hwnd, );
     }
 
-    void HwndExtensions::CenterOnScreen(HWND Hwnd, const std::optional<double> Width, const std::optional<double> Height)
+    void HwndExtensions::CenterOnScreen(HWND Hwnd, const std::optional<double>& Width, const std::optional<double>& Height)
     {
         using Enum = Enum<MonitorFromFlags>;
 

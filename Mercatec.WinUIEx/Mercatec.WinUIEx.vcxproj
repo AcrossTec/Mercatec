@@ -140,6 +140,7 @@
     <ClInclude Include="Mercatec.WinUIEx.Exports.Api.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.HwndExtensions.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Messaging.Message.hpp" />
+    <ClInclude Include="Mercatec.Microsoft.UI.Windowing.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Mercatec.WinUIEx.WindowEx.h">
       <DependentUpon>Mercatec.WinUIEx.WindowEx.idl</DependentUpon>

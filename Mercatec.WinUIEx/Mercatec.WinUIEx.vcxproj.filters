@@ -41,6 +41,9 @@
     <Filter Include="Sources\Windows">
       <UniqueIdentifier>{201bb2a6-ba15-421c-b545-337d44b47861}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\WinRT">
+      <UniqueIdentifier>{2ee1b898-d15e-431a-9a2d-caba4e08a2f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.WindowExtensions.hpp">
       <Filter>Headers\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Microsoft.UI.Windowing.hpp">
+      <Filter>Headers\WinRT</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -80,7 +80,7 @@ namespace Mercatec::WinUIEx
         /// <param name="hwnd">Window handle</param>
         /// <param name="width">Width of the window in device independent pixels, or <c>null</c> if keeping the current size</param>
         /// <param name="height">Height of the window in device independent pixels, or <c>null</c> if keeping the current size</param>
-        static void CenterOnScreen(HWND Hwnd, const std::optional<double> Width = std::nullopt, const std::optional<double> Height = std::nullopt);
+        static void CenterOnScreen(HWND Hwnd, const std::optional<double>& Width = std::nullopt, const std::optional<double>& Height = std::nullopt);
 
         /// <summary>
         /// Sets the icon for the window, using the specified icon ID.
