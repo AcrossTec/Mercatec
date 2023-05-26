@@ -361,9 +361,10 @@ namespace Mercatec::WinUIEx::Messaging
           WmGetIcon        , WmSetIcon          , WmDpiChanged   , WmDisplayChange    , WmSettingChange   ,\
           WmThemeChanged   , NinSelect          , NinKeySelect   , NinBalloonShow     , NinBalloonHide    ,\
           NinBalloonTimeout, NinBalloonUserClick, NinPopupOpen   , NinPopupClose
-
 MAKE_ENUM_TRAITS(Mercatec::WinUIEx::Messaging, WindowsMessages)
 #undef X
 //
 // clang-format on
 //
+
+_BITMASK_OPS(, Mercatec::WinUIEx::Messaging::WindowsMessages)

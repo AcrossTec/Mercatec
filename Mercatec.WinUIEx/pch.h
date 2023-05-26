@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <Unknwn.h>
 #include <RestrictedErrorInfo.h>
+#include <Shobjidl.h>
 #include <hstring.h>
 
 // Undefine GetCurrentTime macro to prevent
@@ -63,6 +64,7 @@
 #include <concepts>
 #include <chrono>
 #include <functional>
+#include <format>
 #include <ranges>
 
 namespace winrt

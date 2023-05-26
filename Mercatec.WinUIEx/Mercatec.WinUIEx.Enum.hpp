@@ -2,7 +2,6 @@
 
 #include <array>
 #include <concepts>
-#include <limits>
 #include <string_view>
 
 #include "Mercatec.WinUIEx.ForeachMacro.hpp"
@@ -13,24 +12,27 @@ namespace Mercatec::WinUIEx
     requires std::is_enum_v<TEnum>
     struct EnumTraits
     {
+        using enum_t            = TEnum;
+        using underlying_type_t = std::underlying_type_t<TEnum>;
+
         inline static constexpr size_t            Size      = 0;
         inline static constexpr std::wstring_view Name      = L"Unknown";
         inline static constexpr std::wstring_view Namespace = L"::";
         inline static constexpr std::wstring_view FullName  = L"::Unknown";
 
-        inline static constexpr std::wstring_view GetName([[maybe_unused]] const TEnum Value) noexcept
+        inline static constexpr std::wstring_view GetName(const TEnum) noexcept
         {
             return L"Unknown";
         }
 
-        inline static constexpr TEnum GetValue([[maybe_unused]] const std::underlying_type_t<TEnum> Value) noexcept
+        inline static constexpr TEnum GetValue(const std::underlying_type_t<TEnum> Value) noexcept
         {
-            return TEnum{ std::numeric_limits<std::underlying_type_t<TEnum>>::max() };
+            return TEnum{ Value };
         }
 
-        inline static constexpr std::underlying_type_t<TEnum> GetValue([[maybe_unused]] const TEnum Value) noexcept
+        inline static constexpr std::underlying_type_t<TEnum> GetValue(const TEnum Value) noexcept
         {
-            return std::numeric_limits<std::underlying_type_t<TEnum>>::max();
+            return std::underlying_type_t<TEnum>{ Value };
         }
 
         inline static constexpr std::array<std::wstring_view, Size> GetNames() noexcept
@@ -53,8 +55,8 @@ namespace Mercatec::WinUIEx
     requires std::is_enum_v<TEnum>
     struct Enum
     {
-        using enum_t            = TEnum;
-        using underlying_type_t = std::underlying_type_t<TEnum>;
+        using enum_t            = typename EnumTraits<TEnum>::enum_t;
+        using underlying_type_t = typename EnumTraits<TEnum>::underlying_type_t;
 
         inline static constexpr auto Name             = EnumTraits<TEnum>::Name;
         inline static constexpr auto Namespace        = EnumTraits<TEnum>::Namespace;
@@ -141,28 +143,11 @@ namespace Mercatec::WinUIEx
 #define ENUM_TRAITS_GET_VALUE(EnumNamespace, EnumType)                           \
  inline static constexpr underlying_type_t GetValue(const enum_t Value) noexcept \
  {                                                                               \
-  constexpr auto Values = GetValues();                                           \
-  for ( int32_t Index = 0; Index < Size; ++Index )                               \
-  {                                                                              \
-   if ( Value == Values[Index] )                                                 \
-   {                                                                             \
-    return static_cast<underlying_type_t>(Value);                                \
-   }                                                                             \
-  }                                                                              \
-  return std::numeric_limits<underlying_type_t>::max();                          \
+  return static_cast<underlying_type_t>(Value);                                  \
  }                                                                               \
-                                                                                 \
  inline static constexpr enum_t GetValue(const underlying_type_t Value) noexcept \
  {                                                                               \
-  constexpr auto Values = GetUnderlyingValues();                                 \
-  for ( int32_t Index = 0; Index < Size; ++Index )                               \
-  {                                                                              \
-   if ( Value == Values[Index] )                                                 \
-   {                                                                             \
-    return static_cast<enum_t>(Value);                                           \
-   }                                                                             \
-  }                                                                              \
-  return std::numeric_limits<enum_t>::max();                                     \
+  return static_cast<enum_t>(Value);                                             \
  }
 
 #define MAKE_ENUM_TRAITS(EnumNamespace, EnumType)                                              \
@@ -199,3 +184,43 @@ namespace Mercatec::WinUIEx
                                                                                                \
   ENUM_TRAITS_GET_VALUE(EnumNamespace, EnumType)                                               \
  };
+
+#define ENUM_BITMASK_OPS(BITMASK)                                                                   \
+ [[nodiscard]] inline constexpr BITMASK operator&(const BITMASK Left, const BITMASK Right) noexcept \
+ {                                                                                                  \
+  using IntType = std::underlying_type_t<BITMASK>;                                                  \
+  return static_cast<BITMASK>(static_cast<IntType>(Left) & static_cast<IntType>(Right));            \
+ }                                                                                                  \
+                                                                                                    \
+ [[nodiscard]] inline constexpr BITMASK operator|(const BITMASK Left, const BITMASK Right) noexcept \
+ {                                                                                                  \
+  using IntType = std::underlying_type_t<BITMASK>;                                                  \
+  return static_cast<BITMASK>(static_cast<IntType>(Left) | static_cast<IntType>(Right));            \
+ }                                                                                                  \
+                                                                                                    \
+ [[nodiscard]] inline constexpr BITMASK operator^(const BITMASK Left, const BITMASK Right) noexcept \
+ {                                                                                                  \
+  using IntType = std::underlying_type_t<BITMASK>;                                                  \
+  return static_cast<BITMASK>(static_cast<IntType>(Left) ^ static_cast<IntType>(Right));            \
+ }                                                                                                  \
+                                                                                                    \
+ inline constexpr BITMASK& operator&=(BITMASK& Left, const BITMASK Right) noexcept                  \
+ {                                                                                                  \
+  return Left = Left & Right;                                                                       \
+ }                                                                                                  \
+                                                                                                    \
+ inline constexpr BITMASK& operator|=(BITMASK& Left, const BITMASK Right) noexcept                  \
+ {                                                                                                  \
+  return Left = Left | Right;                                                                       \
+ }                                                                                                  \
+                                                                                                    \
+ inline constexpr BITMASK& operator^=(BITMASK& Left, const BITMASK Right) noexcept                  \
+ {                                                                                                  \
+  return Left = Left ^ Right;                                                                       \
+ }                                                                                                  \
+                                                                                                    \
+ [[nodiscard]] inline constexpr BITMASK operator~(const BITMASK Left) noexcept                      \
+ {                                                                                                  \
+  using IntType = std::underlying_type_t<BITMASK>;                                                  \
+  return static_cast<BITMASK>(~static_cast<IntType>(Left));                                         \
+ }

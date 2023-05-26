@@ -38,6 +38,9 @@
     <Filter Include="Headers\Windows">
       <UniqueIdentifier>{6511c48e-6d40-4746-ad80-b9a0ed30fd15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Windows">
+      <UniqueIdentifier>{201bb2a6-ba15-421c-b545-337d44b47861}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp">
@@ -56,7 +59,16 @@
       <Filter>Sources\Others</Filter>
     </ClCompile>
     <ClCompile Include="Mercatec.WinUIEx.HwndExtensions.cpp">
-      <Filter>Sources\Others</Filter>
+      <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.cpp">
+      <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.Dialogs.cpp">
+      <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.Icon.cpp">
+      <Filter>Sources\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +129,12 @@
       <Filter>Headers\Windows</Filter>
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.Icon.hpp">
+      <Filter>Headers\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.WindowStyle.h">
+      <Filter>Headers\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.WindowExtensions.hpp">
       <Filter>Headers\Windows</Filter>
     </ClInclude>
   </ItemGroup>

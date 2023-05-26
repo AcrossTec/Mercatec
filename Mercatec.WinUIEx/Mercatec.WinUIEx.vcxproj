@@ -149,12 +149,17 @@
     <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowsMessages.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.WindowStyle.h" />
+    <ClInclude Include="Mercatec.WinUIEx.WindowExtensions.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.WinUIEx.HwndExtensions.cpp" />
+    <ClCompile Include="Mercatec.WinUIEx.Icon.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Messaging.Message.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp" />
+    <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.cpp" />
+    <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.Dialogs.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

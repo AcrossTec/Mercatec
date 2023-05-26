@@ -84,14 +84,16 @@ namespace Mercatec::WinUIEx::Messaging
 
     std::wstring Message::ToString() const noexcept
     {
-        switch ( Enum<WindowsMessages>::GetValue(Impl->MessageId) )
+        using Enum = Enum<WindowsMessages>;
+
+        switch ( Enum::GetValue(Impl->MessageId) )
         {
             case WindowsMessages::WmSizing:
             {
                 std::wstring Side = std::to_wstring(Impl->WParam);
 
                 // clang-format off
-                switch(Impl->WParam) 
+                switch (Impl->WParam)
                 {
                     case 1: Side = L"Left"        ; break;
                     case 2: Side = L"Right"       ; break;
@@ -110,6 +112,6 @@ namespace Mercatec::WinUIEx::Messaging
             }
         }
 
-        return std::format(L"{}: LParam={} WParam={}", Enum<WindowsMessages>::GetName(Impl->MessageId), LParam, WParam);
+        return std::format(L"{}: LParam={} WParam={}", Enum::GetName(Impl->MessageId), LParam, WParam);
     }
 } // namespace Mercatec::WinUIEx::Messaging
