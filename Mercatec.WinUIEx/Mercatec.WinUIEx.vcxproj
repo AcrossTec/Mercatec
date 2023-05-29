@@ -136,23 +136,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.WinUIEx.Debug.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.Windowing.IconDataMembers.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Icon.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.ForeachMacro.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Enum.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Exports.Api.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.HwndExtensions.hpp" />
-    <ClInclude Include="Mercatec.WinUIEx.Messaging.Message.hpp" />
+    <ClInclude Include="Messaging\Mercatec.WinUIEx.Messaging.Internal.Message.hpp" />
     <ClInclude Include="Mercatec.Microsoft.UI.Windowing.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.MonitorInfo.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.Windowing.MouseEvent.hpp">
+      <DependentUpon>Mercatec.WinUIEx.Windowing.MouseEvent.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Windowing.NotifyCommand.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.Messaging.Message.h">
+      <DependentUpon>Mercatec.WinUIEx.Messaging.Message.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Mercatec.WinUIEx.WindowEx.h">
       <DependentUpon>Mercatec.WinUIEx.WindowEx.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.Windows.Win32.hpp" />
-    <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.hpp" />
-    <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowsMessages.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowsMessages.hpp">
+      <DependentUpon>Mercatec.WinUIEx.Messaging.WindowsMessages.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.WindowStyle.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.WindowExtensions.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.ZOrderInfo.h">
@@ -160,15 +173,25 @@
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.SystemBackdrop.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.Windowing.WindowMessageSink.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.h">
+      <DependentUpon>Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.WinUIEx.HwndExtensions.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Icon.cpp" />
-    <ClCompile Include="Mercatec.WinUIEx.Messaging.Message.cpp" />
-    <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.cpp" />
+    <ClCompile Include="Messaging\Mercatec.WinUIEx.Messaging.Internal.Message.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp" />
+    <ClCompile Include="Mercatec.WinUIEx.MonitorInfo.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.Dialogs.cpp" />
+    <ClCompile Include="Mercatec.WinUIEx.Windowing.WindowMessageSink.cpp" />
+    <ClCompile Include="Mercatec.WinUIEx.Messaging.Message.cpp">
+      <DependentUpon>Mercatec.WinUIEx.Messaging.Message.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -179,6 +202,10 @@
     </ClCompile>
     <ClCompile Include="Mercatec.WinUIEx.ZOrderInfo.cpp">
       <DependentUpon>Mercatec.WinUIEx.ZOrderInfo.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.cpp">
+      <DependentUpon>Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
   </ItemGroup>
@@ -199,6 +226,16 @@
     <Midl Include="Mercatec.WinUIEx.ZOrderInfo.idl">
       <SubType>Designer</SubType>
     </Midl>
+    <Midl Include="Mercatec.WinUIEx.Windowing.MouseEvent.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.Messaging.Message.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.Messaging.WindowsMessages.idl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

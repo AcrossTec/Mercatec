@@ -1,117 +1,88 @@
-#include "pch.h"
-#include "Mercatec.WinUIEx.Messaging.Message.hpp"
-#include "Mercatec.WinUIEx.Messaging.WindowsMessages.hpp"
+﻿#include "pch.h"
+#include "Mercatec.WinUIEx.Messaging.Message.h"
+#if __has_include("Messaging.Message.g.cpp")
+# include "Messaging.Message.g.cpp"
+#endif
 
-#include <format>
-
-namespace Mercatec::WinUIEx::Messaging
+namespace winrt::Mercatec::WinUIEx::Messaging::implementation
 {
-    struct Message::MessageImpl
-    {
-        HWND   Hwnd;
-        UINT   MessageId;
-        WPARAM WParam;
-        LPARAM LParam;
-    };
-
     Message::Message() noexcept
-      : Impl(new MessageImpl{ .Hwnd = nullptr, .MessageId = 0, .WParam = 0, .LParam = 0 })
     {
     }
 
-    Message::Message(HWND Hwnd, const UINT MessageId, const WPARAM WParam, const LPARAM LParam) noexcept
-      : Impl(new MessageImpl{ .Hwnd = Hwnd, .MessageId = MessageId, .WParam = WParam, .LParam = LParam })
+    Message::Message(const uint64_t Hwnd, const uint32_t MessageId, const uint64_t WParam, const int64_t LParam) noexcept
+      : m_Message{ reinterpret_cast<HWND>(Hwnd), MessageId, WParam, LParam }
     {
     }
 
-    Message::~Message() noexcept
+    /// <summary>
+    ///     Gets the window handle of the message.
+    /// </summary>
+    /// <remarks>Window handle is a value that uniquely identifies a window on the system. This property returns a handle of the window whose window procedure receives this message. It is useful when your code need to interact with some native Windows API functions that expect window handles as parameters.</remarks>
+    uint64_t Message::Hwnd() const noexcept
     {
+        return reinterpret_cast<uint64_t>(m_Message.Hwnd);
     }
 
-    HWND Message::GetHwnd() const noexcept
+    void Message::Hwnd(const uint64_t Hwnd) noexcept
     {
-        return Impl->Hwnd;
+        m_Message.Hwnd = reinterpret_cast<HWND>(Hwnd);
     }
 
-    Message& Message::SetHwnd(HWND Hwnd) noexcept
+    /// <summary>
+    ///     Gets the ID number for the message.
+    /// </summary>
+    uint32_t Message::MessageId() const noexcept
     {
-        Impl->Hwnd = Hwnd;
-        return *this;
+        return m_Message.MessageId;
     }
 
-    UINT Message::GetMessageId() const noexcept
+    void Message::MessageId(const uint32_t MessageId) noexcept
     {
-        return Impl->MessageId;
+        m_Message.MessageId = MessageId;
     }
 
-    Message& Message::SetMessageId(const UINT MessageId) noexcept
+    /// <summary>
+    ///     Gets or sets the WParam field of the message.
+    /// </summary>
+    uint64_t Message::WParam() const noexcept
     {
-        Impl->MessageId = MessageId;
-        return *this;
+        return m_Message.WParam;
     }
 
-    WPARAM Message::GetWParam() const noexcept
+    void Message::WParam(const uint64_t WParam) noexcept
     {
-        return Impl->WParam;
+        m_Message.WParam = WParam;
     }
 
-    Message& Message::SetWParam(const WPARAM WParam) noexcept
+    /// <summary>
+    ///     Specifies the LParam field of the message.
+    /// </summary>
+    int64_t Message::LParam() const noexcept
     {
-        Impl->WParam = WParam;
-        return *this;
+        return m_Message.LParam;
     }
 
-    LPARAM Message::GetLParam() const noexcept
+    void Message::LParam(const int64_t LParam) noexcept
     {
-        return Impl->LParam;
+        m_Message.LParam = LParam;
     }
 
-    Message& Message::SetLParam(const LPARAM LParam) noexcept
+    /// <summary></summary
+    uint32_t Message::LowOrder() const noexcept
     {
-        Impl->LParam = LParam;
-        return *this;
+        return m_Message.LowOrder;
     }
 
-    WORD Message::GetLowOrder() const noexcept
+    /// <summary></summary
+    uint32_t Message::HighOrder() const noexcept
     {
-        return LOWORD(Impl->LParam);
+        return m_Message.HighOrder;
     }
 
-    WORD Message::GetHighOrder() const noexcept
+    /// <summary></summary>
+    hstring Message::ToString() const noexcept
     {
-        return HIWORD(Impl->LParam);
+        return hstring{ m_Message.ToString() };
     }
-
-    std::wstring Message::ToString() const noexcept
-    {
-        using Enum = Enum<WindowsMessages>;
-
-        switch ( Enum::GetValue(Impl->MessageId) )
-        {
-            case WindowsMessages::WmSizing:
-            {
-                std::wstring Side = std::to_wstring(Impl->WParam);
-
-                // clang-format off
-                switch (Impl->WParam)
-                {
-                    case 1: Side = L"Left"        ; break;
-                    case 2: Side = L"Right"       ; break;
-                    case 3: Side = L"Top"         ; break;
-                    case 4: Side = L"Top-Left"    ; break;
-                    case 5: Side = L"Top-Right"   ; break;
-                    case 6: Side = L"Bottom"      ; break;
-                    case 7: Side = L"Bottom-Left" ; break;
-                    case 8: Side = L"Bottom-Right"; break;
-                };
-                // clang-format on
-
-                auto Rect = reinterpret_cast<RECT*>(Impl->LParam);
-
-                return std::format(L"WM_SIZING: Side: {} Rect: {},{},{},{}", Side, Rect->left, Rect->top, Rect->right, Rect->bottom);
-            }
-        }
-
-        return std::format(L"{}: LParam={} WParam={}", Enum::GetName(Impl->MessageId), LParam, WParam);
-    }
-} // namespace Mercatec::WinUIEx::Messaging
+} // namespace winrt::Mercatec::WinUIEx::Messaging::implementation

@@ -237,7 +237,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="MIDLs\Mercatec.Helpers.AgileObject.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.Views.IWindow.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl" />
     <Midl Include="Mercatec.Helpers.IndexRange.idl">

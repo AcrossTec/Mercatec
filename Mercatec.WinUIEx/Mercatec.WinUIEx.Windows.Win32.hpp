@@ -9,6 +9,105 @@ namespace Windows::Win32
     {
         namespace WindowsAndMessaging
         {
+            enum struct SystemMetricsIndex : int32_t
+            {
+                SmArrange                     = SM_ARRANGE,
+                SmCleanBoot                   = SM_CLEANBOOT,
+                SmCMonitors                   = SM_CMONITORS,
+                SmCMouseButtons               = SM_CMOUSEBUTTONS,
+                SmConvertiblesLateMode        = SM_CONVERTIBLESLATEMODE,
+                SmCxBorder                    = SM_CXBORDER,
+                SmCxCursor                    = SM_CXCURSOR,
+                SmCxDlgFrame                  = SM_CXDLGFRAME,
+                SmCxDoubleClk                 = SM_CXDOUBLECLK,
+                SmCxDrag                      = SM_CXDRAG,
+                SmCxEdge                      = SM_CXEDGE,
+                SmCxFixedFrame                = SM_CXFIXEDFRAME,
+                SmCxFocusBorder               = SM_CXFOCUSBORDER,
+                SmCxFrame                     = SM_CXFRAME,
+                SmCxFullScreen                = SM_CXFULLSCREEN,
+                SmCxHScroll                   = SM_CXHSCROLL,
+                SmCxHThumb                    = SM_CXHTHUMB,
+                SmCxIcon                      = SM_CXICON,
+                SmCxIconSpacing               = SM_CXICONSPACING,
+                SmCxMaximized                 = SM_CXMAXIMIZED,
+                SmCxMaxTrack                  = SM_CXMAXTRACK,
+                SmCxMenuCheck                 = SM_CXMENUCHECK,
+                SmCxMenuSize                  = SM_CXMENUSIZE,
+                SmCxMin                       = SM_CXMIN,
+                SmCxMinimized                 = SM_CXMINIMIZED,
+                SmCxMinSpacing                = SM_CXMINSPACING,
+                SmCxMinTrack                  = SM_CXMINTRACK,
+                SmCxPaddedBorder              = SM_CXPADDEDBORDER,
+                SmCxScreen                    = SM_CXSCREEN,
+                SmCxSize                      = SM_CXSIZE,
+                SmCxSizeFrame                 = SM_CXSIZEFRAME,
+                SmCxSMIcon                    = SM_CXSMICON,
+                SmCxSMsize                    = SM_CXSMSIZE,
+                SmCxVirtualScreen             = SM_CXVIRTUALSCREEN,
+                SmCxVScroll                   = SM_CXVSCROLL,
+                SmCyBorder                    = SM_CYBORDER,
+                SmCyCaption                   = SM_CYCAPTION,
+                SmCyCursor                    = SM_CYCURSOR,
+                SmCyDlgFrame                  = SM_CYDLGFRAME,
+                SmCyDoubleClk                 = SM_CYDOUBLECLK,
+                SmCyDrag                      = SM_CYDRAG,
+                SmCyEdge                      = SM_CYEDGE,
+                SmCyFixedFrame                = SM_CYFIXEDFRAME,
+                SmCyFocusBorder               = SM_CYFOCUSBORDER,
+                SmCyFrame                     = SM_CYFRAME,
+                SmCyFullScreen                = SM_CYFULLSCREEN,
+                SmCyHScroll                   = SM_CYHSCROLL,
+                SmCyIcon                      = SM_CYICON,
+                SmCyIconSpacing               = SM_CYICONSPACING,
+                SmCyKanjiWindow               = SM_CYKANJIWINDOW,
+                SmCyMaximized                 = SM_CYMAXIMIZED,
+                SmCyMaxTrack                  = SM_CYMAXTRACK,
+                SmCyMenu                      = SM_CYMENU,
+                SmCyMenuCheck                 = SM_CYMENUCHECK,
+                SmCyMenuSize                  = SM_CYMENUSIZE,
+                SmCyMin                       = SM_CYMIN,
+                SmCyMinimized                 = SM_CYMINIMIZED,
+                SmCyMinSpacing                = SM_CYMINSPACING,
+                SmCyMinTrack                  = SM_CYMINTRACK,
+                SmCyScreen                    = SM_CYSCREEN,
+                SmCySize                      = SM_CYSIZE,
+                SmCySizeFrame                 = SM_CYSIZEFRAME,
+                SmCySMCaption                 = SM_CYSMCAPTION,
+                SmCySMIcon                    = SM_CYSMICON,
+                SmCySMSize                    = SM_CYSMSIZE,
+                SmCyVirtualScreen             = SM_CYVIRTUALSCREEN,
+                SmCyVScroll                   = SM_CYVSCROLL,
+                SmCyVThumb                    = SM_CYVTHUMB,
+                SmDbCsEnabled                 = SM_DBCSENABLED,
+                SmDebug                       = SM_DEBUG,
+                SmDigitizer                   = SM_DIGITIZER,
+                SmImmEnabled                  = SM_IMMENABLED,
+                SmMaximumTouches              = SM_MAXIMUMTOUCHES,
+                SmMediaCenter                 = SM_MEDIACENTER,
+                SmMenuDropAlignment           = SM_MENUDROPALIGNMENT,
+                SmMidEastEnabled              = SM_MIDEASTENABLED,
+                SmMousePresent                = SM_MOUSEPRESENT,
+                SmMouseHorizontalWheelPresent = SM_MOUSEHORIZONTALWHEELPRESENT,
+                SmMouseWheelPresent           = SM_MOUSEWHEELPRESENT,
+                SmNetwork                     = SM_NETWORK,
+                SmPenWindows                  = SM_PENWINDOWS,
+                SmRemoteControl               = SM_REMOTECONTROL,
+                SmRemoteSession               = SM_REMOTESESSION,
+                SmSameDisplayFormat           = SM_SAMEDISPLAYFORMAT,
+                SmSecure                      = SM_SECURE,
+                SmServerR2                    = SM_SERVERR2,
+                SmShowSounds                  = SM_SHOWSOUNDS,
+                SmShuttingDown                = SM_SHUTTINGDOWN,
+                SmSlowMachine                 = SM_SLOWMACHINE,
+                SmStarter                     = SM_STARTER,
+                SmSwapButton                  = SM_SWAPBUTTON,
+                SmSystemDocked                = SM_SYSTEMDOCKED,
+                SmTabletPC                    = SM_TABLETPC,
+                SmXVirtualScreen              = SM_XVIRTUALSCREEN,
+                SmYVirtualScreen              = SM_YVIRTUALSCREEN,
+            };
+
             enum struct WindowLongPtrIndex : int32_t
             {
                 GwlpWndProc    = GWLP_WNDPROC,
@@ -120,6 +219,28 @@ namespace Windows::Win32
 MAKE_ENUM_TRAITS(Windows::Win32::UI::Controls, ImageFlags)
 #undef X
 
+#define X SmArrange        , SmCleanBoot    , SmCMonitors                  , SmCMouseButtons    , SmConvertiblesLateMode,\
+          SmCxBorder       , SmCxCursor     , SmCxDlgFrame                 , SmCxDoubleClk      , SmCxDrag              ,\
+          SmCxEdge         , SmCxFixedFrame , SmCxFocusBorder              , SmCxFrame          , SmCxFullScreen        ,\
+          SmCxHScroll      , SmCxHThumb     , SmCxIcon                     , SmCxIconSpacing    , SmCxMaximized         ,\
+          SmCxMaxTrack     , SmCxMenuCheck  , SmCxMenuSize                 , SmCxMin            , SmCxMinimized         ,\
+          SmCxMinSpacing   , SmCxMinTrack   , SmCxPaddedBorder             , SmCxScreen         , SmCxSize              ,\
+          SmCxSizeFrame    , SmCxSMIcon     , SmCxSMsize                   , SmCxVirtualScreen  , SmCxVScroll           ,\
+          SmCyBorder       , SmCyCaption    , SmCyCursor                   , SmCyDlgFrame       , SmCyDoubleClk         ,\
+          SmCyDrag         , SmCyEdge       , SmCyFixedFrame               , SmCyFocusBorder    , SmCyFrame             ,\
+          SmCyFullScreen   , SmCyHScroll    , SmCyIcon                     , SmCyIconSpacing    , SmCyKanjiWindow       ,\
+          SmCyMaximized    , SmCyMaxTrack   , SmCyMenu                     , SmCyMenuCheck      , SmCyMenuSize          ,\
+          SmCyMin          , SmCyMinimized  , SmCyMinSpacing               , SmCyMinTrack       , SmCyScreen            ,\
+          SmCySize         , SmCySizeFrame  , SmCySMCaption                , SmCySMIcon         , SmCySMSize            ,\
+          SmCyVirtualScreen, SmCyVScroll    , SmCyVThumb                   , SmDbCsEnabled      , SmDebug               ,\
+          SmDigitizer      , SmImmEnabled   , SmMaximumTouches             , SmMediaCenter      , SmMenuDropAlignment   ,\
+          SmMidEastEnabled , SmMousePresent , SmMouseHorizontalWheelPresent, SmMouseWheelPresent, SmNetwork             ,\
+          SmPenWindows     , SmRemoteControl, SmRemoteSession              , SmSameDisplayFormat, SmSecure              ,\
+          SmServerR2       , SmShowSounds   , SmShuttingDown               , SmSlowMachine      , SmStarter             ,\
+          SmSwapButton     , SmSystemDocked , SmTabletPC                   , SmXVirtualScreen   , SmYVirtualScreen
+MAKE_ENUM_TRAITS(Windows::Win32::UI::WindowsAndMessaging, SystemMetricsIndex)
+#undef X
+
 #define X GwlpWndProc, GwlpHInstance, GwlpHWndParent, GwlpUserData, GwlpId  ,\
           GwlWndProc , GwlHInstance , GwlHWndParent , GwlUserData , GwlStyle,\
           GwlExStyle , GwlId
@@ -149,6 +270,7 @@ MAKE_ENUM_TRAITS(Windows::Win32::Graphics::Gdi, MonitorFromFlags)
 #undef X
 
 ENUM_BITMASK_OPS(Windows::Win32::UI::Controls::ImageFlags)
+ENUM_BITMASK_OPS(Windows::Win32::UI::WindowsAndMessaging::SystemMetricsIndex)
 ENUM_BITMASK_OPS(Windows::Win32::UI::WindowsAndMessaging::WindowLongPtrIndex)
 ENUM_BITMASK_OPS(Windows::Win32::UI::WindowsAndMessaging::ShowWindowCmd)
 ENUM_BITMASK_OPS(Windows::Win32::UI::WindowsAndMessaging::SetWindowPosFlags)

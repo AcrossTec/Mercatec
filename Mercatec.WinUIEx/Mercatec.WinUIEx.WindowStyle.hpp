@@ -107,9 +107,9 @@ namespace Mercatec::WinUIEx
           WsSysMenu     , WsTabStop         , WsThickFrame , WsTiled      , WsTiledWindow ,\
           WsVisible     , WsVScroll
 MAKE_ENUM_TRAITS(Mercatec::WinUIEx, WindowStyle)
+ENUM_BITMASK_OPS(Mercatec::WinUIEx::WindowStyle)
+
 #undef X
 //
 // clang-format on
 //
-
-ENUM_BITMASK_OPS(Mercatec::WinUIEx::WindowStyle)

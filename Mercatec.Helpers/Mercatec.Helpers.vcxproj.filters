@@ -206,8 +206,5 @@
     <Midl Include="Mercatec.Helpers.ViewModels.ShellArgs.idl">
       <Filter>Infrastructure\ViewModels</Filter>
     </Midl>
-    <Midl Include="MIDLs\Mercatec.Helpers.AgileObject.idl">
-      <Filter>Infrastructure\MIDLs</Filter>
-    </Midl>
   </ItemGroup>
 </Project>

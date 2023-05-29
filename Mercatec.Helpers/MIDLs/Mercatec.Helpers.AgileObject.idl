@@ -1,7 +1,0 @@
-namespace Mercatec.Helpers
-{
-    [default_interface]
-    runtimeclass AgileObject
-    {
-    }
-}

@@ -18,7 +18,7 @@ namespace Mercatec::WinUIEx
         __declspec(property(get = GetHandle)) HICON Handle;
 
         static Icon FromFile(const std::wstring_view FileName);
-        static Icon FromByteArray(const winrt::array_view<std::byte> Rgba, const size_t Size);
+        static Icon FromByteArray(const winrt::array_view<std::byte> Rgba, const winrt::array_view<std::byte>::size_type Size);
 
         /// <summary>
         ///     For testing - Creates a simple Yang Icon.

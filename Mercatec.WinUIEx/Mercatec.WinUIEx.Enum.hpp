@@ -70,9 +70,11 @@ namespace Mercatec::WinUIEx
             return EnumTraits<TEnum>::GetValue(Value);
         }
 
-        inline static constexpr TEnum GetValue(const underlying_type_t Value) noexcept
+        template <typename TValue>
+        requires std::is_integral_v<TValue>
+        inline static constexpr TEnum GetValue(const TValue Value) noexcept
         {
-            return EnumTraits<TEnum>::GetValue(Value);
+            return EnumTraits<TEnum>::GetValue(static_cast<underlying_type_t>(Value));
         }
 
         template <typename TValue>

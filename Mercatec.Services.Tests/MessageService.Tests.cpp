@@ -1,21 +1,17 @@
 #include "pch.h"
 #include <Mercatec.Services.MessageService.hpp>
-
-#pragma push_macro("WINRT_LEAN_AND_MEAN")
-#undef WINRT_LEAN_AND_MEAN
 #include <winrt/Mercatec.Helpers.h>
-#pragma pop_macro("WINRT_LEAN_AND_MEAN")
 
 using namespace Mercatec::Services;
 using namespace std::string_view_literals;
 
-using AgileObject = winrt::Mercatec::Helpers::IAgileObject;
+using winrt::Windows::Foundation::IInspectable;
 
-struct Sender : winrt::implements<Sender, AgileObject>
+struct Sender : winrt::implements<Sender, IInspectable>
 {
 };
 
-struct Client : winrt::implements<Client, AgileObject>
+struct Client : winrt::implements<Client, IInspectable>
 {
 };
 

@@ -3,11 +3,7 @@
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
 
-#pragma push_macro("WINRT_LEAN_AND_MEAN")
-#undef WINRT_LEAN_AND_MEAN
 #include <winrt/Mercatec.Helpers.h>
-#pragma pop_macro("WINRT_LEAN_AND_MEAN")
-
 #include "Mercatec.Services.Exports.Api.hpp"
 #include <Mercatec.Helpers.FunctionTraits.hpp>
 
@@ -166,7 +162,7 @@ namespace Mercatec::Services
         std::unordered_map<std::type_index, Subscriptions>        m_Subscriptions;
     };
 
-    class MessageService : public winrt::implements<MessageService, winrt::Mercatec::Helpers::IAgileObject>
+    class MessageService : public winrt::implements<MessageService, winrt::Windows::Foundation::IInspectable>
     {
     public:
         template <typename TSender, typename TArgs>

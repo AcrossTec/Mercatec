@@ -13,7 +13,7 @@
 //! https://learn.microsoft.com/en-us/cpp/error-messages/compiler-warnings/compiler-warning-level-1-c4251?view=msvc-170
 #pragma warning(disable : 4251)
 
-namespace Mercatec::WinUIEx::Messaging
+namespace Mercatec::WinUIEx::Messaging::Internal
 {
     /// <summary>
     ///     Represents a Windows Message.

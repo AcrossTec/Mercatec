@@ -39,12 +39,12 @@ namespace Mercatec::WinUIEx
         return Icon(HICON(Handle));
     }
 
-    Icon Icon::FromByteArray(const winrt::array_view<std::byte> Rgba, const size_t Size)
+    Icon Icon::FromByteArray(const winrt::array_view<std::byte> Rgba, const winrt::array_view<std::byte>::size_type Size)
     {
-        std::unique_ptr<std::byte[]> AndMaskIcon{ new std::byte[Size * Size * 3] };
+        std::unique_ptr<std::byte[]> AndMaskIcon{ new std::byte[Size * Size * 3U] };
         std::unique_ptr<std::byte[]> XOrMaskIcon{ new std::byte[Size * Size] };
 
-        for ( int32_t Index = 0; Index < Size * Size; ++Index )
+        for ( winrt::array_view<std::byte>::size_type Index = 0; Index < Size * Size; ++Index )
         {
             AndMaskIcon[Index * 3]     = Rgba[Index * 4 + 3];
             AndMaskIcon[Index * 3 + 1] = Rgba[Index * 4 + 2];
