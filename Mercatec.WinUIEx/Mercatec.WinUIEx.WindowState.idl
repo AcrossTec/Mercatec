@@ -1,0 +1,26 @@
+namespace Mercatec.WinUIEx
+{
+    /// <summary>
+    ///     Specifies whether a window is minimized, maximized, or restored.
+    ///     Used by the <see cref="WindowManager.WindowState"/> property.
+    /// </summary>
+    /// <seealso cref="WindowManager.WindowState"/>
+    /// <seealso cref="WindowManager.StateChanged"/>
+    enum WindowState
+    {
+        /// <summary>
+        ///     The window is restored.
+        /// </summary>
+        Normal = 0,
+
+        /// <summary>
+        ///     The window is minimized.
+        /// </summary>
+        Minimized = 1,
+
+        /// <summary>
+        ///     The window is maximized.
+        /// </summary>
+        Maximized = 2
+    };
+}

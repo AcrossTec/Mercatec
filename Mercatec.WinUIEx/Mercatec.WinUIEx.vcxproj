@@ -123,6 +123,9 @@
       <UseStandardPreprocessor Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</UseStandardPreprocessor>
       <BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</BuildStlModules>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
@@ -133,9 +136,15 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.WinUIEx.BackdropType.hpp">
+      <DependentUpon>Mercatec.WinUIEx.BackdropType.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Internal\Mercatec.WinUIEx.Internal.WindowManager.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Debug.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Windowing.IconDataMembers.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Icon.hpp" />
@@ -143,7 +152,7 @@
     <ClInclude Include="Mercatec.WinUIEx.Enum.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Exports.Api.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.HwndExtensions.hpp" />
-    <ClInclude Include="Messaging\Mercatec.WinUIEx.Messaging.Internal.Message.hpp" />
+    <ClInclude Include="Internal\Messaging\Mercatec.WinUIEx.Messaging.Internal.Message.hpp" />
     <ClInclude Include="Mercatec.Microsoft.UI.Windowing.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.MonitorInfo.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Windowing.MouseEvent.hpp">
@@ -178,11 +187,18 @@
       <DependentUpon>Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.WindowManager.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.WindowState.hpp">
+      <DependentUpon>Mercatec.WinUIEx.WindowState.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Internal\Mercatec.WinUIEx.Internal.WindowManager.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.HwndExtensions.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Icon.cpp" />
-    <ClCompile Include="Messaging\Mercatec.WinUIEx.Messaging.Internal.Message.cpp" />
+    <ClCompile Include="Mercatec.WinUIEx.WindowManager.cpp" />
+    <ClCompile Include="Internal\Messaging\Mercatec.WinUIEx.Messaging.Internal.Message.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.MonitorInfo.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.cpp" />
@@ -208,6 +224,7 @@
       <DependentUpon>Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.WindowManager.Backdrop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Mercatec.WinUIEx.def" />
@@ -220,7 +237,13 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="Mercatec.WinUIEx.BackdropType.idl">
+      <SubType>Designer</SubType>
+    </Midl>
     <Midl Include="Mercatec.WinUIEx.WindowEx.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.WindowState.idl">
       <SubType>Designer</SubType>
     </Midl>
     <Midl Include="Mercatec.WinUIEx.ZOrderInfo.idl">
@@ -235,7 +258,9 @@
     <Midl Include="Mercatec.WinUIEx.Messaging.WindowMessageEventArgs.idl">
       <SubType>Designer</SubType>
     </Midl>
-    <Midl Include="Mercatec.WinUIEx.Messaging.WindowsMessages.idl" />
+    <Midl Include="Mercatec.WinUIEx.Messaging.WindowsMessages.idl">
+      <SubType>Designer</SubType>
+    </Midl>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Messaging.Message.g.h"
-#include "Messaging/Mercatec.WinUIEx.Messaging.Internal.Message.hpp"
+#include "Internal/Messaging/Mercatec.WinUIEx.Messaging.Internal.Message.hpp"
 
 namespace winrt::Mercatec::WinUIEx::Messaging::implementation
 {

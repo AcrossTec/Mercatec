@@ -6,7 +6,19 @@
 #include <Unknwn.h>
 #include <RestrictedErrorInfo.h>
 #include <Shobjidl.h>
+#include <Shlwapi.h>
+#include <ShlObj.h>
+#include <ShlObj_core.h>
 #include <hstring.h>
+
+//!
+//! CreateDispatcherQueueController Function
+//! https://learn.microsoft.com/en-us/windows/win32/api/dispatcherqueue/nf-dispatcherqueue-createdispatcherqueuecontroller
+//!
+//! DispatcherQueueOptions Structure
+//! https://learn.microsoft.com/en-us/windows/win32/api/dispatcherqueue/ns-dispatcherqueue-dispatcherqueueoptions
+//!
+#include <DispatcherQueue.h>
 
 // Undefine GetCurrentTime macro to prevent
 // conflict with Storyboard::GetCurrentTime
@@ -31,6 +43,8 @@
 
 #include <winrt/Windows.UI.Popups.h>
 #include <winrt/Windows.UI.Xaml.Interop.h>
+
+#include <winrt/Windows.System.h>
 
 #include <winrt/Microsoft.UI.h>
 #include <winrt/Microsoft.UI.Composition.h>
@@ -63,6 +77,7 @@
 #include <algorithm>
 #include <concepts>
 #include <chrono>
+#include <cmath>
 #include <functional>
 #include <format>
 #include <ranges>

@@ -1,0 +1,10 @@
+namespace Mercatec.WinUIEx
+{
+    enum BackdropType
+    {
+        Mica,
+        MicaAlt,
+        DesktopAcrylic,
+        DefaultColor
+    };
+}
