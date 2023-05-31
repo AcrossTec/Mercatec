@@ -1,0 +1,58 @@
+namespace Mercatec.WinUIEx
+{
+    [default_interface]
+    runtimeclass LocalSettings
+    {
+        LocalSettings();
+
+        [default_overload]
+        void Add(String Key, UInt8[] Value);
+        void Add(String Key, Guid    Value);
+        void Add(String Key, Char    Value);
+        void Add(String Key, Int16   Value);
+        void Add(String Key, Int32   Value);
+        void Add(String Key, Int64   Value);
+        void Add(String Key, UInt8   Value);
+        void Add(String Key, UInt16  Value);
+        void Add(String Key, UInt32  Value);
+        void Add(String Key, UInt64  Value);
+        void Add(String Key, Single  Value);
+        void Add(String Key, Double  Value);
+        void Add(String Key, String  Value);
+        void Add(String Key, Boolean Value);
+
+        [default_overload]
+        void Get(String Key, out UInt8[] Value);
+        void Get(String Key, out Guid    Value);
+        void Get(String Key, out Char    Value);
+        void Get(String Key, out Int16   Value);
+        void Get(String Key, out Int32   Value);
+        void Get(String Key, out Int64   Value);
+        void Get(String Key, out UInt8   Value);
+        void Get(String Key, out UInt16  Value);
+        void Get(String Key, out UInt32  Value);
+        void Get(String Key, out UInt64  Value);
+        void Get(String Key, out Single  Value);
+        void Get(String Key, out Double  Value);
+        void Get(String Key, out String  Value);
+        void Get(String Key, out Boolean Value);
+
+        Guid    GetGuid   (String Key);
+        Char    GetChar   (String Key);
+        Int16   GetInt16  (String Key);
+        Int32   GetInt32  (String Key);
+        Int64   GetInt64  (String Key);
+        UInt8   GetUInt8  (String Key);
+        UInt16  GetUInt16 (String Key);
+        UInt32  GetUInt32 (String Key);
+        UInt64  GetUInt64 (String Key);
+        Single  GetSingle (String Key);
+        Double  GetDouble (String Key);
+        String  GetString (String Key);
+        Boolean GetBoolean(String Key);
+        UInt8[] GetArray  (String Key);
+
+        void Load();
+        void Save();
+    }
+}

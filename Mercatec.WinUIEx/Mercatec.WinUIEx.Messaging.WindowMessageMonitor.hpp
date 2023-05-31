@@ -19,7 +19,7 @@ namespace Mercatec::WinUIEx::Messaging
     /// <summary>
     ///     The message monitor allows you to monitor all WM_MESSAGE events for a given window.
     /// </summary>
-    struct WindowMessageMonitor sealed : winrt::implements<WindowMessageMonitor, winrt::IInspectable>
+    struct WindowMessageMonitor : winrt::implements<WindowMessageMonitor, winrt::IInspectable>
     {
     public:
         /// <summary>

@@ -1,9 +1,104 @@
-#include "pch.h"
-#include "Internal/Mercatec.WinUIEx.Internal.WindowManager.hpp"
+﻿#include "pch.h"
+#include "Mercatec.WinUIEx.WindowManager.h"
+#if __has_include("WindowManager.g.cpp")
+# include "WindowManager.g.cpp"
+#endif
 
-namespace Mercatec::WinUIEx
+#include "Mercatec.WinUIEx.Windows.Win32.hpp"
+#include "Mercatec.WinUIEx.WindowState.hpp"
+#include "Mercatec.WinUIEx.BackdropType.hpp"
+#include "Mercatec.WinUIEx.WindowExtensions.hpp"
+#include "Mercatec.WinUIEx.SystemBackdrop.hpp"
+
+using Mercatec::WinUIEx::WindowExtensions;
+using Mercatec::WinUIEx::Messaging::WindowMessageMonitor;
+using winrt::Mercatec::WinUIEx::WindowState;
+using winrt::Mercatec::WinUIEx::ZOrderInfo;
+using winrt::Mercatec::WinUIEx::Messaging::WindowMessageEventArgs;
+using winrt::Mercatec::WinUIEx::Messaging::WindowsMessages;
+using winrt::Microsoft::UI::Windowing::AppWindow;
+using winrt::Microsoft::UI::Windowing::AppWindowChangedEventArgs;
+using winrt::Microsoft::UI::Windowing::AppWindowPresenter;
+using winrt::Microsoft::UI::Windowing::AppWindowPresenterKind;
+using winrt::Microsoft::UI::Windowing::OverlappedPresenter;
+using winrt::Microsoft::UI::Windowing::OverlappedPresenterState;
+using winrt::Windows::Foundation::EventHandler;
+using winrt::Windows::Foundation::TypedEventHandler;
+using winrt::Windows::Graphics::PointInt32;
+
+using std::make_shared;
+using std::make_unique;
+using std::shared_ptr;
+using std::unique_ptr;
+using std::weak_ptr;
+
+using namespace winrt::Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Composition;
+
+namespace winrt::Mercatec::WinUIEx::implementation
 {
-    bool WindowManager::TryGetWindowManager(const Window& Window, shared_ptr<WindowManager>& Manager)
+    /// <summary>
+    ///     A deeper dive into winrt::resume_foreground
+    ///     https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/concurrency-2#a-deeper-dive-into-winrtresume_foreground
+    /// </summary>
+    struct WindowsSystemDispatcherQueueHelper
+    {
+        winrt::Windows::System::DispatcherQueueController DispatcherQueueController;
+
+        void EnsureWindowsSystemDispatcherQueueController()
+        {
+            if ( winrt::Windows::System::DispatcherQueue::GetForCurrentThread() != nullptr )
+            {
+                return;
+            }
+
+            if ( DispatcherQueueController == nullptr )
+            {
+                DispatcherQueueOptions Options{ sizeof(DispatcherQueueOptions), DQTYPE_THREAD_CURRENT, DQTAT_COM_STA };
+
+                ABI::Windows::System::IDispatcherQueueController* Pointer{};
+                winrt::check_hresult(CreateDispatcherQueueController(Options, &Pointer));
+                DispatcherQueueController = winrt::Windows::System::DispatcherQueueController{ Pointer, winrt::take_ownership_from_abi };
+            }
+        }
+    };
+
+    struct WindowManager::WindowManagerImpl
+    {
+        com_ptr<::Mercatec::WinUIEx::Messaging::WindowMessageMonitor>            Monitor                   = nullptr;
+        Microsoft::UI::Xaml::Window                                              Window                    = nullptr;
+        Microsoft::UI::Windowing::OverlappedPresenter                            OverlappedPresenter       = nullptr;
+        Microsoft::UI::Composition::SystemBackdrops::ISystemBackdropController   CurrentController         = nullptr;
+        Microsoft::UI::Composition::SystemBackdrops::SystemBackdropConfiguration BackdropConfiguration     = nullptr;
+        WindowsSystemDispatcherQueueHelper                                       DispatcherQueueController = { nullptr };
+        winrt::Mercatec::WinUIEx::BackdropType                                   BackdropType              = Mercatec::WinUIEx::BackdropType::DefaultColor;
+        bool                                                                     IsInitialized             = false; // Set to true on first activation. Used to track persistence restore.
+        double_t                                                                 MinWidth                  = 136;
+        double_t                                                                 MinHeight                 = 39;
+        double_t                                                                 MaxWidth                  = 0;
+        double_t                                                                 MaxHeight                 = 0;
+        winrt::Mercatec::WinUIEx::WindowState                                    WindowState               = WindowState::Normal;
+        winrt::hstring                                                           PersistenceId             = L"";
+        bool                                                                     RestoringPersistence      = false; // Flag used to avoid WinUI DPI adjustment
+        bool                                                                     IsTitleBarVisible         = true;
+        event_token                                                              AppWindowChangedToken;
+        event_token                                                              WindowClosedToken;
+        event_token                                                              WindowClosedSavePersistenceToken;
+        event_token                                                              WindowActivatedToken;
+        event_token                                                              WindowThemeChangedToken;
+        event<TypedEventHandler<WinUIEx::WindowManager, WinUIEx::WindowState>>   StateChanged;
+        event<TypedEventHandler<WinUIEx::WindowManager, WindowMessageEventArgs>> WindowMessageReceived;
+        event<TypedEventHandler<WinUIEx::WindowManager, PointInt32>>             PositionChanged;
+        event<TypedEventHandler<WinUIEx::WindowManager, AppWindowPresenter>>     PresenterChanged;
+        event<TypedEventHandler<WinUIEx::WindowManager, ZOrderInfo>>             ZOrderChanged;
+        static std::map<HWND, winrt::weak_ref<WinUIEx::WindowManager>>           Managers;
+        static LocalSettings                                                     PersistenceStorage;
+    };
+
+    std::map<HWND, winrt::weak_ref<WinUIEx::WindowManager>> WindowManager::WindowManagerImpl::Managers;
+    LocalSettings                                           WindowManager::WindowManagerImpl::PersistenceStorage = nullptr;
+
+    bool WindowManager::TryGetWindowManager(const Window& Window, WinUIEx::WindowManager& Manager)
     {
         if ( Window == nullptr )
         {
@@ -12,25 +107,24 @@ namespace Mercatec::WinUIEx
 
         HWND Handle = WindowExtensions::GetWindowHandle(Window);
 
-        if ( auto It = WindowManagerImpl::Managers.find(Handle); Manager = It->second.lock() )
+        if ( auto It = WindowManagerImpl::Managers.find(Handle); It != std::end(WindowManagerImpl::Managers) )
         {
-            return true;
+            Manager = It->second.get();
+            return static_cast<bool>(Manager);
         }
 
         Manager = nullptr;
         return false;
     }
 
-    [[nodiscard]] shared_ptr<WindowManager> WindowManager::Get(const Window& Window)
+    [[nodiscard]] WinUIEx::WindowManager WindowManager::Get(const Window& Window)
     {
-        shared_ptr<WindowManager> Manager;
-
-        if ( TryGetWindowManager(Window, Manager) )
+        if ( WinUIEx::WindowManager Manager{ nullptr }; TryGetWindowManager(Window, Manager) )
         {
             return Manager;
         }
 
-        return make_shared<WindowManager>(Window);
+        return winrt::make<WindowManager>(Window);
     }
 
     WindowManager::~WindowManager()
@@ -42,16 +136,16 @@ namespace Mercatec::WinUIEx
             WindowManagerImpl::Managers.erase(Handle);
         }
 
-        AppWindow.Changed(Impl->AppWindowChangedToken);
+        AppWindow().Changed(Impl->AppWindowChangedToken);
         Impl->Window.Closed(Impl->WindowClosedSavePersistenceToken);
     }
 
     WindowManager::WindowManager(const Window& Window)
-      : WindowManager(Window, winrt::make_self<Messaging::WindowMessageMonitor>(Window))
+      : WindowManager(Window, winrt::make_self<WindowMessageMonitor>(Window))
     {
     }
 
-    WindowManager::WindowManager(const Window& Window, const winrt::com_ptr<Messaging::WindowMessageMonitor>& Monitor)
+    WindowManager::WindowManager(const Window& Window, const winrt::com_ptr<WindowMessageMonitor>& Monitor)
       : Impl{ make_unique<WindowManagerImpl>() }
     {
         if ( Window == nullptr )
@@ -59,7 +153,7 @@ namespace Mercatec::WinUIEx
             throw winrt::hresult_invalid_argument(L"Argument Null Exception: Window");
         }
 
-        if ( shared_ptr<WindowManager> OldMonitor; TryGetWindowManager(Window, OldMonitor) )
+        if ( WinUIEx::WindowManager OldMonitor{ nullptr }; TryGetWindowManager(Window, OldMonitor) )
         {
             throw winrt::hresult_error(winrt::impl::error_fail, L"Invalid Operation Exception: Only one window manager can be attached to a Window.");
         }
@@ -68,14 +162,14 @@ namespace Mercatec::WinUIEx
         Impl->Monitor->WindowMessageReceived({ this, &WindowManager::OnWindowMessage });
 
         Impl->Window                           = Window;
-        Impl->WindowClosedSavePersistenceToken = Impl->Window.Closed([](const auto&, const auto&) { SavePersistence(); });
+        Impl->WindowClosedSavePersistenceToken = Impl->Window.Closed([this](const auto&, const auto&) { SavePersistence(); });
         Impl->Window.VisibilityChanged({ this, &WindowManager::Window_VisibilityChanged });
 
-        Impl->AppWindowChangedToken = AppWindow.Changed({ this, &WindowManager::AppWindow_Changed });
+        Impl->AppWindowChangedToken = AppWindow().Changed({ this, &WindowManager::AppWindow_Changed });
 
-        WindowManagerImpl::Managers[WindowExtensions::GetWindowHandle(Window)] = weak_from_this();
+        WindowManagerImpl::Managers[WindowExtensions::GetWindowHandle(Window)] = make_weak<WinUIEx::WindowManager>(*this);
 
-        Impl->OverlappedPresenter = winrt::unbox_value_or<OverlappedPresenter>(AppWindow.Presenter(), OverlappedPresenter::Create());
+        Impl->OverlappedPresenter = winrt::unbox_value_or<OverlappedPresenter>(AppWindow().Presenter(), OverlappedPresenter::Create());
 
         switch ( Impl->OverlappedPresenter.State() )
         {
@@ -97,79 +191,79 @@ namespace Mercatec::WinUIEx
         }
 
         Impl->DispatcherQueueController.EnsureWindowsSystemDispatcherQueueController();
-        this->BackdropType = BackdropType::DesktopAcrylic;
+        BackdropType(BackdropType::DesktopAcrylic);
     }
 
-    void WindowManager::Window_VisibilityChanged(const winrt::IInspectable& Sender, const WindowVisibilityChangedEventArgs& Args)
+    void WindowManager::Window_VisibilityChanged([[maybe_unused]] const winrt::IInspectable& Sender, const WindowVisibilityChangedEventArgs& Args)
     {
         if ( Args.Visible() and Impl->CurrentController == nullptr )
         {
             Impl->DispatcherQueueController.EnsureWindowsSystemDispatcherQueueController();
-            this->BackdropType = BackdropType::DesktopAcrylic;
+            BackdropType(BackdropType::DesktopAcrylic);
         }
     }
 
-    winrt::Microsoft::UI::Windowing::AppWindow WindowManager::GetAppWindow() const noexcept
+    winrt::Microsoft::UI::Windowing::AppWindow WindowManager::AppWindow() const noexcept
     {
         return Impl->Window.AppWindow();
     }
 
-    double_t WindowManager::GetWidth() const noexcept
+    double_t WindowManager::Width() const noexcept
     {
-        return AppWindow.Size().Width / (WindowExtensions::GetDpiForWindow(Impl->Window) / 96.0);
+        return AppWindow().Size().Width / (WindowExtensions::GetDpiForWindow(Impl->Window) / 96.0);
     }
 
-    void WindowManager::SetWidth(const double_t Width) noexcept
+    void WindowManager::Width(const double_t Width) noexcept
     {
-        WindowExtensions::SetWindowSize(Impl->Window, Width, Height);
+        WindowExtensions::SetWindowSize(Impl->Window, Width, Height());
     }
 
-    double_t WindowManager::GetHeight() const noexcept
+    double_t WindowManager::Height() const noexcept
     {
-        return AppWindow.Size().Height / (WindowExtensions::GetDpiForWindow(Impl->Window) / 96.0);
+        return AppWindow().Size().Height / (WindowExtensions::GetDpiForWindow(Impl->Window) / 96.0);
     }
 
-    void WindowManager::SetHeight(const double_t Height) noexcept
+    void WindowManager::Height(const double_t Height) noexcept
     {
-        WindowExtensions::SetWindowSize(Impl->Window, Width, Height);
+        WindowExtensions::SetWindowSize(Impl->Window, Width(), Height);
     }
 
-    double_t WindowManager::GetMinWidth() const noexcept
+    double_t WindowManager::MinWidth() const noexcept
     {
         return Impl->MinWidth;
     }
 
-    void WindowManager::SetMinWidth(const double_t MinWidth) noexcept
+    void WindowManager::MinWidth(const double_t MinWidth) noexcept
     {
         Impl->MinWidth = MinWidth;
 
-        if ( Width < MinWidth )
+        if ( Width() < MinWidth )
         {
-            Width = MinWidth;
+            Width(MinWidth);
         }
     }
 
-    double_t WindowManager::GetMinHeight() const noexcept
+    double_t WindowManager::MinHeight() const noexcept
     {
         return Impl->MinHeight;
     }
 
-    void WindowManager::SetMinHeight(const double_t MinHeight) noexcept
+    void WindowManager::MinHeight(const double_t MinHeight) noexcept
     {
         Impl->MinHeight = MinHeight;
 
-        if ( Height < MinHeight )
+        if ( Height() < MinHeight )
         {
-            Height = MinHeight;
+            Height(MinHeight);
         }
     }
 
-    double_t WindowManager::GetMaxWidth() const noexcept
+    double_t WindowManager::MaxWidth() const noexcept
     {
         return Impl->MaxWidth;
     }
 
-    void WindowManager::SetMaxWidth(const double_t MaxWidth)
+    void WindowManager::MaxWidth(const double_t MaxWidth)
     {
         if ( MaxWidth <= 0 )
         {
@@ -178,18 +272,18 @@ namespace Mercatec::WinUIEx
 
         Impl->MaxWidth = MaxWidth;
 
-        if ( Width > MaxWidth )
+        if ( Width() > MaxWidth )
         {
-            Width = MaxWidth;
+            Width(MaxWidth);
         }
     }
 
-    double_t WindowManager::GetMaxHeight() const noexcept
+    double_t WindowManager::MaxHeight() const noexcept
     {
         return Impl->MaxHeight;
     }
 
-    void WindowManager::SetMaxHeight(const double_t MaxHeight)
+    void WindowManager::MaxHeight(const double_t MaxHeight)
     {
         if ( MaxHeight <= 0 )
         {
@@ -198,13 +292,13 @@ namespace Mercatec::WinUIEx
 
         Impl->MaxHeight = MaxHeight;
 
-        if ( Height > MaxHeight )
+        if ( Height() > MaxHeight )
         {
-            Height = MaxHeight;
+            Height(MaxHeight);
         }
     }
 
-    void WindowManager::OnWindowMessage(const winrt::IInspectable& Sender, const WindowMessageEventArgs& Args)
+    void WindowManager::OnWindowMessage([[maybe_unused]] const winrt::IInspectable& Sender, const WindowMessageEventArgs& Args)
     {
         if ( (Args.MessageType() == WindowsMessages::WmShowWindow) and (Args.Message().WParam() == 1) )
         {
@@ -218,7 +312,7 @@ namespace Mercatec::WinUIEx
                   [this]
                   {
                       Impl->DispatcherQueueController.EnsureWindowsSystemDispatcherQueueController();
-                      this->BackdropType = BackdropType::DesktopAcrylic;
+                      BackdropType(BackdropType::DesktopAcrylic);
                   }
                 );
             }
@@ -241,35 +335,35 @@ namespace Mercatec::WinUIEx
                 if ( Impl->RestoringPersistence )
                 {
                     // Only restrict maxsize during restore
-                    if ( not ::isnan(MaxWidth) and MaxWidth > 0 )
+                    if ( not ::isnan(MaxWidth()) and MaxWidth() > 0 )
                     {
                         // If minwidth < maxwidth, minwidth will take presedence
-                        Rect2->ptMaxSize.x = LONG(std::min(std::max(MaxWidth, MinWidth) * (CurrentDpi / 96.0), double_t(Rect2->ptMaxSize.x)));
+                        Rect2->ptMaxSize.x = LONG(std::min(std::max(MaxWidth(), MinWidth()) * (CurrentDpi / 96.0), double_t(Rect2->ptMaxSize.x)));
                     }
 
-                    if ( not ::isnan(MaxHeight) and MaxHeight > 0 )
+                    if ( not ::isnan(MaxHeight()) and MaxHeight() > 0 )
                     {
                         // If minheight < maxheight, minheight will take presedence
-                        Rect2->ptMaxSize.y = LONG(std::min(std::max(MaxHeight, MinHeight) * (CurrentDpi / 96.0), double_t(Rect2->ptMaxSize.y)));
+                        Rect2->ptMaxSize.y = LONG(std::min(std::max(MaxHeight(), MinHeight()) * (CurrentDpi / 96.0), double_t(Rect2->ptMaxSize.y)));
                     }
                 }
                 else
                 {
                     // Restrict min-size
-                    Rect2->ptMinTrackSize.x = LONG(std::max(MinWidth * (CurrentDpi / 96.0), double_t(Rect2->ptMinTrackSize.x)));
-                    Rect2->ptMinTrackSize.y = LONG(std::max(MinHeight * (CurrentDpi / 96.0), double_t(Rect2->ptMinTrackSize.y)));
+                    Rect2->ptMinTrackSize.x = LONG(std::max(MinWidth() * (CurrentDpi / 96.0), double_t(Rect2->ptMinTrackSize.x)));
+                    Rect2->ptMinTrackSize.y = LONG(std::max(MinHeight() * (CurrentDpi / 96.0), double_t(Rect2->ptMinTrackSize.y)));
 
                     // Restrict max-size
-                    if ( not ::isnan(MaxWidth) and MaxWidth > 0 )
+                    if ( not ::isnan(MaxWidth()) and MaxWidth() > 0 )
                     {
                         // If minwidth < maxwidth, minwidth will take presedence
-                        Rect2->ptMaxTrackSize.x = LONG(std::min(std::max(MaxWidth, MinWidth) * (CurrentDpi / 96.0), double_t(Rect2->ptMaxTrackSize.x)));
+                        Rect2->ptMaxTrackSize.x = LONG(std::min(std::max(MaxWidth(), MinWidth()) * (CurrentDpi / 96.0), double_t(Rect2->ptMaxTrackSize.x)));
                     }
 
-                    if ( not ::isnan(MaxHeight) and MaxHeight > 0 )
+                    if ( not ::isnan(MaxHeight()) and MaxHeight() > 0 )
                     {
                         // If minheight < maxheight, minheight will take presedence
-                        Rect2->ptMaxTrackSize.y = LONG(std::min(std::max(MaxHeight, MinHeight) * (CurrentDpi / 96.0), double_t(Rect2->ptMaxTrackSize.y)));
+                        Rect2->ptMaxTrackSize.y = LONG(std::min(std::max(MaxHeight(), MinHeight()) * (CurrentDpi / 96.0), double_t(Rect2->ptMaxTrackSize.y)));
                     }
                 }
                 break;
@@ -324,12 +418,12 @@ namespace Mercatec::WinUIEx
         }
     }
 
-    WindowState WindowManager::GetWindowState() const noexcept
+    WindowState WindowManager::WindowState() const noexcept
     {
         return Impl->WindowState;
     }
 
-    void WindowManager::SetWindowState(const Mercatec::WinUIEx::WindowState& State) noexcept
+    void WindowManager::WindowState(const WinUIEx::WindowState& State) noexcept
     {
         if ( Impl->WindowState != State )
         {
@@ -354,7 +448,7 @@ namespace Mercatec::WinUIEx
         }
     }
 
-    winrt::event_token WindowManager::StateChanged(const winrt::Windows::Foundation::EventHandler<Mercatec::WinUIEx::WindowState>& Handler)
+    winrt::event_token WindowManager::StateChanged(const TypedEventHandler<WinUIEx::WindowManager, Mercatec::WinUIEx::WindowState>& Handler)
     {
         return Impl->StateChanged.add(Handler);
     }
@@ -364,7 +458,7 @@ namespace Mercatec::WinUIEx
         Impl->StateChanged.remove(Token);
     }
 
-    winrt::event_token WindowManager::WindowMessageReceived(const winrt::Windows::Foundation::EventHandler<WindowMessageEventArgs>& Handler)
+    winrt::event_token WindowManager::WindowMessageReceived(const TypedEventHandler<WinUIEx::WindowManager, WindowMessageEventArgs>& Handler)
     {
         return Impl->WindowMessageReceived.add(Handler);
     }
@@ -374,27 +468,27 @@ namespace Mercatec::WinUIEx
         Impl->WindowMessageReceived.remove(Token);
     }
 
-    std::optional<winrt::hstring> WindowManager::GetPersistenceId() const noexcept
+    winrt::hstring WindowManager::PersistenceId() const noexcept
     {
         return Impl->PersistenceId;
     }
 
-    void WindowManager::SetPersistenceId(const std::optional<winrt::hstring>& PersistenceId) noexcept
+    void WindowManager::PersistenceId(const std::wstring_view PersistenceId) noexcept
     {
         Impl->PersistenceId = PersistenceId;
     }
 
-    std::shared_ptr<std::map<std::wstring, std::any>> WindowManager::PersistenceStorage() noexcept
+    LocalSettings WindowManager::PersistenceStorage() noexcept
     {
         return WindowManagerImpl::PersistenceStorage;
     }
 
-    void WindowManager::PersistenceStorage(const std::shared_ptr<std::map<std::wstring, std::any>>& PersistenceStorage) noexcept
+    void WindowManager::PersistenceStorage(const LocalSettings& PersistenceStorage) noexcept
     {
         WindowManagerImpl::PersistenceStorage = PersistenceStorage;
     }
 
-    std::shared_ptr<std::map<std::wstring, std::any>> WindowManager::GetPersistenceStorage(const bool CreateIfMissing)
+    LocalSettings WindowManager::GetPersistenceStorage([[maybe_unused]] const bool CreateIfMissing)
     {
         if ( PersistenceStorage() != nullptr )
             return PersistenceStorage();
@@ -405,31 +499,7 @@ namespace Mercatec::WinUIEx
             //! TODO: Implementar: winrt::Windows::Storage::ApplicationData::Current().LocalSettings()
             //!
 
-            auto Container = winrt::Windows::Storage::ApplicationData:: //
-                             Current()
-                               .LocalSettings()
-                               .Containers()
-                               .TryLookup(L"WinUIEx");
-
-            if ( Container == nullptr and CreateIfMissing )
-            {
-                Container = winrt::Windows::Storage::ApplicationData:: //
-                            Current()
-                              .LocalSettings()
-                              .CreateContainer( //
-                                L"WinUIEx",
-                                winrt::Windows::Storage::ApplicationDataCreateDisposition::Always
-                              );
-            }
-
-            auto Result = make_shared<std::map<std::wstring, std::any>>();
-
-            for ( const auto& Value : Container.Values() )
-            {
-                Result->insert_or_assign(Value.Key().c_str(), Value.Value());
-            }
-
-            return Result;
+            return LocalSettings();
         }
         catch ( ... )
         {
@@ -440,94 +510,333 @@ namespace Mercatec::WinUIEx
 
     void WindowManager::LoadPersistence()
     {
+        //!
+        //! TODO: Implementar: winrt::Windows::Storage::ApplicationData::Current().LocalSettings()
+        //!
     }
 
     void WindowManager::SavePersistence()
     {
+        //!
+        //! TODO: Implementar: winrt::Windows::Storage::ApplicationData::Current().LocalSettings()
+        //!
     }
 
-    void WindowManager::AppWindow_Changed(const winrt::Microsoft::UI::Windowing::AppWindow& Sender, const winrt::Microsoft::UI::Windowing::AppWindowChangedEventArgs& Args)
+    void WindowManager::AppWindow_Changed(const Microsoft::UI::Windowing::AppWindow& Sender, const AppWindowChangedEventArgs& Args)
     {
+        if ( Args.DidPositionChange() )
+        {
+            Impl->PositionChanged(*this, Sender.Position());
+        }
+
+        if ( Args.DidPresenterChange() )
+        {
+            if ( OverlappedPresenter Presenter = AppWindow().Presenter().try_as<OverlappedPresenter>(); Presenter and Presenter != Impl->OverlappedPresenter )
+            {
+                Impl->OverlappedPresenter = Presenter;
+                Impl->IsTitleBarVisible   = Presenter.HasTitleBar();
+            }
+
+            Impl->PresenterChanged(*this, Sender.Presenter());
+        }
+
+        if ( Args.DidZOrderChange() )
+        {
+            ZOrderInfo Info;
+            Info.IsZOrderAtTop(Args.IsZOrderAtTop());
+            Info.IsZOrderAtBottom(Args.IsZOrderAtBottom());
+            Info.ZOrderBelowWindowId(Args.ZOrderBelowWindowId());
+
+            Impl->ZOrderChanged(*this, Info);
+        }
     }
 
-    bool WindowManager::GetIsTitleBarVisible() const noexcept
+    bool WindowManager::IsTitleBarVisible() const noexcept
     {
-        return false;
+        return Impl->IsTitleBarVisible;
     }
 
-    void WindowManager::SetIsTitleBarVisible(const bool IsTitleBarVisible) noexcept
+    void WindowManager::IsTitleBarVisible(const bool IsTitleBarVisible) noexcept
     {
+        Impl->IsTitleBarVisible = IsTitleBarVisible;
+        Impl->OverlappedPresenter.SetBorderAndTitleBar(true, IsTitleBarVisible);
     }
 
-    bool WindowManager::GetIsMinimizable() const noexcept
+    bool WindowManager::IsMinimizable() const noexcept
     {
-        return false;
+        return Impl->OverlappedPresenter.IsMinimizable();
     }
 
-    void WindowManager::SetIsMinimizable(const bool IsMinimizable) noexcept
+    void WindowManager::IsMinimizable(const bool IsMinimizable) noexcept
     {
+        Impl->OverlappedPresenter.IsMinimizable(IsMinimizable);
     }
 
-    bool WindowManager::GetIsMaximizable() const noexcept
+    bool WindowManager::IsMaximizable() const noexcept
     {
-        return false;
+        return Impl->OverlappedPresenter.IsMaximizable();
     }
 
-    void WindowManager::SetIsMaximizable(const bool) noexcept
+    void WindowManager::IsMaximizable(const bool IsMaximizable) noexcept
     {
+        Impl->OverlappedPresenter.IsMaximizable(IsMaximizable);
     }
 
-    bool WindowManager::GetIsResizable() const noexcept
+    bool WindowManager::IsResizable() const noexcept
     {
-        return false;
+        return Impl->OverlappedPresenter.IsResizable();
     }
 
-    void WindowManager::SetIsResizable(const bool IsResizable) noexcept
+    void WindowManager::IsResizable(const bool IsResizable) noexcept
     {
+        Impl->OverlappedPresenter.IsResizable(IsResizable);
     }
 
-    bool WindowManager::GetIsAlwaysOnTop() const noexcept
+    bool WindowManager::IsAlwaysOnTop() const noexcept
     {
-        return false;
+        return Impl->OverlappedPresenter.IsAlwaysOnTop();
     }
 
-    void WindowManager::SetIsAlwaysOnTop(const bool IsAlwaysOnTop) noexcept
+    void WindowManager::IsAlwaysOnTop(const bool IsAlwaysOnTop) noexcept
     {
+        Impl->OverlappedPresenter.IsAlwaysOnTop(IsAlwaysOnTop);
     }
 
-    winrt::Microsoft::UI::Windowing::AppWindowPresenterKind WindowManager::GetPresenterKind() const noexcept
+    AppWindowPresenterKind WindowManager::PresenterKind() const noexcept
     {
-        return winrt::Microsoft::UI::Windowing::AppWindowPresenterKind();
+        return AppWindow().Presenter().Kind();
     }
 
-    void WindowManager::SetPresenterKind(const winrt::Microsoft::UI::Windowing::AppWindowPresenterKind PresenterKind) noexcept
+    void WindowManager::PresenterKind(const AppWindowPresenterKind PresenterKind) noexcept
     {
+        if ( PresenterKind == AppWindowPresenterKind::Overlapped )
+        {
+            AppWindow().SetPresenter(Impl->OverlappedPresenter);
+        }
+        else
+        {
+            AppWindow().SetPresenter(PresenterKind);
+        }
     }
 
-    winrt::event_token WindowManager::PositionChanged(const winrt::Windows::Foundation::EventHandler<winrt::Windows::Graphics::PointInt32>& Handler)
+    winrt::event_token WindowManager::PositionChanged(const TypedEventHandler<WinUIEx::WindowManager, winrt::Windows::Graphics::PointInt32>& Handler)
     {
-        return winrt::event_token();
+        return Impl->PositionChanged.add(Handler);
     }
 
     void WindowManager::PositionChanged(const winrt::event_token& Token) noexcept
     {
+        Impl->PositionChanged.remove(Token);
     }
 
-    winrt::event_token WindowManager::PresenterChanged(const winrt::Windows::Foundation::EventHandler<winrt::Microsoft::UI::Windowing::AppWindowPresenter>& Handler)
+    winrt::event_token WindowManager::PresenterChanged(const TypedEventHandler<WinUIEx::WindowManager, winrt::Microsoft::UI::Windowing::AppWindowPresenter>& Handler)
     {
-        return winrt::event_token();
+        return Impl->PresenterChanged.add(Handler);
     }
 
     void WindowManager::PresenterChanged(const winrt::event_token& Token) noexcept
     {
+        Impl->PresenterChanged.remove(Token);
     }
 
-    winrt::event_token WindowManager::ZOrderChanged(const winrt::Windows::Foundation::EventHandler<winrt::Mercatec::WinUIEx::ZOrderInfo>& Handler)
+    winrt::event_token WindowManager::ZOrderChanged(const TypedEventHandler<WinUIEx::WindowManager, winrt::Mercatec::WinUIEx::ZOrderInfo>& Handler)
     {
-        return winrt::event_token();
+        return Impl->ZOrderChanged.add(Handler);
     }
 
     void WindowManager::ZOrderChanged(const winrt::event_token& Token) noexcept
     {
+        Impl->ZOrderChanged.remove(Token);
     }
-} // namespace Mercatec::WinUIEx
+
+    void WindowManager::Window_ThemeChanged([[maybe_unused]] const FrameworkElement& Sender, [[maybe_unused]] const winrt::IInspectable& Args)
+    {
+        if ( Impl->BackdropConfiguration != nullptr )
+        {
+            SetConfigurationSourceTheme();
+        }
+    }
+
+    void WindowManager::Window_Activated([[maybe_unused]] const winrt::IInspectable& Sender, const WindowActivatedEventArgs& Args)
+    {
+        if ( Impl->BackdropConfiguration != nullptr )
+        {
+            Impl->BackdropConfiguration.IsInputActive(Args.WindowActivationState() != WindowActivationState::Deactivated);
+        }
+    }
+
+    void WindowManager::Window_Closed([[maybe_unused]] const winrt::IInspectable& Sender, [[maybe_unused]] const WindowEventArgs& Args)
+    {
+        // Make sure any Mica/Acrylic controller is disposed so it doesn't try to se this closed window.
+        if ( Impl->CurrentController != nullptr )
+        {
+            Impl->CurrentController.Close();
+            Impl->CurrentController = nullptr;
+        }
+
+        Impl->Window.Activated(Impl->WindowActivatedToken);
+        Impl->BackdropConfiguration = nullptr;
+    }
+
+    winrt::Mercatec::WinUIEx::BackdropType WindowManager::BackdropType() const noexcept
+    {
+        return Impl->BackdropType;
+    }
+
+    void WindowManager::BackdropType(winrt::Mercatec::WinUIEx::BackdropType BackdropType) noexcept
+    {
+        if ( BackdropType == Impl->BackdropType )
+        {
+            return;
+        }
+
+        // Reset to default color. If the requested type is supported, we'll update to that.
+        // Note: This sample completely removes any previous controller to reset to the default
+        //       state. This is done so this sample can show what is expected to be the most
+        //       common pattern of an app simply choosing one controller type which it sets at
+        //       startup. If an app wants to toggle between Mica and Acrylic it could simply
+        //       call RemoveSystemBackdropTarget() on the old controller and then setup the new
+        //       controller, reusing any existing Impl->BackdropConfiguration and Activated/Closed
+        //       event handlers.
+
+        if ( Impl->CurrentController != nullptr )
+        {
+            Impl->CurrentController.Close();
+            Impl->CurrentController = nullptr;
+        }
+
+        Impl->Window.Closed(Impl->WindowClosedToken);
+        Impl->Window.Activated(Impl->WindowActivatedToken);
+        Impl->Window.as<FrameworkElement>().ActualThemeChanged(Impl->WindowThemeChangedToken);
+
+        Impl->BackdropType          = BackdropType::DefaultColor;
+        Impl->BackdropConfiguration = nullptr;
+
+        if ( BackdropType == BackdropType::Mica )
+        {
+            if ( TrySetMicaBackdrop(false) )
+            {
+                Impl->BackdropType = BackdropType;
+                return;
+            }
+            else
+            {
+                // Mica isn't supported. Try Acrylic.
+                BackdropType = BackdropType::DesktopAcrylic;
+            }
+        }
+
+        if ( BackdropType == BackdropType::MicaAlt )
+        {
+            if ( TrySetMicaBackdrop(true) )
+            {
+                Impl->BackdropType = BackdropType;
+                return;
+            }
+            else
+            {
+                // MicaAlt isn't supported. Try Acrylic.
+                BackdropType = BackdropType::DesktopAcrylic;
+            }
+        }
+
+        if ( BackdropType == BackdropType::DesktopAcrylic )
+        {
+            if ( TrySetAcrylicBackdrop() )
+            {
+                Impl->BackdropType = BackdropType;
+                return;
+            }
+            else
+            {
+                // Acrylic isn't supported, so take the next option, which is DefaultColor, which is already set.
+                // Acrylic isn't supported. Switching to default color.
+            }
+        }
+    }
+
+    void WindowManager::SetConfigurationSourceTheme() noexcept
+    {
+        switch ( Impl->Window.Content().as<FrameworkElement>().ActualTheme() )
+        {
+            case ElementTheme::Dark:
+            {
+                Impl->BackdropConfiguration.Theme(SystemBackdrops::SystemBackdropTheme::Dark);
+                break;
+            }
+            case ElementTheme::Light:
+            {
+                Impl->BackdropConfiguration.Theme(SystemBackdrops::SystemBackdropTheme::Light);
+                break;
+            }
+            case ElementTheme::Default:
+            {
+                Impl->BackdropConfiguration.Theme(SystemBackdrops::SystemBackdropTheme::Default);
+                break;
+            }
+        }
+    }
+
+    bool WindowManager::TrySetMicaBackdrop(const bool UseMicaAlt) noexcept
+    {
+        if ( winrt::Microsoft::UI::Composition::SystemBackdrops::MicaController::IsSupported() )
+        {
+            // Hooking up the policy object.
+            Impl->BackdropConfiguration = winrt::Microsoft::UI::Composition::SystemBackdrops::SystemBackdropConfiguration();
+
+            Impl->WindowClosedToken       = Impl->Window.Closed({ this, &WindowManager::Window_Closed });
+            Impl->WindowActivatedToken    = Impl->Window.Activated({ this, &WindowManager::Window_Activated });
+            Impl->WindowThemeChangedToken = Impl->Window.Content().as<FrameworkElement>().ActualThemeChanged({ this, &WindowManager::Window_ThemeChanged });
+
+            // Initial configuration state.
+            Impl->BackdropConfiguration.IsInputActive(true);
+            SetConfigurationSourceTheme();
+
+            winrt::Microsoft::UI::Composition::SystemBackdrops::MicaController MicaController;
+            MicaController.Kind(
+              UseMicaAlt //
+                ? winrt::Microsoft::UI::Composition::SystemBackdrops::MicaKind::BaseAlt
+                : winrt::Microsoft::UI::Composition::SystemBackdrops::MicaKind::Base
+            );
+
+            // Enable the system backdrop.
+            // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
+            MicaController.AddSystemBackdropTarget(Impl->Window.as<winrt::Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop>());
+            MicaController.SetSystemBackdropConfiguration(Impl->BackdropConfiguration);
+
+            Impl->CurrentController = MicaController;
+            return true; // Succeeded.
+        }
+
+        return false; // Mica is not supported on this system.
+    }
+
+    bool WindowManager::TrySetAcrylicBackdrop() noexcept
+    {
+        if ( winrt::Microsoft::UI::Composition::SystemBackdrops::DesktopAcrylicController::IsSupported() )
+        {
+            // Hooking up the policy object.
+            Impl->BackdropConfiguration = winrt::Microsoft::UI::Composition::SystemBackdrops::SystemBackdropConfiguration();
+
+            Impl->WindowClosedToken       = Impl->Window.Closed({ this, &WindowManager::Window_Closed });
+            Impl->WindowActivatedToken    = Impl->Window.Activated({ this, &WindowManager::Window_Activated });
+            Impl->WindowThemeChangedToken = Impl->Window.Content().as<FrameworkElement>().ActualThemeChanged({ this, &WindowManager::Window_ThemeChanged });
+
+            // Initial configuration state.
+            Impl->BackdropConfiguration.IsInputActive(true);
+            SetConfigurationSourceTheme();
+
+            winrt::Microsoft::UI::Composition::SystemBackdrops::DesktopAcrylicController AcrylicController;
+
+            // Enable the system backdrop.
+            // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
+            AcrylicController.AddSystemBackdropTarget(Impl->Window.as<winrt::Microsoft::UI::Composition::ICompositionSupportsSystemBackdrop>());
+            AcrylicController.SetSystemBackdropConfiguration(Impl->BackdropConfiguration);
+
+            Impl->CurrentController = AcrylicController;
+            return true; // Succeeded.
+        }
+
+        return false; // Acrylic is not supported on this system
+    }
+} // namespace winrt::Mercatec::WinUIEx::implementation

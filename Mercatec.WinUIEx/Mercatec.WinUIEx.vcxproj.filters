@@ -53,12 +53,6 @@
     <Filter Include="Headers\Messaging\Internal">
       <UniqueIdentifier>{1ecef320-e812-41ed-ac96-5859652d2ca1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headers\Windows\Internal">
-      <UniqueIdentifier>{a6c72235-5007-459f-8c41-c3d9880a009e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources\Windows\Internal">
-      <UniqueIdentifier>{c29c1515-2b9c-41e3-8344-2c49e26370a1}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp">
@@ -97,21 +91,9 @@
     <ClCompile Include="Mercatec.WinUIEx.Windowing.WindowMessageSink.cpp">
       <Filter>Sources\Windowing</Filter>
     </ClCompile>
-    <ClCompile Include="Mercatec.WinUIEx.WindowManager.cpp">
-      <Filter>Sources\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Mercatec.WinUIEx.WindowManager.Backdrop.cpp">
-      <Filter>Sources\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="Internal\Mercatec.WinUIEx.Internal.WindowManager.cpp">
-      <Filter>Sources\Windows\Internal</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="Mercatec.WinUIEx.WindowEx.idl">
-      <Filter>Controls</Filter>
-    </Midl>
-    <Midl Include="Mercatec.WinUIEx.ZOrderInfo.idl">
       <Filter>Controls</Filter>
     </Midl>
     <Midl Include="Mercatec.WinUIEx.Windowing.MouseEvent.idl">
@@ -131,6 +113,15 @@
     </Midl>
     <Midl Include="Mercatec.WinUIEx.BackdropType.idl">
       <Filter>Headers\Windows</Filter>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.WindowManager.idl">
+      <Filter>Headers\Windows</Filter>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.ZOrderInfo.idl">
+      <Filter>Headers\Windows</Filter>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.LocalSettings.idl">
+      <Filter>Headers\Helpers</Filter>
     </Midl>
   </ItemGroup>
   <ItemGroup>
@@ -217,12 +208,6 @@
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.WindowState.hpp">
       <Filter>Headers\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Mercatec.WinUIEx.WindowManager.hpp">
-      <Filter>Headers\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="Internal\Mercatec.WinUIEx.Internal.WindowManager.hpp">
-      <Filter>Headers\Windows\Internal</Filter>
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.BackdropType.hpp">
       <Filter>Headers\Windows</Filter>
