@@ -4,7 +4,7 @@
 namespace Mercatec.Application
 {
     [default_interface]
-    runtimeclass MainWindow : Microsoft.UI.Xaml.Window, Mercatec.Helpers.Views.IWindowId
+    runtimeclass MainWindow : Mercatec.WinUIEx.WindowEx
     {
         MainWindow();
     }

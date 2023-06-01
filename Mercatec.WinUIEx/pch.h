@@ -72,6 +72,9 @@
 #include <winrt/Microsoft.Windows.System.h>
 
 #include <Microsoft.UI.Xaml.Window.h>
+
+#include <wil/winrt.h>
+#include <wil/cppwinrt_wrl.h>
 #include <wil/cppwinrt_helpers.h>
 
 #include <algorithm>

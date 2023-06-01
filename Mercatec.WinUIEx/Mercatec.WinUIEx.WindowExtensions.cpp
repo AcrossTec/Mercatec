@@ -397,7 +397,7 @@ namespace Mercatec::WinUIEx
     /// </summary>
     /// <param name="window">Window</param>
     /// <param name="icon">Icon</param>
-    void WindowExtensions::SetTaskBarIcon(const Window& Window, const std::optional<Icon>& Icon) noexcept
+    void WindowExtensions::SetTaskBarIcon(const Window& Window, const Internal::Icon* Icon) noexcept
     {
         HwndExtensions::SetTaskBarIcon(GetWindowHandle(Window), Icon);
     }

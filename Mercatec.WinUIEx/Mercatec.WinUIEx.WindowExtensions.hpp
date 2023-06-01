@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Mercatec.WinUIEx.Exports.Api.hpp"
-#include "Mercatec.WinUIEx.Icon.hpp"
+#include "Internal/Mercatec.WinUIEx.Internal.Icon.hpp"
 
 #include <winrt/Microsoft.UI.Xaml.h>
 #include <winrt/Microsoft.UI.Windowing.h>
@@ -239,7 +239,7 @@ namespace Mercatec::WinUIEx
         /// </summary>
         /// <param name="window">Window</param>
         /// <param name="icon">Icon</param>
-        static void SetTaskBarIcon(const winrt::Microsoft::UI::Xaml::Window& Window, const std::optional<Icon>& Icon) noexcept;
+        static void SetTaskBarIcon(const winrt::Microsoft::UI::Xaml::Window& Window, const Internal::Icon* Icon) noexcept;
 
         /// <summary>
         /// Gets the background color for the title bar and all its buttons and their states.

@@ -3,7 +3,7 @@
 #include "Mercatec.WinUIEx.Exports.Api.hpp"
 #include "Mercatec.WinUIEx.Windows.Win32.hpp"
 #include "Mercatec.WinUIEx.WindowStyle.hpp"
-#include "Mercatec.WinUIEx.Icon.hpp"
+#include "Internal/Mercatec.WinUIEx.Internal.Icon.hpp"
 
 #include <winrt/Microsoft.UI.h>
 
@@ -119,7 +119,7 @@ namespace Mercatec::WinUIEx
         /// </summary>
         /// <param name="hWnd">Window handle</param>
         /// <param name="icon">Icon</param>
-        static void SetTaskBarIcon(HWND Hwnd, const std::optional<Icon>& Icon) noexcept;
+        static void SetTaskBarIcon(HWND Hwnd, const Internal::Icon* Icon) noexcept;
 
         /// <summary>
         /// Activates the window and displays it in its current size and position.

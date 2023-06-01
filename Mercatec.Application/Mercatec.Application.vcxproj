@@ -345,6 +345,9 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ProjectReference Include="..\Mercatec.ViewModels\Mercatec.ViewModels.vcxproj">
       <Project>{42beae35-b354-414b-903d-bd82cbeb7f78}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Mercatec.WinUIEx\Mercatec.WinUIEx.vcxproj">
+      <Project>{c24b8d3b-7e50-4bf7-9c17-29e13bb2e9c6}</Project>
+    </ProjectReference>
   </ItemGroup>
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution

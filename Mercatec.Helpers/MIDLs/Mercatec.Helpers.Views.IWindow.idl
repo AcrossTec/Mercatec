@@ -1,7 +1,0 @@
-namespace Mercatec.Helpers.Views
-{
-    interface IWindowId
-    {
-        Microsoft.UI.WindowId WindowId { get; };
-    }
-}

@@ -200,9 +200,6 @@
     <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl">
       <Filter>Infrastructure\ViewModels</Filter>
     </Midl>
-    <Midl Include="MIDLs\Mercatec.Helpers.Views.IWindow.idl">
-      <Filter>Infrastructure\Views</Filter>
-    </Midl>
     <Midl Include="Mercatec.Helpers.ViewModels.ShellArgs.idl">
       <Filter>Infrastructure\ViewModels</Filter>
     </Midl>

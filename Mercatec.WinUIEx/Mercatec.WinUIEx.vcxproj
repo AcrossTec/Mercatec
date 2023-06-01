@@ -140,6 +140,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.WinUIEx.Icon.h">
+      <DependentUpon>Mercatec.WinUIEx.Icon.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.LocalSettings.h">
       <DependentUpon>Mercatec.WinUIEx.LocalSettings.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -150,7 +154,7 @@
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.Debug.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Windowing.IconDataMembers.hpp" />
-    <ClInclude Include="Mercatec.WinUIEx.Icon.hpp" />
+    <ClInclude Include="Internal\Mercatec.WinUIEx.Internal.Icon.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.ForeachMacro.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Enum.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Exports.Api.hpp" />
@@ -198,14 +202,22 @@
       <DependentUpon>Mercatec.WinUIEx.WindowManager.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.SplashScreen.h">
+      <DependentUpon>Mercatec.WinUIEx.SplashScreen.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.WinUIEx.Icon.cpp">
+      <DependentUpon>Mercatec.WinUIEx.Icon.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.WinUIEx.LocalSettings.cpp">
       <DependentUpon>Mercatec.WinUIEx.LocalSettings.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="Mercatec.WinUIEx.HwndExtensions.cpp" />
-    <ClCompile Include="Mercatec.WinUIEx.Icon.cpp" />
+    <ClCompile Include="Internal\Mercatec.WinUIEx.Internal.Icon.cpp" />
     <ClCompile Include="Internal\Messaging\Mercatec.WinUIEx.Messaging.Internal.Message.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.MonitorInfo.cpp" />
@@ -236,6 +248,10 @@
       <DependentUpon>Mercatec.WinUIEx.WindowManager.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.SplashScreen.cpp">
+      <DependentUpon>Mercatec.WinUIEx.SplashScreen.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Mercatec.WinUIEx.def" />
@@ -248,6 +264,9 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="Mercatec.WinUIEx.Icon.idl">
+      <SubType>Designer</SubType>
+    </Midl>
     <Midl Include="Mercatec.WinUIEx.LocalSettings.idl">
       <SubType>Designer</SubType>
     </Midl>
@@ -276,6 +295,9 @@
       <SubType>Designer</SubType>
     </Midl>
     <Midl Include="Mercatec.WinUIEx.WindowManager.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.SplashScreen.idl">
       <SubType>Designer</SubType>
     </Midl>
   </ItemGroup>

@@ -1,0 +1,20 @@
+namespace Mercatec.WinUIEx
+{
+    [default_interface]
+    runtimeclass Icon 
+    {
+        UInt64 Handle { get; };
+        UInt64 NativeIcon { get; };
+
+        static Icon FromFile(String FileName);
+        static Icon FromByteArray(UInt8[] Rgba, UInt32 Size);
+
+        /// <summary>
+        ///     For testing - Creates a simple Yang Icon.
+        /// </summary>
+        /// <returns>
+        ///     Icon with a Yang Icon.
+        /// </returns>
+        static Icon Yang();
+    }
+}

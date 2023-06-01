@@ -33,15 +33,4 @@ namespace winrt::Mercatec::Application::implementation
         Title(ApplicationName());
         FrameContent().Navigate(xaml_typename<Mercatec::Application::MainPage>());
     }
-
-    Microsoft::UI::WindowId MainWindow::WindowId() const noexcept
-    {
-        auto window_native{ try_as<IWindowNative>() };
-        winrt::check_bool(window_native);
-
-        HWND hwnd{ nullptr };
-        window_native->get_WindowHandle(&hwnd);
-
-        return GetWindowIdFromWindow(hwnd);
-    }
 } // namespace winrt::Mercatec::Application::implementation

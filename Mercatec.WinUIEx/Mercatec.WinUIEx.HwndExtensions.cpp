@@ -125,12 +125,12 @@ namespace Mercatec::WinUIEx
         SetWindowPosOrThrow(Hwnd, HWND_TOP, 0, 0, int32_t(Width * ScalingFactor), int32_t(Height * ScalingFactor), SwpNoRePosition | SwpNoSendChanging);
     }
 
-    void HwndExtensions::SetTaskBarIcon(HWND Hwnd, const std::optional<Icon>& Icon) noexcept
+    void HwndExtensions::SetTaskBarIcon(HWND Hwnd, const Internal::Icon* Icon) noexcept
     {
         using enum WindowsMessages;
         using Enum = Enum<WindowsMessages>;
 
-        ::SendMessageW(Hwnd, Enum::GetValue(WmSetIcon), WPARAM(0), LPARAM(Icon.value_or(nullptr).Handle));
+        ::SendMessageW(Hwnd, Enum::GetValue(WmSetIcon), WPARAM(0), LPARAM(Icon != nullptr ? Icon->Handle : nullptr));
     }
 
     bool HwndExtensions::ShowWindow(HWND Hwnd) noexcept

@@ -57,26 +57,7 @@ fire_and_forget App::OnLaunched(const LaunchActivatedEventArgs&)
     //! https://stackoverflow.com/questions/71546846/open-app-always-in-the-center-of-the-display-windows-11-winui-3
     //! https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/win32/microsoft.ui.xaml.window/nf-microsoft-ui-xaml-window-iwindownative-get_windowhandle
 
-    m_Window             = make<MainWindow>();
-    WindowId  window_id  = m_Window.as<Helpers::Views::IWindowId>().WindowId();
-    AppWindow app_window = AppWindow::GetFromWindowId(window_id);
-
-    if ( app_window )
-    {
-        auto display_area = DisplayArea::GetFromWindowId(window_id, DisplayAreaFallback::Nearest);
-
-        if ( display_area )
-        {
-            PointInt32 centered_position{ // clang-format off
-                .X = (display_area.WorkArea().Width - app_window.Size().Width) / 2,
-                .Y = (display_area.WorkArea().Height - app_window.Size().Height) / 2
-            }; // clang-format on
-
-            app_window.Move(centered_position);
-        }
-    }
-
+    m_Window = make<MainWindow>();
     co_await ::Mercatec::Application::Configurations::Startup::ConfigureAsync();
-
     m_Window.Activate();
 }

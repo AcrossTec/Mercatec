@@ -53,6 +53,9 @@
     <Filter Include="Headers\Messaging\Internal">
       <UniqueIdentifier>{1ecef320-e812-41ed-ac96-5859652d2ca1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\Windows\Internal">
+      <UniqueIdentifier>{696f49ce-6355-4597-9c32-1412df86dff6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp">
@@ -79,9 +82,6 @@
     <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.Dialogs.cpp">
       <Filter>Sources\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Mercatec.WinUIEx.Icon.cpp">
-      <Filter>Sources\Windows</Filter>
-    </ClCompile>
     <ClCompile Include="Mercatec.WinUIEx.MonitorInfo.cpp">
       <Filter>Sources\Windows</Filter>
     </ClCompile>
@@ -90,6 +90,9 @@
     </ClCompile>
     <ClCompile Include="Mercatec.WinUIEx.Windowing.WindowMessageSink.cpp">
       <Filter>Sources\Windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="Internal\Mercatec.WinUIEx.Internal.Icon.cpp">
+      <Filter>Headers\Windows\Internal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +125,12 @@
     </Midl>
     <Midl Include="Mercatec.WinUIEx.LocalSettings.idl">
       <Filter>Headers\Helpers</Filter>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.SplashScreen.idl">
+      <Filter>Controls</Filter>
+    </Midl>
+    <Midl Include="Mercatec.WinUIEx.Icon.idl">
+      <Filter>Headers\Windows</Filter>
     </Midl>
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +179,6 @@
     <ClInclude Include="Mercatec.WinUIEx.HwndExtensions.hpp">
       <Filter>Headers\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Mercatec.WinUIEx.Icon.hpp">
-      <Filter>Headers\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.WindowStyle.hpp">
       <Filter>Headers\Windows</Filter>
     </ClInclude>
@@ -211,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.BackdropType.hpp">
       <Filter>Headers\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Internal\Mercatec.WinUIEx.Internal.Icon.hpp">
+      <Filter>Headers\Windows\Internal</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

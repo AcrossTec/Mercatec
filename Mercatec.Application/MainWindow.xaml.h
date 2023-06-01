@@ -11,7 +11,6 @@ namespace winrt::Mercatec::Application::implementation
     {
     public:
         MainWindow();
-        Microsoft::UI::WindowId WindowId() const noexcept;
 
     private:
         void SetUpComponent() noexcept;

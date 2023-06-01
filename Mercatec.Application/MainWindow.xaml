@@ -1,14 +1,15 @@
 <!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
-<Window
+<WinEx:WindowEx
     x:Class="Mercatec.Application.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Mercatec.Application"
+    xmlns:Local="using:Mercatec.Application"
+    xmlns:WinEx="using:Mercatec.WinUIEx"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
     <ScrollViewer>
         <Frame x:Name="FrameContent" />
     </ScrollViewer>
-</Window>
+</WinEx:WindowEx>
