@@ -235,7 +235,7 @@ namespace Mercatec.WinUIEx
         event Windows.Foundation.EventHandler<ZOrderInfo> ZOrderChanged;
 
         /// <summary>
-        /// Called when the Z order of the window changed.
+        ///     Called when the Z order of the window changed.
         /// </summary>
         /// <param name="info">Object describing the current new ZOrder of the window</param>
         protected void OnZOrderChanged(ZOrderInfo Info);

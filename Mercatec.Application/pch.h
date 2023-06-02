@@ -57,6 +57,9 @@
 #include <winrt/Microsoft.Windows.PushNotifications.h>
 #include <winrt/Microsoft.Windows.System.h>
 
+#include <Mercatec.WinUIEx.HwndExtensions.hpp>
+#include <Mercatec.WinUIEx.WindowExtensions.hpp>
+
 #include <Microsoft.UI.Xaml.Window.h>
 #include <wil/cppwinrt_helpers.h>
 
@@ -64,6 +67,7 @@
 #include <Mercatec.Helpers.Strings.hpp>
 
 #include <algorithm>
+#include <format>
 #include <chrono>
 #include <functional>
 #include <ranges>
@@ -88,6 +92,9 @@ namespace MUXI = winrt::Microsoft::UI::Xaml::Input;
 namespace MUXM = winrt::Microsoft::UI::Xaml::Media;
 namespace MUW  = winrt::Microsoft::UI::Windowing;
 namespace WSC  = winrt::Windows::Security::Credentials;
+
+using ::Mercatec::WinUIEx::HwndExtensions;
+using ::Mercatec::WinUIEx::WindowExtensions;
 
 #ifdef PUSH_MACRO_GetCurrentTime
 # pragma pop_macro("GetCurrentTime")

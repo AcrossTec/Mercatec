@@ -1,0 +1,12 @@
+// Copyright (c) Microsoft Corporation and Contributors.
+// Licensed under the MIT License.
+
+namespace Mercatec.Application
+{
+    [default_interface]
+    runtimeclass SplashScreen : Mercatec.WinUIEx.SplashScreen
+    {
+        SplashScreen();
+        overridable Windows.Foundation.IAsyncAction OnLoading();
+    }
+}

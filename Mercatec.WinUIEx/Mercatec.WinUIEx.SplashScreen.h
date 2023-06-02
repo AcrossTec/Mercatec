@@ -2,7 +2,6 @@
 
 #include "SplashScreen.g.h"
 
-#include <optional>
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <winrt/Microsoft.UI.Xaml.h>
 #include <winrt/Windows.UI.Xaml.Interop.h>
@@ -20,15 +19,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
         ///     Creates and activates a new splashscreen, and opens the specified window once complete.
         /// </summary>
         /// <param name="window">Window to open once splash screen is complete</param>
-        SplashScreen(const Microsoft::UI::Xaml::Window& Window);
-        static WinUIEx::SplashScreen Create(const Microsoft::UI::Xaml::Window& Window);
-
-        /// <summary>
-        ///     Creates and activates a new splashscreen, and creates and opens the specified window type once complete.
-        /// </summary>
-        /// <param name="window">Type of window to create. Must have an empty constructor</param>
-        SplashScreen(const Windows::UI::Xaml::Interop::TypeName& WindowType);
-        static WinUIEx::SplashScreen Create(const Windows::UI::Xaml::Interop::TypeName& WindowType);
+        SplashScreen(const CreateWindowDelegate& Factory);
 
         /// <summary>
         ///     Gets or sets the system backdrop of the window.
@@ -68,15 +59,11 @@ namespace winrt::Mercatec::WinUIEx::implementation
         void               Completed(const event_token& Token) noexcept;
 
     private:
-        SplashScreen();
-
-    private:
         fire_and_forget Content_Loaded(const IInspectable& Sender, const Microsoft::UI::Xaml::RoutedEventArgs& Args);
         void            SplashScreen_Activated(const IInspectable& Sender, const Microsoft::UI::Xaml::WindowActivatedEventArgs& Args);
 
     private:
-        Microsoft::UI::Xaml::Window                                           m_Window;
-        std::optional<Windows::UI::Xaml::Interop::TypeName>                   m_WindowType;
+        Mercatec::WinUIEx::CreateWindowDelegate                               m_CreateWindow;
         Mercatec::WinUIEx::WindowManager                                      m_Manager;
         event<Windows::Foundation::EventHandler<Microsoft::UI::Xaml::Window>> m_Completed;
         event_token                                                           m_SplashScreenActivatedToken;

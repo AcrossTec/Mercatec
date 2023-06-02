@@ -6,18 +6,14 @@
 #include "App.xaml.h"
 #include "MainWindow.xaml.h"
 
-#include <microsoft.ui.xaml.window.h>
+using namespace winrt::Windows::Foundation;
 
-#include "Mercatec.Application.Startup.hpp"
-
-using namespace winrt;
 using namespace winrt::Mercatec::Application;
 using namespace winrt::Mercatec::Application::implementation;
 
-using namespace Windows::Foundation;
-using namespace Microsoft::UI::Xaml;
-using namespace Microsoft::UI::Xaml::Controls;
-using namespace Microsoft::UI::Xaml::Navigation;
+using namespace winrt::Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml::Controls;
+using namespace winrt::Microsoft::UI::Xaml::Navigation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -50,14 +46,13 @@ App::App()
 /// <param name="e">
 ///     Details about the launch request and process.
 /// </param>
-fire_and_forget App::OnLaunched(const LaunchActivatedEventArgs&)
+void App::OnLaunched(const LaunchActivatedEventArgs&)
 {
     //! https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd
     //! https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/windowing/windowing-overview
     //! https://stackoverflow.com/questions/71546846/open-app-always-in-the-center-of-the-display-windows-11-winui-3
     //! https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/win32/microsoft.ui.xaml.window/nf-microsoft-ui-xaml-window-iwindownative-get_windowhandle
 
-    m_Window = make<MainWindow>();
-    co_await ::Mercatec::Application::Configurations::Startup::ConfigureAsync();
-    m_Window.Activate();
+    m_Splash = Mercatec::Application::SplashScreen{};
+    m_Splash.Completed([this, Strong = m_Splash](const auto&, const auto& Window) { m_Window = Window; });
 }

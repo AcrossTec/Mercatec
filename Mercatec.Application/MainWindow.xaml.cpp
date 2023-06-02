@@ -7,13 +7,11 @@
 # include "MainWindow.g.cpp"
 #endif
 
-#include "MainPage.xaml.h"
+#include <Mercatec.Helpers.Application.hpp>
 
 using namespace winrt;
-using namespace Microsoft::UI::Xaml;
-using namespace Windows::Foundation;
-
-#include <Mercatec.Helpers.Application.hpp>
+using namespace winrt::Microsoft::UI::Xaml;
+using namespace winrt::Windows::Foundation;
 
 using namespace ::Mercatec::Helpers::Applications;
 
@@ -23,6 +21,8 @@ using namespace ::Mercatec::Helpers::Applications;
 namespace winrt::Mercatec::Application::implementation
 {
     MainWindow::MainWindow()
+      : m_Monitor{ make_self<::Mercatec::WinUIEx::Messaging::WindowMessageMonitor>(*this) }
+      , m_Manager{ Mercatec::WinUIEx::WindowManager::Get(*this) }
     {
         InitializeComponent();
         SetUpComponent();
@@ -31,6 +31,8 @@ namespace winrt::Mercatec::Application::implementation
     void MainWindow::SetUpComponent() noexcept
     {
         Title(ApplicationName());
+        WindowExtensions::CenterOnScreen(*this);
+        BackdropType(Mercatec::WinUIEx::BackdropType::DesktopAcrylic);
         FrameContent().Navigate(xaml_typename<Mercatec::Application::MainPage>());
     }
 } // namespace winrt::Mercatec::Application::implementation

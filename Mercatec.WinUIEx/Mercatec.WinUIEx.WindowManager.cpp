@@ -191,7 +191,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
         }
 
         Impl->DispatcherQueueController.EnsureWindowsSystemDispatcherQueueController();
-        BackdropType(BackdropType::DesktopAcrylic);
+        BackdropType(BackdropType::Mica);
     }
 
     void WindowManager::Window_VisibilityChanged([[maybe_unused]] const winrt::IInspectable& Sender, const WindowVisibilityChangedEventArgs& Args)
@@ -199,7 +199,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
         if ( Args.Visible() and Impl->CurrentController == nullptr )
         {
             Impl->DispatcherQueueController.EnsureWindowsSystemDispatcherQueueController();
-            BackdropType(BackdropType::DesktopAcrylic);
+            BackdropType(BackdropType::Mica);
         }
     }
 
@@ -707,7 +707,11 @@ namespace winrt::Mercatec::WinUIEx::implementation
 
         Impl->Window.Closed(Impl->WindowClosedToken);
         Impl->Window.Activated(Impl->WindowActivatedToken);
-        Impl->Window.as<FrameworkElement>().ActualThemeChanged(Impl->WindowThemeChangedToken);
+
+        if ( auto Element = Impl->Window.try_as<FrameworkElement>() )
+        {
+            Element.ActualThemeChanged(Impl->WindowThemeChangedToken);
+        }
 
         Impl->BackdropType          = BackdropType::DefaultColor;
         Impl->BackdropConfiguration = nullptr;
@@ -757,22 +761,25 @@ namespace winrt::Mercatec::WinUIEx::implementation
 
     void WindowManager::SetConfigurationSourceTheme() noexcept
     {
-        switch ( Impl->Window.Content().as<FrameworkElement>().ActualTheme() )
+        if ( auto Element = Impl->Window.Content().try_as<FrameworkElement>() )
         {
-            case ElementTheme::Dark:
+            switch ( Element.ActualTheme() )
             {
-                Impl->BackdropConfiguration.Theme(SystemBackdrops::SystemBackdropTheme::Dark);
-                break;
-            }
-            case ElementTheme::Light:
-            {
-                Impl->BackdropConfiguration.Theme(SystemBackdrops::SystemBackdropTheme::Light);
-                break;
-            }
-            case ElementTheme::Default:
-            {
-                Impl->BackdropConfiguration.Theme(SystemBackdrops::SystemBackdropTheme::Default);
-                break;
+                case ElementTheme::Dark:
+                {
+                    Impl->BackdropConfiguration.Theme(SystemBackdrops::SystemBackdropTheme::Dark);
+                    break;
+                }
+                case ElementTheme::Light:
+                {
+                    Impl->BackdropConfiguration.Theme(SystemBackdrops::SystemBackdropTheme::Light);
+                    break;
+                }
+                case ElementTheme::Default:
+                {
+                    Impl->BackdropConfiguration.Theme(SystemBackdrops::SystemBackdropTheme::Default);
+                    break;
+                }
             }
         }
     }
@@ -784,9 +791,13 @@ namespace winrt::Mercatec::WinUIEx::implementation
             // Hooking up the policy object.
             Impl->BackdropConfiguration = winrt::Microsoft::UI::Composition::SystemBackdrops::SystemBackdropConfiguration();
 
-            Impl->WindowClosedToken       = Impl->Window.Closed({ this, &WindowManager::Window_Closed });
-            Impl->WindowActivatedToken    = Impl->Window.Activated({ this, &WindowManager::Window_Activated });
-            Impl->WindowThemeChangedToken = Impl->Window.Content().as<FrameworkElement>().ActualThemeChanged({ this, &WindowManager::Window_ThemeChanged });
+            Impl->WindowClosedToken    = Impl->Window.Closed({ this, &WindowManager::Window_Closed });
+            Impl->WindowActivatedToken = Impl->Window.Activated({ this, &WindowManager::Window_Activated });
+
+            if ( auto Element = Impl->Window.Content().try_as<FrameworkElement>() )
+            {
+                Impl->WindowThemeChangedToken = Element.ActualThemeChanged({ this, &WindowManager::Window_ThemeChanged });
+            }
 
             // Initial configuration state.
             Impl->BackdropConfiguration.IsInputActive(true);
@@ -818,9 +829,13 @@ namespace winrt::Mercatec::WinUIEx::implementation
             // Hooking up the policy object.
             Impl->BackdropConfiguration = winrt::Microsoft::UI::Composition::SystemBackdrops::SystemBackdropConfiguration();
 
-            Impl->WindowClosedToken       = Impl->Window.Closed({ this, &WindowManager::Window_Closed });
-            Impl->WindowActivatedToken    = Impl->Window.Activated({ this, &WindowManager::Window_Activated });
-            Impl->WindowThemeChangedToken = Impl->Window.Content().as<FrameworkElement>().ActualThemeChanged({ this, &WindowManager::Window_ThemeChanged });
+            Impl->WindowClosedToken    = Impl->Window.Closed({ this, &WindowManager::Window_Closed });
+            Impl->WindowActivatedToken = Impl->Window.Activated({ this, &WindowManager::Window_Activated });
+
+            if ( auto Element = Impl->Window.Content().try_as<FrameworkElement>() )
+            {
+                Impl->WindowThemeChangedToken = Element.ActualThemeChanged({ this, &WindowManager::Window_ThemeChanged });
+            }
 
             // Initial configuration state.
             Impl->BackdropConfiguration.IsInputActive(true);

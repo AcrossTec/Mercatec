@@ -64,21 +64,21 @@ namespace winrt::Mercatec::WinUIEx::implementation
         Grid RootContent;
         {
             RowDefinition Row1;
-            Row1.Height({ 1, GridUnitType::Auto });
+            Row1.Height({ 0, GridUnitType::Auto });
             Row1.MinHeight(0);
 
             RowDefinition Row2;
-            Row1.Height({ 1, GridUnitType::Star });
+            Row1.Height({ 0, GridUnitType::Star });
 
             RootContent.RowDefinitions().Append(Row1);
             RootContent.RowDefinitions().Append(Row2);
         }
         {
             ColumnDefinition Column1;
-            Column1.Width({ 1, GridUnitType::Auto });
+            Column1.Width({ 0, GridUnitType::Auto });
 
             ColumnDefinition Column2;
-            Column2.Width({ 1, GridUnitType::Star });
+            Column2.Width({ 0, GridUnitType::Star });
 
             m_TitleBarArea.Visibility(Visibility::Collapsed);
             m_TitleBarArea.ColumnDefinitions().Append(Column1);

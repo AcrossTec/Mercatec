@@ -193,6 +193,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="Mercatec.Application.Startup.hpp" />
+    <ClInclude Include="SplashScreen.xaml.h">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="UserSelectionPage.xaml.h">
       <DependentUpon>UserSelectionPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -216,6 +220,9 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Page Include="Resources\GlobalResources.xaml" />
     <Page Include="MainWindow.xaml" />
     <Page Include="ShellPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SplashScreen.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserSelectionPage.xaml">
@@ -254,6 +261,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>ShellPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="SplashScreen.xaml.cpp">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="UserSelectionPage.xaml.cpp">
       <DependentUpon>UserSelectionPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -288,6 +299,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>ShellPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="SplashScreen.idl">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
     <Midl Include="UserSelectionPage.idl">
       <DependentUpon>UserSelectionPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -310,6 +325,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Image Include="Assets\StoreLogo.png" />
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Image Include="Images\Logo.png" />
   </ItemGroup>
   <!--
     Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging

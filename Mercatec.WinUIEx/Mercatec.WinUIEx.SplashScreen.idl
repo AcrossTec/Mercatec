@@ -2,24 +2,19 @@ import "Mercatec.WinUIEx.BackdropType.idl";
 
 namespace Mercatec.WinUIEx
 {
+    delegate Microsoft.UI.Xaml.Window CreateWindowDelegate();
+
     /// <summary>
     ///     A splash screen window that shows with no chrome, and once <see cref="SplashScreen.OnLoading"/> has completed, opens a new window
     /// </summary>
     [default_interface]
-    runtimeclass SplashScreen : Microsoft.UI.Xaml.Window
+    unsealed runtimeclass SplashScreen : Microsoft.UI.Xaml.Window
     {
         /// <summary>
         ///     Creates and activates a new splashscreen, and opens the specified window once complete.
         /// </summary>
         /// <param name="Window">Window to open once splash screen is complete</param>
-        [default_overload]
-        static SplashScreen Create(Microsoft.UI.Xaml.Window Window);
-
-        /// <summary>
-        ///     Creates and activates a new splashscreen, and creates and opens the specified window type once complete.
-        /// </summary>
-        /// <param name="window">Type of window to create. Must have an empty constructor</param>
-        static SplashScreen Create(ref const Windows.UI.Xaml.Interop.TypeName WindowType);
+        SplashScreen(CreateWindowDelegate Factory);
 
         /// <summary>
         ///     Gets or sets the system backdrop of the window.
@@ -31,7 +26,7 @@ namespace Mercatec.WinUIEx
         ///     Override to display loading progress or delay loading of main window.
         /// </summary>
         /// <returns></returns>
-        protected Windows.Foundation.IAsyncAction OnLoading();
+        overridable Windows.Foundation.IAsyncAction OnLoading();
 
         /// <summary>
         ///     Gets or sets the width of the splash screen. Set to NaN to size for content

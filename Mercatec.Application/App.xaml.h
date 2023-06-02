@@ -11,9 +11,10 @@ namespace winrt::Mercatec::Application::implementation
     {
     public:
         App();
-        winrt::fire_and_forget OnLaunched(const Microsoft::UI::Xaml::LaunchActivatedEventArgs&);
+        void OnLaunched(const Microsoft::UI::Xaml::LaunchActivatedEventArgs&);
 
     private:
-        winrt::Microsoft::UI::Xaml::Window m_Window{ nullptr };
+        Mercatec::Application::SplashScreen m_Splash{ nullptr };
+        Microsoft::UI::Xaml::Window         m_Window{ nullptr };
     };
 } // namespace winrt::Mercatec::Application::implementation

@@ -6,7 +6,7 @@ namespace Mercatec::WinUIEx
 {
     struct MonitorInfo::MonitorInfoImpl
     {
-        HMONITOR                         Monitor;
+        HMONITOR                         Monitor{ nullptr };
         std::wstring                     Name;
         winrt::Windows::Foundation::Rect RectMonitor;
         winrt::Windows::Foundation::Rect RectWork;

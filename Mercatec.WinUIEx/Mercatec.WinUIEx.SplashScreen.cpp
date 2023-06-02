@@ -16,48 +16,21 @@ using namespace winrt::Microsoft::UI::Dispatching;
 
 namespace winrt::Mercatec::WinUIEx::implementation
 {
-    SplashScreen::SplashScreen()
+    SplashScreen::SplashScreen(const CreateWindowDelegate& Factory)
       : m_Manager{ nullptr }
       , m_Width{ 640 }
       , m_Height{ 480 }
       , m_IsAlwaysOnTop{ false }
-      , m_Window{ nullptr }
-      , m_WindowType{ std::nullopt }
+      , m_CreateWindow{ Factory }
     {
-        m_SplashScreenActivatedToken = this->Activated({ this, &SplashScreen::SplashScreen_Activated });
-        this->DispatcherQueue().TryEnqueue(DispatcherQueuePriority::Normal, [this] { this->Activate(); });
-        m_Manager = WindowManager::Get(*this);
-    }
-
-    SplashScreen::SplashScreen(const Microsoft::UI::Xaml::Window& Window)
-      : SplashScreen()
-    {
-        if ( not Window )
+        if ( not Factory )
         {
-            throw hresult_invalid_argument(L"Argument Null Exception: Window");
+            throw hresult_invalid_argument(L"Argument Null Exception: Window Factory");
         }
 
-        m_Window = Window;
-    }
-
-    WinUIEx::SplashScreen SplashScreen::Create(const Microsoft::UI::Xaml::Window& Window)
-    {
-        return make<SplashScreen>(Window);
-    }
-
-    SplashScreen::SplashScreen(const Windows::UI::Xaml::Interop::TypeName& WindowType)
-      : SplashScreen()
-    {
-        m_WindowType = WindowType;
-
-        //! TODO: Se debe verificar que WindowType sea una ventana.
-        //!       Además ser capas de poder crear el objeto en Runtime.
-        throw hresult_not_implemented();
-    }
-
-    WinUIEx::SplashScreen SplashScreen::Create(const Windows::UI::Xaml::Interop::TypeName& WindowType)
-    {
-        return make<SplashScreen>(WindowType);
+        m_SplashScreenActivatedToken = Activated({ this, &SplashScreen::SplashScreen_Activated });
+        DispatcherQueue().TryEnqueue(DispatcherQueuePriority::Normal, [this] { Activate(); });
+        m_Manager = WindowManager::Get(*this);
     }
 
     WinUIEx::BackdropType SplashScreen::BackdropType() const noexcept
@@ -72,6 +45,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
 
     Windows::Foundation::IAsyncAction SplashScreen::OnLoading()
     {
+        throw_hresult(impl::error_not_implemented);
         co_return;
     }
 
@@ -117,7 +91,6 @@ namespace winrt::Mercatec::WinUIEx::implementation
 
     fire_and_forget SplashScreen::Content_Loaded([[maybe_unused]] const IInspectable& Sender, [[maybe_unused]] const RoutedEventArgs& Args)
     {
-
         if ( m_IsAlwaysOnTop )
         {
             WindowExtensions::SetIsAlwaysOnTop(*this, true);
@@ -154,31 +127,21 @@ namespace winrt::Mercatec::WinUIEx::implementation
         }
 
         WindowExtensions::CenterOnScreen(*this, W, H);
-        co_await OnLoading();
+        co_await WinUIEx::SplashScreen(*this).OnLoading();
 
-        if ( m_WindowType != std::nullopt )
+        if ( auto Window = m_CreateWindow() )
         {
-            // TODO: Crear alguna implemantación para crear una ventana desde un TypeName
-            // m_Window = Activator.CreateInstance(m_WindowType) as Window;
+            WindowExtensions::SetForegroundWindow(Window);
+            Window.Activate();
+            m_Completed(*this, Window);
         }
 
-        if ( m_Window )
-        {
-            m_Window.Activate();
-        }
-        this->Close();
-
-        if ( m_Window )
-        {
-            WindowExtensions::SetForegroundWindow(m_Window);
-        }
-        m_Completed(*this, m_Window);
-        m_Window = nullptr;
+        Close();
     }
 
     void SplashScreen::SplashScreen_Activated([[maybe_unused]] const IInspectable& Sender, [[maybe_unused]] const WindowActivatedEventArgs& Args)
     {
-        this->Activated(m_SplashScreenActivatedToken);
+        Activated(m_SplashScreenActivatedToken);
         WindowExtensions::Hide(*this); // Hides until content is loaded
 
         HWND Hwnd = WindowExtensions::GetWindowHandle(*this);
