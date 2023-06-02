@@ -312,7 +312,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
                   [this]
                   {
                       Impl->DispatcherQueueController.EnsureWindowsSystemDispatcherQueueController();
-                      BackdropType(BackdropType::DesktopAcrylic);
+                      BackdropType(BackdropType::Mica);
                   }
                 );
             }

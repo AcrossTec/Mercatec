@@ -8,12 +8,15 @@
 using Cxx::DesignPatterns::ServiceLocator;
 using Mercatec::Services::MessageService;
 
+extern void LoadDLL();
+
 namespace Mercatec::Application::Configurations
 {
     IAsyncAction Startup::ConfigureAsync()
     {
         ConfigureServiceLocator();
         ConfigureNavigation();
+        LoadDLL();
         co_return;
     }
 

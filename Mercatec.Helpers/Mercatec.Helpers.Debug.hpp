@@ -39,5 +39,18 @@ namespace Mercatec::Helpers::inline Debug
 
 } // namespace Mercatec::Helpers::inline Debug
 #else
-# define OutputDebug(...)
+
+namespace Mercatec::Helpers::inline Debug
+{
+    template <typename... Types>
+    inline constexpr void OutputDebug(const std::wstring_view, Types&&...)
+    {
+    }
+
+    template <typename Type>
+    inline constexpr void OutputDebug(const winrt::Windows::Foundation::Collections::IObservableVector<Type>&, const std::wstring_view = L"")
+    {
+    }
+} // namespace Mercatec::Helpers::inline Debug
+
 #endif
