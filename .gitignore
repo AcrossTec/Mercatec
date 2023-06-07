@@ -364,3 +364,5 @@ FodyWeavers.xsd
 
 # Local Items
 /Mercatec.Application/AccountList.xml
+/Mercatec.Application/Assets/Assets
+/Mercatec.Application/Assets/Assets.zip

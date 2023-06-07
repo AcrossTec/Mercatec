@@ -188,6 +188,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClInclude Include="MainWindow.xaml.h">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="Resource.hpp" />
     <ClInclude Include="ShellPage.xaml.h">
       <DependentUpon>ShellPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -217,7 +218,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Page Include="PassportRegisterPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\GlobalResources.xaml" />
+    <Page Include="Resources\MercatecResources.xaml" />
     <Page Include="MainWindow.xaml" />
     <Page Include="ShellPage.xaml">
       <SubType>Designer</SubType>
@@ -318,6 +319,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\16dp2.png" />
+    <Image Include="Assets\32dpv2.png" />
+    <Image Include="Assets\48dp.ico" />
+    <Image Include="Assets\Icon.ico" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
     <Image Include="Assets\Square150x150Logo.scale-200.png" />
@@ -325,7 +330,6 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Image Include="Assets\StoreLogo.png" />
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Image Include="Images\Logo.png" />
   </ItemGroup>
   <!--
     Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
@@ -364,6 +368,9 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ProjectReference Include="..\Mercatec.WinUIEx\Mercatec.WinUIEx.vcxproj">
       <Project>{c24b8d3b-7e50-4bf7-9c17-29e13bb2e9c6}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <!--
     Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution

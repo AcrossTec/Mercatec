@@ -191,7 +191,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
         }
 
         Impl->DispatcherQueueController.EnsureWindowsSystemDispatcherQueueController();
-        BackdropType(BackdropType::Mica);
+        BackdropType(BackdropType::DefaultColor);
     }
 
     void WindowManager::Window_VisibilityChanged([[maybe_unused]] const winrt::IInspectable& Sender, const WindowVisibilityChangedEventArgs& Args)
@@ -199,7 +199,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
         if ( Args.Visible() and Impl->CurrentController == nullptr )
         {
             Impl->DispatcherQueueController.EnsureWindowsSystemDispatcherQueueController();
-            BackdropType(BackdropType::Mica);
+            BackdropType(BackdropType::DefaultColor);
         }
     }
 
@@ -312,7 +312,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
                   [this]
                   {
                       Impl->DispatcherQueueController.EnsureWindowsSystemDispatcherQueueController();
-                      BackdropType(BackdropType::Mica);
+                      BackdropType(BackdropType::DefaultColor);
                   }
                 );
             }

@@ -12,7 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <!-- Other merged dictionaries here -->
-                <ResourceDictionary Source="ms-appx:///Resources/GlobalResources.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/MercatecResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
         </ResourceDictionary>

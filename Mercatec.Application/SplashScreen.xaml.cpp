@@ -26,6 +26,8 @@ namespace winrt::Mercatec::Application::implementation
       : SplashScreenT<SplashScreen>{ [] { return Application::MainWindow(); } } // clang-format on
     {
         InitializeComponent();
+        BackdropType(WinUIEx::BackdropType::DesktopAcrylic);
+        WindowExtensions::SetIcon(*this, L"Assets/48dp.ico");
     }
 
     Windows::Foundation::IAsyncAction SplashScreen::OnLoading()
@@ -38,7 +40,7 @@ namespace winrt::Mercatec::Application::implementation
         {
             // Switch to the foreground thread associated with SplashScreen.
             co_await wil::resume_foreground(DispatcherQueue());
-            Status().Text(std::format(L"Loading {}%...", Index));
+            Status().Text(std::format(L"Cargando {}%...", Index));
             Progress().Value(Index);
             co_await 50ms;
         }
