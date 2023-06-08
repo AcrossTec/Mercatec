@@ -166,6 +166,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.ViewModels.DashboardViewModel.h">
+      <DependentUpon>Mercatec.ViewModels.DashboardViewModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.ViewModels.Customer.h">
       <DependentUpon>Mercatec.ViewModels.Customer.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -174,6 +178,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.ViewModels.DashboardViewModel.cpp">
+      <DependentUpon>Mercatec.ViewModels.DashboardViewModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.ViewModels.Customer.cpp">
       <DependentUpon>Mercatec.ViewModels.Customer.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -211,6 +219,9 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="Mercatec.ViewModels.DashboardViewModel.idl">
+      <SubType>Designer</SubType>
+    </Midl>
     <Midl Include="Mercatec.ViewModels.Customer.idl">
       <SubType>Designer</SubType>
     </Midl>

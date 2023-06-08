@@ -115,7 +115,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
-      <PreprocessorDefinitions>MERCATEC_APPLICATION_API_EXPORTS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MERCATEC_APPLICATION_API_EXPORTS;DISABLE_XAML_GENERATED_MAIN;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(SolutionName).BusinessLogic\;$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Reports\;$(SolutionDir)$(SolutionName).Repositories\;$(SolutionDir)$(SolutionName).Services\;$(SolutionDir)$(SolutionName).ViewModels\;$(SolutionDir)$(SolutionName).WinUIEx\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <UseStandardPreprocessor Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</UseStandardPreprocessor>
     </ClCompile>
@@ -139,7 +139,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
-      <PreprocessorDefinitions>MERCATEC_APPLICATION_API_EXPORTS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MERCATEC_APPLICATION_API_EXPORTS;DISABLE_XAML_GENERATED_MAIN;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(SolutionName).BusinessLogic\;$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Reports\;$(SolutionDir)$(SolutionName).Repositories\;$(SolutionDir)$(SolutionName).Services\;$(SolutionDir)$(SolutionName).ViewModels\;$(SolutionDir)$(SolutionName).WinUIEx\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <UseStandardPreprocessor Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</UseStandardPreprocessor>
     </ClCompile>
@@ -175,6 +175,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.Application.ActivationService.hpp" />
     <ClInclude Include="Mercatec.Application.Exports.Api.hpp" />
     <ClInclude Include="Mercatec.Application.NavigationService.hpp" />
     <ClInclude Include="PassportRegisterPage.xaml.h">
@@ -242,6 +243,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.Application.ActivationService.cpp" />
     <ClCompile Include="Mercatec.Application.NavigationService.cpp" />
     <ClCompile Include="Mercatec.Application.Startup.cpp" />
     <ClCompile Include="PassportRegisterPage.xaml.cpp">
@@ -319,16 +321,23 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\16dp2.png" />
-    <Image Include="Assets\32dpv2.png" />
-    <Image Include="Assets\48dp.ico" />
-    <Image Include="Assets\Icon.ico" />
+    <Image Include="Assets\16X16-Icon.ico" />
+    <Image Include="Assets\16X16-Icon.png" />
+    <Image Include="Assets\32X32-Icon.ico" />
+    <Image Include="Assets\32X32-Icon.png" />
+    <Image Include="Assets\LockScreenLogo.scale-200.ico" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
+    <Image Include="Assets\SplashScreen-Background.scale-200.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
+    <Image Include="Assets\Square150x150Logo.scale-200.ico" />
     <Image Include="Assets\Square150x150Logo.scale-200.png" />
+    <Image Include="Assets\Square44x44Logo.scale-200.ico" />
     <Image Include="Assets\Square44x44Logo.scale-200.png" />
+    <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.ico" />
     <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Image Include="Assets\StoreLogo.ico" />
     <Image Include="Assets\StoreLogo.png" />
+    <Image Include="Assets\Wide310x150Logo-Background.scale-200.png" />
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <!--
@@ -340,6 +349,11 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\SplashScreen-Background.scale-200.svg" />
+    <None Include="Assets\SplashScreen.scale-200.svg" />
+    <None Include="Assets\Square150x150Logo.scale-200.svg" />
+    <None Include="Assets\Wide310x150Logo-Background.scale-200.svg" />
+    <None Include="Assets\Wide310x150Logo.scale-200.svg" />
     <None Include="packages.config" />
     <None Include="PropertySheet.props" />
   </ItemGroup>

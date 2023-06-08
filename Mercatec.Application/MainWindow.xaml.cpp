@@ -32,7 +32,7 @@ namespace winrt::Mercatec::Application::implementation
     {
         Title(ApplicationName());
         WindowExtensions::CenterOnScreen(*this);
-        TaskBarIcon(WinUIEx::Icon::FromFile(L"Assets/48dp.ico"));
+        TaskBarIcon(WinUIEx::Icon::FromFile(IconPath()));
         FrameContent().Navigate(xaml_typename<Mercatec::Application::MainPage>());
     }
 } // namespace winrt::Mercatec::Application::implementation

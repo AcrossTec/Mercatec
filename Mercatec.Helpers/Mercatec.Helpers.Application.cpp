@@ -5,9 +5,18 @@ using namespace winrt;
 
 namespace Mercatec::Helpers::Applications
 {
+    winrt::IInspectable ResourceLookup(const std::wstring_view Key) noexcept
+    {
+        return Application::Current().Resources().Lookup(box_value(Key));
+    }
+
     winrt::hstring ApplicationName() noexcept
     {
-        IInspectable app_name = Application::Current().Resources().Lookup(box_value(L"AppName"));
-        return unbox_value<hstring>(app_name);
+        return Lookup<winrt::hstring>(L"AppName");
+    }
+
+    winrt::hstring IconPath() noexcept
+    {
+        return Lookup<winrt::hstring>(L"IconPath");
     }
 } // namespace Mercatec::Helpers::Applications

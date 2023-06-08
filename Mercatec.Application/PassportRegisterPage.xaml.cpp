@@ -11,10 +11,10 @@
 #include <Mercatec.Services.MicrosoftPassportService.hpp>
 
 using namespace winrt;
-using namespace Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml;
 
-using ::Mercatec::Guid;
 using ::Mercatec::Char;
+using ::Mercatec::Guid;
 
 using ::Mercatec::Helpers::Empty;
 using ::Mercatec::Services::AuthService;

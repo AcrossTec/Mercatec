@@ -1,0 +1,9 @@
+namespace Mercatec.ViewModels
+{
+    [bindable]
+    [default_interface]
+    runtimeclass DashboardViewModel : Mercatec.Helpers.ViewModels.ViewModelBase
+    {
+        DashboardViewModel();
+    }
+}

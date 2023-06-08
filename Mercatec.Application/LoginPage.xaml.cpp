@@ -20,8 +20,8 @@
 //! Warning C26811 Lifetime of the memory referenced by parameter ''args'' might end by the time the coroutine is resumed(lifetime .1)
 #pragma warning(disable : 26811)
 
-using namespace ::winrt;
-using namespace ::Microsoft::UI::Xaml;
+using namespace winrt;
+using namespace winrt::Microsoft::UI::Xaml;
 using namespace ::Mercatec::Types;
 
 using ::Mercatec::Helpers::Empty;

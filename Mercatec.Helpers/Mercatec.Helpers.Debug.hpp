@@ -8,6 +8,7 @@
 # include <format>
 # include <iterator>
 # include <string_view>
+# include <ranges>
 
 namespace Mercatec::Helpers::inline Debug
 {
@@ -19,8 +20,13 @@ namespace Mercatec::Helpers::inline Debug
         OutputDebugStringW(output.c_str());
     }
 
-    template <typename Type>
-    void OutputDebug(const winrt::Windows::Foundation::Collections::IObservableVector<Type>& values, const std::wstring_view message = L"")
+    template <std::ranges::range Range> // clang-format off
+    requires
+    (
+           not std::is_constructible_v<std::string_view, Range>
+       and not std::is_constructible_v<std::wstring_view, Range>
+    )
+    void OutputDebug(Range&& values, const std::wstring_view message = L"") // clang-format on
     {
         OutputDebug(L"{}\n", std::wstring(15, L'-'));
 
@@ -36,7 +42,6 @@ namespace Mercatec::Helpers::inline Debug
 
         OutputDebug(L"{}\n", std::wstring(15, L'-'));
     }
-
 } // namespace Mercatec::Helpers::inline Debug
 #else
 

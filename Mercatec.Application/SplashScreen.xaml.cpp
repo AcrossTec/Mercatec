@@ -8,9 +8,12 @@
 #endif
 
 #include "Mercatec.Application.Startup.hpp"
+#include <Mercatec.Helpers.Application.hpp>
 
 using namespace winrt;
-using namespace Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml;
+
+using namespace ::Mercatec::Helpers::Applications;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,7 +30,7 @@ namespace winrt::Mercatec::Application::implementation
     {
         InitializeComponent();
         BackdropType(WinUIEx::BackdropType::DesktopAcrylic);
-        WindowExtensions::SetIcon(*this, L"Assets/48dp.ico");
+        WindowExtensions::SetIcon(*this, IconPath());
     }
 
     Windows::Foundation::IAsyncAction SplashScreen::OnLoading()
@@ -42,7 +45,7 @@ namespace winrt::Mercatec::Application::implementation
             co_await wil::resume_foreground(DispatcherQueue());
             Status().Text(std::format(L"Cargando {}%...", Index));
             Progress().Value(Index);
-            co_await 50ms;
+            co_await 500ms;
         }
 
         co_await StartupTask;

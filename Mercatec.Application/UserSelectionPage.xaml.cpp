@@ -12,7 +12,7 @@
 #include <Mercatec.Services.AuthService.hpp>
 
 using namespace winrt;
-using namespace Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml;
 using namespace ::Mercatec::Services;
 
 using ::Mercatec::Helpers::GetDeviceId;

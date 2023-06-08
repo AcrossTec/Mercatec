@@ -3,6 +3,11 @@
 #include "Mercatec.WinUIEx.HwndExtensions.hpp"
 #include "Mercatec.Microsoft.UI.Windowing.hpp"
 
+//! https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/retrieve-hwnd
+//! https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/windowing/windowing-overview
+//! https://stackoverflow.com/questions/71546846/open-app-always-in-the-center-of-the-display-windows-11-winui-3
+//! https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/win32/microsoft.ui.xaml.window/nf-microsoft-ui-xaml-window-iwindownative-get_windowhandle
+
 using winrt::hresult_invalid_argument;
 using winrt::Microsoft::UI::IconId;
 using winrt::Microsoft::UI::WindowId;

@@ -7,6 +7,8 @@
     xmlns:local="using:Mercatec.Application">
 
     <x:String x:Key="AppName">Mercatec</x:String>
+    <x:String x:Key="IconPath">Assets/LockScreenLogo.scale-200.ico</x:String>
+
     <SolidColorBrush x:Key="PrimaryColor">#1B1464</SolidColorBrush>
     <SolidColorBrush x:Key="IconColor">#330099</SolidColorBrush>
 
