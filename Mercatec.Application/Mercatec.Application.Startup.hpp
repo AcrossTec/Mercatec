@@ -10,7 +10,7 @@ namespace Mercatec::Application::Configurations
     class MERCATEC_APPLICATION_API Startup sealed abstract
     {
     public:
-        static winrt::Windows::Foundation::IAsyncAction ConfigureAsync();
+        static winrt::Windows::Foundation::IAsyncActionWithProgress<double_t> ConfigureAsync();
 
     private:
         static void ConfigureNavigation();

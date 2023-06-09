@@ -1,0 +1,12 @@
+namespace Mercatec.ViewModels
+{
+    [bindable]
+    [default_interface]
+    unsealed runtimeclass ShellViewModel : Mercatec.Helpers.ViewModels.ViewModelBase
+    {
+        ShellViewModel(
+            Mercatec.Helpers.Services.ILoginService   LoginService,
+            Mercatec.Helpers.Services.ICommonServices CommonServices
+        );
+    }
+}

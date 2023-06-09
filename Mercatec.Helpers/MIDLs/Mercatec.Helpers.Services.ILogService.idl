@@ -1,4 +1,7 @@
+import "Mercatec.Helpers.Models.AppLogModel.idl";
+import "Mercatec.Helpers.DataRequest.idl";
 import "Mercatec.Helpers.LogType.idl";
+import "Mercatec.Helpers.Result.idl";
 
 namespace Mercatec.Helpers.Services
 {
@@ -6,7 +9,16 @@ namespace Mercatec.Helpers.Services
     {
         [default_overload]
         Windows.Foundation.IAsyncAction WriteAsync(Mercatec.Helpers.LogType Type, String Source, String Action, String Message, String Description);
+        Windows.Foundation.IAsyncAction WriteAsync(Mercatec.Helpers.LogType Type, String Source, String Action, UInt32 Code, String Message);
 
-        Windows.Foundation.IAsyncAction WriteAsync(Mercatec.Helpers.LogType Type, String Source, String Action, UInt64 Code, String Message);
+        Windows.Foundation.IAsyncOperation<Mercatec.Helpers.Models.AppLogModel> GetLogAsync(Guid AppLogId);
+        Windows.Foundation.IAsyncOperation<IVector<Mercatec.Helpers.Models.AppLogModel> > GetLogsAsync(Mercatec.Helpers.DataRequest Request);
+        Windows.Foundation.IAsyncOperation<IVector<Mercatec.Helpers.Models.AppLogModel> > GetLogsAsync(Int32 Skip, Int32 Take, Mercatec.Helpers.DataRequest Request);
+        Windows.Foundation.IAsyncOperation<Int32> GetLogsCountAsync(Mercatec.Helpers.DataRequest Request);
+
+        Windows.Foundation.IAsyncOperation<Int32> DeleteLogAsync(Mercatec.Helpers.Models.AppLogModel Model);
+        Windows.Foundation.IAsyncOperation<Int32> DeleteLogRangeAsync(Int32 Index, Int32 Length, Mercatec.Helpers.DataRequest Request);
+
+        Windows.Foundation.IAsyncAction MarkAllAsReadAsync();
     }
 }

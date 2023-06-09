@@ -1,0 +1,7 @@
+namespace Mercatec.Helpers
+{
+    interface IApplication
+    {
+        Microsoft.UI.Xaml.Window MainWindow { get; }; 
+    }
+}

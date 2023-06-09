@@ -4,7 +4,7 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Mercatec.Application">
+    xmlns:Local="using:Mercatec.Application">
 
     <x:String x:Key="AppName">Mercatec</x:String>
     <x:String x:Key="IconPath">Assets/LockScreenLogo.scale-200.ico</x:String>

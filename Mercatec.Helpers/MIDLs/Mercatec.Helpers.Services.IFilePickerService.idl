@@ -1,0 +1,9 @@
+import "Mercatec.Helpers.ImagePickerResult.idl";
+
+namespace Mercatec.Helpers.Services
+{
+    interface IFilePickerService
+    {
+        Windows.Foundation.IAsyncOperation<Mercatec.Helpers.ImagePickerResult> OpenImagePickerAsync();
+    }
+}

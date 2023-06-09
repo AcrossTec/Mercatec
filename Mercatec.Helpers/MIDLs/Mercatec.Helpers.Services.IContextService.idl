@@ -4,14 +4,7 @@ namespace Mercatec.Helpers.Services
 {
     interface IContextService
     {
-        Int32 MainViewId { get; };
-
-        Int32 ContextId { get; };
-
-        Boolean IsMainView { get; };
-
-        void Initialize(Object Dispatcher, Int32 ContextId, Boolean IsMainView);
-
-        Windows.Foundation.IAsyncAction RunAsync(Mercatec.Helpers.Action0 Action);
+        void Initialize(Microsoft.UI.Dispatching.DispatcherQueue Dispatcher);
+        Boolean Run(Microsoft.UI.Dispatching.DispatcherQueueHandler Action);
     }
 }

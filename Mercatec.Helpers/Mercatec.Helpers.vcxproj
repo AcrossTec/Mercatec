@@ -136,6 +136,18 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Helpers.DataRequest.h">
+      <DependentUpon>Mercatec.Helpers.DataRequest.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Models.AppLogModel.h">
+      <DependentUpon>Mercatec.Helpers.Models.AppLogModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.ImagePickerResult.h">
+      <DependentUpon>Mercatec.Helpers.ImagePickerResult.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.Helpers.FunctionTraits.hpp" />
     <ClInclude Include="Mercatec.Helpers.Application.hpp" />
     <ClInclude Include="Mercatec.Helpers.Auth.hpp" />
@@ -181,8 +193,24 @@
     <ClInclude Include="Mercatec.Helpers.ServiceLocator.hpp" />
     <ClInclude Include="Mercatec.Helpers.Platform.hpp" />
     <ClInclude Include="Mercatec.Helpers.Utility.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Result.h">
+      <DependentUpon>Mercatec.Helpers.Result.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.Helpers.DataRequest.cpp">
+      <DependentUpon>Mercatec.Helpers.DataRequest.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.Models.AppLogModel.cpp">
+      <DependentUpon>Mercatec.Helpers.Models.AppLogModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.ImagePickerResult.cpp">
+      <DependentUpon>Mercatec.Helpers.ImagePickerResult.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Helpers.Application.cpp">
       <DependentUpon>Mercatec.Helpers.Application.hpp</DependentUpon>
       <SubType>Code</SubType>
@@ -211,6 +239,10 @@
       <DependentUpon>Mercatec.Helpers.Types.hpp</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.ViewModels.Entity.cpp">
+      <DependentUpon>MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Helpers.Widespread.cpp">
       <DependentUpon>Mercatec.Helpers.Widespread.hpp</DependentUpon>
       <SubType>Code</SubType>
@@ -235,8 +267,28 @@
       <DependentUpon>Mercatec.Helpers.ViewModels.ShellArgs.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.Result.cpp">
+      <DependentUpon>Mercatec.Helpers.Result.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="MIDLs\Mercatec.Helpers.IApplication.idl" />
+    <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.INotifyPropertyChanged.idl" />
+    <Midl Include="Mercatec.Helpers.DataRequest.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.DataProviderType.idl" />
+    <Midl Include="Mercatec.Helpers.Models.AppLogModel.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.ImagePickerResult.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.IFilePickerService.idl" />
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.IMessageService.idl" />
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.ISettingsService.idl" />
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.ILoginService.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl" />
     <Midl Include="Mercatec.Helpers.IndexRange.idl">
       <SubType>Designer</SubType>
@@ -261,6 +313,9 @@
       <SubType>Designer</SubType>
     </Midl>
     <Midl Include="Mercatec.Helpers.ViewModels.ShellArgs.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.Result.idl">
       <SubType>Designer</SubType>
     </Midl>
   </ItemGroup>

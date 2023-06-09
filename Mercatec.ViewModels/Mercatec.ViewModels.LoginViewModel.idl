@@ -1,0 +1,30 @@
+namespace Mercatec.ViewModels
+{
+    [bindable]
+    [default_interface]
+    runtimeclass LoginViewModel : Mercatec.Helpers.ViewModels.ViewModelBase
+    {
+        LoginViewModel(
+            Mercatec.Helpers.Services.ILoginService    LoginService,
+            Mercatec.Helpers.Services.ISettingsService SettingsService,
+            Mercatec.Helpers.Services.ICommonServices  CommonServices
+        );
+
+        Mercatec.Helpers.Services.ILoginService    LoginService    { get; };
+        Mercatec.Helpers.Services.ISettingsService SettingsService { get; };
+        Mercatec.Helpers.ViewModels.ShellArgs      ViewModelArgs   { get; set; };
+
+        Boolean IsBusy                  { get; set; };
+        Boolean IsLoginWithPassword     { get; set; };
+        Boolean IsLoginWithWindowsHello { get; set; };
+        String  UserName                { get; set; };
+        String  Password                { get; set; };
+
+        Microsoft.UI.Xaml.Input.ICommand ShowLoginWithPasswordCommand { get; };
+        Microsoft.UI.Xaml.Input.ICommand LoginWithPasswordCommand     { get; };
+        Microsoft.UI.Xaml.Input.ICommand LoginWithWindowHelloCommand  { get; };
+
+        Windows.Foundation.IAsyncAction LoadAsync(Mercatec.Helpers.ViewModels.ShellArgs Args);
+        void Login();
+    }
+}

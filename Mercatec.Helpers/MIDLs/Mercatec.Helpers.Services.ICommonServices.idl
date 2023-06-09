@@ -1,20 +1,17 @@
 import "Mercatec.Helpers.Services.IContextService.idl";
+import "Mercatec.Helpers.Services.INavigationService.idl";
+import "Mercatec.Helpers.Services.IMessageService.idl";
 import "Mercatec.Helpers.Services.IDialogService.idl";
 import "Mercatec.Helpers.Services.ILogService.idl";
-import "Mercatec.Helpers.Services.INavigationService.idl";
 
 namespace Mercatec.Helpers.Services
 {
     interface ICommonServices
     {
-        IContextService ContextService { get; };
-
+        IContextService    ContextService    { get; };
         INavigationService NavigationService { get; };
-
-        IDialogService DialogService { get; };
-
-        ILogService LogService { get; };
-
-        Object MessageService { get; };
+        IMessageService    MessageService    { get; };
+        IDialogService     DialogService     { get; };
+        ILogService        LogService        { get; };
     }
 }

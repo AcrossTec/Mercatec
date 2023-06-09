@@ -1,0 +1,9 @@
+namespace Mercatec.Helpers
+{
+    enum DataProviderType
+    {
+        SQLite,
+        SQLServer,
+        WebAPI
+    };
+}

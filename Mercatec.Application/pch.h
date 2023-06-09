@@ -72,6 +72,13 @@
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Strings.hpp>
 
+#include <ppl.h>
+#include <ppltasks.h>
+#include <concurrent_vector.h>
+#include <concurrent_unordered_map.h>
+#include <concurrent_unordered_set.h>
+#include <agents.h>
+
 #include <algorithm>
 #include <format>
 #include <chrono>
@@ -101,6 +108,10 @@ namespace WSC  = winrt::Windows::Security::Credentials;
 
 using ::Mercatec::WinUIEx::HwndExtensions;
 using ::Mercatec::WinUIEx::WindowExtensions;
+
+using namespace std::string_literals;
+using namespace std::string_view_literals;
+using namespace std::chrono_literals;
 
 #ifdef PUSH_MACRO_GetCurrentTime
 # pragma pop_macro("GetCurrentTime")

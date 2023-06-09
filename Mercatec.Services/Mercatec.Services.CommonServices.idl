@@ -1,0 +1,14 @@
+namespace Mercatec.Services
+{
+    [bindable]
+    runtimeclass CommonServices : [default] Mercatec.Helpers.Services.ICommonServices
+    {
+        CommonServices(
+            Mercatec.Helpers.Services.IContextService    ContextService,
+            Mercatec.Helpers.Services.INavigationService NavigationService,
+            Mercatec.Helpers.Services.IMessageService    MessageService,
+            Mercatec.Helpers.Services.IDialogService     DialogService,
+            Mercatec.Helpers.Services.ILogService        LogService
+        );
+    }
+}

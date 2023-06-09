@@ -1,0 +1,23 @@
+namespace Mercatec.Helpers
+{
+    [bindable]
+    [default_interface]
+    runtimeclass Result : Windows.Foundation.IStringable
+    {
+        Result();
+        Boolean IsOk        { get; set; };
+        String  Message     { get; set; };
+        String  Description { get; set; };
+        UInt32  HResult     { get; set; };
+
+        static Result Ok();
+        static Result Ok(String Message);
+        static Result Ok(String Message, String Description);
+
+        static Result Error(String Message);
+
+        [default_overload]
+        static Result Error(String Message, String Description);
+        static Result Error(UInt32 HResult, String Message);
+    }
+}

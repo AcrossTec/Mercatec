@@ -63,6 +63,9 @@
     <ClInclude Include="Mercatec.Services.MessageService.hpp">
       <Filter>Services</Filter>
     </ClInclude>
+    <ClInclude Include="Mercatec.Services.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="PropertySheet.props">
@@ -87,6 +90,21 @@
   </ItemGroup>
   <ItemGroup>
     <Midl Include="Mercatec.Services.DialogService.idl">
+      <Filter>Services</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Services.LoginService.idl">
+      <Filter>Services</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Services.SettingsService.idl">
+      <Filter>Services</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Services.CommonServices.idl">
+      <Filter>Services</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Services.ContextService.idl">
+      <Filter>Services</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Services.LogService.idl">
       <Filter>Services</Filter>
     </Midl>
   </ItemGroup>

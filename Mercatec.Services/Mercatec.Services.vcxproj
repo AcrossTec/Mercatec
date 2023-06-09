@@ -158,6 +158,23 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Services.LogService.h">
+      <DependentUpon>Mercatec.Services.LogService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Services.ContextService.h">
+      <DependentUpon>Mercatec.Services.ContextService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Services.CommonServices.h">
+      <DependentUpon>Mercatec.Services.CommonServices.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Services.hpp" />
+    <ClInclude Include="Mercatec.Services.LoginService.h">
+      <DependentUpon>Mercatec.Services.LoginService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.Services.AuthService.hpp" />
     <ClInclude Include="Mercatec.Services.DialogService.h">
       <DependentUpon>Mercatec.Services.DialogService.idl</DependentUpon>
@@ -167,8 +184,28 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClInclude Include="Mercatec.Services.Exports.Api.hpp" />
     <ClInclude Include="Mercatec.Services.MessageService.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Mercatec.Services.SettingsService.h">
+      <DependentUpon>Mercatec.Services.SettingsService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.Services.LogService.cpp">
+      <DependentUpon>Mercatec.Services.LogService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Services.ContextService.cpp">
+      <DependentUpon>Mercatec.Services.ContextService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Services.CommonServices.cpp">
+      <DependentUpon>Mercatec.Services.CommonServices.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Services.LoginService.cpp">
+      <DependentUpon>Mercatec.Services.LoginService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Services.AuthService.cpp">
       <DependentUpon>Mercatec.Services.AuthService.hpp</DependentUpon>
       <SubType>Code</SubType>
@@ -197,9 +234,28 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="Mercatec.Services.SettingsService.cpp">
+      <DependentUpon>Mercatec.Services.SettingsService.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="Mercatec.Services.LogService.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.Services.ContextService.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.Services.CommonServices.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.Services.LoginService.idl">
+      <SubType>Designer</SubType>
+    </Midl>
     <Midl Include="Mercatec.Services.DialogService.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.Services.SettingsService.idl">
       <SubType>Designer</SubType>
     </Midl>
   </ItemGroup>

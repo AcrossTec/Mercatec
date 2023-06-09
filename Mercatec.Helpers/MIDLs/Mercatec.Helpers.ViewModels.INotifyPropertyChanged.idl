@@ -1,0 +1,8 @@
+namespace Mercatec.Helpers.ViewModels
+{
+    interface INotifyPropertyChanged requires Microsoft.UI.Xaml.Data.INotifyPropertyChanged
+    {
+        void NotifyPropertyChanged(String PropertyName);
+        void NotifyChanges();
+    };
+}

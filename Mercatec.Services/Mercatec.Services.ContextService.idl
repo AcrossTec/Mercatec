@@ -1,0 +1,8 @@
+namespace Mercatec.Services
+{
+    [bindable]
+    runtimeclass ContextService : [default] Mercatec.Helpers.Services.IContextService
+    {
+        ContextService();
+    }
+}

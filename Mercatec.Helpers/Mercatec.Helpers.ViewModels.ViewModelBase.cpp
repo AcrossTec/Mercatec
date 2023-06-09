@@ -15,14 +15,10 @@ namespace winrt::Mercatec::Helpers::ViewModels::implementation
     ViewModelBase::ViewModelBase(const Services::ICommonServices& common_services) noexcept
       : m_ContextService{ common_services.ContextService() }
       , m_NavigationService{ common_services.NavigationService() }
+      , m_MessageService{ common_services.MessageService() }
       , m_DialogService{ common_services.DialogService() }
       , m_LogService{ common_services.LogService() }
     {
-    }
-
-    bool ViewModelBase::IsMainView() const noexcept
-    {
-        return m_ContextService.IsMainView();
     }
 
     hstring ViewModelBase::Title() const noexcept
@@ -38,6 +34,11 @@ namespace winrt::Mercatec::Helpers::ViewModels::implementation
     Services::INavigationService ViewModelBase::NavigationService() const noexcept
     {
         return m_NavigationService;
+    }
+
+    Services::IMessageService ViewModelBase::MessageService() const noexcept
+    {
+        return m_MessageService;
     }
 
     Services::IDialogService ViewModelBase::DialogService() const noexcept
@@ -60,7 +61,7 @@ namespace winrt::Mercatec::Helpers::ViewModels::implementation
         co_await m_LogService.WriteAsync(Mercatec::Helpers::LogType::Warning, source, action, message, description);
     }
 
-    fire_and_forget ViewModelBase::LogException(const std::wstring_view source, const std::wstring_view action, const uint64_t code, const std::wstring_view message) const noexcept
+    fire_and_forget ViewModelBase::LogException(const std::wstring_view source, const std::wstring_view action, const hresult code, const std::wstring_view message) const noexcept
     {
         co_await m_LogService.WriteAsync(Mercatec::Helpers::LogType::Error, source, action, code, message);
     }

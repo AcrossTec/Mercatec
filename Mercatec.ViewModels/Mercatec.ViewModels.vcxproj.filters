@@ -20,6 +20,18 @@
     <Filter Include="ViewModels">
       <UniqueIdentifier>{572fb810-3b86-41b4-8b8d-e9d7b7568a06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ViewModels\Shell">
+      <UniqueIdentifier>{2a2da878-d06f-4ef7-bdb3-02019c834532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewModels\Login">
+      <UniqueIdentifier>{89585a1c-74cc-4e29-aeec-b7c386e34bd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewModels\Dashboard">
+      <UniqueIdentifier>{1585fb80-a107-46e1-9f55-94117f12f11e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewModels\Customers">
+      <UniqueIdentifier>{5442f955-0e89-4a4c-a865-812313f3cd60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -59,11 +71,20 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Mercatec.ViewModels.Customer.idl">
-      <Filter>ViewModels</Filter>
+    <Midl Include="Mercatec.ViewModels.LoginViewModel.idl">
+      <Filter>ViewModels\Login</Filter>
     </Midl>
     <Midl Include="Mercatec.ViewModels.DashboardViewModel.idl">
-      <Filter>ViewModels</Filter>
+      <Filter>ViewModels\Dashboard</Filter>
+    </Midl>
+    <Midl Include="Mercatec.ViewModels.Customer.idl">
+      <Filter>ViewModels\Customers</Filter>
+    </Midl>
+    <Midl Include="Mercatec.ViewModels.MainShellViewModel.idl">
+      <Filter>ViewModels\Shell</Filter>
+    </Midl>
+    <Midl Include="Mercatec.ViewModels.ShellViewModel.idl">
+      <Filter>ViewModels\Shell</Filter>
     </Midl>
   </ItemGroup>
 </Project>

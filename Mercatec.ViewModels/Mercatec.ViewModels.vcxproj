@@ -120,11 +120,11 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <PreprocessorDefinitions>MERCATEC_VIEW_MODELS_API_EXPORTS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(SolutionName).BusinessLogic\;$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Reports\;$(SolutionDir)$(SolutionName).Repositories\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(SolutionName).BusinessLogic\;$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Reports\;$(SolutionDir)$(SolutionName).Repositories\;$(SolutionDir)$(SolutionName).Services\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <UseStandardPreprocessor Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).BusinessLogic\$(SolutionName).BusinessLogic.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Reports\$(SolutionName).Reports.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).BusinessLogic\$(SolutionName).BusinessLogic.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Reports\$(SolutionName).Reports.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Services\$(SolutionName).Services.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
@@ -132,7 +132,8 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Reports\$(SolutionName).Reports.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"</Command>
+xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"
+xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Services\$(SolutionName).Services.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <Midl>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -143,13 +144,13 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
       <PreprocessorDefinitions>MERCATEC_VIEW_MODELS_API_EXPORTS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(SolutionName).BusinessLogic\;$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Reports\;$(SolutionDir)$(SolutionName).Repositories\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(SolutionName).BusinessLogic\;$(SolutionDir)$(SolutionName).Helpers\;$(SolutionDir)$(SolutionName).Models\;$(SolutionDir)$(SolutionName).Reports\;$(SolutionDir)$(SolutionName).Repositories\;$(SolutionDir)$(SolutionName).Services\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <UseStandardPreprocessor Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</UseStandardPreprocessor>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).BusinessLogic\$(SolutionName).BusinessLogic.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Reports\$(SolutionName).Reports.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).BusinessLogic\$(SolutionName).BusinessLogic.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Reports\$(SolutionName).Reports.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.lib;$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Services\$(SolutionName).Services.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">xcopy.exe /y "$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(_WindowsAppSDKFoundationPlatform)\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" "$(OutDir)"
@@ -157,7 +158,8 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Helpers\$(SolutionName).Helpers.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Models\$(SolutionName).Models.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Reports\$(SolutionName).Reports.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"</Command>
+xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Repositories\$(SolutionName).Repositories.dll" "$(OutDir)"
+xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionName).Services\$(SolutionName).Services.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
     <Midl>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,6 +168,14 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.ViewModels.MainShellViewModel.h">
+      <DependentUpon>Mercatec.ViewModels.MainShellViewModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Mercatec.ViewModels.LoginViewModel.h">
+      <DependentUpon>Mercatec.ViewModels.LoginViewModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.ViewModels.DashboardViewModel.h">
       <DependentUpon>Mercatec.ViewModels.DashboardViewModel.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -176,8 +186,20 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     </ClInclude>
     <ClInclude Include="Mercatec.ViewModels.Exports.Api.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Mercatec.ViewModels.ShellViewModel.h">
+      <DependentUpon>Mercatec.ViewModels.ShellViewModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.ViewModels.MainShellViewModel.cpp">
+      <DependentUpon>Mercatec.ViewModels.MainShellViewModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.ViewModels.LoginViewModel.cpp">
+      <DependentUpon>Mercatec.ViewModels.LoginViewModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.ViewModels.DashboardViewModel.cpp">
       <DependentUpon>Mercatec.ViewModels.DashboardViewModel.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -190,6 +212,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="Mercatec.ViewModels.ShellViewModel.cpp">
+      <DependentUpon>Mercatec.ViewModels.ShellViewModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Mercatec.ViewModels.def" />
@@ -217,12 +243,24 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ProjectReference Include="..\Mercatec.Repositories\Mercatec.Repositories.vcxproj">
       <Project>{8337b328-bf33-401f-b1cb-cd54ccd4be5b}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Mercatec.Services\Mercatec.Services.vcxproj">
+      <Project>{5efaf453-ad08-4d9a-8b5c-ee4041a7dd75}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="Mercatec.ViewModels.MainShellViewModel.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.ViewModels.LoginViewModel.idl">
+      <SubType>Designer</SubType>
+    </Midl>
     <Midl Include="Mercatec.ViewModels.DashboardViewModel.idl">
       <SubType>Designer</SubType>
     </Midl>
     <Midl Include="Mercatec.ViewModels.Customer.idl">
+      <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Mercatec.ViewModels.ShellViewModel.idl">
       <SubType>Designer</SubType>
     </Midl>
   </ItemGroup>

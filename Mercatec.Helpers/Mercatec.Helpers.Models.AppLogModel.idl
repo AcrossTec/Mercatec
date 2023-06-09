@@ -1,0 +1,26 @@
+import "Mercatec.Helpers.LogType.idl";
+import "Mercatec.Helpers.ViewModels.IEntity.idl";
+import "Mercatec.Helpers.ViewModels.INotifyPropertyChanged.idl";
+
+namespace Mercatec.Helpers.Models
+{
+    [bindable]
+    [default_interface]
+    runtimeclass AppLogModel : Mercatec.Helpers.ViewModels.INotifyPropertyChanged, Mercatec.Helpers.ViewModels.IEntity
+    {
+        AppLogModel();
+        static AppLogModel CreateEmpty();
+
+        Windows.Foundation.DateTime DateTimeOffset { get; set; };
+        Mercatec.Helpers.LogType    Type           { get; set; };
+
+        Guid    AppLogId       { get; set; };
+        Boolean IsRead         { get; set; };
+        String  User           { get; set; };
+        String  Source         { get; set; };
+        String  Action         { get; set; };
+        String  Message        { get; set; };
+        String  Description    { get; set; };
+        Boolean IsEmpty        { get; set; };
+    }
+}

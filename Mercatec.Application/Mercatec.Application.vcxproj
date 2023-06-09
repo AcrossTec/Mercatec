@@ -178,6 +178,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClInclude Include="Mercatec.Application.ActivationService.hpp" />
     <ClInclude Include="Mercatec.Application.Exports.Api.hpp" />
     <ClInclude Include="Mercatec.Application.NavigationService.hpp" />
+    <ClInclude Include="NamePasswordControl.xaml.h">
+      <DependentUpon>NamePasswordControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="PassportRegisterPage.xaml.h">
       <DependentUpon>PassportRegisterPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -207,6 +211,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>WelcomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="WindowsHelloControl.xaml.h">
+      <DependentUpon>WindowsHelloControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -214,6 +222,9 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NamePasswordControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PassportRegisterPage.xaml">
@@ -233,6 +244,9 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Page Include="WelcomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="WindowsHelloControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LoginPage.xaml.cpp">
@@ -246,6 +260,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <ClCompile Include="Mercatec.Application.ActivationService.cpp" />
     <ClCompile Include="Mercatec.Application.NavigationService.cpp" />
     <ClCompile Include="Mercatec.Application.Startup.cpp" />
+    <ClCompile Include="NamePasswordControl.xaml.cpp">
+      <DependentUpon>NamePasswordControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="PassportRegisterPage.xaml.cpp">
       <DependentUpon>PassportRegisterPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -276,6 +294,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>WelcomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="WindowsHelloControl.xaml.cpp">
+      <DependentUpon>WindowsHelloControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl">
@@ -293,6 +315,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Midl Include="MainWindow.idl">
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Midl>
+    <Midl Include="NamePasswordControl.idl">
+      <DependentUpon>NamePasswordControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Midl>
     <Midl Include="PassportRegisterPage.idl">
       <DependentUpon>PassportRegisterPage.xaml</DependentUpon>
@@ -314,6 +340,10 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
       <DependentUpon>WelcomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="WindowsHelloControl.idl">
+      <DependentUpon>WindowsHelloControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt">
@@ -325,6 +355,7 @@ xcopy /y /d "$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(SolutionNam
     <Image Include="Assets\16X16-Icon.png" />
     <Image Include="Assets\32X32-Icon.ico" />
     <Image Include="Assets\32X32-Icon.png" />
+    <Image Include="Assets\Images\LoginBackground.jpg" />
     <Image Include="Assets\LockScreenLogo.scale-200.ico" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
     <Image Include="Assets\SplashScreen-Background.scale-200.png" />

@@ -1,14 +1,13 @@
+import "Mercatec.Helpers.ViewModels.INotifyPropertyChanged.idl";
+
 namespace Mercatec.Helpers.ViewModels
 {
     [bindable]
     [default_interface]
-    unsealed runtimeclass ObservableObject : Microsoft.UI.Xaml.Data.INotifyPropertyChanged
+    unsealed runtimeclass ObservableObject : INotifyPropertyChanged
     {
         ObservableObject();
         Boolean IsEmpty { get; set; };
-        protected void Merge(ObservableObject Source);
-
-        void NotifyPropertyChanged(String PropertyName);
-        void NotifyChanges();
+        overridable void Merge(ObservableObject Source);
     }
 }

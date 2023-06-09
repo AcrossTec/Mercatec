@@ -1,0 +1,14 @@
+import "Mercatec.ViewModels.ShellViewModel.idl";
+
+namespace Mercatec.ViewModels
+{
+    [bindable]
+    [default_interface]
+    runtimeclass MainShellViewModel : ShellViewModel
+    {
+        MainShellViewModel(
+            Mercatec.Helpers.Services.ILoginService   LoginService,
+            Mercatec.Helpers.Services.ICommonServices CommonServices
+        );
+    }
+}

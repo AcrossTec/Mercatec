@@ -28,6 +28,12 @@
     <Page Include="SplashScreen.xaml">
       <Filter>Windows</Filter>
     </Page>
+    <Page Include="NamePasswordControl.xaml">
+      <Filter>Controls</Filter>
+    </Page>
+    <Page Include="WindowsHelloControl.xaml">
+      <Filter>Controls</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl" />
@@ -128,6 +134,9 @@
     <Image Include="Assets\16X16-Icon.ico">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\Images\LoginBackground.jpg">
+      <Filter>Assets\Images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">
@@ -165,6 +174,12 @@
     </Filter>
     <Filter Include="Configurations">
       <UniqueIdentifier>{af9772ba-bc80-447b-bac8-08303239cf84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Images">
+      <UniqueIdentifier>{1eba4089-fe28-4763-af8f-ae03f034de00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{00f4c03c-b9be-4ad6-b695-bc839412a488}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

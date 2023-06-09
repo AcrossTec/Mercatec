@@ -1,0 +1,10 @@
+namespace Mercatec.Services
+{
+    [bindable]
+    runtimeclass LoginService : [default] Mercatec.Helpers.Services.ILoginService
+    {
+        LoginService(Mercatec.Helpers.Services.IMessageService MessageService, Mercatec.Helpers.Services.IDialogService DialogService);
+        Mercatec.Helpers.Services.IMessageService MessageService { get; };
+        Mercatec.Helpers.Services.IDialogService  DialogService  { get; };
+    }
+}

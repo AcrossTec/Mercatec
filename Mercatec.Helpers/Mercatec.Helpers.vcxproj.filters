@@ -38,6 +38,9 @@
     <Filter Include="Headers\Cxx">
       <UniqueIdentifier>{f7154c92-09ae-4774-8198-b2d8584a5761}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Infrastructure\Models">
+      <UniqueIdentifier>{a7299ab0-f410-41db-9400-f93b6d3ed7ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.Helpers.Widespread.cpp">
@@ -63,6 +66,9 @@
     </ClCompile>
     <ClCompile Include="Mercatec.Helpers.ServiceLocator.cpp">
       <Filter>Headers\Cxx</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.ViewModels.Entity.cpp">
+      <Filter>Infrastructure\ViewModels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +207,36 @@
       <Filter>Infrastructure\ViewModels</Filter>
     </Midl>
     <Midl Include="Mercatec.Helpers.ViewModels.ShellArgs.idl">
+      <Filter>Infrastructure\ViewModels</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.ILoginService.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.ISettingsService.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.IMessageService.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.Services.IFilePickerService.idl">
+      <Filter>Infrastructure\Services</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.ImagePickerResult.idl">
+      <Filter>Infrastructure\Common</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.Models.AppLogModel.idl">
+      <Filter>Infrastructure\Models</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.Result.idl">
+      <Filter>Infrastructure\Common</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.DataProviderType.idl">
+      <Filter>Infrastructure\MIDLs</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.DataRequest.idl">
+      <Filter>Infrastructure\Common</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.INotifyPropertyChanged.idl">
       <Filter>Infrastructure\ViewModels</Filter>
     </Midl>
   </ItemGroup>

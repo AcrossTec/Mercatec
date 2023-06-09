@@ -1,0 +1,13 @@
+namespace Mercatec.Helpers
+{
+    [bindable]
+    [default_interface]
+    runtimeclass ImagePickerResult 
+    {
+        ImagePickerResult();
+        String  FileName    { get; set; };
+        String  ContentType { get; set; };
+        UInt8[] ImageBytes  { get; set; };
+        Object  ImageSource { get; set; };
+    }
+}

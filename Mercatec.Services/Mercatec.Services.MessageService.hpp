@@ -4,7 +4,9 @@
 #include <winrt/Windows.Foundation.Collections.h>
 
 #include <winrt/Mercatec.Helpers.h>
-#include "Mercatec.Services.Exports.Api.hpp"
+#include <winrt/Mercatec.Helpers.Services.h>
+
+#include <Mercatec.Services.Exports.Api.hpp>
 #include <Mercatec.Helpers.FunctionTraits.hpp>
 
 #include <mutex>
@@ -162,7 +164,7 @@ namespace Mercatec::Services
         std::unordered_map<std::type_index, Subscriptions>        m_Subscriptions;
     };
 
-    class MessageService : public winrt::implements<MessageService, winrt::Windows::Foundation::IInspectable>
+    class MessageService : public winrt::implements<MessageService, winrt::Mercatec::Helpers::Services::IMessageService>
     {
     public:
         template <typename TSender, typename TArgs>

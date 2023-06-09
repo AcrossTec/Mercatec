@@ -7,11 +7,17 @@
 # include "MainWindow.g.cpp"
 #endif
 
+#include <winrt/Mercatec.Helpers.h>
+#include <winrt/Mercatec.Helpers.ViewModels.h>
+
 #include <Mercatec.Helpers.Application.hpp>
 
 using namespace winrt;
 using namespace winrt::Microsoft::UI::Xaml;
 using namespace winrt::Windows::Foundation;
+using namespace winrt::Windows::Security::Credentials;
+using namespace winrt::Mercatec::Helpers;
+using namespace winrt::Mercatec::Helpers::ViewModels;
 
 using namespace ::Mercatec::Helpers::Applications;
 

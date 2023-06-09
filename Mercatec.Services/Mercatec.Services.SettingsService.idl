@@ -1,0 +1,8 @@
+namespace Mercatec.Services
+{
+    [bindable]
+    runtimeclass SettingsService : [default] Mercatec.Helpers.Services.ISettingsService
+    {
+        SettingsService(Mercatec.Helpers.Services.IDialogService DialogService);
+    }
+}

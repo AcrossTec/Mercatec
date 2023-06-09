@@ -1,0 +1,18 @@
+import "Mercatec.Helpers.Result.idl";
+
+namespace Mercatec.Helpers.Services
+{
+    interface ILoginService
+    {
+        Boolean IsAuthenticated { get; set; };
+
+        Windows.Foundation.IAsyncOperation<Boolean> SignInWithPasswordAsync(String UserName, String Password);
+
+        Boolean IsWindowsHelloEnabled(String UserName);
+        Windows.Foundation.IAsyncAction TrySetupWindowsHelloAsync(String UserName);
+
+        Windows.Foundation.IAsyncOperation<Mercatec.Helpers.Result> SignInWithWindowsHelloAsync();
+
+        void Logoff();
+    }
+}

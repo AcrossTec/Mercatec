@@ -1,12 +1,33 @@
 #pragma once
 
-#include <winrt/Windows.Foundation.h>
+#include <Mercatec.Helpers.Exports.Api.hpp>
 #include <winrt/Microsoft.UI.Xaml.Input.h>
+#include <winrt/Windows.Foundation.h>
 
 #include <functional>
 
 namespace Mercatec::Helpers
 {
+    struct DelegateCommand : winrt::implements<DelegateCommand, winrt::Microsoft::UI::Xaml::Input::ICommand>
+    {
+    public:
+        MERCATEC_HELPERS_API DelegateCommand(std::function<void()> execute);
+        MERCATEC_HELPERS_API DelegateCommand(std::function<void()> execute, std::function<bool()> can_execute);
+
+        MERCATEC_HELPERS_API winrt::event_token CanExecuteChanged(const winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>& handler);
+
+        MERCATEC_HELPERS_API void CanExecuteChanged(const winrt::event_token& token) noexcept;
+        MERCATEC_HELPERS_API void OnCanExecuteChanged();
+        MERCATEC_HELPERS_API bool CanExecute(const winrt::Windows::Foundation::IInspectable&) const;
+        MERCATEC_HELPERS_API void Execute(const winrt::Windows::Foundation::IInspectable&) const;
+
+    private:
+        winrt::event<winrt::Windows::Foundation::EventHandler<winrt::Windows::Foundation::IInspectable>> m_CanExecuteChanged;
+
+        std::function<void()> m_Execute;
+        std::function<bool()> m_CanExecute;
+    };
+
     template <typename T = winrt::Windows::Foundation::IInspectable>
     struct RelayCommand : winrt::implements<RelayCommand<T>, winrt::Microsoft::UI::Xaml::Input::ICommand>
     {

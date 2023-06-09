@@ -13,17 +13,9 @@ namespace winrt::Mercatec::Application::implementation
     struct LoginPage : LoginPageT<LoginPage>
     {
     public:
-        using Account = winrt::Mercatec::Models::UserAccount;
-
         LoginPage();
-        fire_and_forget OnNavigatedTo(const MUXN::NavigationEventArgs& args);
-        fire_and_forget PassportSignInButton_Click(const IInspectable& sender, const MUX::RoutedEventArgs& args);
-        fire_and_forget RegisterButtonTextBlock_OnPointerPressed(const IInspectable& sender, const MUXI::PointerRoutedEventArgs& args);
-        IAsyncAction    SignInPassportAsync();
 
     private:
-        Account                 m_Account;
-        bool                    m_IsExistingAccount;
         Services::DialogService m_DialogService;
     };
 } // namespace winrt::Mercatec::Application::implementation

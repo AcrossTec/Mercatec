@@ -1,0 +1,21 @@
+import "Mercatec.Helpers.DataProviderType.idl";
+import "Mercatec.Helpers.Result.idl";
+
+namespace Mercatec.Helpers.Services
+{
+    interface ISettingsService
+    {
+        String Version   { get; };
+        String DbVersion { get; };
+        String UserName  { get; set; };
+
+        Mercatec.Helpers.DataProviderType DataProvider { get; set; };
+        String PatternConnectionString { get; };
+        String SQLServerConnectionString { get; set; };
+        Boolean IsRandomErrorsEnabled { get; set; };
+
+        Windows.Foundation.IAsyncOperation<Mercatec.Helpers.Result> ResetLocalDataProviderAsync();
+        Windows.Foundation.IAsyncOperation<Mercatec.Helpers.Result> ValidateConnectionAsync(String ConnectionString);
+        Windows.Foundation.IAsyncOperation<Mercatec.Helpers.Result> CreateDabaseAsync(String ConnectionString);
+    }
+}

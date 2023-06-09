@@ -1,0 +1,14 @@
+namespace Mercatec.Helpers
+{
+    delegate String SQLExpressionFunc();
+
+    [default_interface]
+    runtimeclass DataRequest 
+    {
+        DataRequest();
+        String            Query { get; set; };
+        SQLExpressionFunc Where { get; set; };
+        SQLExpressionFunc OrderBy { get; set; };
+        SQLExpressionFunc OrderByDesc { get; set; };
+    }
+}

@@ -37,16 +37,16 @@ namespace winrt::Mercatec::Application::implementation
     {
         using namespace std::chrono_literals;
 
-        auto StartupTask = ::Mercatec::Application::Configurations::Startup::ConfigureAsync();
+        auto StartupTask{ ::Mercatec::Application::Configurations::Startup::ConfigureAsync() };
 
-        for ( uint32_t Index = 0; Index < 100; Index += 5 )
-        {
-            // Switch to the foreground thread associated with SplashScreen.
-            co_await wil::resume_foreground(DispatcherQueue());
-            Status().Text(std::format(L"Cargando {}%...", Index));
-            Progress().Value(Index);
-            co_await 500ms;
-        }
+        StartupTask.Progress(
+          [this](const auto&, const double_t Value) -> winrt::fire_and_forget
+          {
+              co_await wil::resume_foreground(DispatcherQueue());
+              Status().Text(std::format(L"Cargando {}%...", Value));
+              Progress().Value(Value);
+          }
+        );
 
         co_await StartupTask;
     }

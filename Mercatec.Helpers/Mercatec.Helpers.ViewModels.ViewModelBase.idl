@@ -7,18 +7,17 @@ namespace Mercatec.Helpers.ViewModels
     unsealed runtimeclass ViewModelBase : ObservableObject
     {
         ViewModelBase(Mercatec.Services.ICommonServices CommonServices);
+        overridable String Title();
 
-        Boolean IsMainView { get; };
-        String Title { get; };
-
-        Mercatec.Services.IContextService ContextService { get; };
+        Mercatec.Services.IContextService    ContextService    { get; };
         Mercatec.Services.INavigationService NavigationService { get; };
-        Mercatec.Services.IDialogService DialogService { get; };
-        Mercatec.Services.ILogService LogService { get; };
+        Mercatec.Services.IMessageService    MessageService    { get; };
+        Mercatec.Services.IDialogService     DialogService     { get; };
+        Mercatec.Services.ILogService        LogService        { get; };
 
         void LogInformation(String Source, String Action, String Message, String Description);
-        void LogWarning(String Source, String Action, String Message, String Description);
-        void LogException(String Source, String Action, UInt64 Code, String Message);
-        void LogError(String Source, String Action, String Message, String Description);
+        void LogWarning    (String Source, String Action, String Message, String Description);
+        void LogException  (String Source, String Action, UInt32 Code,    String Message);
+        void LogError      (String Source, String Action, String Message, String Description);
     }
 }
