@@ -23,16 +23,14 @@
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
-
+#include <winrt/Windows.Globalization.h>
 #include <winrt/Windows.ApplicationModel.Activation.h>
-
 #include <winrt/Windows.Security.Credentials.h>
 #include <winrt/Windows.Security.Cryptography.h>
-
 #include <winrt/Windows.Storage.h>
 #include <winrt/Windows.Storage.Streams.h>
-
 #include <winrt/Windows.UI.Popups.h>
+#include <winrt/Windows.UI.Xaml.Data.h>
 #include <winrt/Windows.UI.Xaml.Interop.h>
 
 #include <winrt/Microsoft.UI.h>
@@ -60,6 +58,13 @@
 #include <winrt/Microsoft.Windows.PushNotifications.h>
 #include <winrt/Microsoft.Windows.System.h>
 
+#include <winrt/Mercatec.Application.h>
+#include <winrt/Mercatec.Helpers.h>
+#include <winrt/Mercatec.Helpers.Converters.h>
+#include <winrt/Mercatec.Helpers.Services.h>
+#include <winrt/Mercatec.Helpers.ViewModels.h>
+#include <winrt/Mercatec.ViewModels.h>
+
 #include <Mercatec.WinUIEx.HwndExtensions.hpp>
 #include <Mercatec.WinUIEx.WindowExtensions.hpp>
 
@@ -69,8 +74,10 @@
 #include <wil/resource.h>
 #include <wil/cppwinrt_helpers.h>
 
+#include <Mercatec.Services.hpp>
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Strings.hpp>
+#include <Mercatec.Helpers.ServiceLocator.hpp>
 
 #include <ppl.h>
 #include <ppltasks.h>

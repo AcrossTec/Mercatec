@@ -1,0 +1,7 @@
+namespace Mercatec.Helpers.Converters
+{
+    runtimeclass BoolNegationConverter : [default] Microsoft.UI.Xaml.Data.IValueConverter
+    {
+        BoolNegationConverter();
+    }
+}

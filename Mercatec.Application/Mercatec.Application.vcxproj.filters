@@ -140,6 +140,15 @@
     <Image Include="Assets\Images\LoginBackground.jpg">
       <Filter>Assets\Images</Filter>
     </Image>
+    <Image Include="Assets\Logotype-white.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Logotype-blue.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Logotype-black.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">

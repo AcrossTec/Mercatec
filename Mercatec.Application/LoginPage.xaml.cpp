@@ -76,7 +76,7 @@ namespace winrt::Mercatec::Application::implementation
     fire_and_forget LoginPage::OnShowLoginWithPassword([[maybe_unused]] const IInspectable& Sender, [[maybe_unused]] const RoutedEventArgs& Args)
     {
         co_await 100ms;
-        // passwordView.Focus();
+        PasswordView().Focus();
     }
 
     void LoginPage::OnBackgroundFocus([[maybe_unused]] const IInspectable& Sender, [[maybe_unused]] const RoutedEventArgs& Args)
@@ -93,15 +93,15 @@ namespace winrt::Mercatec::Application::implementation
 
     void LoginPage::DoEffectOut([[maybe_unused]] const double_t MilliSeconds)
     {
-        /* if ( m_EffectMode == EffectMode::Background or m_EffectMode == EffectMode::None )
-         {
-             m_EffectMode = EffectMode::Foreground;
+        if ( m_EffectMode == EffectMode::Background or m_EffectMode == EffectMode::None )
+        {
+            m_EffectMode = EffectMode::Foreground;
 
-             background.Scale(milliseconds, 1.1, 1.0);
-             background.Blur(milliseconds, 0.0, 6.0);
-             foreground.Scale(500, 0.95, 1.0);
-             foreground.Fade(milliseconds, 0.75, 1.0);
-         }*/
+            // BackgroundBorder().Scale(MilliSeconds, 1.1, 1.0);
+            // BackgroundBorder().Blur(MilliSeconds, 0.0, 6.0);
+            // ForegroundStackPanel().Scale(500, 0.95, 1.0);
+            // ForegroundStackPanel().Fade(MilliSeconds, 0.75, 1.0);
+        }
     }
 } // namespace winrt::Mercatec::Application::implementation
 

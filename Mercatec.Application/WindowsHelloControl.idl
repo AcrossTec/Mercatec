@@ -3,10 +3,15 @@
 
 namespace Mercatec.Application
 {
+    [bindable]
     [default_interface]
     runtimeclass WindowsHelloControl : Microsoft.UI.Xaml.Controls.UserControl
     {
         WindowsHelloControl();
-        Int32 MyProperty;
+        String UserName { get; set; };
+        Microsoft.UI.Xaml.Input.ICommand LoginWithWindowHelloCommand { get; set; };
+
+        static Microsoft.UI.Xaml.DependencyProperty UserNameProperty{ get; };
+        static Microsoft.UI.Xaml.DependencyProperty LoginWithWindowHelloCommandProperty{ get; };
     }
 }

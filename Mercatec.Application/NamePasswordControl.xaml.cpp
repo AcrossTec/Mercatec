@@ -9,6 +9,7 @@
 
 using namespace winrt;
 using namespace winrt::Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml::Input;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -20,18 +21,74 @@ namespace winrt::Mercatec::Application::implementation
         InitializeComponent();
     }
 
-    int32_t NamePasswordControl::MyProperty()
+    void NamePasswordControl::Focus() noexcept
     {
-        throw hresult_not_implemented();
+        UserNameTextBox().Focus(FocusState::Programmatic);
     }
 
-    void NamePasswordControl::MyProperty(int32_t /* value */)
+    hstring NamePasswordControl::UserName() const noexcept
     {
-        throw hresult_not_implemented();
+        return unbox_value<hstring>(GetValue(UserNameProperty()));
     }
 
-    void NamePasswordControl::myButton_Click(const IInspectable&, const RoutedEventArgs&)
+    void NamePasswordControl::UserName(const std::wstring_view Value) noexcept
     {
-        myButton().Content(box_value(L"Clicked"));
+        SetValue(UserNameProperty(), box_value(Value));
+    }
+
+    hstring NamePasswordControl::Password() const noexcept
+    {
+        return unbox_value<hstring>(GetValue(PasswordProperty()));
+    }
+
+    void NamePasswordControl::Password(const std::wstring_view Value) noexcept
+    {
+        SetValue(PasswordProperty(), box_value(Value));
+    }
+
+    ICommand NamePasswordControl::LoginWithPasswordCommand() const noexcept
+    {
+        return unbox_value<ICommand>(GetValue(LoginWithPasswordCommandProperty()));
+    }
+
+    void NamePasswordControl::LoginWithPasswordCommand(const ICommand& Value) const noexcept
+    {
+        SetValue(LoginWithPasswordCommandProperty(), box_value(Value));
+    }
+
+    DependencyProperty NamePasswordControl::UserNameProperty() noexcept
+    {
+        static DependencyProperty Property = DependencyProperty::Register( //
+          L"UserName",
+          xaml_typename<hstring>(),
+          xaml_typename<Application::NamePasswordControl>(),
+          PropertyMetadata::Create(box_value(L""))
+        );
+
+        return Property;
+    }
+
+    DependencyProperty NamePasswordControl::PasswordProperty() noexcept
+    {
+        static DependencyProperty Property = DependencyProperty::Register( //
+          L"Password",
+          xaml_typename<hstring>(),
+          xaml_typename<Application::NamePasswordControl>(),
+          PropertyMetadata::Create(box_value(L""))
+        );
+
+        return Property;
+    }
+
+    DependencyProperty NamePasswordControl::LoginWithPasswordCommandProperty() noexcept
+    {
+        static DependencyProperty Property = DependencyProperty::Register( //
+          L"LoginWithPasswordCommand",
+          xaml_typename<ICommand>(),
+          xaml_typename<Application::NamePasswordControl>(),
+          PropertyMetadata::Create(ICommand{ nullptr })
+        );
+
+        return Property;
     }
 } // namespace winrt::Mercatec::Application::implementation

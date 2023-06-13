@@ -119,6 +119,8 @@ void App::OnLaunched(const LaunchActivatedEventArgs& Args)
     m_Splash.Completed([this, Strong = m_Splash](const auto&, const auto& Window) { m_Window = Window; });
 }
 
+#ifdef DISABLE_XAML_GENERATED_MAIN
+
 // Rich activation ////////////////////////////////////////////////////////////
 //
 // Rich activation with the app lifecycle API
@@ -313,3 +315,5 @@ int32_t WINAPI wWinMain([[maybe_unused]] _In_ HINSTANCE hInstance, [[maybe_unuse
 
     return 0;
 }
+
+#endif // DISABLE_XAML_GENERATED_MAIN

@@ -12,7 +12,7 @@ namespace winrt::Mercatec::Application::implementation
     {
     public:
         LoginPage() noexcept;
-        ViewModels::LoginViewModel            ViewModel() const noexcept;
+        ViewModels::LoginViewModel ViewModel() const noexcept;
 
         fire_and_forget OnNavigatedTo(const Microsoft::UI::Xaml::Navigation::NavigationEventArgs& Args);
         fire_and_forget OnKeyDown(const Microsoft::UI::Xaml::Input::KeyRoutedEventArgs& Args);

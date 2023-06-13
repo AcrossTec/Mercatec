@@ -1,15 +1,7 @@
 namespace Mercatec.ViewModels
 {
-    [bindable]
-    [default_interface]
-    runtimeclass LoginViewModel : Mercatec.Helpers.ViewModels.ViewModelBase
+    interface ILoginViewModel requires Mercatec.Helpers.ViewModels.INotifyPropertyChanged
     {
-        LoginViewModel(
-            Mercatec.Helpers.Services.ILoginService    LoginService,
-            Mercatec.Helpers.Services.ISettingsService SettingsService,
-            Mercatec.Helpers.Services.ICommonServices  CommonServices
-        );
-
         Mercatec.Helpers.Services.ILoginService    LoginService    { get; };
         Mercatec.Helpers.Services.ISettingsService SettingsService { get; };
         Mercatec.Helpers.ViewModels.ShellArgs      ViewModelArgs   { get; set; };
@@ -26,5 +18,15 @@ namespace Mercatec.ViewModels
 
         Windows.Foundation.IAsyncAction LoadAsync(Mercatec.Helpers.ViewModels.ShellArgs Args);
         void Login();
+    };
+
+    [bindable]
+    runtimeclass LoginViewModel : Mercatec.Helpers.ViewModels.ViewModelBase, [default] ILoginViewModel
+    {
+        LoginViewModel(
+            Mercatec.Helpers.Services.ILoginService    LoginService,
+            Mercatec.Helpers.Services.ISettingsService SettingsService,
+            Mercatec.Helpers.Services.ICommonServices  CommonServices
+        );
     }
 }

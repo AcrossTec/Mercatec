@@ -12,12 +12,19 @@ namespace winrt::Mercatec::Application::implementation
 {
     struct WindowsHelloControl : WindowsHelloControlT<WindowsHelloControl>
     {
+    public:
         WindowsHelloControl();
+        hstring UserName() const noexcept;
+        void    UserName(const std::wstring_view Value) noexcept;
 
-        int32_t MyProperty();
-        void    MyProperty(int32_t value);
+        Microsoft::UI::Xaml::Input::ICommand LoginWithWindowHelloCommand() const noexcept;
+        void                                 LoginWithWindowHelloCommand(const Microsoft::UI::Xaml::Input::ICommand& Value) noexcept;
 
-        void myButton_Click(const Windows::Foundation::IInspectable& sender, const Microsoft::UI::Xaml::RoutedEventArgs& args);
+        static Microsoft::UI::Xaml::DependencyProperty UserNameProperty() noexcept;
+        static Microsoft::UI::Xaml::DependencyProperty LoginWithWindowHelloCommandProperty() noexcept;
+
+    private:
+        static void OnUserNameChanged(const Microsoft::UI::Xaml::DependencyObject& Sender, const Microsoft::UI::Xaml::DependencyPropertyChangedEventArgs& Args);
     };
 } // namespace winrt::Mercatec::Application::implementation
 

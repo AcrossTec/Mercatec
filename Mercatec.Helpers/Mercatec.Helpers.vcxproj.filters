@@ -31,6 +31,9 @@
     <Filter Include="Infrastructure\Models">
       <UniqueIdentifier>{a7299ab0-f410-41db-9400-f93b6d3ed7ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Converters">
+      <UniqueIdentifier>{a88ad16e-517e-4e7f-8a3f-e7b18d9b31e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.Helpers.Widespread.cpp">
@@ -231,6 +234,9 @@
     </Midl>
     <Midl Include="MIDLs\Mercatec.Helpers.IApplication.idl">
       <Filter>Infrastructure\MIDLs</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.Converters.BoolNegationConverter.idl">
+      <Filter>Converters</Filter>
     </Midl>
   </ItemGroup>
 </Project>

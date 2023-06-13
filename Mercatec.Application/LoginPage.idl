@@ -6,5 +6,6 @@ namespace Mercatec.Application
     runtimeclass LoginPage : Microsoft.UI.Xaml.Controls.Page
     {
         LoginPage();
+        Mercatec.ViewModels.LoginViewModel ViewModel { get; };
     }
 }

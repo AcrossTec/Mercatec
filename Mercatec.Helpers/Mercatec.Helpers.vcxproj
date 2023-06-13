@@ -138,6 +138,10 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Helpers.Converters.BoolNegationConverter.h">
+      <DependentUpon>Mercatec.Helpers.Converters.BoolNegationConverter.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.Helpers.DataRequest.h">
       <DependentUpon>Mercatec.Helpers.DataRequest.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -201,6 +205,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.Helpers.Converters.BoolNegationConverter.cpp">
+      <DependentUpon>Mercatec.Helpers.Converters.BoolNegationConverter.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Helpers.DataRequest.cpp">
       <DependentUpon>Mercatec.Helpers.DataRequest.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -275,6 +283,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="Mercatec.Helpers.Converters.BoolNegationConverter.idl">
+      <SubType>Designer</SubType>
+    </Midl>
     <Midl Include="MIDLs\Mercatec.Helpers.IApplication.idl" />
     <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.INotifyPropertyChanged.idl" />
     <Midl Include="Mercatec.Helpers.DataRequest.idl">
