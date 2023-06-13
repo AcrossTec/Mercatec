@@ -1,13 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resources">
-      <UniqueIdentifier>accd3aa8-1ba0-4223-9bbe-0c431709210b</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Generated Files">
-      <UniqueIdentifier>{926ab91d-31b4-48c3-b9a4-e681349f27f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Others">
       <UniqueIdentifier>{34d932f7-6079-4fa0-9663-6556e9aab55e}</UniqueIdentifier>
     </Filter>
@@ -28,9 +21,6 @@
     </Filter>
     <Filter Include="Infrastructure\Services">
       <UniqueIdentifier>{987f2003-b8f1-4273-912b-2c226b0d9d25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Infrastructure\Views">
-      <UniqueIdentifier>{a480eba2-defe-47b9-986e-822e826d97fc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Infrastructure\MIDLs">
       <UniqueIdentifier>{9b5656e0-23b0-4e48-9897-44a1ff9efcce}</UniqueIdentifier>
@@ -238,6 +228,9 @@
     </Midl>
     <Midl Include="MIDLs\Mercatec.Helpers.ViewModels.INotifyPropertyChanged.idl">
       <Filter>Infrastructure\ViewModels</Filter>
+    </Midl>
+    <Midl Include="MIDLs\Mercatec.Helpers.IApplication.idl">
+      <Filter>Infrastructure\MIDLs</Filter>
     </Midl>
   </ItemGroup>
 </Project>

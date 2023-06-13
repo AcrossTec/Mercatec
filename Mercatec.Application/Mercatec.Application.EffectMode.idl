@@ -1,0 +1,10 @@
+namespace Mercatec.Application
+{
+    enum EffectMode
+    {
+        None,
+        Background,
+        Foreground,
+        Disabled
+    };
+}

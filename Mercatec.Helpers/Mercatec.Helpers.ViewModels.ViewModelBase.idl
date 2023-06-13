@@ -3,6 +3,7 @@ import "Mercatec.Helpers.ViewModels.ObservableObject.idl";
 
 namespace Mercatec.Helpers.ViewModels
 {
+    [bindable]
     [default_interface]
     unsealed runtimeclass ViewModelBase : ObservableObject
     {

@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
-    <!--
+  <!--
     To customize common C++/WinRT project properties: 
     * right-click the project node
     * expand the Common Properties item
@@ -13,4 +13,9 @@
     -->
   <PropertyGroup />
   <ItemDefinitionGroup />
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+    <VcpkgTriplet>x64-windows</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--x-feature=xml</VcpkgAdditionalInstallOptions>
+  </PropertyGroup>
 </Project>

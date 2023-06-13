@@ -6,6 +6,7 @@
 #include <Mercatec.Helpers.ServiceLocator.hpp>
 #include <Mercatec.Services.hpp>
 
+#include <winrt/Mercatec.Application.h>
 #include <winrt/Mercatec.Helpers.ViewModels.h>
 #include <winrt/Mercatec.ViewModels.h>
 
@@ -40,6 +41,11 @@ namespace Services
     using ::Mercatec::Application::NavigationService;
 } // namespace Services
 
+namespace Pages
+{
+    using namespace winrt::Mercatec::Application;
+}
+
 extern void LoadExternalDLLFiles();
 
 namespace Mercatec::Application::Configurations
@@ -67,61 +73,68 @@ namespace Mercatec::Application::Configurations
         ServiceLocator::Default().Register<Interfaces::INavigationService>(winrt::make<::Services::NavigationService>());
         ServiceLocator::Default().Register<Interfaces::IDialogService>(::Services::DialogService());
         ServiceLocator::Default().Register<Interfaces::IContextService>(::Services::ContextService());
+        ServiceLocator::Default().Register<Interfaces::ISettingsService>(
+          []
+          {
+              const auto& DialogService = ServiceLocator::Default().GetService<Interfaces::IDialogService>();
+              return ::Services::SettingsService(DialogService);
+          }
+        );
         ServiceLocator::Default().Register<Interfaces::ILogService>(
           []
           {
-              auto MessageService = ServiceLocator::Default().GetService<Interfaces::IMessageService>();
+              const auto& MessageService = ServiceLocator::Default().GetService<Interfaces::IMessageService>();
               return ::Services::LogService(MessageService);
           }
         );
         ServiceLocator::Default().Register<Interfaces::ICommonServices>(
           []
           {
-              auto ContextService    = ServiceLocator::Default().GetService<Interfaces::IContextService>();
-              auto NavigationService = ServiceLocator::Default().GetService<Interfaces::INavigationService>();
-              auto MessageService    = ServiceLocator::Default().GetService<Interfaces::IMessageService>();
-              auto DialogService     = ServiceLocator::Default().GetService<Interfaces::IDialogService>();
-              auto LogService        = ServiceLocator::Default().GetService<Interfaces::ILogService>();
+              const auto& ContextService    = ServiceLocator::Default().GetService<Interfaces::IContextService>();
+              const auto& NavigationService = ServiceLocator::Default().GetService<Interfaces::INavigationService>();
+              const auto& MessageService    = ServiceLocator::Default().GetService<Interfaces::IMessageService>();
+              const auto& DialogService     = ServiceLocator::Default().GetService<Interfaces::IDialogService>();
+              const auto& LogService        = ServiceLocator::Default().GetService<Interfaces::ILogService>();
               return ::Services::CommonServices(ContextService, NavigationService, MessageService, DialogService, LogService);
           }
         );
         ServiceLocator::Default().Register<Interfaces::ILoginService>(
           []
           {
-              auto MessageService = ServiceLocator::Default().GetService<Interfaces::IMessageService>();
-              auto DialogService  = ServiceLocator::Default().GetService<Interfaces::IDialogService>();
+              const auto& MessageService = ServiceLocator::Default().GetService<Interfaces::IMessageService>();
+              const auto& DialogService  = ServiceLocator::Default().GetService<Interfaces::IDialogService>();
               return ::Services::LoginService(MessageService, DialogService);
           }
         );
         ServiceLocator::Default().Register<ViewModels::LoginViewModel>(
           []
           {
-              auto LoginService    = ServiceLocator::Default().GetService<Interfaces::ILoginService>();
-              auto SettingsService = ServiceLocator::Default().GetService<Interfaces::ISettingsService>();
-              auto CommonServices  = ServiceLocator::Default().GetService<Interfaces::ICommonServices>();
+              const auto& LoginService    = ServiceLocator::Default().GetService<Interfaces::ILoginService>();
+              const auto& SettingsService = ServiceLocator::Default().GetService<Interfaces::ISettingsService>();
+              const auto& CommonServices  = ServiceLocator::Default().GetService<Interfaces::ICommonServices>();
               return ViewModels::LoginViewModel(LoginService, SettingsService, CommonServices);
           }
         );
         ServiceLocator::Default().Register<ViewModels::ShellViewModel>(
           []
           {
-              auto LoginService   = ServiceLocator::Default().GetService<Interfaces::ILoginService>();
-              auto CommonServices = ServiceLocator::Default().GetService<Interfaces::ICommonServices>();
+              const auto& LoginService   = ServiceLocator::Default().GetService<Interfaces::ILoginService>();
+              const auto& CommonServices = ServiceLocator::Default().GetService<Interfaces::ICommonServices>();
               return ViewModels::ShellViewModel(LoginService, CommonServices);
           }
         );
         ServiceLocator::Default().Register<ViewModels::MainShellViewModel>(
           []
           {
-              auto LoginService   = ServiceLocator::Default().GetService<Interfaces::ILoginService>();
-              auto CommonServices = ServiceLocator::Default().GetService<Interfaces::ICommonServices>();
+              const auto& LoginService   = ServiceLocator::Default().GetService<Interfaces::ILoginService>();
+              const auto& CommonServices = ServiceLocator::Default().GetService<Interfaces::ICommonServices>();
               return ViewModels::MainShellViewModel(LoginService, CommonServices);
           }
         );
         ServiceLocator::Default().Register<ViewModels::DashboardViewModel>(
           []
           {
-              [[maybe_unused]] auto CommonServices = ServiceLocator::Default().GetService<Interfaces::ICommonServices>();
+              [[maybe_unused]] const auto& CommonServices = ServiceLocator::Default().GetService<Interfaces::ICommonServices>();
               return ViewModels::DashboardViewModel();
           }
         );
@@ -129,5 +142,9 @@ namespace Mercatec::Application::Configurations
 
     void Startup::ConfigureNavigation()
     {
+        using ::Services::NavigationService;
+
+        NavigationService::Register<ViewModels::LoginViewModel, Pages::LoginPage>();
+        NavigationService::Register<ViewModels::ShellViewModel, Pages::ShellPage>();
     }
 } // namespace Mercatec::Application::Configurations

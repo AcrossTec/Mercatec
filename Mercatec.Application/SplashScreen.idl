@@ -7,6 +7,5 @@ namespace Mercatec.Application
     runtimeclass SplashScreen : Mercatec.WinUIEx.SplashScreen
     {
         SplashScreen();
-        overridable Windows.Foundation.IAsyncAction OnLoading();
     }
 }

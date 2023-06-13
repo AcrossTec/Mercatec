@@ -14,7 +14,7 @@ using ::Mercatec::Helpers::Empty;
 
 namespace winrt::Mercatec::Helpers::ViewModels::implementation
 {
-    ObservableObject::ObservableObject()
+    ObservableObject::ObservableObject() noexcept
       : m_IsEmpty{ false }
     {
     }

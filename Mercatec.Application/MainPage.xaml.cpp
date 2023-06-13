@@ -59,7 +59,7 @@ namespace winrt::Mercatec::Application::implementation
         Args.Parameter(ActivationInfo->EntryArgs);
         Args.UserInfo(TryGetUserInfo());
 
-        Frame().Navigate(xaml_typename<Mercatec::Application::LoginPage>());
+        Frame().Navigate(xaml_typename<Mercatec::Application::LoginPage>(), Args);
     }
 
 } // namespace winrt::Mercatec::Application::implementation

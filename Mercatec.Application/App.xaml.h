@@ -4,14 +4,17 @@
 #pragma once
 
 #include "App.xaml.g.h"
+#include <winrt/Mercatec.Helpers.h>
 
 namespace winrt::Mercatec::Application::implementation
 {
-    struct App : AppT<App>
+    struct App : AppT<App, Helpers::IApplication>
     {
     public:
         App();
         void OnLaunched(const Microsoft::UI::Xaml::LaunchActivatedEventArgs&);
+
+        Microsoft::UI::Xaml::Window MainWindow() const noexcept;
 
     private:
         Mercatec::Application::SplashScreen m_Splash{ nullptr };

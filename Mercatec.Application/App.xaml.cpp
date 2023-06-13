@@ -77,6 +77,11 @@ inline constexpr std::wstring_view KindString(winrt::Microsoft::Windows::AppLife
     } // clang-format on
 }
 
+winrt::Microsoft::UI::Xaml::Window App::MainWindow() const noexcept
+{
+    return m_Window;
+}
+
 /// <summary>
 ///     Invoked when the application is launched.
 /// </summary>

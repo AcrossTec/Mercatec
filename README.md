@@ -68,3 +68,28 @@
 * [Cryptography](https://learn.microsoft.com/en-us/windows/uwp/security/cryptography)
   * [MACs, hashes, and signatures](https://learn.microsoft.com/en-us/windows/uwp/security/macs-hashes-and-signatures)
 
+## [vcpkg is Now Included with Visual Studio](https://devblogs.microsoft.com/cppblog/vcpkg-is-now-included-with-visual-studio/)
+
+* [vcpkg.json Reference](https://learn.microsoft.com/en-us/vcpkg/reference/vcpkg-json)
+
+* [vcpkg-configuration.json Reference](https://learn.microsoft.com/en-us/vcpkg/reference/vcpkg-configuration-json)
+
+* [Installing and Using Packages Example: SQLite](https://learn.microsoft.com/en-us/vcpkg/examples/installing-and-using-packages)
+
+* [Manifest mode](https://learn.microsoft.com/en-us/vcpkg/users/manifests)
+
+* [Manifest mode: CMake example](https://learn.microsoft.com/en-us/vcpkg/examples/manifest-mode-cmake)
+
+* [Using Registries](https://learn.microsoft.com/en-us/vcpkg/users/registries)
+
+* Packaging GitHub repos examples
+  * [Packaging GitHub repos example: libogg](https://learn.microsoft.com/en-us/vcpkg/examples/packaging-github-repos)
+  * [Packaging Archive Files Example: zlib](https://learn.microsoft.com/en-us/vcpkg/examples/packaging-zipfiles)
+  * [Patching example: Patching libpng to work for x64-uwp](https://learn.microsoft.com/en-us/vcpkg/examples/patching)
+  * [Add an explicit usage file to a port](https://learn.microsoft.com/en-us/vcpkg/examples/adding-usage)
+
+* [Personalizar una compilación](https://learn.microsoft.com/es-es/visualstudio/msbuild/customize-your-build?view=vs-2022)
+
+* [Personalización de la compilación por carpeta](https://learn.microsoft.com/es-es/visualstudio/msbuild/customize-by-directory?view=vs-2022) 
+
+* [Personalización de una compilación para controlar los archivos generados](https://learn.microsoft.com/es-es/visualstudio/msbuild/customize-builds-for-generated-files?view=vs-2022)

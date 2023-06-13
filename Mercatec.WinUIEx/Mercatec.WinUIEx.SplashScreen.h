@@ -32,7 +32,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
         ///     Override to display loading progress or delay loading of main window
         /// </summary>
         /// <returns></returns>
-        Windows::Foundation::IAsyncAction OnLoading();
+        virtual Windows::Foundation::IAsyncAction OnLoading();
 
         /// <summary>
         /// Gets or sets the width of the splash screen. Set to NaN to size for content

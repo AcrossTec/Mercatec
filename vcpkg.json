@@ -1,0 +1,51 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "mercatec-application",
+  "version": "1.0.0.0",
+  "features": {
+    "boost": {
+      "description": "Boost C++ Libraries",
+      "dependencies": [ "boost", "bext-di", "bext-sml" ]
+    },
+    "boost-libraries": {
+      "description": "Boost C++ Libraries: Single",
+      "dependencies": [ "bext-di", "bext-sml", "boost-phoenix", "boost-spirit" ]
+    },
+    "tests": {
+      "description": "Build tests",
+      "dependencies": [ "gtest", "doctest", "boost-test", "bext-ut" ]
+    },
+    "database": {
+      "description": "Database Libraries",
+      "dependencies": [ "libpq", "libpqxx", "sqlite3" ]
+    },
+    "png": {
+      "description": "Support PNG files",
+      "dependencies": [ "libpng" ]
+    },
+    "jpeg": {
+      "description": "Support JPEG files",
+      "dependencies": [ "libjpeg-turbo" ]
+    },
+    "tiff": {
+      "description": "Support TIFF files",
+      "dependencies": [ "libtiff" ]
+    },
+    "xml": {
+      "description": "Support XML files",
+      "dependencies": [ "tinyxml2" ]
+    },
+    "json": {
+      "description": "Support JSON files",
+      "dependencies": [ "nlohmann-json" ]
+    },
+    "xlsx": {
+      "description": "Support EXCEL files",
+      "dependencies": [ "libxlsxwriter" ]
+    },
+    "pdf": {
+      "description": "Support PDF files",
+      "dependencies": [ "libharu" ]
+    }
+  }
+}

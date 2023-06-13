@@ -26,7 +26,7 @@ namespace Mercatec::Application
 
     void NavigationService::Register(TypeName ViewModelType, TypeName ViewType)
     {
-        if ( not m_ViewModelMap.Insert(ViewModelType, ViewType) )
+        if ( m_ViewModelMap.Insert(ViewModelType, ViewType) ) // true if an element with the specified key was found and updated; otherwise false.
         {
             throw winrt::hresult_invalid_argument(std::format(L"ViewModel already registered '{}'", ViewModelType.Name));
         }
