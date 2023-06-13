@@ -20,13 +20,9 @@ namespace Mercatec::Helpers::inline Debug
         OutputDebugStringW(output.c_str());
     }
 
-    template <std::ranges::range Range> // clang-format off
-    requires
-    (
-           not std::is_constructible_v<std::string_view, Range>
-       and not std::is_constructible_v<std::wstring_view, Range>
-    )
-    void OutputDebug(Range&& values, const std::wstring_view message = L"") // clang-format on
+    template <std::ranges::range Range>
+    requires(not std::is_constructible_v<std::string_view, Range> and not std::is_constructible_v<std::wstring_view, Range>)
+    void OutputDebug(Range&& values, const std::wstring_view message = L"")
     {
         OutputDebug(L"{}\n", std::wstring(15, L'-'));
 
@@ -52,8 +48,9 @@ namespace Mercatec::Helpers::inline Debug
     {
     }
 
-    template <typename Type>
-    inline constexpr void OutputDebug(const winrt::Windows::Foundation::Collections::IObservableVector<Type>&, const std::wstring_view = L"")
+    template <std::ranges::range Range>
+    requires(not std::is_constructible_v<std::string_view, Range> and not std::is_constructible_v<std::wstring_view, Range>)
+    inline constexpr void OutputDebug(Range&&, const std::wstring_view = L"")
     {
     }
 } // namespace Mercatec::Helpers::inline Debug
