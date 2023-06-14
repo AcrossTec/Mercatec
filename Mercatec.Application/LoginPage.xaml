@@ -36,11 +36,14 @@
                 </Grid.RowDefinitions>
                 <StackPanel x:Name="ForegroundStackPanel" Grid.Row="1" VerticalAlignment="Center">
                     <Grid GotFocus="OnForegroundFocus">
+                        <!--
+                            Local:NamePasswordControl
+                                UserName="{x:Bind ViewModel.UserName, Mode=TwoWay}"
+                                Password="{x:Bind ViewModel.Password}"
+                        -->
                         <Local:NamePasswordControl
                             x:Name="PasswordView"
                             HorizontalAlignment="Center"
-                            UserName="{x:Bind ViewModel.UserName, Mode=TwoWay}"
-                            Password="{x:Bind ViewModel.Password}"
                             LoginWithPasswordCommand="{x:Bind ViewModel.LoginWithPasswordCommand}"
                             Visibility="{x:Bind ViewModel.IsLoginWithPassword, Mode=OneWay}"
                             IsEnabled="{x:Bind ViewModel.IsBusy, Converter={StaticResource BoolNegationConverter}}" />

@@ -7,11 +7,6 @@
 # include "LoginPage.g.cpp"
 #endif
 
-#include <Mercatec.Helpers.ServiceLocator.hpp>
-
-#include <winrt/Mercatec.Helpers.h>
-#include <winrt/Mercatec.Helpers.Services.h>
-
 #pragma warning(push)
 
 //! https://learn.microsoft.com/en-us/cpp/code-quality/c26811?view=msvc-170
@@ -35,6 +30,7 @@ namespace winrt::Mercatec::Application::implementation
     {
         InitializeContext();
         InitializeComponent();
+        InitializeBindings();
     }
 
     ViewModels::LoginViewModel LoginPage::ViewModel() const noexcept
@@ -52,6 +48,47 @@ namespace winrt::Mercatec::Application::implementation
     {
         auto Navigation = ServiceLocator::Default().GetService<Helpers::Services::INavigationService>();
         Navigation.Initialize(Frame());
+    }
+
+    void LoginPage::InitializeBindings()
+    {
+        // ViewModel.UserName
+        {
+            Microsoft::UI::Xaml::Data::Binding Binding;
+            Binding.Source(ViewModel());
+            Binding.Path(Microsoft::UI::Xaml::PropertyPath{ L"UserName" });
+            Binding.Mode(Microsoft::UI::Xaml::Data::BindingMode::TwoWay);
+            Binding.UpdateSourceTrigger(Microsoft::UI::Xaml::Data::UpdateSourceTrigger::PropertyChanged);
+            PasswordView().SetBinding(NamePasswordControl::UserNameProperty(), Binding);
+            PasswordView().RegisterPropertyChangedCallback(
+              NamePasswordControl::UserNameProperty(),
+              [this](const DependencyObject& Sender, const DependencyProperty& Property)
+              {
+                  // Update Two Way binding
+                  const hstring user_name = unbox_value<hstring>(Sender.GetValue(Property));
+                  ViewModel().UserName(user_name);
+              }
+            );
+        }
+
+        // ViewModel.Password
+        {
+            Microsoft::UI::Xaml::Data::Binding Binding;
+            Binding.Source(ViewModel());
+            Binding.Path(Microsoft::UI::Xaml::PropertyPath{ L"Password" });
+            Binding.Mode(Microsoft::UI::Xaml::Data::BindingMode::TwoWay);
+            Binding.UpdateSourceTrigger(Microsoft::UI::Xaml::Data::UpdateSourceTrigger::PropertyChanged);
+            PasswordView().SetBinding(NamePasswordControl::PasswordProperty(), Binding);
+            PasswordView().RegisterPropertyChangedCallback(
+              NamePasswordControl::PasswordProperty(),
+              [this](const DependencyObject& Sender, const DependencyProperty& Property)
+              {
+                  // Update Two Way binding
+                  const hstring password = unbox_value<hstring>(Sender.GetValue(Property));
+                  ViewModel().Password(password);
+              }
+            );
+        }
     }
 
     fire_and_forget LoginPage::OnNavigatedTo(const Microsoft::UI::Xaml::Navigation::NavigationEventArgs& Args)

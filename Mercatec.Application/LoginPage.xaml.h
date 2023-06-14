@@ -27,6 +27,7 @@ namespace winrt::Mercatec::Application::implementation
     protected:
         void InitializeContext();
         void InitializeNavigation();
+        void InitializeBindings();
 
     private:
         ViewModels::LoginViewModel m_ViewModel;

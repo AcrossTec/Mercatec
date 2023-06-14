@@ -77,6 +77,7 @@
 #include <Mercatec.Services.hpp>
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Strings.hpp>
+#include <Mercatec.Helpers.FunctionTraits.hpp>
 #include <Mercatec.Helpers.ServiceLocator.hpp>
 
 #include <ppl.h>
