@@ -12,4 +12,11 @@
     <SolidColorBrush x:Key="PrimaryColor">#1B1464</SolidColorBrush>
     <SolidColorBrush x:Key="IconColor">#330099</SolidColorBrush>
 
+    <SolidColorBrush x:Key="DetailsViewBackgroundColor" Color="#F5F5F5" />
+
+    <!--  Colors  -->
+    <SolidColorBrush x:Key="Information" Color="RoyalBlue" />
+    <SolidColorBrush x:Key="Warning" Color="#ffff00" />
+    <SolidColorBrush x:Key="Error" Color="#ce0e0e" />
+
 </ResourceDictionary>

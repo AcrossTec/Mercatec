@@ -10,9 +10,12 @@
 
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Strings.hpp>
+#include <Mercatec.Helpers.Application.hpp>
 
 using namespace std::literals::chrono_literals;
 using namespace ::Mercatec::Types;
+
+namespace App = Mercatec::Helpers::Applications;
 
 using ::Mercatec::Helpers::Empty;
 
@@ -22,32 +25,32 @@ namespace winrt::Mercatec::Services::implementation
     {
     }
 
-    IAsyncOperation<bool> DialogService::ShowAsync( //
-      const Microsoft::UI::Xaml::XamlRoot& xaml_root,
-      const std::wstring_view              title,
-      const std::wstring_view              content
-    )
+    IAsyncOperation<bool> DialogService::ShowAsync(const std::wstring_view title, const std::wstring_view content)
+    {
+        return ShowAsync(App::XamlRoot(), title, content, L"Ok", Empty<Char>);
+    }
+
+    IAsyncOperation<bool> DialogService::ShowAsync(const std::wstring_view title, const std::wstring_view content, const std::wstring_view ok)
+    {
+        return ShowAsync(App::XamlRoot(), title, content, ok, Empty<Char>);
+    }
+
+    IAsyncOperation<bool> DialogService::ShowAsync(const std::wstring_view title, const std::wstring_view content, const std::wstring_view ok, const std::wstring_view cancel)
+    {
+        return ShowAsync(App::XamlRoot(), title, content, ok, cancel);
+    }
+
+    IAsyncOperation<bool> DialogService::ShowAsync(const Microsoft::UI::Xaml::XamlRoot& xaml_root, const std::wstring_view title, const std::wstring_view content)
     {
         return ShowAsync(xaml_root, title, content, L"Ok", Empty<Char>);
     }
 
-    IAsyncOperation<bool> DialogService::ShowAsync( //
-      const Microsoft::UI::Xaml::XamlRoot& xaml_root,
-      const std::wstring_view              title,
-      const std::wstring_view              content,
-      const std::wstring_view              ok
-    )
+    IAsyncOperation<bool> DialogService::ShowAsync(const Microsoft::UI::Xaml::XamlRoot& xaml_root, const std::wstring_view title, const std::wstring_view content, const std::wstring_view ok)
     {
         return ShowAsync(xaml_root, title, content, ok, Empty<Char>);
     }
 
-    IAsyncOperation<bool> DialogService::ShowAsync( //
-      const Microsoft::UI::Xaml::XamlRoot& xaml_root,
-      const std::wstring_view              title,
-      const std::wstring_view              content,
-      const std::wstring_view              ok,
-      const std::wstring_view              cancel
-    )
+    IAsyncOperation<bool> DialogService::ShowAsync(const Microsoft::UI::Xaml::XamlRoot& xaml_root, const std::wstring_view title, const std::wstring_view content, const std::wstring_view ok, const std::wstring_view cancel)
     {
         MUXC::ContentDialog dialog;
         dialog.XamlRoot(xaml_root);

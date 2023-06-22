@@ -46,7 +46,7 @@ namespace winrt::Mercatec::Application::implementation
 
     void WelcomePage::ButtonRestart_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
     {
-        Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
+        // Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
     }
 
     void WelcomePage::ButtonForgetUser_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
@@ -57,7 +57,7 @@ namespace winrt::Mercatec::Application::implementation
         OutputDebug(L"User {} deleted.", m_ActiveAccount.UserName());
 
         // Navigate back to UserSelection page.
-        Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
+        // Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
     }
 
     void WelcomePage::ButtonForgetDevice_Click([[maybe_unused]] const IInspectable& sender, [[maybe_unused]] const MUX::RoutedEventArgs& args)
@@ -74,7 +74,7 @@ namespace winrt::Mercatec::Application::implementation
             if ( UserListView().Items().Size() == 0 )
             {
                 // Navigate back to UserSelection page.
-                Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
+                // Frame().Navigate(xaml_typename<Mercatec::Application::UserSelectionPage>());
             }
         }
         else

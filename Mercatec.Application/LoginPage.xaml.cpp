@@ -19,6 +19,8 @@ using namespace winrt::Microsoft::UI::Xaml;
 using namespace Cxx::DesignPatterns;
 using namespace std::chrono_literals;
 
+using ::Mercatec::Helpers::AnimationExtensions;
+
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -94,7 +96,7 @@ namespace winrt::Mercatec::Application::implementation
     fire_and_forget LoginPage::OnNavigatedTo(const Microsoft::UI::Xaml::Navigation::NavigationEventArgs& Args)
     {
         m_EffectMode = EffectMode::None;
-        co_await m_ViewModel.LoadAsync(Args.Parameter().as<Helpers::ViewModels::ShellArgs>());
+        co_await ViewModel().LoadAsync(Args.Parameter().as<Helpers::ViewModels::ShellArgs>());
         InitializeNavigation();
     }
 
@@ -104,7 +106,8 @@ namespace winrt::Mercatec::Application::implementation
         {
             DoEffectOut();
             co_await 100ms;
-            m_ViewModel.Login();
+            co_await wil::resume_foreground(DispatcherQueue());
+            ViewModel().Login();
         }
 
         base_type::OnKeyDown(Args);
@@ -113,19 +116,31 @@ namespace winrt::Mercatec::Application::implementation
     fire_and_forget LoginPage::OnShowLoginWithPassword([[maybe_unused]] const IInspectable& Sender, [[maybe_unused]] const RoutedEventArgs& Args)
     {
         co_await 100ms;
+        co_await wil::resume_foreground(DispatcherQueue());
         PasswordView().Focus();
     }
 
     void LoginPage::OnBackgroundFocus([[maybe_unused]] const IInspectable& Sender, [[maybe_unused]] const RoutedEventArgs& Args)
     {
+        DoEffectIn();
     }
 
     void LoginPage::OnForegroundFocus([[maybe_unused]] const IInspectable& Sender, [[maybe_unused]] const RoutedEventArgs& Args)
     {
+        DoEffectOut();
     }
 
     void LoginPage::DoEffectIn([[maybe_unused]] const double_t MilliSeconds)
     {
+        if ( m_EffectMode == EffectMode::Foreground or m_EffectMode == EffectMode::None )
+        {
+            m_EffectMode = EffectMode::Background;
+
+            AnimationExtensions::Scale(BackgroundBorder(), MilliSeconds, 1.0, 1.1);
+            AnimationExtensions::Blur(BackgroundBorder(), MilliSeconds, 6.0, 0.0);
+            AnimationExtensions::Scale(ForegroundStackPanel(), 500, 1.0, 0.95);
+            AnimationExtensions::Fade(ForegroundStackPanel(), MilliSeconds, 1.0, 0.75);
+        }
     }
 
     void LoginPage::DoEffectOut([[maybe_unused]] const double_t MilliSeconds)
@@ -134,10 +149,10 @@ namespace winrt::Mercatec::Application::implementation
         {
             m_EffectMode = EffectMode::Foreground;
 
-            // BackgroundBorder().Scale(MilliSeconds, 1.1, 1.0);
-            // BackgroundBorder().Blur(MilliSeconds, 0.0, 6.0);
-            // ForegroundStackPanel().Scale(500, 0.95, 1.0);
-            // ForegroundStackPanel().Fade(MilliSeconds, 0.75, 1.0);
+            AnimationExtensions::Scale(BackgroundBorder(), MilliSeconds, 1.1, 1.0);
+            AnimationExtensions::Blur(BackgroundBorder(), MilliSeconds, 0.0, 6.0);
+            AnimationExtensions::Scale(ForegroundStackPanel(), 500, 0.95, 1.0);
+            AnimationExtensions::Fade(ForegroundStackPanel(), MilliSeconds, 0.75, 1.0);
         }
     }
 } // namespace winrt::Mercatec::Application::implementation

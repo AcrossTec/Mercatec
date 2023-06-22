@@ -33,6 +33,10 @@
 #include <winrt/Windows.UI.Xaml.Data.h>
 #include <winrt/Windows.UI.Xaml.Interop.h>
 
+#include <winrt/Microsoft.Graphics.Canvas.h>
+#include <winrt/Microsoft.Graphics.Canvas.Effects.h>
+#include <winrt/Microsoft.Graphics.Canvas.UI.Xaml.h>
+
 #include <winrt/Microsoft.UI.h>
 #include <winrt/Microsoft.UI.Composition.h>
 #include <winrt/Microsoft.UI.Composition.Effects.h>
@@ -79,6 +83,7 @@
 #include <Mercatec.Helpers.Strings.hpp>
 #include <Mercatec.Helpers.FunctionTraits.hpp>
 #include <Mercatec.Helpers.ServiceLocator.hpp>
+#include <Mercatec.Helpers.AnimationExtensions.hpp>
 
 #include <ppl.h>
 #include <ppltasks.h>

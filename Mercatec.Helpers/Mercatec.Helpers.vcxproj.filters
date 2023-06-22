@@ -63,6 +63,12 @@
     <ClCompile Include="Mercatec.Helpers.ViewModels.Entity.cpp">
       <Filter>Infrastructure\ViewModels</Filter>
     </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.AnimationExtensions.cpp">
+      <Filter>Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.AppSettings.cpp">
+      <Filter>Headers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mercatec.Helpers.Coroutines.Task.hpp">
@@ -130,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="Mercatec.Helpers.Platform.hpp">
       <Filter>Headers\Cxx</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.AnimationExtensions.hpp">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.AppSettings.hpp">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

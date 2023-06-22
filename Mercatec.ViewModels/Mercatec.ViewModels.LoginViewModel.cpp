@@ -148,6 +148,8 @@ namespace winrt::Mercatec::ViewModels::implementation
 
     fire_and_forget LoginViewModel::LoginWithPassword() noexcept
     {
+        winrt::apartment_context ui_thread; // Capture calling context.
+
         IsBusy(true);
         auto Result = ValidateInput();
 
@@ -161,26 +163,32 @@ namespace winrt::Mercatec::ViewModels::implementation
                 }
 
                 m_SettingsService.UserName(m_UserName);
+                co_await ui_thread; // Switch back to calling context.
                 EnterApplication();
                 co_return;
             }
         }
 
+        co_await ui_thread; // Switch back to calling context.
         co_await DialogService().ShowAsync(App::XamlRoot(), Result.Message(), Result.Description());
         IsBusy(false);
     }
 
     fire_and_forget LoginViewModel::LoginWithWindowHello() noexcept
     {
+        winrt::apartment_context ui_thread; // Capture calling context.
+
         IsBusy(true);
         auto Result = co_await m_LoginService.SignInWithWindowsHelloAsync();
 
         if ( Result.IsOk() )
         {
+            co_await ui_thread; // Switch back to calling context.
             EnterApplication();
             co_return;
         }
 
+        co_await ui_thread; // Switch back to calling context.
         co_await DialogService().ShowAsync(App::XamlRoot(), Result.Message(), Result.Description());
         IsBusy(false);
     }
@@ -204,12 +212,12 @@ namespace winrt::Mercatec::ViewModels::implementation
     {
         if ( m_UserName.empty() )
         {
-            return Helpers::Result::Error(L"Login Error", L"Please, Enter A Valid User Name.");
+            return Helpers::Result::Error(L"Login Error", L"Por favor, Escriba un usuario válido.");
         }
 
         if ( m_Password.empty() )
         {
-            return Helpers::Result::Error(L"Login Error", L"Please, Enter A Valid Password.");
+            return Helpers::Result::Error(L"Login Error", L"Por favor, Escriba una contraseña válida.");
         }
 
         return Helpers::Result::Ok();

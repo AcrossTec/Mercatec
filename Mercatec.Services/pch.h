@@ -23,7 +23,10 @@
 #include <winrt/Windows.ApplicationModel.Activation.h>
 
 #include <winrt/Windows.Security.Credentials.h>
+#include <winrt/Windows.Security.Credentials.UI.h>
 #include <winrt/Windows.Security.Cryptography.h>
+#include <winrt/Windows.Security.Cryptography.Core.h>
+#include <winrt/Windows.Security.Cryptography.DataProtection.h>
 
 #include <winrt/Windows.Storage.h>
 #include <winrt/Windows.Storage.Streams.h>
@@ -57,6 +60,8 @@
 
 #include <Mercatec.Helpers.Types.hpp>
 #include <Mercatec.Helpers.Debug.hpp>
+#include <Mercatec.Helpers.Strings.hpp>
+#include <Mercatec.Helpers.AppSettings.hpp>
 
 #include <chrono>
 #include <algorithm>
@@ -75,6 +80,13 @@ namespace winrt
     using namespace Windows::Foundation;
     using namespace Windows::Foundation::Collections;
 } // namespace winrt
+
+namespace winrt::Mercatec
+{
+    using namespace ::Mercatec::Types;
+    using namespace ::Mercatec::Helpers::Debug;
+    using namespace ::Mercatec::Helpers::Strings;
+} // namespace winrt::Mercatec
 
 namespace MU   = winrt::Microsoft::UI;
 namespace MUX  = winrt::Microsoft::UI::Xaml;

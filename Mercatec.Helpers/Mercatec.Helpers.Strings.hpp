@@ -2,7 +2,7 @@
 
 #include "Mercatec.Helpers.Exports.Api.hpp"
 
-#include <windows.foundation.h>
+#include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
 
 #include <string>
@@ -17,6 +17,8 @@
 #include <cwchar>
 #include <vector>
 #include <ranges>
+
+#define nameof(Expression) (L## #Expression##sv).substr((L## #Expression##sv).find_last_of(L"::") + 1)
 
 namespace Mercatec::Helpers::inline Strings
 {
