@@ -7,6 +7,9 @@
     <ClCompile Include="Main.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.LocalSettings.Tests.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Sources">

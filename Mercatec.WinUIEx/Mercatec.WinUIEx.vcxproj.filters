@@ -56,6 +56,9 @@
     <Filter Include="Headers\Windows\Internal">
       <UniqueIdentifier>{696f49ce-6355-4597-9c32-1412df86dff6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Headers\Helpers\DesignPatterns">
+      <UniqueIdentifier>{287cec39-47d9-4099-bffe-1473b906b79d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp">
@@ -93,6 +96,15 @@
     </ClCompile>
     <ClCompile Include="Internal\Mercatec.WinUIEx.Internal.Icon.cpp">
       <Filter>Headers\Windows\Internal</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.AppDataPaths.cpp">
+      <Filter>Headers\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.UserDataPaths.cpp">
+      <Filter>Headers\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.WindowsShell.cpp">
+      <Filter>Headers\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +232,18 @@
     </ClInclude>
     <ClInclude Include="Internal\Mercatec.WinUIEx.Internal.Icon.hpp">
       <Filter>Headers\Windows\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Visitor.hpp">
+      <Filter>Headers\Helpers\DesignPatterns</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.AppDataPaths.hpp">
+      <Filter>Headers\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.UserDataPaths.hpp">
+      <Filter>Headers\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.WindowsShell.hpp">
+      <Filter>Headers\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

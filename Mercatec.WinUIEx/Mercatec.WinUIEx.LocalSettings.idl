@@ -5,6 +5,10 @@ namespace Mercatec.WinUIEx
     {
         LocalSettings();
 
+        String AppDataPath { get; set; };
+        String FileName { get; set; };
+        String SettingFile { get; };
+
         [default_overload]
         void Add(String Key, UInt8[] Value);
         void Add(String Key, Guid    Value);
@@ -20,6 +24,10 @@ namespace Mercatec.WinUIEx
         void Add(String Key, Double  Value);
         void Add(String Key, String  Value);
         void Add(String Key, Boolean Value);
+        void Add(String Key, Windows.Foundation.DateTime Value);
+        void Add(String Key, Windows.Foundation.TimeSpan Value);
+        void Add(String Key, Windows.Storage.Streams.IBuffer Buffer);
+        void Add(String Key, Windows.Storage.Streams.IBuffer Buffer, UInt32 Start, UInt32 Count);
 
         [default_overload]
         void Get(String Key, out UInt8[] Value);
@@ -36,6 +44,9 @@ namespace Mercatec.WinUIEx
         void Get(String Key, out Double  Value);
         void Get(String Key, out String  Value);
         void Get(String Key, out Boolean Value);
+        void Get(String Key, out Windows.Foundation.DateTime Value);
+        void Get(String Key, out Windows.Foundation.TimeSpan Value);
+        void Get(String Key, out Windows.Storage.Streams.IBuffer Buffer);
 
         Guid    GetGuid   (String Key);
         Char    GetChar   (String Key);
@@ -51,8 +62,11 @@ namespace Mercatec.WinUIEx
         String  GetString (String Key);
         Boolean GetBoolean(String Key);
         UInt8[] GetArray  (String Key);
+        Windows.Foundation.DateTime     GetDateTime(String Key);
+        Windows.Foundation.TimeSpan     GetTimeSpan(String Key);
+        Windows.Storage.Streams.IBuffer GetBuffer  (String Key);
 
-        void Load();
-        void Save();
+        Windows.Foundation.IAsyncAction LoadAsync();
+        Windows.Foundation.IAsyncAction SaveAsync();
     }
 }

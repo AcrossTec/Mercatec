@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.WinUIEx.AppDataPaths.hpp" />
     <ClInclude Include="Mercatec.WinUIEx.Icon.h">
       <DependentUpon>Mercatec.WinUIEx.Icon.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -180,6 +181,7 @@
       <DependentUpon>Mercatec.WinUIEx.Messaging.Message.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.WindowsShell.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Mercatec.WinUIEx.WindowEx.h">
       <DependentUpon>Mercatec.WinUIEx.WindowEx.idl</DependentUpon>
@@ -215,8 +217,11 @@
       <DependentUpon>Mercatec.WinUIEx.SplashScreen.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Visitor.hpp" />
+    <ClInclude Include="Mercatec.WinUIEx.UserDataPaths.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.WinUIEx.AppDataPaths.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Icon.cpp">
       <DependentUpon>Mercatec.WinUIEx.Icon.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -230,6 +235,7 @@
     <ClCompile Include="Internal\Messaging\Mercatec.WinUIEx.Messaging.Internal.Message.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Messaging.WindowMessageMonitor.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.MonitorInfo.cpp" />
+    <ClCompile Include="Mercatec.WinUIEx.UserDataPaths.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.WindowExtensions.Dialogs.cpp" />
     <ClCompile Include="Mercatec.WinUIEx.Windowing.WindowMessageSink.cpp" />
@@ -261,6 +267,7 @@
       <DependentUpon>Mercatec.WinUIEx.SplashScreen.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.WindowsShell.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Mercatec.WinUIEx.def" />
