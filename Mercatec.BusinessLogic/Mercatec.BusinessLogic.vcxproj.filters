@@ -50,6 +50,9 @@
     <None Include="PropertySheet.props">
       <Filter>Others</Filter>
     </None>
+    <None Include="vcpkg.json">
+      <Filter>Others</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">

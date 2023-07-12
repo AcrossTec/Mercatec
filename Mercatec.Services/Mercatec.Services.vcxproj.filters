@@ -77,6 +77,9 @@
     <None Include="Mercatec.Services.def">
       <Filter>Others</Filter>
     </None>
+    <None Include="vcpkg.json">
+      <Filter>Others</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis">

@@ -216,6 +216,9 @@
     <None Include="Assets\SplashScreen.scale-200.svg">
       <Filter>Assets</Filter>
     </None>
+    <None Include="vcpkg.json">
+      <Filter>Others</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

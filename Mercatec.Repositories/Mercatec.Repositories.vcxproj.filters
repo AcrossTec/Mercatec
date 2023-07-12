@@ -59,6 +59,9 @@
     <None Include="packages.config">
       <Filter>Others</Filter>
     </None>
+    <None Include="vcpkg.json">
+      <Filter>Others</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis">
