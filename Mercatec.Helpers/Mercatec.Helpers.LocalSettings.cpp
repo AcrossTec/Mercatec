@@ -1,13 +1,13 @@
 ﻿#include "pch.h"
-#include "Mercatec.WinUIEx.LocalSettings.h"
+#include "Mercatec.Helpers.LocalSettings.h"
 #if __has_include("LocalSettings.g.cpp")
 # include "LocalSettings.g.cpp"
 #endif
 
-#include "Mercatec.WinUIEx.Visitor.hpp"
-#include "Mercatec.WinUIEx.Application.hpp"
-#include "Mercatec.WinUIEx.AppDataPaths.hpp"
-#include "Mercatec.WinUIEx.WindowsShell.hpp"
+#include "Mercatec.Helpers.Visitor.hpp"
+#include "Mercatec.Helpers.Application.hpp"
+#include "Mercatec.Helpers.AppDataPaths.hpp"
+#include "Mercatec.Helpers.WindowsShell.hpp"
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.UI.Xaml.Controls.h>
@@ -17,11 +17,11 @@ using namespace winrt::Windows::Storage;
 using namespace winrt::Windows::Storage::Streams;
 using namespace winrt::Windows::UI::Xaml::Controls;
 
-using namespace ::Mercatec::WinUIEx;
-using namespace ::Mercatec::WinUIEx::Applications;
-using namespace ::Mercatec::WinUIEx::DesignPatterns;
+using namespace ::Mercatec::Helpers;
+using namespace ::Mercatec::Helpers::Applications;
+using namespace ::Mercatec::Helpers::DesignPatterns;
 
-using MercatecDataPaths = ::Mercatec::WinUIEx::AppDataPaths;
+using MercatecDataPaths = ::Mercatec::Helpers::AppDataPaths;
 
 //!
 //! DataReader Class
@@ -45,7 +45,7 @@ using MercatecDataPaths = ::Mercatec::WinUIEx::AppDataPaths;
 #undef PathCombine
 #undef PathAddExtension
 
-namespace winrt::Mercatec::WinUIEx::implementation
+namespace winrt::Mercatec::Helpers::implementation
 {
     LocalSettings::LocalSettings()
       : m_FileName{ *PathAddExtension({ ApplicationName() }, L".bin") }
@@ -591,7 +591,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
         std::ranges::copy(Value, Buffer.data());
         return Buffer;
     }
-} // namespace winrt::Mercatec::WinUIEx::implementation
+} // namespace winrt::Mercatec::Helpers::implementation
 
 #pragma pop_macro("PathAppend")
 #pragma pop_macro("PathCombine")

@@ -142,6 +142,11 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Mercatec.Helpers.AppDataPaths.hpp" />
+    <ClInclude Include="Mercatec.Helpers.LocalSettings.h">
+      <DependentUpon>Mercatec.Helpers.LocalSettings.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Mercatec.Helpers.AppSettings.hpp" />
     <ClInclude Include="Mercatec.Helpers.AnimationExtensions.hpp" />
     <ClInclude Include="Mercatec.Helpers.Converters.BoolNegationConverter.h">
@@ -209,8 +214,19 @@
       <DependentUpon>Mercatec.Helpers.Result.idl</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.UserDataPaths.hpp" />
+    <ClInclude Include="Mercatec.Helpers.Visitor.hpp" />
+    <ClInclude Include="Mercatec.Helpers.WindowsShell.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mercatec.Helpers.AppDataPaths.cpp">
+      <DependentUpon>Mercatec.Helpers.AppDataPaths.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.LocalSettings.cpp">
+      <DependentUpon>Mercatec.Helpers.LocalSettings.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Helpers.AnimationExtensions.cpp">
       <DependentUpon>Mercatec.Helpers.AnimationExtensions.hpp</DependentUpon>
       <SubType>Code</SubType>
@@ -263,6 +279,10 @@
       <DependentUpon>Mercatec.Helpers.Types.hpp</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.UserDataPaths.cpp">
+      <DependentUpon>Mercatec.Helpers.UserDataPaths.hpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Mercatec.Helpers.ViewModels.Entity.cpp">
       <DependentUpon>MIDLs\Mercatec.Helpers.ViewModels.IEntity.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -273,6 +293,10 @@
     </ClCompile>
     <ClCompile Include="Mercatec.Helpers.ViewModels.ObservableObject.cpp">
       <DependentUpon>Mercatec.Helpers.ViewModels.ObservableObject.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Mercatec.Helpers.WindowsShell.cpp">
+      <DependentUpon>Mercatec.Helpers.WindowsShell.hpp</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -297,6 +321,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="Mercatec.Helpers.LocalSettings.idl">
+      <SubType>Designer</SubType>
+    </Midl>
     <Midl Include="Mercatec.Helpers.Converters.BoolNegationConverter.idl">
       <SubType>Designer</SubType>
     </Midl>

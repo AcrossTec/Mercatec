@@ -143,6 +143,15 @@
     <ClInclude Include="Mercatec.Helpers.AppSettings.hpp">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.AppDataPaths.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.UserDataPaths.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.Helpers.Visitor.h">
+      <Filter>Headers\Cxx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -252,6 +261,9 @@
     </Midl>
     <Midl Include="Mercatec.Helpers.Converters.BoolNegationConverter.idl">
       <Filter>Converters</Filter>
+    </Midl>
+    <Midl Include="Mercatec.Helpers.LocalSettings.idl">
+      <Filter>Headers</Filter>
     </Midl>
   </ItemGroup>
 </Project>
