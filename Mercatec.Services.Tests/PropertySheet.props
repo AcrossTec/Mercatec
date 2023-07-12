@@ -16,6 +16,6 @@
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
     <VcpkgTriplet>x64-windows</VcpkgTriplet>
-    <VcpkgAdditionalInstallOptions>--x-feature=xml</VcpkgAdditionalInstallOptions>
+    <VcpkgAdditionalInstallOptions>--x-feature=xml --x-feature=tests</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
 </Project>

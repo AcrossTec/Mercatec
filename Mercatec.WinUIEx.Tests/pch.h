@@ -44,6 +44,7 @@
 
 #pragma warning(disable : 26495)
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #pragma warning(pop)
 
 #pragma push_macro("GetCurrentTime")
@@ -54,6 +55,11 @@
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.Foundation.Collections.h>
+#include <winrt/Windows.Storage.h>
+#include <winrt/Windows.Storage.Streams.h>
+#include <winrt/Microsoft.UI.h>
+#include <winrt/Microsoft.UI.Xaml.h>
+#include <winrt/Microsoft.UI.Windowing.h>
 
 #include <iostream>
 #include <iomanip>
@@ -68,12 +74,19 @@
 #include <string_view>
 #include <memory>
 #include <chrono>
+#include <tuple>
+#include <ranges>
+#include <filesystem>
 
 namespace winrt
 {
     using namespace Windows::Foundation;
     using namespace Windows::Foundation::Collections;
 } // namespace winrt
+
+using namespace std::string_literals;
+using namespace std::string_view_literals;
+using namespace std::chrono_literals;
 
 #pragma pop_macro("GetCurrentTime")
 #pragma pop_macro("X64")

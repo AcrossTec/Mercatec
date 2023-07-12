@@ -5,7 +5,9 @@
 #endif
 
 #include "Mercatec.WinUIEx.Visitor.hpp"
+#include "Mercatec.WinUIEx.Application.hpp"
 #include "Mercatec.WinUIEx.AppDataPaths.hpp"
+#include "Mercatec.WinUIEx.WindowsShell.hpp"
 
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.UI.Xaml.Controls.h>
@@ -15,19 +17,40 @@ using namespace winrt::Windows::Storage;
 using namespace winrt::Windows::Storage::Streams;
 using namespace winrt::Windows::UI::Xaml::Controls;
 
+using namespace ::Mercatec::WinUIEx;
+using namespace ::Mercatec::WinUIEx::Applications;
 using namespace ::Mercatec::WinUIEx::DesignPatterns;
+
+using MercatecDataPaths = ::Mercatec::WinUIEx::AppDataPaths;
 
 //!
 //! DataReader Class
 //! https://learn.microsoft.com/en-us/uwp/api/windows.storage.streams.datareader?view=winrt-22621
 //!
+//! PathCombineW function (shlwapi.h)
+//! https://learn.microsoft.com/en-us/windows/win32/api/shlwapi/nf-shlwapi-pathcombinew
+//!
+//! PathCchCombine function (pathcch.h)
+//! https://learn.microsoft.com/en-us/windows/win32/api/pathcch/nf-pathcch-pathcchcombine
+//!
+//! Appending One File to Another File
+//! https://learn.microsoft.com/en-us/windows/win32/fileio/appending-one-file-to-another-file
+//!
+
+#pragma push_macro("PathAppend")
+#pragma push_macro("PathCombine")
+#pragma push_macro("PathAddExtension")
+
+#undef PathAppend
+#undef PathCombine
+#undef PathAddExtension
 
 namespace winrt::Mercatec::WinUIEx::implementation
 {
     LocalSettings::LocalSettings()
-      : m_AppDataPath{ ::Mercatec::WinUIEx::AppDataPaths::RoamingAppData() }
-      , m_FileName{ L"Mercatec.bin" }
+      : m_FileName{ *PathAddExtension({ ApplicationName() }, L".bin") }
     {
+        AppDataPath(MercatecDataPaths::RoamingAppData());
     }
 
     hstring LocalSettings::AppDataPath() const noexcept
@@ -37,7 +60,10 @@ namespace winrt::Mercatec::WinUIEx::implementation
 
     void LocalSettings::AppDataPath(const std::wstring_view Value) noexcept
     {
-        m_AppDataPath = Value;
+        // clang-format off
+        m_AppDataPath = *PathAppend({ Value.data(), ApplicationName() })
+            .or_else([] { return PathAppend({ MercatecDataPaths::RoamingAppData(), ApplicationName() }); });
+        // clang-format on
     }
 
     hstring LocalSettings::FileName() const noexcept
@@ -52,8 +78,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
 
     hstring LocalSettings::SettingFile() const noexcept
     {
-        using std::filesystem::path;
-        return (path(AppDataPath().c_str()) / L"Mercatec" / FileName().c_str()).c_str();
+        return *PathAppend({ AppDataPath(), FileName() });
     }
 
     Windows::Foundation::IAsyncAction LocalSettings::LoadAsync()
@@ -73,7 +98,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
         co_await Reader.LoadAsync(static_cast<uint32_t>(Stream.Size()));
 
         // Keep reading until we consume the complete stream.
-        if ( Reader.UnconsumedBufferLength() > 0 )
+        while ( Reader.UnconsumedBufferLength() > 0 )
         {
             uint32_t     BytesToRead{ 0 };
             IBuffer      ValueBuffer{ nullptr };
@@ -162,10 +187,11 @@ namespace winrt::Mercatec::WinUIEx::implementation
 
     Windows::Foundation::IAsyncAction LocalSettings::SaveAsync()
     {
-        StorageFolder       RoamingAppData = co_await StorageFolder::GetFolderFromPathAsync(AppDataPath());
-        StorageFolder       Folder         = co_await RoamingAppData.CreateFolderAsync(L"Mercatec", CreationCollisionOption::OpenIfExists);
-        StorageFile         File           = co_await Folder.CreateFileAsync(FileName(), CreationCollisionOption::ReplaceExisting);
-        IRandomAccessStream Stream         = co_await File.OpenAsync(FileAccessMode::ReadWrite);
+        std::filesystem::create_directories(AppDataPath().c_str());
+
+        StorageFolder       Folder = co_await StorageFolder::GetFolderFromPathAsync(AppDataPath());
+        StorageFile         File   = co_await Folder.CreateFileAsync(FileName(), CreationCollisionOption::ReplaceExisting);
+        IRandomAccessStream Stream = co_await File.OpenAsync(FileAccessMode::ReadWrite);
 
         // Create the data writer object backed by the in-memory stream.
         DataWriter Writer(Stream);
@@ -284,7 +310,7 @@ namespace winrt::Mercatec::WinUIEx::implementation
         co_await Writer.StoreAsync();
 
         // For the in-memory stream implementation we are using, the FlushAsync call
-        // is superfluous,but other types of streams may require it.
+        // is superfluous, but other types of streams may require it.
         co_await Writer.FlushAsync();
 
         // In order to prolong the lifetime of the stream, detach it from the
@@ -397,7 +423,10 @@ namespace winrt::Mercatec::WinUIEx::implementation
 
     void LocalSettings::Get(const std::wstring_view Key, int16_t& Value)
     {
-        Value = std::any_cast<const int16_t&>(m_Data.at(std::wstring(Key)));
+        auto&& V = m_Data.at(std::wstring(Key));
+        auto&& N = V.type().name();
+
+        Value = std::any_cast<const int16_t&>(V);
     }
 
     void LocalSettings::Get(const std::wstring_view Key, int32_t& Value)
@@ -470,6 +499,8 @@ namespace winrt::Mercatec::WinUIEx::implementation
         const auto& Value = std::any_cast<const std::vector<uint8_t>&>(m_Data.at(std::wstring(Key)));
 
         Buffer = Windows::Storage::Streams::Buffer(static_cast<uint32_t>(Value.size()));
+        Buffer.Length(Value.size());
+
         std::ranges::copy(Value, Buffer.data());
     }
 
@@ -555,9 +586,16 @@ namespace winrt::Mercatec::WinUIEx::implementation
 
     LocalSettings::buffer_t LocalSettings::GetBuffer(const std::wstring_view Key)
     {
-        const std::vector<uint8_t>&       Value(std::any_cast<const std::vector<uint8_t>&>(m_Data.at(std::wstring(Key))));
+        const std::vector<uint8_t>& Value(std::any_cast<const std::vector<uint8_t>&>(m_Data.at(std::wstring(Key))));
+
         Windows::Storage::Streams::Buffer Buffer(static_cast<uint32_t>(Value.size()));
+        Buffer.Length(Value.size());
+
         std::ranges::copy(Value, Buffer.data());
         return Buffer;
     }
 } // namespace winrt::Mercatec::WinUIEx::implementation
+
+#pragma pop_macro("PathAppend")
+#pragma pop_macro("PathCombine")
+#pragma pop_macro("PathAddExtension")

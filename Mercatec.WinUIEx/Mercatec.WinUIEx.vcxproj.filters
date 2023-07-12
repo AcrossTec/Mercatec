@@ -106,6 +106,9 @@
     <ClCompile Include="Mercatec.WinUIEx.WindowsShell.cpp">
       <Filter>Headers\Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="Mercatec.WinUIEx.Application.cpp">
+      <Filter>Headers\Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="Mercatec.WinUIEx.WindowEx.idl">
@@ -153,6 +156,9 @@
       <Filter>Others</Filter>
     </None>
     <None Include="PropertySheet.props">
+      <Filter>Others</Filter>
+    </None>
+    <None Include="vcpkg.json">
       <Filter>Others</Filter>
     </None>
   </ItemGroup>
@@ -243,6 +249,9 @@
       <Filter>Headers\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Mercatec.WinUIEx.WindowsShell.hpp">
+      <Filter>Headers\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Mercatec.WinUIEx.Application.hpp">
       <Filter>Headers\Helpers</Filter>
     </ClInclude>
   </ItemGroup>

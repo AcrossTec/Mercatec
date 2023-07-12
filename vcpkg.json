@@ -17,7 +17,7 @@
     },
     "database": {
       "description": "Database Libraries",
-      "dependencies": [ "libpq", "libpqxx", "sqlite3" ]
+      "dependencies": [ "libpq", "libpqxx", "sqlite3", "soci" ]
     },
     "png": {
       "description": "Support PNG files",
@@ -46,6 +46,10 @@
     "pdf": {
       "description": "Support PDF files",
       "dependencies": [ "libharu" ]
+    },
+    "engines": {
+      "description": "Support Engines",
+      "dependencies": [ "chakracore" ]
     }
   }
 }

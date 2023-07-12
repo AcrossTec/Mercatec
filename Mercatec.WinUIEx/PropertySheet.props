@@ -6,8 +6,7 @@
   <ItemDefinitionGroup />
   <ItemGroup />
   <PropertyGroup Label="Vcpkg">
-    <VcpkgEnableManifest>true</VcpkgEnableManifest>
     <VcpkgTriplet>x64-windows</VcpkgTriplet>
-    <VcpkgAdditionalInstallOptions>--x-feature=xml</VcpkgAdditionalInstallOptions>
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
   </PropertyGroup>
 </Project>

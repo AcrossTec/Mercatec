@@ -6,6 +6,7 @@
     <IntDir>$(SolutionDir)\Build\Obj\$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <OutDir>$(SolutionDir)\Build\Bin\$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
     <GeneratedFilesDir>$(IntDir)Generated Files\</GeneratedFilesDir>
+    <VcpkgSourceDir>$(IntDir)vcpkg_installed\</VcpkgSourceDir>
   </PropertyGroup>
   <PropertyGroup Label="Globals">
     <UseWinUI>true</UseWinUI>
